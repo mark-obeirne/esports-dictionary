@@ -19,7 +19,8 @@ mongo = PyMongo(app)
 @app.route("/get_terms")
 def test():
     terms = mongo.db.terms.find()
-    return render_template("terms.html", terms=terms)
+    games = mongo.db.games.find()
+    return render_template("terms.html", terms=terms, games=games)
 
 
 if __name__ == "__main__":
