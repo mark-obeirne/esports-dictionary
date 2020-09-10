@@ -1,3 +1,19 @@
+/* General Styles */
+
+.text-shadow {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+/* Navbar */
+
+.navigation {
+    background-color: #0F66D2;
+}
+
+.navigation a {
+    color: #F5F5F4;
+}
+
 .sidenav-close {
     text-align: right;
 }
