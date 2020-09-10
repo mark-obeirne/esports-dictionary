@@ -4,6 +4,16 @@
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
 }
 
+/* Buttons */
+
+.red-btn {
+    background-color: #DB3A34;
+}
+
+.red-btn:hover {
+    background-color: #E35F5F;
+}
+
 /* Navbar */
 
 .navigation {
@@ -16,4 +26,8 @@
 
 .sidenav-close {
     text-align: right;
+}
+
+.sidenav .navbar-divider {
+    margin: 0;
 }
