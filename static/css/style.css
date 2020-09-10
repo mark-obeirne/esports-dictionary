@@ -1,4 +1,5 @@
 /* General Styles */
+
 :root {
     font-size: 62.5%;
 }
@@ -11,6 +12,7 @@ body {
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
 }
 
+
 /* Colours */
 
 .blue-background {
@@ -21,6 +23,14 @@ body {
     color: #F5F5F4;
 }
 
+
+/* Layout */
+
+.centered {
+    text-align: center;
+}
+
+
 /* Buttons */
 
 .red-btn {
@@ -30,6 +40,7 @@ body {
 .red-btn:hover {
     background-color: #E35F5F;
 }
+
 
 /* Navbar */
 
@@ -50,7 +61,6 @@ body {
 /* Footer */
 
 .social-footer {
-    text-align: center;
     font-size: 2.5rem;
     margin: 1rem 0 0 0; 
 }
