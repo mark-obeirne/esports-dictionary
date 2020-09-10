@@ -1,7 +1,24 @@
 /* General Styles */
+:root {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+}
 
 .text-shadow {
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+/* Colours */
+
+.blue-background {
+    background-color: #0F66D2;
+}
+
+.white-text {
+    color: #F5F5F4;
 }
 
 /* Buttons */
@@ -16,12 +33,9 @@
 
 /* Navbar */
 
-.navigation {
-    background-color: #0F66D2;
-}
-
 .navigation a {
     color: #F5F5F4;
+    font-size: 1.6rem;
 }
 
 .sidenav-close {
@@ -30,4 +44,17 @@
 
 .sidenav .navbar-divider {
     margin: 0;
+}
+
+
+/* Footer */
+
+.social-footer {
+    text-align: center;
+    font-size: 2.5rem;
+    margin: 1rem 0 0 0; 
+}
+
+.social-link {
+    margin: 0 1rem;
 }
