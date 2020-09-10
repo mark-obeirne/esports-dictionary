@@ -15,7 +15,8 @@
 
 <body>
 	<header>
-		<nav class="navigation text-shadow">
+		<!--Desktop navbar -->
+        <nav class="navigation blue-background text-shadow">
 			<div class="nav-wrapper">
 				<a href="/" class="brand-logo">ESD Logo</a>
 				<a href="#" data-target="sidenav-menu" class="sidenav-trigger right">menu</a>
@@ -23,34 +24,54 @@
 					<li><a href="">Dictionary</a></li>
 					<li><a href="">Register</a></li>
 					<li><a href="">Log In</a></li>
-                    <li><a href="">Submit Definition</a></li>
+					<li><a href="">Submit Definition</a></li>
 					<li><a href="">My Profile</a></li>
 					<li><a href="">Manage Games</a></li>
-                    <li><a href="">Shop</a></li>
+					<li><a href="">Shop</a></li>
 					<li><a href="">Contact Us</a></li>
 					<li><a href="">Log Out</a></li>
 				</ul>
 			</div>
 		</nav>
 
+        <!--Mobile nav menu-->
 		<ul class="sidenav" id="sidenav-menu">
-            <li><a class="sidenav-close" href="#!">X</a></li>
+			<li><a class="sidenav-close" href="#!">X</a></li>
+			<div class="divider navbar-divider"></div>
 			<li><a href="">Dictionary</a></li>
 			<li><a href="">Register</a></li>
 			<li><a href="">Log In</a></li>
-            <li><a href="">Submit Definition</a></li>
+			<li><a href="">Submit Definition</a></li>
 			<li><a href="">My Profile</a></li>
 			<li><a href="">Manage Games</a></li>
-            <li><a href="">Shop</a></li>
+			<li><a href="">Shop</a></li>
 			<li><a href="">Contact Us</a></li>
 			<li><a href="">Log Out</a></li>
 		</ul>
 	</header>
 
+    <!--Main Page Content-->
+    <main>
 	{% block content %}
 
 	{% endblock %}
+    </main>
 
+    <!--Footer-->
+	<footer class="social-footer blue-background">
+		<div class="container">
+			<div class="row">
+				<div class="col s12">
+					<!--Social Media Links-->
+                    <ul class="social-media-links">
+						<a href="" class="social-link white-text text-shadow"><i class="fab fa-facebook-square"></i></a>
+						<a href="" class="social-link white-text text-shadow"><i class="fab fa-instagram-square"></i></a>
+						<a href="" class="social-link white-text text-shadow"><i class="fab fa-twitter-square"></i></a>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 	<script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
