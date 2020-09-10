@@ -1,5 +1,11 @@
-{% for term in terms %}
-    {{ term.term_header }}<br>
-    {{ term.game_name }}<br>
-    {{ term.short_definition }}<br>
-{% endfor %}
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% for term in terms %}
+        {{ term.term_header }}<br>
+        {{ term.game_name }}<br>
+        {{ term.short_definition }}<br>
+    {% endfor %}
+
+{% endblock %}
