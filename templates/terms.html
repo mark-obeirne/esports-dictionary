@@ -2,6 +2,16 @@
 
 {% block content %}
 
+<div class="row">
+    <div class="col s12 spotlight">
+        [Background Image from game - randomly picked]
+        [Overlay to make buttons and text on left stand out]
+        <a href="" class="btn register-btn red-btn">Register</a>
+        <a href="" class="btn login-btn">Log in</a>
+        <p class="benefits">Register or log in to add definitions and rate submissions</p>
+    </div>
+</div>
+
     {% for term in terms %}
         {{ term.term_header }}<br>
         {{ term.game_name }}<br>
