@@ -77,6 +77,16 @@ body {
 }
 
 
+/* Jumbotron */
+
+.spotlight {
+    height: 50vh;
+}
+
+.spotlight-btn {
+    display: block;
+}
+
 /* Dictionary */
 .rating {
     padding: .5rem;
