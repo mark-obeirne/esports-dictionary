@@ -41,18 +41,19 @@
 </section>
 <section>
   <h2 class="heading centered">Definitions</h2>
+  <div class="container">
   <ul class="collapsible">
     {% for term in terms %}
       <li>
         <div class="collapsible-header">
-          <div class="col s3 rating">
-            {{ term.rating }}
+          <div class="col s3 rating-container">
+            <span class="rating">{{ term.rating }}</span>
           </div>
           <div class="col s9 term-section">
-            <strong>{{ term.term_header}}</strong>
+            <strong class="uppercase">{{ term.term_header}}</strong>
             <div class="divider"></div>
-            {{ term.game_name }}
-            {{ term.short_definition }}
+            <span>{{ term.game_name }}</span>
+            <p>{{ term.short_definition }}</p>
             {{ term.submitted_by }}
           </div>
         </div>
@@ -72,11 +73,12 @@
         </div>
         <div class="admin-btns centered">
           <span class="btn-small">Edit</span>
-          <span class="btn-small">Delete</span>
+          <span class="btn-small red-btn">Delete</span>
         </div>
       </li>
     {% endfor %}
     </ul>
+    </div>
 
 {% for term in terms %} {{ term.term_header }}<br />
 {{ term.game_name }}<br />
