@@ -79,12 +79,37 @@ body {
 
 /* Jumbotron */
 
-.spotlight {
-    height: 50vh;
+.full-container {
+    width: 100%;
+    position: relative;
 }
 
-.spotlight-btn {
+.jumbotron-overlay {
+  background-image: linear-gradient(to right, rgba(25, 25, 25, 1) 15%, rgba(25, 25, 25, 0));
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.spotlight {
+    height: 50vh;
+    background-image: url("/static/images/rocket_league_keyart.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.spotlight .spotlight-btn {
     display: block;
+    width: 40%;
+}
+
+.spotlight-content {
+    position: relative;
+    z-index: 2;
 }
 
 /* Dictionary */

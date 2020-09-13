@@ -1,89 +1,97 @@
 {% extends "base.html" %} {% block content %}
 <!--Image Jumbotron-->
-<div class="row">
-  <div class="col s12 spotlight">
-    [Background Image from game - randomly picked] [Overlay to make buttons and
-    text on left stand out]
-    <a href="" class="btn register-btn red-btn spotlight-btn">Register</a>
-    <a href="" class="btn login-btn spotlight-btn">Log in</a>
-    <p class="benefits">
-      Register or log in to add definitions and rate submissions
-    </p>
-  </div>
-</div>
-<!--Search/Filter Section-->
-<section class="container search-filters">
+<div class="full-container">
+  <div class="jumbotron-overlay">&nbsp;</div>
   <div class="row">
-    <div class="col s12">
-      <input
-        type="text"
-        class="searchbar"
-        placeholder="Filter by term or game"
-      />
-    </div>
-  </div>
-  <div class="row">
-    <div class="input-field col s12">
-      <select id="game_name" name="game_name">
-        <option value="" disabled selected>Choose game</option>
-        {% for game in games %}
-        <option value="{{ game.game_name }}">{{ game.game_name }}</option>
-        {% endfor %}
-      </select>
-      <label for="game_name">Or filter by game</label>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col s12 centered">
-      <span class="btn-small alpha-filter red-btn">Or filter alphabetically</span>  
-    </div>
-  </div>
-</section>
-<section>
-  <h2 class="heading centered">Definitions</h2>
-  <div class="container">
-  <ul class="collapsible">
-    {% for term in terms %}
-      <li>
-        <div class="collapsible-header">
-          <div class="col s3 rating-container">
-            <span class="rating">{{ term.rating }}</span>
-          </div>
-          <div class="col s9 term-section">
-            <strong class="uppercase">{{ term.term_header}}</strong>
-            <div class="divider"></div>
-            <span>{{ term.game_name }}</span>
-            <p>{{ term.short_definition }}</p>
-            {{ term.submitted_by }}
+    <div class="col s12 spotlight">
+    <div class="row">
+          <div class="col s8 spotlight-content">
+            <a href="" class="btn register-btn red-btn spotlight-btn"
+              >Register</a
+            >
+            <a href="" class="btn login-btn spotlight-btn">Log in</a>
+            <p class="benefits">
+              Register or log in to add definitions and rate submissions
+            </p>
           </div>
         </div>
-        <div class="collapsible-body">
-          {% if term.long_description %}
-            <span><strong>Description</strong></span> 
+      </div>
+      </div>
+    </div>
+
+
+  <!--Search/Filter Section-->
+  <section class="container search-filters">
+    <div class="row">
+      <div class="col s12">
+        <input
+          type="text"
+          class="searchbar"
+          placeholder="Filter by term or game"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <select id="game_name" name="game_name">
+          <option value="" disabled selected>Choose game</option>
+          {% for game in games %}
+          <option value="{{ game.game_name }}">{{ game.game_name }}</option>
+          {% endfor %}
+        </select>
+        <label for="game_name">Or filter by game</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 centered">
+        <span class="btn-small alpha-filter red-btn"
+          >Or filter alphabetically</span
+        >
+      </div>
+    </div>
+  </section>
+  <section>
+    <h2 class="heading centered">Definitions</h2>
+    <div class="container">
+      <ul class="collapsible">
+        {% for term in terms %}
+        <li>
+          <div class="collapsible-header">
+            <div class="col s3 rating-container">
+              <span class="rating">{{ term.rating }}</span>
+            </div>
+            <div class="col s9 term-section">
+              <strong class="uppercase">{{ term.term_header}}</strong>
+              <div class="divider"></div>
+              <span>{{ term.game_name }}</span>
+              <p>{{ term.short_definition }}</p>
+              {{ term.submitted_by }}
+            </div>
+          </div>
+          <div class="collapsible-body">
+            {% if term.long_description %}
+            <span><strong>Description</strong></span>
             <p>{{ term.long_description }}</p>
-          {% else %}
+            {% else %}
             <p><strong>Description:</strong> {{ term.short_definition }}</p>
-          {% endif %}
-          {% if term.image_link %}
+            {% endif %} {% if term.image_link %}
             <div>{{ term.image_link }}</div>
-          {% endif %}
-          <div>{% if term.youtube_link %}</div>
-            {{ term.youtube_link }}
-          {% endif %}
-        </div>
-        <div class="admin-btns centered">
-          <span class="btn-small">Edit</span>
-          <span class="btn-small red-btn">Delete</span>
-        </div>
-      </li>
-    {% endfor %}
-    </ul>
+            {% endif %}
+            <div>{% if term.youtube_link %}</div>
+            {{ term.youtube_link }} {% endif %}
+          </div>
+          <div class="admin-btns centered">
+            <span class="btn-small">Edit</span>
+            <span class="btn-small red-btn">Delete</span>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
     </div>
 
-{% for term in terms %} {{ term.term_header }}<br />
-{{ term.game_name }}<br />
-{{ term.short_definition }}<br />
-{% endfor %} {% endblock %}
-
-
-</section>
+    {% for term in terms %} {{ term.term_header }}<br />
+    {{ term.game_name }}<br />
+    {{ term.short_definition }}<br />
+    {% endfor %} {% endblock %}
+  </section>
+</div>
