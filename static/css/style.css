@@ -8,8 +8,15 @@ body {
     font-size: 1.6rem;
 }
 
+
+/* Text Styles */
+
 .text-shadow {
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+.uppercase {
+    text-transform: uppercase;
 }
 
 
@@ -67,4 +74,10 @@ body {
 
 .social-link {
     margin: 0 1rem;
+}
+
+
+/* Dictionary */
+.rating {
+    padding: .5rem;
 }
