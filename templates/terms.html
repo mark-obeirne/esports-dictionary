@@ -3,12 +3,12 @@
 <div class="full-container">
   <div class="jumbotron-overlay">&nbsp;</div>
   <div class="row">
-    <div class="col s12 spotlight">
+    <div class="col s12 spotlight valign-wrapper">
       <div class="row">
-        <div class="col s8 spotlight-content">
+        <div class="col s8 offset-s1 spotlight-content">
           <a href="" class="btn register-btn red-btn spotlight-btn">Register</a>
-          <a href="" class="btn login-btn spotlight-btn">Log in</a>
-          <p class="benefits">
+          <a href="" class="btn login-btn blue-background spotlight-btn">Log in</a>
+          <p class="benefits off-white">
             Register or log in to add definitions and rate submissions
           </p>
         </div>
@@ -31,7 +31,7 @@
       <label for="game-filter">Or filter by game</label>
     </div>
     <div class="col s12 center-align hide-on-large-only">
-      <span class="btn-small alpha-filter red-btn"
+      <span class="btn-small alpha-filter blue-background"
         >Or filter alphabetically</span
       >
     </div>
@@ -72,14 +72,14 @@
       <ul class="collapsible">
         {% for term in terms %}
         <li>
-          <div class="collapsible-header hoverable">
+          <div class="collapsible-header hoverable dark-background off-white">
             <div class="col s3 rating-container valign-wrapper">
               <p>{{ term.rating }}</p>
             </div>
             <div class="col s9 term-section">
               <strong class="uppercase">{{ term.term_header}}</strong>
               <div class="divider"></div>
-              <span>{{ term.game_name }}</span>
+              <span class="game-name">{{ term.game_name }}</span>
               <p>{{ term.short_definition }}</p>
               {{ term.submitted_by }}
             </div>
@@ -96,9 +96,9 @@
             <div>{% if term.youtube_link %}</div>
             {{ term.youtube_link }} {% endif %}
           </div>
-          <div class="admin-btns center-align">
-            <span class="btn-small">Edit</span>
-            <span class="btn-small red-btn">Delete</span>
+          <div class="admin-btns dark-background center-align">
+            <span class="btn-small blue-background off-white">Edit</span>
+            <span class="btn-small red-btn off-white">Delete</span>
           </div>
         </li>
         {% endfor %}
