@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Selectors
     const alphabetFilters = document.querySelectorAll(".alphabet-letter")
-
+    const gameDropdown = document.querySelector(".game-filter")
 
   // Functions
     function filterByLetter() {
@@ -40,6 +40,22 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    function filterByGame() {
+        showAllDefinitions()
+        const chosenGame = this.value
+        const allGameCategories = Array.from(document.querySelectorAll(".game-name"))
+        console.log(allGameCategories)
+        const allTermContainers = Array.from(document.querySelectorAll(".term-container"))
+        // Hide a definition's container if the term's associated game doesn't match the selected game
+        for (let i = 0; i < allGameCategories.length; i++) {
+            for (let j = 0; j < allTermContainers.length; j++) {
+                if (allGameCategories[i].textContent !== chosenGame) {
+                    allTermContainers[j].classList.add("hidden")
+                }
+            }
+        }
+    }
+
     function showAllDefinitions() {
         const allTermContainers = Array.from(document.querySelectorAll(".term-container"))
         allTermContainers.forEach(container => container.classList.remove("hidden"))
@@ -47,3 +63,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Event Listeners
     alphabetFilters.forEach(letter => letter.addEventListener("click", filterByLetter))
+    
+    gameDropdown.addEventListener("change", filterByGame)
