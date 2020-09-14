@@ -21,12 +21,12 @@
 				<a href="/" class="brand-logo">ESD Logo</a>
 				<a href="#" data-target="sidenav-menu" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
 				<ul class="right hide-on-med-and-down">
-					<li><a href="">Dictionary</a></li>
-					<li><a href="">Register</a></li>
+					<li><a href="{{ url_for('get_terms') }}">Dictionary</a></li>
+					<li><a href="{{ url_for('register') }}">Register</a></li>
 					<li><a href="">Log In</a></li>
 					<li><a href="">Submit Definition</a></li>
 					<li><a href="{{ url_for('profile') }}">My Profile</a></li>
-					<li><a href="">Manage Games</a></li>
+					<li><a href="{{ url_for('get_games') }}">Manage Games</a></li>
 					<li><a href="">Shop</a></li>
 					<li><a href="">Contact Us</a></li>
 					<li><a href="">Log Out</a></li>
@@ -38,12 +38,12 @@
 		<ul class="sidenav" id="sidenav-menu">
 			<li><a class="sidenav-close" href="#!">X</a></li>
 			<div class="divider navbar-divider"></div>
-			<li><a href="">Dictionary</a></li>
-			<li><a href="">Register</a></li>
+			<li><a href="{{ url_for('get_terms') }}">Dictionary</a></li>
+			<li><a href="{{ url_for('register') }}">Register</a></li>
 			<li><a href="">Log In</a></li>
 			<li><a href="">Submit Definition</a></li>
 			<li><a href="{{ url_for('profile') }}">My Profile</a></li>
-			<li><a href="">Manage Games</a></li>
+			<li><a href="{{ url_for('get_games') }}">Manage Games</a></li>
 			<li><a href="">Shop</a></li>
 			<li><a href="">Contact Us</a></li>
 			<li><a href="">Log Out</a></li>
