@@ -6,6 +6,8 @@
 
 body {
     font-size: 1.6rem;
+    background-color: #E2E1DF;
+    color: #2D2A32;
 }
 
 
@@ -26,10 +28,17 @@ body {
     background-color: #0F66D2;
 }
 
-.white-text {
+.off-white {
     color: #F5F5F4;
 }
 
+.dark-background {
+    background-color: #2D2A32;
+}
+
+.dark-text {
+    color: #2D2A32;
+}
 
 /* Layout */
 
@@ -38,19 +47,33 @@ body {
 /* Buttons */
 
 .red-btn {
-    background-color: #DB3A34;
+    background-color: #AC1610;
 }
 
 .red-btn:hover {
-    background-color: #E35F5F;
+    background-color: #DB1C14;
 }
 
+.alpha-btns {
+    background-color: #AC1610;
+    color: #F5F5F4;
+}
+
+.blue-btn:hover {
+    background-color: #257FEF;
+}
 
 /* Navbar */
 
 .navigation a {
     color: #F5F5F4;
     font-size: 1.6rem;
+    transition: all .5s;
+    
+}
+
+.navigation a:hover {
+    box-shadow: 0rem -.35rem 0rem #F5F5F4 inset;
 }
 
 .sidenav-close {
@@ -110,6 +133,11 @@ body {
     z-index: 2;
 }
 
+.benefits {
+    margin-left: 1.6rem;
+    font-size: 1.2rem;
+}
+
 
 /* Dictionary */
 
@@ -132,6 +160,24 @@ body {
     margin: 3rem 0rem;
 }
 
+.search-filters label {
+    color: #2D2A32;
+}
+
 .alpha-btns {
     margin-top: .5rem;
+}
+
+
+/* Media Queries */
+@media screen and (min-width: 600px) {
+    .spotlight .spotlight-btn {
+        width: 70%;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .spotlight .spotlight-btn {
+        width: 100%;
+    }
 }

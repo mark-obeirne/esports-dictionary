@@ -3,12 +3,14 @@
 <div class="full-container">
   <div class="jumbotron-overlay">&nbsp;</div>
   <div class="row">
-    <div class="col s12 spotlight">
+    <div class="col s12 spotlight valign-wrapper">
       <div class="row">
-        <div class="col s8 spotlight-content">
+        <div class="col s8 offset-s1 spotlight-content">
           <a href="" class="btn register-btn red-btn spotlight-btn">Register</a>
-          <a href="" class="btn login-btn spotlight-btn">Log in</a>
-          <p class="benefits">
+          <a href="" class="btn login-btn blue-btn blue-background spotlight-btn"
+            >Log in</a
+          >
+          <p class="benefits off-white">
             Register or log in to add definitions and rate submissions
           </p>
         </div>
@@ -18,52 +20,58 @@
 </div>
 <div class="row">
   <!--Search/Filter Section-->
-  <div class="col s12 l5 push-l7 search-filters">
+  <div class="col s12 l5 push-l7">
     <h2 class="heading uppercase center-align">Search Filters</h2>
-    <input type="text" class="searchbar" placeholder="Filter by term or game" />
-    <div class="input-field">
-      <select id="game-filter" name="game-filter" class="game-filter">
-        <option value="" disabled selected>Choose game</option>
-        {% for game in games %}
-        <option value="{{ game.game_name }}">{{ game.game_name }}</option>
-        {% endfor %}
-      </select>
-      <label for="game-filter">Or filter by game</label>
-    </div>
-    <div class="col s12 center-align hide-on-large-only">
-      <span class="btn-small alpha-filter red-btn"
-        >Or filter alphabetically</span
+    <div class="search-filters">
+      <input
+        type="text"
+        class="searchbar"
+        placeholder="Filter by term or game"
+      />
+      <div class="input-field">
+        <select id="game-filter" name="game-filter" class="game-filter">
+          <option value="" disabled selected>Choose game</option>
+          {% for game in games %}
+          <option value="{{ game.game_name }}">{{ game.game_name }}</option>
+          {% endfor %}
+        </select>
+        <label for="game-filter">Or filter by game</label>
+      </div>
+      <div class="col s12 center-align hide-on-large-only">
+        <span class="btn-small alpha-filter blue-btn blue-background"
+          >Or filter alphabetically</span
+        >
+      </div>
+      <div
+        class="col l8 offset-l2 hide-on-med-and-down show-on-large center-align"
       >
-    </div>
-    <div
-      class="col l8 offset-l2 hide-on-med-and-down show-on-large center-align"
-    >
-      <button class="alpha-btns">A</button>
-      <button class="alpha-btns">B</button>
-      <button class="alpha-btns">C</button>
-      <button class="alpha-btns">D</button>
-      <button class="alpha-btns">E</button>
-      <button class="alpha-btns">F</button>
-      <button class="alpha-btns">G</button>
-      <button class="alpha-btns">H</button>
-      <button class="alpha-btns">I</button>
-      <button class="alpha-btns">J</button>
-      <button class="alpha-btns">K</button>
-      <button class="alpha-btns">L</button>
-      <button class="alpha-btns">M</button>
-      <button class="alpha-btns">N</button>
-      <button class="alpha-btns">O</button>
-      <button class="alpha-btns">P</button>
-      <button class="alpha-btns">Q</button>
-      <button class="alpha-btns">R</button>
-      <button class="alpha-btns">S</button>
-      <button class="alpha-btns">T</button>
-      <button class="alpha-btns">U</button>
-      <button class="alpha-btns">V</button>
-      <button class="alpha-btns">W</button>
-      <button class="alpha-btns">X</button>
-      <button class="alpha-btns">Y</button>
-      <button class="alpha-btns">Z</button>
+        <button class="alpha-btns">A</button>
+        <button class="alpha-btns">B</button>
+        <button class="alpha-btns">C</button>
+        <button class="alpha-btns">D</button>
+        <button class="alpha-btns">E</button>
+        <button class="alpha-btns">F</button>
+        <button class="alpha-btns">G</button>
+        <button class="alpha-btns">H</button>
+        <button class="alpha-btns">I</button>
+        <button class="alpha-btns">J</button>
+        <button class="alpha-btns">K</button>
+        <button class="alpha-btns">L</button>
+        <button class="alpha-btns">M</button>
+        <button class="alpha-btns">N</button>
+        <button class="alpha-btns">O</button>
+        <button class="alpha-btns">P</button>
+        <button class="alpha-btns">Q</button>
+        <button class="alpha-btns">R</button>
+        <button class="alpha-btns">S</button>
+        <button class="alpha-btns">T</button>
+        <button class="alpha-btns">U</button>
+        <button class="alpha-btns">V</button>
+        <button class="alpha-btns">W</button>
+        <button class="alpha-btns">X</button>
+        <button class="alpha-btns">Y</button>
+        <button class="alpha-btns">Z</button>
+      </div>
     </div>
   </div>
   <div class="col s12 l7 pull-l5">
@@ -72,14 +80,14 @@
       <ul class="collapsible">
         {% for term in terms %}
         <li>
-          <div class="collapsible-header hoverable">
+          <div class="collapsible-header hoverable dark-background off-white">
             <div class="col s3 rating-container valign-wrapper">
               <p>{{ term.rating }}</p>
             </div>
             <div class="col s9 term-section">
               <strong class="uppercase">{{ term.term_header}}</strong>
               <div class="divider"></div>
-              <span>{{ term.game_name }}</span>
+              <span class="game-name">{{ term.game_name }}</span>
               <p>{{ term.short_definition }}</p>
               {{ term.submitted_by }}
             </div>
@@ -96,9 +104,9 @@
             <div>{% if term.youtube_link %}</div>
             {{ term.youtube_link }} {% endif %}
           </div>
-          <div class="admin-btns center-align">
-            <span class="btn-small">Edit</span>
-            <span class="btn-small red-btn">Delete</span>
+          <div class="admin-btns dark-background center-align">
+            <span class="btn-small blue-background blue-btn off-white">Edit</span>
+            <span class="btn-small red-btn off-white">Delete</span>
           </div>
         </li>
         {% endfor %}
