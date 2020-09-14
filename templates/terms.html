@@ -4,61 +4,53 @@
   <div class="jumbotron-overlay">&nbsp;</div>
   <div class="row">
     <div class="col s12 spotlight">
-    <div class="row">
-          <div class="col s8 spotlight-content">
-            <a href="" class="btn register-btn red-btn spotlight-btn"
-              >Register</a
-            >
-            <a href="" class="btn login-btn spotlight-btn">Log in</a>
-            <p class="benefits">
-              Register or log in to add definitions and rate submissions
-            </p>
-          </div>
+      <div class="row">
+        <div class="col s8 spotlight-content">
+          <a href="" class="btn register-btn red-btn spotlight-btn">Register</a>
+          <a href="" class="btn login-btn spotlight-btn">Log in</a>
+          <p class="benefits">
+            Register or log in to add definitions and rate submissions
+          </p>
         </div>
       </div>
-      </div>
     </div>
-
-
+  </div>
+</div>
+<div class="row">
   <!--Search/Filter Section-->
-  <section class="container search-filters">
-    <div class="row">
-      <div class="col s12">
-        <input
-          type="text"
-          class="searchbar"
-          placeholder="Filter by term or game"
-        />
-      </div>
+  <div class="col s12 m5 push-m7 search-filters">
+  <h2 class="heading uppercase center-align">Search Filters</h2>
+    <input type="text" class="searchbar" placeholder="Filter by term or game" />
+    <div class="input-field">
+      <select id="game_name" name="game_name">
+        <option value="" disabled selected>Choose game</option>
+        {% for game in games %}
+        <option value="{{ game.game_name }}">{{ game.game_name }}</option>
+        {% endfor %}
+      </select>
+      <label for="game_name">Or filter by game</label>
     </div>
-    <div class="row">
-      <div class="input-field col s12">
-        <select id="game_name" name="game_name">
-          <option value="" disabled selected>Choose game</option>
-          {% for game in games %}
-          <option value="{{ game.game_name }}">{{ game.game_name }}</option>
-          {% endfor %}
-        </select>
-        <label for="game_name">Or filter by game</label>
-      </div>
+    <div class="col s12 center-align hide-on-med-and-up">
+      <span class="btn-small alpha-filter red-btn"
+        >Or filter alphabetically</span
+      >
     </div>
-    <div class="row">
-      <div class="col s12 centered">
-        <span class="btn-small alpha-filter red-btn"
-          >Or filter alphabetically</span
-        >
-      </div>
+    <div class="col s12 center-align hide-on-med-and-down">
+      <span class="btn-small alpha-filter red-btn"
+        >Or filter alphabetically</span
+      >
+      <button>A</button>
     </div>
-  </section>
-  <section>
-    <h2 class="heading centered">Definitions</h2>
+  </div>
+  <div class="col s12 m7 pull-m5">
+    <h2 class="heading uppercase center-align">Definitions</h2>
     <div class="container">
       <ul class="collapsible">
         {% for term in terms %}
         <li>
-          <div class="collapsible-header">
+          <div class="collapsible-header hoverable">
             <div class="col s3 rating-container valign-wrapper">
-              <span class="rating">{{ term.rating }}</span>
+              <p>{{ term.rating }}</p>
             </div>
             <div class="col s9 term-section">
               <strong class="uppercase">{{ term.term_header}}</strong>
@@ -93,5 +85,5 @@
     {{ term.game_name }}<br />
     {{ term.short_definition }}<br />
     {% endfor %} {% endblock %}
-  </section>
+  </div>
 </div>
