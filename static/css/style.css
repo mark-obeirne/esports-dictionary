@@ -42,7 +42,9 @@ body {
 
 /* Layout */
 
-
+.hidden {
+    display: none;
+}
 
 /* Buttons */
 
@@ -168,6 +170,11 @@ body {
     margin-top: .5rem;
 }
 
+#alphabet-filter li .alphabet-letter {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
 
 /* Media Queries */
 @media screen and (min-width: 600px) {
