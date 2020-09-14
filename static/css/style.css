@@ -33,9 +33,6 @@ body {
 
 /* Layout */
 
-.centered {
-    text-align: center;
-}
 
 
 /* Buttons */
@@ -114,7 +111,7 @@ body {
 }
 
 /* Dictionary */
-.rating {
+.rating-container {
     padding: .5rem;
 }
 
