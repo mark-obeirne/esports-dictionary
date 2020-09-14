@@ -56,11 +56,6 @@ body {
     background-color: #DB1C14;
 }
 
-.alpha-btns {
-    background-color: #AC1610;
-    color: #F5F5F4;
-}
-
 .blue-btn:hover {
     background-color: #257FEF;
 }
@@ -174,6 +169,7 @@ body {
     display: block;
     width: 100%;
     text-align: center;
+    border: 0.05rem solid #2D2A32;
 }
 
 /* Media Queries */
