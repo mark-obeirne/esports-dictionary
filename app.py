@@ -17,10 +17,15 @@ mongo = PyMongo(app)
 
 @app.route("/")
 @app.route("/get_terms")
-def test():
+def get_terms():
     terms = mongo.db.terms.find()
     games = mongo.db.games.find()
     return render_template("terms.html", terms=terms, games=games)
+
+
+@app.route("/profile")
+def profile():
+    return render_template("profile.html")
 
 
 if __name__ == "__main__":
