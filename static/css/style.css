@@ -104,7 +104,8 @@ body {
 
 .spotlight .spotlight-btn {
     display: block;
-    width: 40%;
+    width: 50%;
+    margin: 1rem;
 }
 
 .spotlight-content {
@@ -115,4 +116,8 @@ body {
 /* Dictionary */
 .rating {
     padding: .5rem;
+}
+
+.term-section {
+    padding: 0 1rem;
 }
