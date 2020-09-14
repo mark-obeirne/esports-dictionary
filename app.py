@@ -28,6 +28,12 @@ def profile():
     return render_template("profile.html")
 
 
+@app.route("/get_games")
+def get_games():
+    games = list(mongo.db.games.find().sort("game_name", 1))
+    return render_template("games.html", games=games)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
