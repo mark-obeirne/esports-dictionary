@@ -59,6 +59,9 @@ body {
     color: #F5F5F4;
 }
 
+.blue-btn:hover {
+    background-color: #257FEF;
+}
 
 /* Navbar */
 
