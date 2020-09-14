@@ -168,6 +168,11 @@ body {
     margin-top: .5rem;
 }
 
+#alphabet-filter li .sidenav-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
 
 /* Media Queries */
 @media screen and (min-width: 600px) {
