@@ -19,12 +19,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }); 
 
 
-
-  // Selectors
-    const alphabetFilters = document.querySelectorAll(".alphabet-letter")
-    const gameDropdown = document.querySelector(".game-filter")
-
   // Functions
+    
     function filterByLetter() {
         showAllDefinitions()
         const letter = this.innerText;
@@ -61,7 +57,54 @@ document.addEventListener('DOMContentLoaded', function() {
         allTermContainers.forEach(container => container.classList.remove("hidden"))
     }
 
+    function confirmPasswordMatch() {
+        const passwordField = document.querySelector("#password")
+        const confirmPassword = document.querySelector("#confirm-password")
+        const passwordWarningText = document.querySelector(".confirm-warning")
+        
+        if (confirmPassword.value !== passwordField.value) {
+            confirmPassword.classList.remove("valid")
+            confirmPassword.classList.add("invalid")
+            passwordWarningText.classList.remove("hidden")
+        }
+        else {
+            passwordWarningText.classList.add("hidden")
+        }
+
+    }
+
   // Event Listeners
-    alphabetFilters.forEach(letter => letter.addEventListener("click", filterByLetter))
+  // Test for existence
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // Filter definitions displayed on Dictionary page by letter 
+        const alphabetFilters = document.querySelectorAll(".alphabet-letter");
+        if (alphabetFilters) {
+            alphabetFilters.forEach(letter => letter.addEventListener("click", filterByLetter))
+        }
+
+        // Filter definitions displayed on Dictionary page by game
+        const gameDropdown = document.querySelector(".game-filter");
+        if (gameDropdown) {
+            gameDropdown.addEventListener("change", filterByGame)
+        }
+
+        // Check if password and confirm password fields match on registration page
+        const confirmPasswordField = document.querySelector("#confirm-password")
+        if (confirmPasswordField) {
+            confirmPasswordField.addEventListener("focusout", confirmPasswordMatch)
+        }
+    });
+
     
-    gameDropdown.addEventListener("change", filterByGame)
+    
+    
+
+    
+
+
+    
+    
+    
+    
+    
