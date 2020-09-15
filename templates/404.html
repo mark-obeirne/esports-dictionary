@@ -3,16 +3,16 @@
 {% block content %}
  <div class="row">
     <div class="col s12 m6 offset-m3">
-      <div class="card">
-        <div class="card-image img-fluid">
-          <img src="{{ url_for('static', filename='images/spy-tf2.jpg') }}">
+      <div class="card error-card">
+        <div class="card-image">
+          <img class="responsive-img" src="{{ url_for('static', filename='images/spy-tf2.jpg') }}">
         </div>
         <div class="card-content">
           <span class="dark-text"><strong>Page Not Found</strong></span>
           <p>Sorry! Either this page has camouflaged as a member of the enemy team or it never joined the game in the first place</p>
         </div>
-        <div class="homepage-button center-align">
-        <a href="{{ url_for('get_terms') }}" class="btn red-btn"
+        <div class="center-align">
+        <a href="{{ url_for('get_terms') }}" class="homepage-button btn red-btn"
             >back to the homepage</a
           >
         </div>
