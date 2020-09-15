@@ -61,14 +61,19 @@ document.addEventListener('DOMContentLoaded', function() {
         const passwordField = document.querySelector("#password")
         const confirmPassword = document.querySelector("#confirm-password")
         const passwordWarningText = document.querySelector(".confirm-warning")
+        const btn = document.querySelector(".registerBtn")
+
         
         if (confirmPassword.value !== passwordField.value) {
             confirmPassword.classList.remove("valid")
             confirmPassword.classList.add("invalid")
             passwordWarningText.classList.remove("hidden")
+            btn.classList.add("disabled")
+    
         }
         else {
             passwordWarningText.classList.add("hidden")
+            btn.classList.remove("disabled")
         }
 
     }
