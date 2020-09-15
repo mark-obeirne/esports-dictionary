@@ -31,8 +31,14 @@ def profile():
 
 @app.route("/get_games")
 def get_games():
-    games = list(mongo.db.games.find().sort("game_name", 1))
-    return render_template("games.html", games=games)
+    # check if user has admin permission to access this page
+    is_admin = True if "admin" in session else False
+
+    if is_admin:
+        games = list(mongo.db.games.find().sort("game_name", 1))
+        return render_template("games.html", games=games)
+    else:
+        return redirect(url_for("get_terms"))
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -80,7 +86,8 @@ def login():
                     existing_username["password"], request.form.get(
                     "password")):
                 # check if user is an admin
-                if existing_username["is_admin"]:
+                is_admin = existing_username.get("is_admin", False)
+                if is_admin:
                     session["admin"] = True
                 session["user"] = request.form.get("username")
                 flash(Markup("Welcome ") + request.form.get("username"))
