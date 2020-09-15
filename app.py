@@ -1,9 +1,10 @@
 import os
 from flask import (
     Flask, flash, render_template,
-    redirect, request, session, url_for)
+    redirect, request, session, url_for, Markup)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
 
@@ -36,6 +37,34 @@ def get_games():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    if request.method == "POST":
+        # check if username currently exists in DB
+        existing_username = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+
+        if existing_username:
+            flash(Markup("Username already exists. "
+                         "Please choose another or <a href=''>login</a>."))
+            # Credit for using Markup to display link in flash message:
+            # https://pythonpedia.com/en/knowledge-base/21248718/how-to-flashing-a-message-with-link-using-flask-flash-
+            return render_template(url_for("register"))
+
+        # gather form data
+        registration = {
+            "username": request.form.get("username"),
+            "password": generate_password_hash(request.form.get("password")),
+            "fav_games": request.form.get("fav_games"),
+            "fav_competitors": request.form.get("fav_competitors")
+            }
+
+        # submit data to DB
+        mongo.db.users.insert_one(registration)
+
+        # create session cookie and redirect to dictionary
+        session["user"] = request.form.get("username")
+        flash(Markup("Thanks for signing up " + request.form.get("username")))
+        return redirect(url_for("get_terms"))
+
     return render_template("register.html")
 
 
