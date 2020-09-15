@@ -11,6 +11,7 @@
         <!--Username-->
         <div class="row">
           <div class="input-field col s12 register-field">
+            <i class="fas fa-user-plus prefix"></i>
             <input
               id="username"
               name="username"
@@ -28,34 +29,41 @@
         <!--Password-->
         <div class="row">
           <div class="input-field col s12 register-field">
+            <i class="fas fa-lock prefix"></i>
             <input
               id="password"
               type="password"
               name="password"
-              pattern="^[a-zA-Z0-9]{6}$"
+              pattern="^[a-zA-Z0-9]{6,15}$"
               minlength="6"
+              maxlength="15"
               class="validate"
               required
             />
             <label for="password">Password</label>
             <span class="sublabel dark-text"
-              >Password must be at least 6 characters</span
+              >Password must be 6-15 characters</span
             >
           </div>
         </div>
         <!--Confirm Password-->
         <div class="row">
           <div class="input-field col s12">
+            <i class="fas fa-check-circle prefix"></i>
             <input
               id="confirm-password"
               type="password"
               name="confirm-password"
-              pattern="^[a-zA-Z0-9]{6}$"
+              pattern="^[a-zA-Z0-9]{6,15}$"
               minlength="6"
+              maxlength="15"
               class="validate"
               required
             />
             <label for="confirm-password">Confirm Password</label>
+            <span class="sublabel dark-text confirm-warning hidden"
+              >Passwords do not match</span
+            >
           </div>
         </div>
         <!--Optional User Profile Fields-->
@@ -70,16 +78,18 @@
         <div class="row">
           <!--Favourite Games-->
           <div class="input-field col s12">
+            <i class="fas fa-gamepad prefix"></i>
             <input id="fav_games" name="fav_games" type="text" />
-            <label for="fav_games">Favourite Games (optional)</label>
+            <label for="fav_games">Favourite Games</label>
           </div>
         </div>
         <!--Favourite Esports Teams or Players-->
         <div class="row">
           <div class="input-field col s12">
+            <i class="fas fa-users prefix"></i>
             <input id="fav_competitors" name="fav_competitors" type="text" />
             <label for="fav_competitors"
-              >Favourite Esports Team/Player (optional)</label
+              >Favourite Esports Team/Player</label
             >
           </div>
         </div>
@@ -87,7 +97,7 @@
         <div class="row">
           <button
             type="submit"
-            class="col s12 btn-large blue-background blue-btn off-white text-shadow"
+            class="col s12 btn-large blue-background blue-btn off-white text-shadow registerBtn"
           >
             Register
           </button>
