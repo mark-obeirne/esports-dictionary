@@ -6,13 +6,22 @@
     <div class="col s12 spotlight valign-wrapper">
       <div class="row">
         <div class="col s8 offset-s1 spotlight-content">
-          <a href="" class="btn register-btn red-btn spotlight-btn">Register</a>
-          <a href="" class="btn login-btn blue-btn blue-background spotlight-btn"
+          {% if session.user %}
+          <a href="" class="btn submit-def red-btn spotlight-btn"
+            >Add Term</a
+          >
+          <p class="benefits small-text off-white">
+            Submit definitions for popular esports terms and earn points
+          </p>
+          {% else %}
+          <a href="{{ url_for('register') }}" class="btn register-btn red-btn spotlight-btn">Register</a>
+          <a href="{{ url_for('login') }}" class="btn login-btn blue-btn blue-background spotlight-btn"
             >Log in</a
           >
           <p class="benefits small-text off-white">
             Register or log in to add definitions and rate submissions
           </p>
+          {% endif %}
         </div>
       </div>
     </div>
