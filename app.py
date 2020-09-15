@@ -104,6 +104,24 @@ def login():
     return render_template("login.html")
 
 
+@app.route("/logout")
+def logout():
+    try:
+        if session["user"]:
+            flash("You have logged out successfully")
+            session.pop("user")
+    except KeyError:
+        flash("You are not logged in")
+    try:
+        if session["admin"]:
+            session.pop("admin")
+    except KeyError:
+        # user is not an admin
+        pass
+    finally:
+        return redirect(url_for("get_terms"))
+
+
 @app.errorhandler(404)
 def invalid_route(e):
     return render_template("404.html")
