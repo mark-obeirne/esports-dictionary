@@ -209,6 +209,13 @@ body {
 }
 
 
+/* 404 Page */
+
+.error-card {
+    padding: 1rem;
+}
+
+
 /* Media Queries */
 @media screen and (min-width: 600px) {
     .spotlight .spotlight-btn {
