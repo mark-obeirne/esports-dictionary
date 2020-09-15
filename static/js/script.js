@@ -78,6 +78,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     }
 
+    function updateHomepageButton() {
+        const homepageBtn = document.querySelector(".homepage-button")
+        phrases = ["Rocket Jump", "Bunny Hop", "Auto Run", "Fast Travel", "Teleport", "Strafe Jump", "Barrel Roll", "Shootdodge", "Noclip"]
+        choice = phrases[Math.floor(Math.random() * phrases.length - 1)]        
+        homepageBtn.innerText = choice + " back to the homepage"
+    }
+
+
   // Event Listeners
   // Test for existence
 
@@ -98,6 +106,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const confirmPasswordField = document.querySelector("#confirm-password")
         if (confirmPasswordField) {
             confirmPasswordField.addEventListener("focusout", confirmPasswordMatch)
+        }
+
+        // Update text contained within homepage button on 404 page
+        const homepageRedirect = document.querySelector(".homepage-button")
+        if (homepageRedirect) {
+            window.addEventListener("load", updateHomepageButton)
         }
     });
 
