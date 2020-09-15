@@ -1,89 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Esports Dictionary</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+      integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+      type="text/css"
+    />
+  </head>
 
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Esports Dictionary</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-		integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
-		crossorigin="anonymous" type="text/css" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-		type="text/css" />
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" />
-</head>
+  <body>
+    <header>
+      <!--Desktop navbar -->
+      <nav class="navigation blue-background text-shadow">
+        <div class="nav-wrapper">
+          <a href="/" class="brand-logo">ESD Logo</a>
+          <a href="#" data-target="sidenav-menu" class="sidenav-trigger right"
+            ><i class="fas fa-bars"></i
+          ></a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="{{ url_for('get_terms') }}">Dictionary</a></li>
+            {% if not session.user %}
+            <li><a href="{{ url_for('register') }}">Register</a></li>
+            <li><a href="">Log In</a></li>
+            {% else %}
+            <li><a href="">Submit Definition</a></li>
+            <li><a href="{{ url_for('profile') }}">My Profile</a></li>
+            <li><a href="{{ url_for('get_games') }}">Manage Games</a></li>
+            {% endif %}
+            <li><a href="">Shop</a></li>
+            <li><a href="">Contact Us</a></li>
+            {% if session.user %}
+            <li><a href="">Log Out</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
 
-<body>
-	<header>
-		<!--Desktop navbar -->
-        <nav class="navigation blue-background text-shadow">
-			<div class="nav-wrapper">
-				<a href="/" class="brand-logo">ESD Logo</a>
-				<a href="#" data-target="sidenav-menu" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
-				<ul class="right hide-on-med-and-down">
-					<li><a href="{{ url_for('get_terms') }}">Dictionary</a></li>
-					<li><a href="{{ url_for('register') }}">Register</a></li>
-					<li><a href="">Log In</a></li>
-					<li><a href="">Submit Definition</a></li>
-					<li><a href="{{ url_for('profile') }}">My Profile</a></li>
-					<li><a href="{{ url_for('get_games') }}">Manage Games</a></li>
-					<li><a href="">Shop</a></li>
-					<li><a href="">Contact Us</a></li>
-					<li><a href="">Log Out</a></li>
-				</ul>
-			</div>
-		</nav>
-
-        <!--Mobile nav menu-->
-		<ul class="sidenav" id="sidenav-menu">
-			<li><a class="sidenav-close" href="#!">X</a></li>
-			<div class="divider navbar-divider"></div>
-			<li><a href="{{ url_for('get_terms') }}">Dictionary</a></li>
-			<li><a href="{{ url_for('register') }}">Register</a></li>
-			<li><a href="">Log In</a></li>
-			<li><a href="">Submit Definition</a></li>
-			<li><a href="{{ url_for('profile') }}">My Profile</a></li>
-			<li><a href="{{ url_for('get_games') }}">Manage Games</a></li>
-			<li><a href="">Shop</a></li>
-			<li><a href="">Contact Us</a></li>
-			<li><a href="">Log Out</a></li>
-		</ul>
-	</header>
+      <!--Mobile nav menu-->
+      <ul class="sidenav" id="sidenav-menu">
+        <li><a class="sidenav-close" href="#!">X</a></li>
+        <div class="divider navbar-divider"></div>
+        <li><a href="{{ url_for('get_terms') }}">Dictionary</a></li>
+        {% if not session.user %}
+        <li><a href="{{ url_for('register') }}">Register</a></li>
+        <li><a href="">Log In</a></li>
+        {% else %}
+        <li><a href="">Submit Definition</a></li>
+        <li><a href="{{ url_for('profile') }}">My Profile</a></li>
+        <li><a href="{{ url_for('get_games') }}">Manage Games</a></li>
+        {% endif %}
+        <li><a href="">Shop</a></li>
+        <li><a href="">Contact Us</a></li>
+        {% if session.user %}
+        <li><a href="">Log Out</a></li>
+        {% endif %}
+      </ul>
+    </header>
 
     <!--Main Page Content-->
     <main>
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <ul class="flashed-messages">
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-            </ul>
-        {% endif %}
-    {% endwith %}
-	{% block content %}
-
-	{% endblock %}
+      {% with messages = get_flashed_messages() %} {% if messages %}
+      <ul class="flashed-messages">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %} {% endwith %} {% block content %} {% endblock %}
     </main>
 
     <!--Footer-->
-	<footer class="social-footer blue-background center-align">
-		<div class="container">
-			<div class="row">
-				<div class="col s12">
-					<!--Social Media Links-->
-                    <ul class="social-media-links">
-						<a href="" class="social-link white-text text-shadow"><i class="fab fa-facebook-square"></i></a>
-						<a href="" class="social-link white-text text-shadow"><i class="fab fa-instagram-square"></i></a>
-						<a href="" class="social-link white-text text-shadow"><i class="fab fa-twitter-square"></i></a>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</footer>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-	<script src="{{ url_for('static', filename='js/script.js') }}"></script>
-
-</body>
-
+    <footer class="social-footer blue-background center-align">
+      <div class="container">
+        <div class="row">
+          <div class="col s12">
+            <!--Social Media Links-->
+            <ul class="social-media-links">
+              <a href="" class="social-link white-text text-shadow"
+                ><i class="fab fa-facebook-square"></i
+              ></a>
+              <a href="" class="social-link white-text text-shadow"
+                ><i class="fab fa-instagram-square"></i
+              ></a>
+              <a href="" class="social-link white-text text-shadow"
+                ><i class="fab fa-twitter-square"></i
+              ></a>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  </body>
 </html>
