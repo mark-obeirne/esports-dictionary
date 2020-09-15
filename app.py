@@ -74,12 +74,14 @@ def login():
         # check that username exists
         existing_username = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
-
         if existing_username:
             # ensure hashed password matches input
             if check_password_hash(
                     existing_username["password"], request.form.get(
                     "password")):
+                # check if user is an admin
+                if existing_username["is_admin"]:
+                    session["admin"] = True
                 session["user"] = request.form.get("username")
                 flash(Markup("Welcome ") + request.form.get("username"))
                 return redirect(url_for("get_terms"))
