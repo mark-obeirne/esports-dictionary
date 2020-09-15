@@ -14,8 +14,8 @@
             Submit definitions for popular esports terms and earn points
           </p>
           {% else %}
-          <a href="" class="btn register-btn red-btn spotlight-btn">Register</a>
-          <a href="" class="btn login-btn blue-btn blue-background spotlight-btn"
+          <a href="{{ url_for('register') }}" class="btn register-btn red-btn spotlight-btn">Register</a>
+          <a href="{{ url_for('login') }}" class="btn login-btn blue-btn blue-background spotlight-btn"
             >Log in</a
           >
           <p class="benefits small-text off-white">
