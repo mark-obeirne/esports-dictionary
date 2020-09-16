@@ -7,7 +7,7 @@
       <div class="row">
         <div class="col s8 offset-s1 spotlight-content">
           {% if session.user %}
-          <a href="" class="btn submit-def red-btn spotlight-btn"
+          <a href="{{ url_for('submit_definition') }}" class="btn submit-def red-btn spotlight-btn"
             >Add Term</a
           >
           <p class="benefits small-text off-white">
