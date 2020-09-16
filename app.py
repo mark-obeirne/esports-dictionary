@@ -103,6 +103,7 @@ def get_games():
         games = list(mongo.db.games.find().sort("game_name", 1))
         return render_template("games.html", games=games)
     else:
+        flash("You do not have permission to access this page")
         return redirect(url_for("get_terms"))
 
 
