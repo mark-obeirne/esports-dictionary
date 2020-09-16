@@ -38,18 +38,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function filterByGame() {
         showAllDefinitions()
-        const chosenGame = this.value
-        const allGameCategories = Array.from(document.querySelectorAll(".game-name"))
-        console.log(allGameCategories)
-        const allTermContainers = Array.from(document.querySelectorAll(".term-container"))
+        const chosenGame = this.value;
+        console.log(chosenGame)
+        const allGameCategories = Array.from(document.querySelectorAll(".game-name"));
+        const allTermContainers = Array.from(document.querySelectorAll(".term-container"));
+        console.log(allTermContainers);
         // Hide a definition's container if the term's associated game doesn't match the selected game
-        for (let i = 0; i < allGameCategories.length; i++) {
-            for (let j = 0; j < allTermContainers.length; j++) {
-                if (allGameCategories[i].textContent !== chosenGame) {
-                    allTermContainers[j].classList.add("hidden")
-                }
-            }
-        }
+        allGameCategories.forEach(gameName => {
+            if (gameName.textContent !== chosenGame) {
+                gameName.parentElement.parentElement.parentElement.classList.add("hidden")
+            } else (gameName.parentElement.parentElement.parentElement.classList.remove("hidden"))
+        })
     }
 
     function showAllDefinitions() {
