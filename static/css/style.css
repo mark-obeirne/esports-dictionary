@@ -66,10 +66,6 @@ body {
     display: block;
 }
 
-.padded-btns {
-    padding: 1.4rem;
-}
-
 .register-field {
     position: relative;
 }
@@ -78,6 +74,13 @@ body {
     position: absolute;
     top: 3.5rem;
     left: 4.5rem;
+}
+
+.sticky {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+    z-index: 2;    
 }
 
 /* Buttons */
@@ -92,6 +95,10 @@ body {
 
 .blue-btn:hover {
     background-color: #257FEF;
+}
+
+.padded-btns {
+    padding: 1.4rem;
 }
 
 /* Navbar */
@@ -184,6 +191,11 @@ body {
 
 
 /* Search Filters */
+
+.search-section {
+    background-color: #F5F5F4;
+    padding: 1.4rem 0;
+}
 
 .search-filters {
     padding: 0rem 3rem;
