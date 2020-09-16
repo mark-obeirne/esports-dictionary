@@ -39,7 +39,7 @@ def submit_definition():
             "submitted_by": session["user"],
             "submission_date": submission_date,
             "rating": 1,
-            "number_rating": 1
+            "number_ratings": 1
         }
         mongo.db.terms.insert_one(definition)
         flash("Thank you for your submission")
@@ -55,11 +55,37 @@ def submit_definition():
         return redirect(url_for("get_terms"))
 
 
-@app.route("/edit_definition/<term_id>")
+@app.route("/edit_definition/<term_id>", methods=["GET", "POST"])
 def edit_definition(term_id):
     term = mongo.db.terms.find_one({"_id": ObjectId(term_id)})
     games = mongo.db.games.find().sort("game_name", 1)
-    return render_template("edit_term.html", term=term, games=games)
+
+    if request.method == "POST":
+        updated = {
+            "term_header": request.form.get("term_header"),
+            "game_name": request.form.get("game_name"),
+            "short_definition": request.form.get("short_definition"),
+            "long_description": request.form.get("long_description", False),
+            "youtube_link": request.form.get("youtube_link", False),
+            "submitted_by": session["user"],
+            "submission_date": term["submission_date"],
+            "rating": term["rating"],
+            "number_ratings": term["number_ratings"]
+        }
+        mongo.db.terms.update({"_id": ObjectId(term_id)}, updated)
+        flash("Term successfully updated")
+        return redirect(url_for("get_terms"))
+
+    try:
+        if session["user"] == term["submitted_by"]:
+            return render_template("edit_term.html", term=term, games=games)
+        else:
+            flash("You cannot edit a term that you did not submit")
+            return redirect(url_for("get_terms"))
+    except KeyError:
+        flash(Markup("Please <a href='login'>"
+                     "login</a> to edit a definition"))
+        return redirect(url_for("get_terms"))
 
 
 @app.route("/profile")
