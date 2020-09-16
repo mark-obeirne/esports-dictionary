@@ -147,8 +147,9 @@
             {{ term.youtube_link }} {% endif %}
           </div>
           </div>
+          <!--Buttons for original submitter or an admin user to edit or delete a definition-->
           <div class="admin-btns dark-background center-align">
-            {% if term.submitted_by == session["user"]%}
+            {% if term.submitted_by == session["user"] or session["admin"] %}
                 <span class="btn-small blue-background blue-btn"><a href="{{ url_for('edit_definition', term_id=term._id) }}" class="off-white">Edit</a></span>
                 <span class="btn-small red-btn off-white">Delete</span>
             {% endif %}
