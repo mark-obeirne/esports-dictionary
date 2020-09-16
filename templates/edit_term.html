@@ -1,0 +1,104 @@
+{% extends "base.html" %} {% block content %}
+<h1 class="heading uppercase center-align">Edit Definition</h1>
+<div class="container edit-definition-form">
+  <div class="row">
+    <form
+      class="col s12 m8 offset-m2"
+      method="POST"
+      action="{{ url_for('edit_definition', term_id=term._id) }}"
+    >
+      <div class="card-panel hoverable">
+        <!--Term-->
+        <div class="row">
+          <div class="input-field col s12 m6 register-field">
+            <i class="fas fa-keyboard prefix"></i>
+            <input
+              id="term_header"
+              name="term_header"
+              type="text"
+              minlength="1"
+              maxlength="20"
+              class="validate"
+              value="{{ term.term_header }}"
+              required
+            />
+            <label for="term_header">Enter Term</label>
+            <span class="sublabel dark-text">Max 20 characters</span>
+          </div>
+          <!--Select Game-->
+          <div class="input-field col s12 m6">
+            <i class="fas fa-gamepad prefix"></i>
+            <select id="game_name" name="game_name" class="game_name">
+              <option value="" disabled>Choose game</option>
+              {% for game in games %} 
+                {% if game.game_name == term.game_name %}
+                    <option value="{{ game.game_name }}" selected
+                    >{{ game.game_name }}</option
+                    >
+                {% else %}
+                    <option value="{{ game.game_name }}">{{ game.game_name }}</option>
+                {% endif %} 
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <!--Short Definition-->
+        <div class="row">
+          <div class="input-field col s12 register-field">
+            <i class="fas fa-comment-medical prefix"></i>
+            <input
+              id="short_definition"
+              name="short_definition"
+              type="text"
+              minlength="1"
+              maxlength="50"
+              class="validate"
+              value="{{ term.short_definition }}"
+              required
+            />
+            <label for="short_definition">Enter Short Definition</label>
+            <span class="sublabel dark-text">Max 50 characters</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12 register-field">
+            <i class="fas fa-comment-dots prefix"></i>
+            <textarea
+              id="long_definition"
+              name="long_definition"
+              type="text"
+              minlength="0"
+              maxlength="300"
+              class="validate materialize-textarea"
+            >
+            {{- term.long_description -}}
+            </textarea>
+            <label for="long_description"
+              >Enter Long Description (optional)</label
+            >
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12 register-field">
+            <i class="fab fa-youtube prefix"></i>
+            <input id="youtube_link" name="youtube_link" type="text" value="{{ term.youtube_link }}"/>
+            <label for="youtube_link">YouTube Link (optional)</label>
+            <span class="sublabel dark-text"
+              >Provide a YouTube link for context</span
+            >
+          </div>
+        </div>
+        <!--Submit Button-->
+        <div class="row">
+          <div class="col s12 center-align">
+            <button type="submit" class="btn-large red-btn text-shadow">
+              <i class="fas fa-edit"></i> Edit Definition
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
