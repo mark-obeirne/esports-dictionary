@@ -107,6 +107,42 @@ def get_games():
         return redirect(url_for("get_terms"))
 
 
+@app.route("/add_game", methods=["GET", "POST"])
+def add_game():
+    # check if user has admin permission to access this page
+    is_admin = True if "admin" in session else False
+
+    if request.method == "POST":
+        # check if game currently exists in DB
+        existing_game = mongo.db.games.find_one(
+            {"game_name": request.form.get("game_name").lower()})
+
+        if existing_game:
+            flash(Markup("Game is currently supported. You can manage "
+                         "supported games <a href='games'>here</a>."))
+            # Credit for using Markup to display link in flash message:
+            # https://pythonpedia.com/en/knowledge-base/21248718/how-to-flashing-a-message-with-link-using-flask-flash-
+            return render_template(url_for("add_game"))
+
+        # gather form data
+        game_details = {
+            "game_name": request.form.get("game_name"),
+            "game_icon": request.form.get("game_icon")
+            }
+
+        # submit data to DB
+        mongo.db.games.insert_one(game_details)
+
+        flash("Game successfully added")
+        return redirect(url_for("get_games"))
+
+    if is_admin:
+        return render_template("add_game.html")
+    else:
+        flash("You do not have permission to access this page")
+        return redirect(url_for("get_terms"))
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
