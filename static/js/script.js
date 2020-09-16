@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateHomepageButton() {
         const homepageBtn = document.querySelector(".homepage-button")
         phrases = ["Rocket Jump", "Bunny Hop", "Auto Run", "Fast Travel", "Teleport", "Strafe Jump", "Barrel Roll", "Shootdodge", "Noclip"]
-        choice = phrases[Math.floor(Math.random() * phrases.length - 1)]        
+        choice = phrases[Math.floor(Math.random() * phrases.length)]
         homepageBtn.innerText = choice + " back to the homepage"
     }
 
