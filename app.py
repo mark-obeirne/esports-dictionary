@@ -24,6 +24,19 @@ def get_terms():
     return render_template("terms.html", terms=terms, games=games)
 
 
+@app.route("/submit_definition")
+def submit_definition():
+    try:
+        if session["user"]:
+            return render_template("add_term.html")
+    except KeyError:
+        # redirect user to homepage if not logged in
+        flash(Markup("Please <a href='login'>"
+                     "login</a> to add a new definition"))
+        return redirect(url_for("get_terms"))
+
+
+
 @app.route("/profile")
 def profile():
     return render_template("profile.html")
