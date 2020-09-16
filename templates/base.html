@@ -38,7 +38,7 @@
             <li><a href="{{ url_for('register') }}">Register</a></li>
             <li><a href="{{ url_for('login') }}">Log In</a></li>
             {% else %}
-            <li><a href="">Submit Definition</a></li>
+            <li><a href="{{ url_for('submit_definition') }}">Submit Definition</a></li>
             <li><a href="{{ url_for('profile') }}">My Profile</a></li>
             {% endif %}
             {% if session.admin %}
@@ -62,7 +62,7 @@
         <li><a href="{{ url_for('register') }}">Register</a></li>
         <li><a href="{{ url_for('login') }}">Log In</a></li>
         {% else %}
-        <li><a href="">Submit Definition</a></li>
+        <li><a href="{{ url_for('submit_definition') }}">Submit Definition</a></li>
         <li><a href="{{ url_for('profile') }}">My Profile</a></li>
         {% endif %}
         {% if session.admin %}
