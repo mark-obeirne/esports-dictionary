@@ -77,7 +77,8 @@ def edit_definition(term_id):
         return redirect(url_for("get_terms"))
 
     try:
-        if session["user"] == term["submitted_by"]:
+        is_admin = True if "admin" in session else False
+        if session["user"] == term["submitted_by"] or is_admin:
             return render_template("edit_term.html", term=term, games=games)
         else:
             flash("You cannot edit a term that you did not submit")
