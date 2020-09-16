@@ -63,16 +63,25 @@
         <div class="row">
           <div class="input-field col s12 register-field">
             <i class="fas fa-comment-dots prefix"></i>
+            {% if term.long_description == False %}
             <textarea
-              id="long_definition"
-              name="long_definition"
+              id="long_description"
+              name="long_description"
               type="text"
               minlength="0"
               maxlength="300"
               class="validate materialize-textarea"
-            >
-            {{- term.long_description -}}
-            </textarea>
+            ></textarea>
+            {% else %}
+            <textarea
+              id="long_description"
+              name="long_description"
+              type="text"
+              minlength="0"
+              maxlength="300"
+              class="validate materialize-textarea"
+            >{{- term.long_description -}}</textarea>
+            {% endif %}
             <label for="long_description"
               >Enter Long Description (optional)</label
             >
