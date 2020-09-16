@@ -37,10 +37,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function filterByGame() {
         showAllDefinitions()
         const chosenGame = this.value;
-        console.log(chosenGame)
         const allGameCategories = Array.from(document.querySelectorAll(".game-name"));
         const allTermContainers = Array.from(document.querySelectorAll(".term-container"));
-        console.log(allTermContainers);
         // Hide a definition's container if the term's associated game doesn't match the selected game
         allGameCategories.forEach(gameName => {
             if (gameName.textContent !== chosenGame) {
