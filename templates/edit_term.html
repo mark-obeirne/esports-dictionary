@@ -1,11 +1,11 @@
 {% extends "base.html" %} {% block content %}
-<h1 class="heading uppercase center-align">Submit Definition</h1>
-<div class="container submit-definition-form">
+<h1 class="heading uppercase center-align">Edit Definition</h1>
+<div class="container edit-definition-form">
   <div class="row">
     <form
       class="col s12 m8 offset-m2"
       method="POST"
-      action="{{ url_for('submit_definition') }}"
+      action="{{ url_for('edit_definition', term_id=term._id) }}"
     >
       <div class="card-panel hoverable">
         <!--Term-->
@@ -19,6 +19,7 @@
               minlength="1"
               maxlength="20"
               class="validate"
+              value="{{ term.term_header }}"
               required
             />
             <label for="term_header">Enter Term</label>
@@ -28,9 +29,15 @@
           <div class="input-field col s12 m6">
             <i class="fas fa-gamepad prefix"></i>
             <select id="game_name" name="game_name" class="game_name">
-              <option value="" disabled selected>Choose game</option>
-              {% for game in games %}
-              <option value="{{ game.game_name }}">{{ game.game_name }}</option>
+              <option value="" disabled>Choose game</option>
+              {% for game in games %} 
+                {% if game.game_name == term.game_name %}
+                    <option value="{{ game.game_name }}" selected
+                    >{{ game.game_name }}</option
+                    >
+                {% else %}
+                    <option value="{{ game.game_name }}">{{ game.game_name }}</option>
+                {% endif %} 
               {% endfor %}
             </select>
           </div>
@@ -46,6 +53,7 @@
               minlength="1"
               maxlength="50"
               class="validate"
+              value="{{ term.short_definition }}"
               required
             />
             <label for="short_definition">Enter Short Definition</label>
@@ -55,6 +63,7 @@
         <div class="row">
           <div class="input-field col s12 register-field">
             <i class="fas fa-comment-dots prefix"></i>
+            {% if term.long_description == False %}
             <textarea
               id="long_description"
               name="long_description"
@@ -62,34 +71,43 @@
               minlength="0"
               maxlength="300"
               class="validate materialize-textarea"
+            ></textarea>
+            {% else %}
+            <textarea
+              id="long_description"
+              name="long_description"
+              type="text"
+              minlength="0"
+              maxlength="300"
+              class="validate materialize-textarea"
+            >{{- term.long_description -}}</textarea>
+            {% endif %}
+            <label for="long_description"
+              >Enter Long Description (optional)</label
             >
-            </textarea>
-            <label for="long_description">Enter Long Description (optional)</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12 register-field">
             <i class="fab fa-youtube prefix"></i>
-            <input
-              id="youtube_link"
-              name="youtube_link"
-              type="text"
-            />
+            <input id="youtube_link" name="youtube_link" type="text" value="{{ term.youtube_link }}"/>
             <label for="youtube_link">YouTube Link (optional)</label>
-            <span class="sublabel dark-text">Provide a YouTube link for context</span>
+            <span class="sublabel dark-text"
+              >Provide a YouTube link for context</span
+            >
           </div>
         </div>
         <!--Submit Button-->
         <div class="row">
-            <div class="col s12 center-align">
-                <button type="submit" class="btn-large red-btn text-shadow">
-                    <i class="fas fa-plus-circle"></i> Add Definition
-                </button>
-            </div>
+          <div class="col s12 center-align">
+            <button type="submit" class="btn-large red-btn text-shadow">
+              <i class="fas fa-edit"></i> Edit Definition
+            </button>
+          </div>
         </div>
       </div>
     </form>
   </div>
 </div>
-        {% endblock %}
 
+{% endblock %}
