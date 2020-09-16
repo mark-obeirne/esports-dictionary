@@ -4,6 +4,7 @@ from flask import (
     redirect, request, session, url_for, Markup)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from datetime import date
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
@@ -24,17 +25,34 @@ def get_terms():
     return render_template("terms.html", terms=terms, games=games)
 
 
-@app.route("/submit_definition")
+@app.route("/submit_definition", methods=["GET", "POST"])
 def submit_definition():
+    if request.method == "POST":
+        today = date.today()
+        submission_date = today.strftime("%Y/%m/%d")
+        definition = {
+            "term_header": request.form.get("term_header"),
+            "game_name": request.form.get("game_name"),
+            "short_definition": request.form.get("short_definition"),
+            "long_description": request.form.get("long_description", False),
+            "youtube_link": request.form.get("youtube_link", False),
+            "submitted_by": session["user"],
+            "submission_date": submission_date,
+            "rating": 1,
+            "number_rating": 1
+        }
+        mongo.db.terms.insert_one(definition)
+        flash("Thank you for your submission")
+        return redirect(url_for("get_terms"))
     try:
         if session["user"]:
-            return render_template("add_term.html")
+            games = list(mongo.db.games.find().sort("game_name", 1))
+            return render_template("add_term.html", games=games)
     except KeyError:
         # redirect user to homepage if not logged in
         flash(Markup("Please <a href='login'>"
                      "login</a> to add a new definition"))
         return redirect(url_for("get_terms"))
-
 
 
 @app.route("/profile")
