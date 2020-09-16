@@ -55,6 +55,13 @@ def submit_definition():
         return redirect(url_for("get_terms"))
 
 
+@app.route("/edit_definition/<term_id>")
+def edit_definition(term_id):
+    term = mongo.db.terms.find_one({"_id": ObjectId(term_id)})
+    games = mongo.db.games.find().sort("game_name", 1)
+    return render_template("edit_term.html", term=term, games=games)
+
+
 @app.route("/profile")
 def profile():
     return render_template("profile.html")
