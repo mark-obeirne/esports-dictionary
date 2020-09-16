@@ -1,11 +1,11 @@
 {% extends "base.html" %} {% block content %}
-<h1 class="heading uppercase center-align">Add New Game</h1>
+<h1 class="heading uppercase center-align">Edit Game</h1>
 <div class="container submit-game-form">
   <div class="row">
     <form
       class="col s12 m8 offset-m2"
       method="POST"
-      action="{{ url_for('add_game') }}"
+      action="{{ url_for('edit_game', game_id=game._id) }}"
     >
       <div class="card-panel hoverable">
         <!--Game Name-->
@@ -17,6 +17,7 @@
               name="game_name"
               type="text"
               class="validate"
+              value="{{ game.game_name }}"
               required
             />
             <label for="game_name">Enter Game Name</label>
@@ -31,6 +32,7 @@
               name="game_icon"
               type="text"
               class="validate"
+              value="{{ game.game_icon }}"
               required
             />
             <label for="game_icon">Enter Image Address</label>
@@ -43,7 +45,7 @@
         <div class="row">
             <div class="col s12 center-align">
                 <button type="submit" class="btn-large red-btn text-shadow">
-                    <i class="fas fa-plus-circle"></i> Add Game
+                    <i class="fas fa-edit"></i> Update Game Details
                 </button>
             </div>
         </div>

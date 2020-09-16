@@ -143,6 +143,29 @@ def add_game():
         return redirect(url_for("get_terms"))
 
 
+@app.route("/edit_game/<game_id>", methods=["GET", "POST"])
+def edit_game(game_id):
+    game = mongo.db.games.find_one({"_id": ObjectId(game_id)})
+
+    if request.method == "POST":
+        update = {
+            "game_name": request.form.get("game_name"),
+            "game_icon": request.form.get("game_icon")
+        }
+
+        mongo.db.games.update({"_id": ObjectId(game_id)}, update)
+        flash("Game details updated successfully")
+        return redirect(url_for("get_games"))
+
+    # check if user has admin permission to access this page
+    is_admin = True if "admin" in session else False
+    if is_admin:
+        return render_template("edit_game.html", game=game)
+    else:
+        flash("You do not have permission to access this page")
+        return redirect(url_for("get_terms"))
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":

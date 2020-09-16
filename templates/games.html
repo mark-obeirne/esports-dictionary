@@ -15,7 +15,7 @@
         <span class="card-title">{{ game.game_name }}</span>
       </div>
       <div class="actions center-align padded-btns">
-        <a href="" class="btn">Edit</a>
+        <a href="{{ url_for('edit_game', game_id=game._id) }}" class="btn">Edit</a>
         <a href="" class="btn red-btn">Delete</a>
       </div>
     </div>
