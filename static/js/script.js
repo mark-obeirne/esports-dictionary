@@ -27,29 +27,24 @@ document.addEventListener('DOMContentLoaded', function() {
         const allTerms = Array.from(document.querySelectorAll(".term"))
         const allTermContainers = Array.from(document.querySelectorAll(".term-container"))
         // Hide a definition's container if the first letter doesn't match the selected letter
-        for (let i = 0; i < allTerms.length; i++) {
-            for (let j = 0; j < allTermContainers.length; j++) {
-                if (allTerms[i].textContent[0] !== letter) {
-                    allTermContainers[j].classList.add("hidden")
-                }
-            }
-        }
+        allTerms.forEach(term => {
+            if (term.textContent[0] !== letter) {
+                term.parentElement.parentElement.parentElement.classList.add("hidden")
+            } else (term.parentElement.parentElement.parentElement.classList.remove("hidden"))
+        })
     }
 
     function filterByGame() {
         showAllDefinitions()
-        const chosenGame = this.value
-        const allGameCategories = Array.from(document.querySelectorAll(".game-name"))
-        console.log(allGameCategories)
-        const allTermContainers = Array.from(document.querySelectorAll(".term-container"))
+        const chosenGame = this.value;
+        const allGameCategories = Array.from(document.querySelectorAll(".game-name"));
+        const allTermContainers = Array.from(document.querySelectorAll(".term-container"));
         // Hide a definition's container if the term's associated game doesn't match the selected game
-        for (let i = 0; i < allGameCategories.length; i++) {
-            for (let j = 0; j < allTermContainers.length; j++) {
-                if (allGameCategories[i].textContent !== chosenGame) {
-                    allTermContainers[j].classList.add("hidden")
-                }
-            }
-        }
+        allGameCategories.forEach(gameName => {
+            if (gameName.textContent !== chosenGame) {
+                gameName.parentElement.parentElement.parentElement.classList.add("hidden")
+            } else (gameName.parentElement.parentElement.parentElement.classList.remove("hidden"))
+        })
     }
 
     function showAllDefinitions() {

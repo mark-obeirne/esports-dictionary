@@ -62,6 +62,10 @@ body {
     display: none;
 }
 
+.block {
+    display: block;
+}
+
 .register-field {
     position: relative;
 }
@@ -168,6 +172,11 @@ body {
 
 .term-section {
     padding: 0 1rem;
+}
+
+.admin-btns {
+    margin-bottom: 1.4rem;
+    padding: 1.4rem;
 }
 
 

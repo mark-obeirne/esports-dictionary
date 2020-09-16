@@ -129,9 +129,9 @@
             <div class="col s9 term-section">
               <strong class="uppercase term">{{ term.term_header}}</strong>
               <div class="divider"></div>
-              <span class="game-name">{{ term.game_name }}</span>
-              <p>{{ term.short_definition }}</p>
-              {{ term.submitted_by }}
+              <span class="game-name block">{{ term.game_name }}</span>
+              <span>{{ term.short_definition }}</span>
+              <span class="username block"><em>Submitted by {{ term.submitted_by }}</em></span>
             </div>
           </div>
           <div class="collapsible-body">
@@ -143,8 +143,9 @@
             {% endif %} {% if term.image_link %}
             <div>{{ term.image_link }}</div>
             {% endif %}
-            <div>{% if term.youtube_link %}</div>
+            <div>{% if term.youtube_link %}
             {{ term.youtube_link }} {% endif %}
+          </div>
           </div>
           <div class="admin-btns dark-background center-align">
             <span class="btn-small blue-background blue-btn off-white">Edit</span>
