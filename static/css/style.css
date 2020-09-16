@@ -170,6 +170,11 @@ body {
     padding: 0 1rem;
 }
 
+.admin-btns {
+    margin-bottom: 1.4rem;
+    padding: 1.4rem;
+}
+
 
 /* Search Filters */
 
