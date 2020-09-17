@@ -43,7 +43,8 @@ def submit_definition():
             "number_ratings": 1
         }
         mongo.db.terms.insert_one(definition)
-        flash("Thank you for your submission")
+        flash(f"Thank you, {definition['submitted_by']}, for your submission",
+              category="success")
         return redirect(url_for("get_terms"))
     try:
         if session["user"]:
@@ -52,7 +53,7 @@ def submit_definition():
     except KeyError:
         # redirect user to homepage if not logged in
         flash(Markup("Please <a href='login'>"
-                     "login</a> to add a new definition"))
+                     "login</a> to add a new definition"), category="error")
         return redirect(url_for("get_terms"))
 
 
@@ -74,7 +75,7 @@ def edit_definition(term_id):
             "number_ratings": term["number_ratings"]
         }
         mongo.db.terms.update({"_id": ObjectId(term_id)}, updated)
-        flash("Term successfully updated")
+        flash("Term successfully updated", category="success")
         return redirect(url_for("get_terms"))
 
     try:
@@ -82,11 +83,12 @@ def edit_definition(term_id):
         if session["user"] == term["submitted_by"] or is_admin:
             return render_template("edit_term.html", term=term, games=games)
         else:
-            flash("You cannot edit a term that you did not submit")
+            flash("You cannot edit a term that you did not submit",
+                  category="error")
             return redirect(url_for("get_terms"))
     except KeyError:
         flash(Markup("Please <a href='login'>"
-                     "login</a> to edit a definition"))
+                     "login</a> to edit a definition"), category="error")
         return redirect(url_for("get_terms"))
 
 
@@ -97,14 +99,15 @@ def delete_definition(term_id):
         is_admin = True if "admin" in session else False
         if session["user"] == term["submitted_by"] or is_admin:
             mongo.db.terms.remove({"_id": ObjectId(term_id)})
-            flash("Term successfully deleted")
+            flash("Term successfully deleted", category="success")
             return redirect(url_for("get_terms"))
         else:
-            flash("You cannot delete a term that you did not submit")
+            flash("You cannot delete a term that you did not submit",
+                  category="error")
             return redirect(url_for("get_terms"))
     except KeyError:
         flash(Markup("Please <a href='login'>"
-                     "login</a> to delete a definition"))
+                     "login</a> to delete a definition"), category="error")
         return redirect(url_for("get_terms"))
 
 
@@ -122,7 +125,8 @@ def get_games():
         games = list(mongo.db.games.find().sort("game_name", 1))
         return render_template("games.html", games=games)
     else:
-        flash("You do not have permission to access this page")
+        flash("You do not have permission to access this page",
+              category="error")
         return redirect(url_for("get_terms"))
 
 
@@ -138,7 +142,8 @@ def add_game():
 
         if existing_game:
             flash(Markup("Game is currently supported. You can manage "
-                         "supported games <a href='games'>here</a>."))
+                         "supported games <a href='games'>here</a>."),
+                  category="error")
             # Credit for using Markup to display link in flash message:
             # https://pythonpedia.com/en/knowledge-base/21248718/how-to-flashing-a-message-with-link-using-flask-flash-
             return render_template(url_for("add_game"))
@@ -152,13 +157,14 @@ def add_game():
         # submit data to DB
         mongo.db.games.insert_one(game_details)
 
-        flash("Game successfully added")
+        flash("Game successfully added", category="success")
         return redirect(url_for("get_games"))
 
     if is_admin:
         return render_template("add_game.html")
     else:
-        flash("You do not have permission to access this page")
+        flash("You do not have permission to access this page",
+              category="error")
         return redirect(url_for("get_terms"))
 
 
@@ -173,7 +179,7 @@ def edit_game(game_id):
         }
 
         mongo.db.games.update({"_id": ObjectId(game_id)}, update)
-        flash("Game details updated successfully")
+        flash("Game details updated successfully", category="success")
         return redirect(url_for("get_games"))
 
     # check if user has admin permission to access this page
@@ -181,7 +187,8 @@ def edit_game(game_id):
     if is_admin:
         return render_template("edit_game.html", game=game)
     else:
-        flash("You do not have permission to access this page")
+        flash("You do not have permission to access this page",
+              category="error")
         return redirect(url_for("get_terms"))
 
 
@@ -194,7 +201,8 @@ def register():
 
         if existing_username:
             flash(Markup("Username already exists. "
-                         "Please choose another or <a href=''>login</a>."))
+                         "Please choose another or <a href=''>login</a>."),
+                  category="error")
             # Credit for using Markup to display link in flash message:
             # https://pythonpedia.com/en/knowledge-base/21248718/how-to-flashing-a-message-with-link-using-flask-flash-
             return render_template(url_for("register"))
@@ -212,7 +220,8 @@ def register():
 
         # create session cookie and redirect to dictionary
         session["user"] = request.form.get("username")
-        flash(Markup("Thanks for signing up " + request.form.get("username")))
+        flash(Markup("Thanks for signing up, " + request.form.get("username")),
+              category="success")
         return redirect(url_for("get_terms"))
 
     return render_template("register.html")
@@ -234,15 +243,16 @@ def login():
                 if is_admin:
                     session["admin"] = True
                 session["user"] = request.form.get("username")
-                flash(Markup("Welcome ") + request.form.get("username"))
+                flash(Markup("Welcome, ") + request.form.get("username"),
+                      category="success")
                 return redirect(url_for("get_terms"))
             else:
                 # invalid password entered
-                flash("Username and/or password incorrect")
+                flash("Username and/or password incorrect", category="error")
                 return redirect(url_for("login"))
         else:
             # username doesn't exist
-            flash("Username and/or password incorrect")
+            flash("Username and/or password incorrect", category="error")
             return redirect(url_for("login"))
 
     return render_template("login.html")
@@ -252,10 +262,10 @@ def login():
 def logout():
     try:
         if session["user"]:
-            flash("You have logged out successfully")
+            flash("You have logged out successfully", category="success")
             session.pop("user")
     except KeyError:
-        flash("You are not logged in")
+        flash("You are not logged in", category="error")
     try:
         if session["admin"]:
             session.pop("admin")
