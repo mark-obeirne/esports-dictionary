@@ -79,9 +79,9 @@
     <!--Main Page Content-->
     <main>
       {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
-      <ul class="flashed-messages">
+      <ul class="flashed-messages center-align off-white">
         {% for message in messages %}
-        <li class="{{ message[0] }}">{{ message[1] }}</li>
+        <li class="flash-message {{ message[0] }}">{{ message[1] }}</li>
         {% endfor %}
       </ul>
       {% endif %} {% endwith %} 
