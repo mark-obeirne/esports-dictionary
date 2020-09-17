@@ -89,6 +89,24 @@ def edit_definition(term_id):
         return redirect(url_for("get_terms"))
 
 
+@app.route("/delete_definition/<term_id>")
+def delete_definition(term_id):
+    term = mongo.db.terms.find_one({"_id": ObjectId(term_id)})
+    try:
+        is_admin = True if "admin" in session else False
+        if session["user"] == term["submitted_by"] or is_admin:
+            mongo.db.terms.remove({"_id": ObjectId(term_id)})
+            flash("Term successfully deleted")
+            return redirect(url_for("get_terms"))
+        else:
+            flash("You cannot delete a term that you did not submit")
+            return redirect(url_for("get_terms"))
+    except KeyError:
+        flash(Markup("Please <a href='login'>"
+                     "login</a> to delete a definition"))
+        return redirect(url_for("get_terms"))
+
+
 @app.route("/profile")
 def profile():
     return render_template("profile.html")

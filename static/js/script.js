@@ -80,6 +80,18 @@ document.addEventListener('DOMContentLoaded', function() {
         homepageBtn.innerText = choice + " back to the homepage"
     }
 
+    function openModal(e) {
+        const modal = document.querySelector(".my-modal")
+        const closeBtn = document.querySelector(".close-modal")
+        const confirmDeleteBtn = document.querySelector(".modal-delete-btn")
+        const term = e.target.dataset.id
+        modal.classList.remove("hidden")
+        confirmDeleteBtn.setAttribute("href", "delete_definition/" + term)
+        closeBtn.addEventListener("click", function() {
+            modal.classList.add("hidden")
+        })
+    }
+
 
   // Event Listeners
   // Test for existence
@@ -107,6 +119,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const homepageRedirect = document.querySelector(".homepage-button")
         if (homepageRedirect) {
             window.addEventListener("load", updateHomepageButton)
+        }
+
+        const modalBtn = document.querySelectorAll(".modal-btn")
+        if (modalBtn) {
+            modalBtn.forEach(button => button.addEventListener("click", openModal))
         }
     });
 
