@@ -80,6 +80,16 @@ document.addEventListener('DOMContentLoaded', function() {
         homepageBtn.innerText = choice + " back to the homepage"
     }
 
+    function openModal() {
+        console.log("Clicked")
+        const modal = document.querySelector(".my-modal")
+        const closeBtn = document.querySelector(".close-modal")
+        modal.classList.remove("hidden")
+        closeBtn.addEventListener("click", function() {
+            modal.classList.add("hidden")
+        })
+    }
+
 
   // Event Listeners
   // Test for existence
@@ -107,6 +117,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const homepageRedirect = document.querySelector(".homepage-button")
         if (homepageRedirect) {
             window.addEventListener("load", updateHomepageButton)
+        }
+
+        const modalBtn = document.querySelector(".modal-btn")
+        if (modalBtn) {
+            modalBtn.addEventListener("click", openModal)
         }
     });
 
