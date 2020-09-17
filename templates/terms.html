@@ -7,15 +7,23 @@
       <div class="row">
         <div class="col s8 offset-s1 spotlight-content">
           {% if session.user %}
-          <a href="{{ url_for('submit_definition') }}" class="btn submit-def red-btn spotlight-btn"
+          <a
+            href="{{ url_for('submit_definition') }}"
+            class="btn submit-def red-btn spotlight-btn"
             >Add Term</a
           >
           <p class="benefits small-text off-white">
             Submit definitions for popular esports terms and earn points
           </p>
           {% else %}
-          <a href="{{ url_for('register') }}" class="btn register-btn red-btn spotlight-btn">Register</a>
-          <a href="{{ url_for('login') }}" class="btn login-btn blue-btn blue-background spotlight-btn"
+          <a
+            href="{{ url_for('register') }}"
+            class="btn register-btn red-btn spotlight-btn"
+            >Register</a
+          >
+          <a
+            href="{{ url_for('login') }}"
+            class="btn login-btn blue-btn blue-background spotlight-btn"
             >Log in</a
           >
           <p class="benefits small-text off-white">
@@ -30,93 +38,328 @@
 <div class="row">
   <!--Search/Filter Section-->
   <div class="sticky">
-  <div class="col s12 l5 push-l7 search-section">
-    <h2 class="heading uppercase center-align">Search Filters</h2>
-    <div class="search-filters">
-      <input
-        type="text"
-        class="searchbar"
-        placeholder="Filter by term or game"
-      />
-      <div class="input-field">
-        <select id="game-filter" name="game-filter" class="game-filter">
-          <option value="" disabled selected>Choose game</option>
-          {% for game in games %}
-          <option value="{{ game.game_name }}">{{ game.game_name }}</option>
-          {% endfor %}
-        </select>
-        <label for="game-filter">Or filter by game</label>
-      </div>
-      <div class="padded-btns center-align hide-on-large-only">
-        <span class="btn-small alpha-filter blue-btn blue-background sidenav-trigger" data-target="alphabet-filter"
-          >Or filter alphabetically</span
+    <div class="col s12 l5 push-l7 search-section">
+      <h2 class="heading uppercase center-align">Search Filters</h2>
+      <div class="search-filters">
+        <input
+          type="text"
+          class="searchbar"
+          placeholder="Filter by term or game"
+        />
+        <div class="input-field">
+          <select id="game-filter" name="game-filter" class="game-filter">
+            <option value="" disabled selected>Choose game</option>
+            {% for game in games %}
+            <option value="{{ game.game_name }}">{{ game.game_name }}</option>
+            {% endfor %}
+          </select>
+          <label for="game-filter">Or filter by game</label>
+        </div>
+        <div class="padded-btns center-align hide-on-large-only">
+          <span
+            class="btn-small alpha-filter blue-btn blue-background sidenav-trigger"
+            data-target="alphabet-filter"
+            >Or filter alphabetically</span
+          >
+        </div>
+        <div
+          class="col l8 offset-l2 hide-on-med-and-down show-on-large center-align"
         >
-      </div>
-      <div
-        class="col l8 offset-l2 hide-on-med-and-down show-on-large center-align"
-      >
-        <button class="alpha-btns blue-btn blue-background off-white alphabet-letter">A</button>
-        <button class="alpha-btns blue-btn blue-background off-white alphabet-letter">B</button>
-        <button class="alpha-btns blue-btn blue-background off-white alphabet-letter">C</button>
-        <button class="alpha-btns blue-btn blue-background off-white alphabet-letter">D</button>
-        <button class="alpha-btns blue-btn blue-background off-white alphabet-letter">E</button>
-        <button class="alpha-btns blue-btn blue-background off-white alphabet-letter">F</button>
-        <button class="alpha-btns blue-btn blue-background off-white alphabet-letter">G</button>
-        <button class="alpha-btns blue-btn blue-background off-white alphabet-letter">H</button>
-        <button class="alpha-btns blue-btn blue-background off-white alphabet-letter">I</button>
-        <button class="alpha-btns blue-btn blue-background off-white alphabet-letter">J</button>
-        <button class="alpha-btns blue-btn blue-background off-white alphabet-letter">K</button>
-        <button class="alpha-btns blue-btn blue-background off-white alphabet-letter">L</button>
-        <button class="alpha-btns blue-btn blue-background off-white alphabet-letter">M</button>
-        <button class="alpha-btns blue-btn blue-background off-white alphabet-letter">N</button>
-        <button class="alpha-btns blue-btn blue-background off-white alphabet-letter">O</button>
-        <button class="alpha-btns blue-btn blue-background off-white alphabet-letter">P</button>
-        <button class="alpha-btns blue-btn blue-background off-white alphabet-letter">Q</button>
-        <button class="alpha-btns blue-btn blue-background off-white alphabet-letter">R</button>
-        <button class="alpha-btns blue-btn blue-background off-white alphabet-letter">S</button>
-        <button class="alpha-btns blue-btn blue-background off-white alphabet-letter">T</button>
-        <button class="alpha-btns blue-btn blue-background off-white alphabet-letter">U</button>
-        <button class="alpha-btns blue-btn blue-background off-white alphabet-letter">V</button>
-        <button class="alpha-btns blue-btn blue-background off-white alphabet-letter">W</button>
-        <button class="alpha-btns blue-btn blue-background off-white alphabet-letter">X</button>
-        <button class="alpha-btns blue-btn blue-background off-white alphabet-letter">Y</button>
-        <button class="alpha-btns blue-btn blue-background off-white alphabet-letter">Z</button>
+          <button
+            class="alpha-btns blue-btn blue-background off-white alphabet-letter"
+          >
+            A
+          </button>
+          <button
+            class="alpha-btns blue-btn blue-background off-white alphabet-letter"
+          >
+            B
+          </button>
+          <button
+            class="alpha-btns blue-btn blue-background off-white alphabet-letter"
+          >
+            C
+          </button>
+          <button
+            class="alpha-btns blue-btn blue-background off-white alphabet-letter"
+          >
+            D
+          </button>
+          <button
+            class="alpha-btns blue-btn blue-background off-white alphabet-letter"
+          >
+            E
+          </button>
+          <button
+            class="alpha-btns blue-btn blue-background off-white alphabet-letter"
+          >
+            F
+          </button>
+          <button
+            class="alpha-btns blue-btn blue-background off-white alphabet-letter"
+          >
+            G
+          </button>
+          <button
+            class="alpha-btns blue-btn blue-background off-white alphabet-letter"
+          >
+            H
+          </button>
+          <button
+            class="alpha-btns blue-btn blue-background off-white alphabet-letter"
+          >
+            I
+          </button>
+          <button
+            class="alpha-btns blue-btn blue-background off-white alphabet-letter"
+          >
+            J
+          </button>
+          <button
+            class="alpha-btns blue-btn blue-background off-white alphabet-letter"
+          >
+            K
+          </button>
+          <button
+            class="alpha-btns blue-btn blue-background off-white alphabet-letter"
+          >
+            L
+          </button>
+          <button
+            class="alpha-btns blue-btn blue-background off-white alphabet-letter"
+          >
+            M
+          </button>
+          <button
+            class="alpha-btns blue-btn blue-background off-white alphabet-letter"
+          >
+            N
+          </button>
+          <button
+            class="alpha-btns blue-btn blue-background off-white alphabet-letter"
+          >
+            O
+          </button>
+          <button
+            class="alpha-btns blue-btn blue-background off-white alphabet-letter"
+          >
+            P
+          </button>
+          <button
+            class="alpha-btns blue-btn blue-background off-white alphabet-letter"
+          >
+            Q
+          </button>
+          <button
+            class="alpha-btns blue-btn blue-background off-white alphabet-letter"
+          >
+            R
+          </button>
+          <button
+            class="alpha-btns blue-btn blue-background off-white alphabet-letter"
+          >
+            S
+          </button>
+          <button
+            class="alpha-btns blue-btn blue-background off-white alphabet-letter"
+          >
+            T
+          </button>
+          <button
+            class="alpha-btns blue-btn blue-background off-white alphabet-letter"
+          >
+            U
+          </button>
+          <button
+            class="alpha-btns blue-btn blue-background off-white alphabet-letter"
+          >
+            V
+          </button>
+          <button
+            class="alpha-btns blue-btn blue-background off-white alphabet-letter"
+          >
+            W
+          </button>
+          <button
+            class="alpha-btns blue-btn blue-background off-white alphabet-letter"
+          >
+            X
+          </button>
+          <button
+            class="alpha-btns blue-btn blue-background off-white alphabet-letter"
+          >
+            Y
+          </button>
+          <button
+            class="alpha-btns blue-btn blue-background off-white alphabet-letter"
+          >
+            Z
+          </button>
+        </div>
       </div>
     </div>
   </div>
-  </div>
   <!--Alphabetical Filter Sidebar-->
-    <ul id="alphabet-filter" class="sidenav">
-        <li><a class="sidenav-close" href="#!">Close</a></li>
-        <li><span class="sidenav-close alphabet-letter blue-btn blue-background off-white">A</span></li>
-        <li><span class="sidenav-close alphabet-letter blue-btn blue-background off-white">B</span></li>
-        <li><span class="sidenav-close alphabet-letter blue-btn blue-background off-white">C</span></li>
-        <li><span class="sidenav-close alphabet-letter blue-btn blue-background off-white">D</span></li>
-        <li><span class="sidenav-close alphabet-letter blue-btn blue-background off-white">E</span></li>
-        <li><span class="sidenav-close alphabet-letter blue-btn blue-background off-white">F</span></li>
-        <li><span class="sidenav-close alphabet-letter blue-btn blue-background off-white">G</span></li>
-        <li><span class="sidenav-close alphabet-letter blue-btn blue-background off-white">H</span></li>
-        <li><span class="sidenav-close alphabet-letter blue-btn blue-background off-white">I</span></li>
-        <li><span class="sidenav-close alphabet-letter blue-btn blue-background off-white">J</span></li>
-        <li><span class="sidenav-close alphabet-letter blue-btn blue-background off-white">K</span></li>
-        <li><span class="sidenav-close alphabet-letter blue-btn blue-background off-white">L</span></li>
-        <li><span class="sidenav-close alphabet-letter blue-btn blue-background off-white">M</span></li>
-        <li><span class="sidenav-close alphabet-letter blue-btn blue-background off-white">N</span></li>
-        <li><span class="sidenav-close alphabet-letter blue-btn blue-background off-white">O</span></li>
-        <li><span class="sidenav-close alphabet-letter blue-btn blue-background off-white">P</span></li>
-        <li><span class="sidenav-close alphabet-letter blue-btn blue-background off-white">Q</span></li>
-        <li><span class="sidenav-close alphabet-letter blue-btn blue-background off-white">R</span></li>
-        <li><span class="sidenav-close alphabet-letter blue-btn blue-background off-white">S</span></li>
-        <li><span class="sidenav-close alphabet-letter blue-btn blue-background off-white">T</span></li>
-        <li><span class="sidenav-close alphabet-letter blue-btn blue-background off-white">U</span></li>
-        <li><span class="sidenav-close alphabet-letter blue-btn blue-background off-white">V</span></li>
-        <li><span class="sidenav-close alphabet-letter blue-btn blue-background off-white">W</span></li>
-        <li><span class="sidenav-close alphabet-letter blue-btn blue-background off-white">X</span></li>
-        <li><span class="sidenav-close alphabet-letter blue-btn blue-background off-white">Y</span></li>
-        <li><span class="sidenav-close alphabet-letter blue-btn blue-background off-white">Z</span></li>
+  <ul id="alphabet-filter" class="sidenav">
+    <li><a class="sidenav-close" href="#!">Close</a></li>
+    <li>
+      <span
+        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
+        >A</span
+      >
+    </li>
+    <li>
+      <span
+        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
+        >B</span
+      >
+    </li>
+    <li>
+      <span
+        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
+        >C</span
+      >
+    </li>
+    <li>
+      <span
+        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
+        >D</span
+      >
+    </li>
+    <li>
+      <span
+        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
+        >E</span
+      >
+    </li>
+    <li>
+      <span
+        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
+        >F</span
+      >
+    </li>
+    <li>
+      <span
+        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
+        >G</span
+      >
+    </li>
+    <li>
+      <span
+        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
+        >H</span
+      >
+    </li>
+    <li>
+      <span
+        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
+        >I</span
+      >
+    </li>
+    <li>
+      <span
+        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
+        >J</span
+      >
+    </li>
+    <li>
+      <span
+        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
+        >K</span
+      >
+    </li>
+    <li>
+      <span
+        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
+        >L</span
+      >
+    </li>
+    <li>
+      <span
+        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
+        >M</span
+      >
+    </li>
+    <li>
+      <span
+        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
+        >N</span
+      >
+    </li>
+    <li>
+      <span
+        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
+        >O</span
+      >
+    </li>
+    <li>
+      <span
+        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
+        >P</span
+      >
+    </li>
+    <li>
+      <span
+        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
+        >Q</span
+      >
+    </li>
+    <li>
+      <span
+        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
+        >R</span
+      >
+    </li>
+    <li>
+      <span
+        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
+        >S</span
+      >
+    </li>
+    <li>
+      <span
+        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
+        >T</span
+      >
+    </li>
+    <li>
+      <span
+        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
+        >U</span
+      >
+    </li>
+    <li>
+      <span
+        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
+        >V</span
+      >
+    </li>
+    <li>
+      <span
+        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
+        >W</span
+      >
+    </li>
+    <li>
+      <span
+        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
+        >X</span
+      >
+    </li>
+    <li>
+      <span
+        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
+        >Y</span
+      >
+    </li>
+    <li>
+      <span
+        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
+        >Z</span
+      >
+    </li>
   </ul>
-  
-  
+
   <!--Display Definitions-->
   <div class="col s12 l7 pull-l5">
     <h2 class="heading uppercase center-align">Definitions</h2>
@@ -133,7 +376,9 @@
               <div class="divider"></div>
               <span class="game-name block">{{ term.game_name }}</span>
               <span>{{ term.short_definition }}</span>
-              <span class="username block"><em>Submitted by {{ term.submitted_by }}</em></span>
+              <span class="username block"
+                ><em>Submitted by {{ term.submitted_by }}</em></span
+              >
             </div>
           </div>
           <div class="collapsible-body">
@@ -145,25 +390,27 @@
             {% endif %} {% if term.image_link %}
             <div>{{ term.image_link }}</div>
             {% endif %}
-            <div>{% if term.youtube_link %}
-            {{ term.youtube_link }} {% endif %}
-          </div>
+            <div>
+              {% if term.youtube_link %} {{ term.youtube_link }} {% endif %}
+            </div>
           </div>
           <!--Buttons for original submitter or an admin user to edit or delete a definition-->
           <div class="admin-btns padded-btns dark-background center-align">
             {% if term.submitted_by == session["user"] or session["admin"] %}
-                <span class="btn-small blue-background blue-btn"><a href="{{ url_for('edit_definition', term_id=term._id) }}" class="off-white">Edit</a></span>
-                <span class="btn-small red-btn off-white">Delete</span>
+            <span class="btn-small blue-background blue-btn"
+              ><a
+                href="{{ url_for('edit_definition', term_id=term._id) }}"
+                class="off-white"
+                >Edit</a
+              ></span
+            >
+            <span class="btn-small red-btn off-white">Delete</span>
             {% endif %}
           </div>
         </li>
         {% endfor %}
       </ul>
     </div>
-
-    {% for term in terms %} {{ term.term_header }}<br />
-    {{ term.game_name }}<br />
-    {{ term.short_definition }}<br />
-    {% endfor %} {% endblock %}
   </div>
 </div>
+{% endblock %}
