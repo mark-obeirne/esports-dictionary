@@ -20,7 +20,7 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/get_terms")
 def get_terms():
-    terms = mongo.db.terms.find()
+    terms = mongo.db.terms.find({"rating": {"$gt": -2}})
     games = mongo.db.games.find()
     return render_template("terms.html", terms=terms, games=games)
 
