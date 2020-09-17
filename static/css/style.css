@@ -260,6 +260,23 @@ body {
 }
 
 
+/* Flash Messages */
+
+.flashed-messages {
+    margin: 0;
+}
+
+.success {
+    background-color: green;
+    border: 1.6rem solid green;
+}
+
+.error {
+    background-color: red;
+    border: 1.6rem solid green;
+}
+
+
 /* Media Queries */
 @media screen and (min-width: 600px) {
     .spotlight .spotlight-btn {
