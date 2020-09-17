@@ -119,9 +119,9 @@ document.addEventListener('DOMContentLoaded', function() {
             window.addEventListener("load", updateHomepageButton)
         }
 
-        const modalBtn = document.querySelector(".modal-btn")
+        const modalBtn = document.querySelectorAll(".modal-btn")
         if (modalBtn) {
-            modalBtn.addEventListener("click", openModal)
+            modalBtn.forEach(button => button.addEventListener("click", openModal))
         }
     });
 
