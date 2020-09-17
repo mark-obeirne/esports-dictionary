@@ -81,15 +81,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function openModal(e) {
-        console.log("Clicked")
         const modal = document.querySelector(".my-modal")
         const closeBtn = document.querySelector(".close-modal")
         const confirmDeleteBtn = document.querySelector(".modal-delete-btn")
         const term = e.target.dataset.id
         modal.classList.remove("hidden")
-        console.log("Term ID: " + e.target.dataset.id)
-        console.log("Term: " + e.target.dataset.term)
-        confirmDeleteBtn.setAttribute("href", "edit_definition/" + term)
+        confirmDeleteBtn.setAttribute("href", "delete_definition/" + term)
         closeBtn.addEventListener("click", function() {
             modal.classList.add("hidden")
         })
