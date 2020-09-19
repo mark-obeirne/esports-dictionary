@@ -31,7 +31,7 @@
             <select id="game_name" name="game_name" class="game_name">
               <option value="" disabled>Choose game</option>
               {% for game in games %} 
-                {% if game.game_name == term.game_name %}
+                {% if game._id == term.game_fk %}
                     <option value="{{ game.game_name }}" selected
                     >{{ game.game_name }}</option
                     >

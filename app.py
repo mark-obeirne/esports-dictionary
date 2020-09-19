@@ -22,18 +22,20 @@ mongo = PyMongo(app)
 def get_terms():
     terms = mongo.db.terms.find({"rating": {"$gt": -2}}).sort(
         [("term_header", 1), ("rating", -1), ("submission_date", 1)])
-    games = mongo.db.games.find().sort("game_name", 1)
+    games = list(mongo.db.games.find().sort("game_name", 1))
     return render_template("terms.html", terms=terms, games=games)
 
 
 @app.route("/submit_definition", methods=["GET", "POST"])
 def submit_definition():
     if request.method == "POST":
+        game = mongo.db.games.find_one(
+            {"game_name": request.form.get("game_name")})
         today = date.today()
         submission_date = today.strftime("%Y/%m/%d")
         definition = {
             "term_header": request.form.get("term_header"),
-            "game_name": request.form.get("game_name"),
+            "game_fk": game['_id'],
             "short_definition": request.form.get("short_definition"),
             "long_description": request.form.get("long_description", False),
             "youtube_link": request.form.get("youtube_link", False),
@@ -48,7 +50,7 @@ def submit_definition():
         return redirect(url_for("get_terms"))
     try:
         if session["user"]:
-            games = list(mongo.db.games.find().sort("game_name", 1))
+            games = mongo.db.games.find().sort("game_name", 1)
             return render_template("add_term.html", games=games)
     except KeyError:
         # redirect user to homepage if not logged in
@@ -61,11 +63,13 @@ def submit_definition():
 def edit_definition(term_id):
     term = mongo.db.terms.find_one({"_id": ObjectId(term_id)})
     games = mongo.db.games.find().sort("game_name", 1)
+    selected_game = mongo.db.games.find_one(
+            {"game_name": request.form.get("game_name")})
 
     if request.method == "POST":
         updated = {
             "term_header": request.form.get("term_header"),
-            "game_name": request.form.get("game_name"),
+            "game_fk": selected_game['_id'],
             "short_definition": request.form.get("short_definition"),
             "long_description": request.form.get("long_description", False),
             "youtube_link": request.form.get("youtube_link", False),
