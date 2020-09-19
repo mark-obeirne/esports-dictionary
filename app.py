@@ -51,7 +51,7 @@ def submit_definition():
         return redirect(url_for("get_terms"))
     try:
         if session["user"]:
-            games = list(mongo.db.games.find().sort("game_name", 1))
+            games = mongo.db.games.find().sort("game_name", 1)
             return render_template("add_term.html", games=games)
     except KeyError:
         # redirect user to homepage if not logged in
