@@ -23,7 +23,8 @@ def get_terms():
     terms = mongo.db.terms.find({"rating": {"$gt": -2}}).sort(
         [("term_header", 1), ("rating", -1), ("submission_date", 1)])
     games = list(mongo.db.games.find().sort("game_name", 1))
-    return render_template("terms.html", terms=terms, games=games)
+    users = list(mongo.db.users.find())
+    return render_template("terms.html", terms=terms, games=games, users=users)
 
 
 @app.route("/submit_definition", methods=["GET", "POST"])
