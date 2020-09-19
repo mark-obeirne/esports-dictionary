@@ -29,9 +29,8 @@ def get_terms():
 @app.route("/submit_definition", methods=["GET", "POST"])
 def submit_definition():
     if request.method == "POST":
-        selected_game = request.form.get("game_name")
-        game = mongo.db.games.find_one({"game_name": selected_game})
-        print(game)
+        game = mongo.db.games.find_one(
+            {"game_name": request.form.get("game_name")})
         today = date.today()
         submission_date = today.strftime("%Y/%m/%d")
         definition = {
