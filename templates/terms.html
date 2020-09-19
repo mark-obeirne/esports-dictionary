@@ -374,7 +374,13 @@
             <div class="col s9 term-section">
               <strong class="uppercase term">{{ term.term_header}}</strong>
               <div class="divider"></div>
-              <span class="game-name block">{{ term.game_name }}</span>
+              {% for game in games %}
+                {% if game._id == term.game_fk %}
+                    <span class="game-name block">{{ game.game_name }}</span>
+              <!--<span class="game-name block">{{ term.game_name }}</span>
+              <span class="game-name block">{{ term.game_fk }}</span>-->
+                {% endif %}
+              {% endfor %}
               <span>{{ term.short_definition }}</span>
               <span class="username block"
                 ><em>Submitted by {{ term.submitted_by }}</em></span
