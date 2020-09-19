@@ -23,7 +23,8 @@ def get_terms():
     terms = mongo.db.terms.find({"rating": {"$gt": -2}}).sort(
         [("term_header", 1), ("rating", -1), ("submission_date", 1)])
     games = list(mongo.db.games.find().sort("game_name", 1))
-    return render_template("terms.html", terms=terms, games=games)
+    users = list(mongo.db.users.find())
+    return render_template("terms.html", terms=terms, games=games, users=users)
 
 
 @app.route("/submit_definition", methods=["GET", "POST"])
@@ -31,6 +32,7 @@ def submit_definition():
     if request.method == "POST":
         game = mongo.db.games.find_one(
             {"game_name": request.form.get("game_name")})
+        user = mongo.db.users.find_one({"username": session["user"]})
         today = date.today()
         submission_date = today.strftime("%Y/%m/%d")
         definition = {
@@ -39,13 +41,13 @@ def submit_definition():
             "short_definition": request.form.get("short_definition"),
             "long_description": request.form.get("long_description", False),
             "youtube_link": request.form.get("youtube_link", False),
-            "submitted_by": session["user"],
+            "submitted_by": user["_id"],
             "submission_date": submission_date,
             "rating": 1,
             "number_ratings": 1
         }
         mongo.db.terms.insert_one(definition)
-        flash(f"Thank you, {definition['submitted_by']}, for your submission",
+        flash(f"Thank you, {session['user']}, for your submission",
               category="success")
         return redirect(url_for("get_terms"))
     try:
