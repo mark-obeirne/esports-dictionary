@@ -15,12 +15,12 @@
         <span class="card-title">{{ game.game_name }}</span>
       </div>
       <div class="actions center-align padded-btns">
-        <a href="{{ url_for('edit_game', game_id=game._id) }}" class="btn-small blue-background blue-btn">Edit</a>
+        <a href="{{ url_for('edit_game', game_id=game._id) }}" class="btn-small blue-background blue-btn"><i class="fas fa-edit"></i> Edit</a>
         <span
               class="btn-small red-btn off-white game-modal-btn"
               id="modal-btn"
               data-id="{{game._id}}"
-              >Delete</span
+              ><i class="fas fa-trash"></i> Delete</span
             >
       </div>
     </div>
