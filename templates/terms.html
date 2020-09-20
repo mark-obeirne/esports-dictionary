@@ -10,7 +10,7 @@
           <a
             href="{{ url_for('submit_definition') }}"
             class="btn submit-def red-btn spotlight-btn"
-            >Add Term</a
+            ><i class="fas fa-plus-circle"></i> Add Term</a
           >
           <p class="benefits small-text off-white">
             Submit definitions for popular esports terms and earn points
@@ -19,12 +19,12 @@
           <a
             href="{{ url_for('register') }}"
             class="btn register-btn red-btn spotlight-btn"
-            >Register</a
+            ><i class="fas fa-user-plus"></i> Register</a
           >
           <a
             href="{{ url_for('login') }}"
             class="btn login-btn blue-btn blue-background spotlight-btn"
-            >Log in</a
+            ><i class="fas fa-sign-in-alt"></i> Log in</a
           >
           <p class="benefits small-text off-white">
             Register or log in to add definitions and rate submissions
@@ -410,14 +410,14 @@
               ><a
                 href="{{ url_for('edit_definition', term_id=term._id) }}"
                 class="off-white"
-                >Edit</a
+                ><i class="fas fa-edit"></i> Edit</a
               ></span
             >
             <span
               class="btn-small red-btn off-white term-modal-btn"
               id="modal-btn"
               data-id="{{term._id}}"
-              >Delete</span
+              ><i class="fas fa-trash"></i> Delete</span
             >
             {% endif %}
           </div>

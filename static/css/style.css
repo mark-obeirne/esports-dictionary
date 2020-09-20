@@ -101,6 +101,11 @@ body {
     padding: 1.4rem;
 }
 
+/* Dividers */
+.term-section .divider {
+    width: 60%;
+}
+
 /* Navbar */
 
 .navigation a {
@@ -161,7 +166,7 @@ body {
 
 .spotlight .spotlight-btn {
     display: block;
-    width: 50%;
+    width: 60%;
     margin: 1rem;
 }
 

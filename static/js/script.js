@@ -77,7 +77,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const homepageBtn = document.querySelector(".homepage-button")
         phrases = ["Rocket Jump", "Bunny Hop", "Auto Run", "Fast Travel", "Teleport", "Strafe Jump", "Barrel Roll", "Shootdodge", "Noclip"]
         choice = phrases[Math.floor(Math.random() * phrases.length)]
-        homepageBtn.innerText = choice + " back to the homepage"
+        const homeIcon = "<i class='fas fa-home'></i>"
+        homepageBtn.innerHTML = "<i class='fas fa-home'></i> " + choice + " back to the homepage"
     }
 
     function deleteTermModal(e) {
