@@ -15,11 +15,33 @@
         <span class="card-title">{{ game.game_name }}</span>
       </div>
       <div class="actions center-align padded-btns">
-        <a href="{{ url_for('edit_game', game_id=game._id) }}" class="btn">Edit</a>
-        <a href="" class="btn red-btn">Delete</a>
+        <a href="{{ url_for('edit_game', game_id=game._id) }}" class="btn-small blue-background blue-btn">Edit</a>
+        <span
+              class="btn-small red-btn off-white game-modal-btn"
+              id="modal-btn"
+              data-id="{{game._id}}"
+              >Delete</span
+            >
       </div>
     </div>
   </div>
   {% endfor %}
+  <!--Confirm Delete Modal-->
+    <div class="my-modal hidden" id="my-modal">
+      <div class="modal-content center-align">
+        <h2 class="dark-text confirm-delete">Are you sure?</h2>
+        <p>
+          Are you sure you wish to delete this game?
+        </p>
+        <div class="padded-btns center-align">
+          <span class="btn-small blue-background blue-btn close-modal"
+            >Cancel</span
+          >
+          <span class="btn-small red-btn off-white"
+            ><a class="modal-delete-btn off-white" href="">Delete</a></span
+          >
+        </div>
+      </div>
+    </div>
 </div>
 {% endblock %}
