@@ -201,6 +201,24 @@ def edit_game(game_id):
         return redirect(url_for("get_terms"))
 
 
+@app.route("/delete_game/<game_id>")
+def delete_game(game_id):
+    try:
+        is_admin = True if "admin" in session else False
+        if is_admin:
+            mongo.db.games.remove({"_id": ObjectId(game_id)})
+            flash("Game successfully deleted", category="success")
+            return redirect(url_for("get_games"))
+        else:
+            flash("You do not have permission to manage supported games",
+                  category="error")
+            return redirect(url_for("get_terms"))
+    except KeyError:
+        flash(Markup("Please <a href='login'>"
+                     "login</a> to delete a game"), category="error")
+        return redirect(url_for("get_terms"))
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
