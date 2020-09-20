@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
         homepageBtn.innerText = choice + " back to the homepage"
     }
 
-    function openModal(e) {
+    function deleteTermModal(e) {
         const modal = document.querySelector(".my-modal")
         const closeBtn = document.querySelector(".close-modal")
         const confirmDeleteBtn = document.querySelector(".modal-delete-btn")
@@ -92,6 +92,17 @@ document.addEventListener('DOMContentLoaded', function() {
         })
     }
 
+    function deleteGameModal(e) {
+        const modal = document.querySelector(".my-modal")
+        const closeBtn = document.querySelector(".close-modal")
+        const confirmDeleteBtn = document.querySelector(".modal-delete-btn")
+        const game = e.target.dataset.id
+        modal.classList.remove("hidden")
+        confirmDeleteBtn.setAttribute("href", "delete_game/" + game)
+        closeBtn.addEventListener("click", function() {
+            modal.classList.add("hidden")
+        })
+    }
 
   // Event Listeners
   // Test for existence
@@ -121,9 +132,16 @@ document.addEventListener('DOMContentLoaded', function() {
             window.addEventListener("load", updateHomepageButton)
         }
 
-        const modalBtn = document.querySelectorAll(".modal-btn")
-        if (modalBtn) {
-            modalBtn.forEach(button => button.addEventListener("click", openModal))
+        // Open modal to confirm if user wishes to delete a term
+        const termModalBtn = document.querySelectorAll(".term-modal-btn")
+        if (termModalBtn) {
+            termModalBtn.forEach(button => button.addEventListener("click", deleteTermModal))
+        }
+
+        // Open modal to confirm if user wishes to delete a game
+        const gameModalBtn = document.querySelectorAll(".game-modal-btn")
+        if (gameModalBtn) {
+            gameModalBtn.forEach(button => button.addEventListener("click", deleteGameModal))
         }
     });
 
