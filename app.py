@@ -65,6 +65,7 @@ def submit_definition():
 def edit_definition(term_id):
     term = mongo.db.terms.find_one({"_id": ObjectId(term_id)})
     games = mongo.db.games.find().sort("game_name", 1)
+    user = mongo.db.users.find_one({"username": session["user"]})
     selected_game = mongo.db.games.find_one(
             {"game_name": request.form.get("game_name")})
 
@@ -75,7 +76,7 @@ def edit_definition(term_id):
             "short_definition": request.form.get("short_definition"),
             "long_description": request.form.get("long_description", False),
             "youtube_link": request.form.get("youtube_link", False),
-            "submitted_by": session["user"],
+            "submitted_by": user["_id"],
             "submission_date": term["submission_date"],
             "rating": term["rating"],
             "number_ratings": term["number_ratings"]
@@ -86,8 +87,9 @@ def edit_definition(term_id):
 
     try:
         is_admin = True if "admin" in session else False
-        if session["user"] == term["submitted_by"] or is_admin:
-            return render_template("edit_term.html", term=term, games=games)
+        if user["_id"] == term["submitted_by"] or is_admin:
+            return render_template(
+                "edit_term.html", term=term, games=games, user=user)
         else:
             flash("You cannot edit a term that you did not submit",
                   category="error")
