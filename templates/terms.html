@@ -410,14 +410,14 @@
               ><a
                 href="{{ url_for('edit_definition', term_id=term._id) }}"
                 class="off-white"
-                >Edit</a
+                ><i class="fas fa-edit"></i> Edit</a
               ></span
             >
             <span
               class="btn-small red-btn off-white term-modal-btn"
               id="modal-btn"
               data-id="{{term._id}}"
-              >Delete</span
+              ><i class="fas fa-trash"></i> Delete</span
             >
             {% endif %}
           </div>
