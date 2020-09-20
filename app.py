@@ -104,8 +104,9 @@ def edit_definition(term_id):
 def delete_definition(term_id):
     term = mongo.db.terms.find_one({"_id": ObjectId(term_id)})
     try:
+        user = mongo.db.users.find_one({"username": session["user"]})
         is_admin = True if "admin" in session else False
-        if session["user"] == term["submitted_by"] or is_admin:
+        if user["_id"] == term["submitted_by"] or is_admin:
             mongo.db.terms.remove({"_id": ObjectId(term_id)})
             flash("Term successfully deleted", category="success")
             return redirect(url_for("get_terms"))
