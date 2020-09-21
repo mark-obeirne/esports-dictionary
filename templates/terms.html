@@ -370,8 +370,10 @@
         {% set ns = namespace(username="") %}
         <li class="term-container">
           <div class="collapsible-header hoverable dark-background off-white">
-            <div class="col s3 rating-container valign-wrapper">
+            <div class="col s3 rating-container center-align">
+              <span class="block rating-arrow uparrow"><i class="fas fa-arrow-alt-circle-up"></i></span>
               <p>{{ term.rating }}</p>
+              <span class="block rating-arrow downarrow"><i class="fas fa-arrow-alt-circle-down"></i></span>
             </div>
             <div class="col s9 term-section">
               <strong class="uppercase term">{{ term.term_header}}</strong>
