@@ -200,6 +200,12 @@ body {
 }
 
 
+/* Ratings */
+
+.inactive {
+    color: #C0C0C0;
+}
+
 /* Search Filters */
 
 .search-section {
