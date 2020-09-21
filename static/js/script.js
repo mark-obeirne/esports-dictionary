@@ -105,6 +105,24 @@ document.addEventListener('DOMContentLoaded', function() {
         })
     }
 
+    function upvote(e) {
+        // This function takes the value of the uparrow icon (the term._id) and sends as a GET request to the Python route /upvote/
+        e.preventDefault();
+        const clickedArrow = e.target
+        console.log(clickedArrow)
+        const termID = clickedArrow.dataset.value
+        console.log(termID)
+        const request = new XMLHttpRequest();
+        request.onload = function() {
+            alert("Loaded")
+        }
+
+        request.open("GET", "/upvote/" + termID, true);
+        request.send()
+
+    }
+
+
   // Event Listeners
   // Test for existence
 
@@ -143,6 +161,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const gameModalBtn = document.querySelectorAll(".game-modal-btn")
         if (gameModalBtn) {
             gameModalBtn.forEach(button => button.addEventListener("click", deleteGameModal))
+        }
+
+        const ratingArrow = document.querySelectorAll(".rating-arrow")
+        if (ratingArrow) {
+            ratingArrow.forEach(arrow => arrow.addEventListener("click", upvote))
         }
     });
 
