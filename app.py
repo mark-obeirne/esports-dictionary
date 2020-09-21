@@ -120,6 +120,15 @@ def delete_definition(term_id):
         return redirect(url_for("get_terms"))
 
 
+@app.route("/upvote/<term_id>&<user>")
+def upvote(term_id):
+    try:
+        print(term_id)
+        return "nothing"
+    except TypeError:
+        pass
+
+
 @app.route("/profile")
 def profile():
     return render_template("profile.html")
