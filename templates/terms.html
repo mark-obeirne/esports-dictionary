@@ -371,9 +371,15 @@
         <li class="term-container">
           <div class="collapsible-header hoverable dark-background off-white">
             <div class="col s3 rating-container center-align">
-              <span class="block rating-arrow uparrow"><i class="fas fa-arrow-alt-circle-up"></i></span>
+            {% if session["user"] %}
+              <span class="block rating-arrow uparrow"><a href="{{ url_for('upvote', term_id=term._id, user=session['user']) }}"><i class="fas fa-arrow-alt-circle-up"></i></a></span>
               <p>{{ term.rating }}</p>
               <span class="block rating-arrow downarrow"><i class="fas fa-arrow-alt-circle-down"></i></span>
+            {% else %}
+              <span class="block rating-arrow uparrow inactive"><i class="fas fa-arrow-alt-circle-up"></i></span>
+              <p>{{ term.rating }}</p>
+              <span class="block rating-arrow downarrow inactive"><i class="fas fa-arrow-alt-circle-down"></i></span>
+            {% endif %}
             </div>
             <div class="col s9 term-section">
               <strong class="uppercase term">{{ term.term_header}}</strong>
@@ -447,4 +453,5 @@
     </div>
   </div>
 </div>
+<button class="testme">Click</button>
 {% endblock %}
