@@ -120,13 +120,22 @@ def delete_definition(term_id):
         return redirect(url_for("get_terms"))
 
 
-@app.route("/upvote/<term_id>&<user>")
+@app.route("/upvote/<term_id>", methods=["GET", "POST"])
 def upvote(term_id):
-    try:
-        print(term_id)
-        return "nothing"
-    except TypeError:
-        pass
+    if request.method == "POST":
+        try:
+            print("Increasing rating of " + term_id)
+            term = {
+                "name": term_id,
+                "working": "yes"
+            }
+            mongo.db.terms.insert_one(term)
+            mongo.db.terms.update_one(
+                {"_id": term_id}, {"$inc": {"rating": + 1}})
+            return "nothing"
+        except TypeError:
+            pass
+    print("Term ID: " + term_id)
 
 
 @app.route("/profile")

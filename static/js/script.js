@@ -105,23 +105,33 @@ document.addEventListener('DOMContentLoaded', function() {
         })
     }
 
-    function upvote(e) {
-        // This function takes the value of the uparrow icon (the term._id) and sends as a GET request to the Python route /upvote/
-        e.preventDefault();
+
+    function myFirstPromise(e) {
+        e.stopPropagation()
         const clickedArrow = e.target
         console.log(clickedArrow)
         const termID = clickedArrow.dataset.value
-        console.log(termID)
-        const request = new XMLHttpRequest();
+        console.log("Term ID set")
+
+        // GET request
+        // Appears as GET but doesn't result in print set in function
+        /*
+        let request = new XMLHttpRequest();
+        request.open("GET", "/upvote/" + termID, true);
+
         request.onload = function() {
-            alert("Loaded")
+            alert("Loaded Success " + termID)
         }
 
-        request.open("GET", "/upvote/" + termID, true);
-        request.send()
+        request.send();*/
 
+        // POST method
+
+        var request = new XMLHttpRequest();
+        request.open('POST', 'upvote/' + termID, true);
+        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        request.send(termID);
     }
-
 
   // Event Listeners
   // Test for existence
@@ -165,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const ratingArrow = document.querySelectorAll(".rating-arrow")
         if (ratingArrow) {
-            ratingArrow.forEach(arrow => arrow.addEventListener("click", upvote))
+            ratingArrow.forEach(arrow => arrow.addEventListener("click", myFirstPromise))
         }
     });
 
