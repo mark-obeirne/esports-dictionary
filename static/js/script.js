@@ -106,28 +106,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
-    function myFirstPromise(e) {
+    function increaseTermRating(e) {
         e.stopPropagation()
         const clickedArrow = e.target
-        console.log(clickedArrow)
         const termID = clickedArrow.dataset.value
-        console.log("Term ID set")
 
-        // GET request
-        // Appears as GET but doesn't result in print set in function
-        /*
         let request = new XMLHttpRequest();
-        request.open("GET", "/upvote/" + termID, true);
-
-        request.onload = function() {
-            alert("Loaded Success " + termID)
-        }
-
-        request.send();*/
-
-        // POST method
-
-        var request = new XMLHttpRequest();
         request.open('POST', 'upvote/' + termID, true);
         request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         request.send(termID);
@@ -173,9 +157,9 @@ document.addEventListener('DOMContentLoaded', function() {
             gameModalBtn.forEach(button => button.addEventListener("click", deleteGameModal))
         }
 
-        const ratingArrow = document.querySelectorAll(".rating-arrow")
-        if (ratingArrow) {
-            ratingArrow.forEach(arrow => arrow.addEventListener("click", myFirstPromise))
+        const upArrow = document.querySelectorAll(".uparrow")
+        if (upArrow) {
+            upArrow.forEach(arrow => arrow.addEventListener("click", increaseTermRating))
         }
     });
 
