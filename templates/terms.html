@@ -375,7 +375,7 @@
               <span class="block rating-arrow uparrow"><i class="fas fa-arrow-alt-circle-up" data-value="{{ term._id }}"></i></span>
               <!--<a href="{{ url_for('upvote', term_id=term._id, user=session['user']) }}">-->
               <p>{{ term.rating }}</p>
-              <span class="block rating-arrow downarrow"><i class="fas fa-arrow-alt-circle-down"></i></span>
+              <span class="block rating-arrow downarrow"><i class="fas fa-arrow-alt-circle-down" data-value="{{ term._id }}"></i></span>
             {% else %}
               <span class="block rating-arrow uparrow inactive"><i class="fas fa-arrow-alt-circle-up"></i></span>
               <p>{{ term.rating }}</p>

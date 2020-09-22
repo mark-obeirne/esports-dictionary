@@ -133,6 +133,19 @@ def upvote(term_id):
     return redirect(url_for("get_terms"))
 
 
+@app.route("/downvote/<term_id>", methods=["GET", "POST"])
+def downvote(term_id):
+    if request.method == "POST":
+        try:
+            print("Decreasing rating of " + term_id)
+            mongo.db.terms.update_one(
+                {"_id": ObjectId(term_id)}, {"$inc": {"rating": -1}})
+            return "nothing"
+        except TypeError:
+            pass
+    return redirect(url_for("get_terms"))
+
+
 @app.route("/profile")
 def profile():
     return render_template("profile.html")
