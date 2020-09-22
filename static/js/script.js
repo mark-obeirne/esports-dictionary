@@ -110,9 +110,22 @@ document.addEventListener('DOMContentLoaded', function() {
         e.stopPropagation()
         const clickedArrow = e.target
         const termID = clickedArrow.dataset.value
+        console.log("Upvoting " + termID)
 
         let request = new XMLHttpRequest();
         request.open('POST', 'upvote/' + termID, true);
+        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        request.send(termID);
+    }
+
+        function decreaseTermRating(e) {
+        e.stopPropagation()
+        const clickedArrow = e.target
+        const termID = clickedArrow.dataset.value
+            console.log("Downvoting " + termID)
+
+        let request = new XMLHttpRequest();
+        request.open('POST', 'downvote/' + termID, true);
         request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         request.send(termID);
     }
@@ -160,6 +173,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const upArrow = document.querySelectorAll(".uparrow")
         if (upArrow) {
             upArrow.forEach(arrow => arrow.addEventListener("click", increaseTermRating))
+        }
+
+        const downArrow = document.querySelectorAll(".downarrow")
+        if (downArrow) {
+            downArrow.forEach(arrow => arrow.addEventListener("click", decreaseTermRating))
         }
     });
 
