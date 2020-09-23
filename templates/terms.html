@@ -338,7 +338,7 @@
 							{% if session["user"] %}
 							{% if userid in term.upvoted_by %}
 							<span class="block rating-arrow uparrow active"><i class="fas fa-arrow-alt-circle-up" data-value="{{ term._id }}" data-user="{{ session['user'] }}"></i></span>
-							<p>{{ term.rating }}</p>
+							<p class="term-rating">{{ term.rating }}</p>
 							<span class="block rating-arrow downarrow inactive"><i class="fas fa-arrow-alt-circle-down" data-value="{{ term._id }}" data-user="{{ session['user'] }}"></i></span>
 							{% elif userid in term.downvoted_by %}
 							<span class="block rating-arrow uparrow inactive"><i class="fas fa-arrow-alt-circle-up" data-value="{{ term._id }}" data-user="{{ session['user'] }}"></i></span>
