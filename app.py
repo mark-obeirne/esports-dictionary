@@ -76,12 +76,13 @@ def submit_definition():
 @app.route("/edit_definition/<term_id>", methods=["GET", "POST"])
 def edit_definition(term_id):
     term = mongo.db.terms.find_one({"_id": ObjectId(term_id)})
-    games = mongo.db.games.find().collation({"locale": "en" }).sort("game_name", 1)
-    user = mongo.db.users.find_one({"username": session["user"]})
+    games = mongo.db.games.find().collation(
+        {"locale": "en"}).sort("game_name", 1)
     selected_game = mongo.db.games.find_one(
             {"game_name": request.form.get("game_name")})
 
     if request.method == "POST":
+        user = mongo.db.users.find_one({"username": session["user"]})
         updated = {
             "term_header": request.form.get("term_header"),
             "game_fk": selected_game['_id'],
@@ -99,6 +100,7 @@ def edit_definition(term_id):
         return redirect(url_for("get_terms"))
 
     try:
+        user = mongo.db.users.find_one({"username": session["user"]})
         is_admin = True if "admin" in session else False
         if user["_id"] == term["submitted_by"] or is_admin:
             return render_template(
@@ -138,7 +140,6 @@ def upvote(term_id, username):
     if request.method == "POST":
         user = mongo.db.users.find_one({"username": session["user"]})
         term = dict(mongo.db.terms.find_one({"_id": ObjectId(term_id)}))
-        same_term = dict(mongo.db.terms.find_one({"_id": ObjectId(term_id)}))
         upvoted_array = list(term.get("upvoted_by", []))
         downvoted_array = list(term.get("downvoted_by", []))
         # check if user has not upvoted term
