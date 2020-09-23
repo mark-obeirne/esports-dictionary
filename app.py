@@ -22,9 +22,9 @@ mongo = PyMongo(app)
 def get_terms():
     try:
         if session["user"]:
-            terms = mongo.db.terms.find({"rating": {"$gt": -2}}).sort(
+            terms = mongo.db.terms.find({"rating": {"$gt": -2}}).collation({"locale": "en" }).sort(
                 [("term_header", 1), ("rating", -1), ("submission_date", 1)])
-            games = list(mongo.db.games.find().sort("game_name", 1))
+            games = list(mongo.db.games.find().collation({"locale": "en" }).sort("game_name", 1))
             users = list(mongo.db.users.find())
             current_user = mongo.db.users.find_one({"username": session["user"]})
             userid = current_user["_id"]
@@ -32,9 +32,9 @@ def get_terms():
             return render_template("terms.html", terms=terms, games=games, users=users, userid=userid)
     except KeyError:
         # user is not logged in and doesn't have session cookie set
-        terms = mongo.db.terms.find({"rating": {"$gt": -2}}).sort(
+        terms = mongo.db.terms.find({"rating": {"$gt": -2}}).collation({"locale": "en" }).sort(
             [("term_header", 1), ("rating", -1), ("submission_date", 1)])
-        games = list(mongo.db.games.find().sort("game_name", 1))
+        games = list(mongo.db.games.find().collation({"locale": "en" }).sort("game_name", 1))
         users = list(mongo.db.users.find())
         return render_template("terms.html", terms=terms, games=games, users=users)
 
@@ -64,7 +64,7 @@ def submit_definition():
         return redirect(url_for("get_terms"))
     try:
         if session["user"]:
-            games = mongo.db.games.find().sort("game_name", 1)
+            games = mongo.db.games.find().collation({"locale": "en" }).sort("game_name", 1)
             return render_template("add_term.html", games=games)
     except KeyError:
         # redirect user to homepage if not logged in
@@ -76,7 +76,7 @@ def submit_definition():
 @app.route("/edit_definition/<term_id>", methods=["GET", "POST"])
 def edit_definition(term_id):
     term = mongo.db.terms.find_one({"_id": ObjectId(term_id)})
-    games = mongo.db.games.find().sort("game_name", 1)
+    games = mongo.db.games.find().collation({"locale": "en" }).sort("game_name", 1)
     user = mongo.db.users.find_one({"username": session["user"]})
     selected_game = mongo.db.games.find_one(
             {"game_name": request.form.get("game_name")})
@@ -246,7 +246,7 @@ def get_games():
     is_admin = True if "admin" in session else False
 
     if is_admin:
-        games = list(mongo.db.games.find().sort("game_name", 1))
+        games = list(mongo.db.games.find().collation({"locale": "en" }).sort("game_name", 1))
         return render_template("games.html", games=games)
     else:
         flash("You do not have permission to access this page",
