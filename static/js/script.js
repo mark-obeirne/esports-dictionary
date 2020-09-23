@@ -151,12 +151,37 @@ document.addEventListener('DOMContentLoaded', function() {
         request.send(termID, username);
     }
 
-        function decreaseTermRating(e) {
+    function arrowOnDownvote(chosenArrow) {
+        const allArrows = Array.from(document.querySelectorAll("[data-value]"));
+        const chosenArrowIndex = allArrows.indexOf(chosenArrow);
+        const parentSpan = chosenArrow.parentElement;
+        const correspondingUpArrow =  allArrows[chosenArrowIndex - 1];
+        const correspondingArrowParent = correspondingUpArrow.parentElement;
+
+        if (parentSpan.classList.contains("inactive") && correspondingArrowParent.classList.contains("active")) {
+            parentSpan.classList.remove("inactive");
+            parentSpan.classList.add("active");
+            correspondingArrowParent.classList.remove("active");
+            correspondingArrowParent.classList.add("inactive");
+            changeRating((chosenArrowIndex - 1) / 2, - 2)
+        } else if (parentSpan.classList.contains("inactive")) {
+            parentSpan.classList.remove("inactive");
+            parentSpan.classList.add("active");
+            changeRating((chosenArrowIndex - 1) / 2, - 1)
+        } else if (parentSpan.classList.contains("active")) {
+            parentSpan.classList.remove("active");
+            parentSpan.classList.add("inactive");
+            changeRating((chosenArrowIndex - 1) / 2, 1)
+        } else return
+    }
+
+    function handleDownvote(e) {
         e.stopPropagation()
         const clickedArrow = e.target
+        arrowOnDownvote(clickedArrow)
+
         const termID = clickedArrow.dataset.value
         const username = clickedArrow.dataset.user
-            console.log("Downvoting " + termID)
 
         let request = new XMLHttpRequest();
         request.open('POST', 'downvote/' + termID + "/" + username, true);
@@ -223,7 +248,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const downArrow = document.querySelectorAll(".downarrow")
         if (downArrow) {
-            downArrow.forEach(arrow => arrow.addEventListener("click", decreaseTermRating))
+            downArrow.forEach(arrow => arrow.addEventListener("click", handleDownvote))
         }
 
         // Prompt logged out users to login if they try to rate a term
