@@ -169,7 +169,16 @@ def upvote(term_id, username):
                 except TypeError:
                     pass
         else:
-            # user has upvoted term and action should be ignored
+            # user has upvoted term and upvote should be taken back
+            try:
+                print("Decreasing rating of " + term_id)
+                print(user["_id"])
+                mongo.db.terms.update_one(
+                    {"_id": ObjectId(term_id)}, {"$inc": {"rating": -1}})
+                mongo.db.terms.update_one({"_id": ObjectId(term_id)}, {"$pull": {"upvoted_by": user["_id"]}})
+                return "nothing"
+            except TypeError:
+                pass
             print("In array")
     return redirect(url_for("get_terms"))
 
