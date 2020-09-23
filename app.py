@@ -91,7 +91,8 @@ def edit_definition(term_id):
             "submitted_by": user["_id"],
             "submission_date": term["submission_date"],
             "rating": term["rating"],
-            "number_ratings": term["number_ratings"]
+            "upvoted_by": term["upvoted_by"],
+            "downvoted_by": term["downvoted_by"]
         }
         mongo.db.terms.update({"_id": ObjectId(term_id)}, updated)
         flash("Term successfully updated", category="success")
