@@ -365,7 +365,7 @@
 										</div>
 										<div class="col s9 term-section">
 											<!--Term Definitions-->
-											<strong class="uppercase term">{{ term.term_header}}</strong>
+											<span class="uppercase term strong">{{ term.term_header}}</span>
 											<div class="divider"></div>
 											{% for game in games %} {% if game._id == term.game_fk %}
 											<span class="game-name block">{{ game.game_name }}</span>
@@ -375,17 +375,17 @@
 											<span>{{ term.short_definition }}</span>
 											{% for user in users %} {% if user._id == term.submitted_by %}
 											{% set ns.username = user.username %}
-											<span class="username block"
-                ><em>Submitted by {{ user.username }}</em></span>
+											<span class="username block italic"
+                >Submitted by {{ user.username }}</span>
 											{% endif %} {% endfor %}
 										</div>
 									</div>
 									<div class="collapsible-body dark-text">
 										{% if term.long_description %}
-										<span><strong>Description</strong></span>
+										<span class="strong">Description</span>
 										<p>{{ term.long_description }}</p>
 										{% else %}
-										<p><strong>Description:</strong> {{ term.short_definition }}</p>
+										<p class="strong">Description: {{ term.short_definition }}</p>
 										{% endif %} {% if term.image_link %}
 										<div>{{ term.image_link }}</div>
 										{% endif %}
