@@ -133,6 +133,17 @@ document.addEventListener('DOMContentLoaded', function() {
         request.send(termID, username);
     }
 
+    function loginModalPrompt(e) {
+        e.stopPropagation()
+        console.log("Opening modal")
+        const modal = document.querySelector(".login-modal")
+        const closeBtn = document.querySelector(".close-prompt")
+        modal.classList.remove("hidden")
+        closeBtn.addEventListener("click", function() {
+            modal.classList.add("hidden")
+        })
+    }
+
   // Event Listeners
   // Test for existence
 
@@ -173,6 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
             gameModalBtn.forEach(button => button.addEventListener("click", deleteGameModal))
         }
 
+        // Handle upvotes and downvotes
         const upArrow = document.querySelectorAll(".uparrow")
         if (upArrow) {
             upArrow.forEach(arrow => arrow.addEventListener("click", increaseTermRating))
@@ -181,6 +193,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const downArrow = document.querySelectorAll(".downarrow")
         if (downArrow) {
             downArrow.forEach(arrow => arrow.addEventListener("click", decreaseTermRating))
+        }
+
+        // Prompt logged out users to login if they try to rate a term
+        const loginPrompt = document.querySelectorAll(".modal-arrow")
+        if (loginPrompt) {
+            loginPrompt.forEach(button => button.addEventListener("click", loginModalPrompt))
         }
     });
 
