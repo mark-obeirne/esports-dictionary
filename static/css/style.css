@@ -206,6 +206,10 @@ body {
     color: #C0C0C0;
 }
 
+.active {
+    color: purple;
+}
+
 /* Search Filters */
 
 .search-section {
