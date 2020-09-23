@@ -216,6 +216,12 @@ document.addEventListener('DOMContentLoaded', function() {
             gameDropdown.addEventListener("change", filterByGame)
         }
 
+        // Clear filters
+        const clearFilterBtn = document.querySelectorAll(".clear-btn")
+        if (clearFilterBtn) {
+            clearFilterBtn.forEach(button => button.addEventListener("click", showAllDefinitions))
+        }
+
         // Check if password and confirm password fields match on registration page
         const confirmPasswordField = document.querySelector("#confirm-password")
         if (confirmPasswordField) {
