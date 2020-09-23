@@ -111,12 +111,20 @@ document.addEventListener('DOMContentLoaded', function() {
         const clickedArrow = e.target
         const allArrows = Array.from(document.querySelectorAll("[data-value]"))
         // console.log(clickedArrow)
-        console.log(allArrows)
+        // console.log(allArrows)
         
         const chosenArrowIndex = allArrows.indexOf(clickedArrow)
         // console.log(chosenArrowIndex)
         const correspondingDownArrow =  allArrows[chosenArrowIndex + 1]
         // console.log(correspondingDownArrow)
+
+        const allRatings = document.querySelectorAll(".term-rating")
+        let thisRating = allRatings[chosenArrowIndex / 2]
+        let thisRatingNumber = parseInt(thisRating.innerHTML, 10)
+        // console.log(thisRatingText)
+        // let numberRating = parseInt(thisRatingText, 10)
+        // console.log(numberRating)
+
 
         const termID = clickedArrow.dataset.value
         const username = clickedArrow.dataset.user
@@ -126,6 +134,9 @@ document.addEventListener('DOMContentLoaded', function() {
             clickedArrow.classList.add("active");
             correspondingDownArrow.classList.remove("active");
             correspondingDownArrow.classList.add("inactive");
+            
+            thisRatingNumber += 1;
+            thisRating.innerHTML = thisRatingNumber;
         }
 
         let request = new XMLHttpRequest();
