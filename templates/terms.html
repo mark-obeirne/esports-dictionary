@@ -350,9 +350,9 @@
 							<span class="block rating-arrow downarrow inactive"><i class="fas fa-arrow-alt-circle-down" data-value="{{ term._id }}" data-user="{{ session['user'] }}"></i></span>
 							{% endif %}
 							{% else %}
-							<span class="block rating-arrow uparrow inactive"><i class="fas fa-arrow-alt-circle-up"></i></span>
+							<span class="block rating-arrow modal-arrow inactive"><i class="fas fa-arrow-alt-circle-up"></i></span>
 							<p>{{ term.rating }}</p>
-							<span class="block rating-arrow downarrow inactive"><i class="fas fa-arrow-alt-circle-down"></i></span>
+							<span class="block rating-arrow modal-arrow inactive"><i class="fas fa-arrow-alt-circle-down"></i></span>
 							{% endif %}
 						</div>
 						<div class="col s9 term-section">
@@ -372,7 +372,7 @@
 							{% endif %} {% endfor %}
 						</div>
 					</div>
-					<div class="collapsible-body">
+					<div class="collapsible-body dark-text">
 						{% if term.long_description %}
 						<span><strong>Description</strong></span>
 						<p>{{ term.long_description }}</p>
@@ -405,8 +405,8 @@
 				{% endfor %}
 			</ul>
 		</div>
-		<!--<button class="modal-btn" id="modal-btn" data-content="Modal 1">Click</button>-->
-		<div class="my-modal hidden" id="my-modal">
+		<!--Confirm Term Deletion Modal-->
+		<div class="my-modal modal-target hidden" id="my-modal">
 			<div class="modal-content center-align">
 				<h2 class="dark-text confirm-delete">Are you sure?</h2>
 				<p>
@@ -421,6 +421,28 @@
 				</div>
 			</div>
 		</div>
-	</div>
+        <!--Login Prompt Modal-->
+    <div class="login-modal modal-target hidden" id="login-modal">
+      <div class="modal-content">
+      <div class="close right-align">
+      <a class="close-prompt" href="#!">X</a>
+      </div>
+      <div class="divider"></div>
+        <div class="center-align">
+        <h2 class="dark-text confirm-delete">Register / Log in to Esports Dictionary</h2>
+        <p>
+          Register or log in to join a community of esports enthusiasts who share and rate definitions of terms and gaming lingo.
+        </p>
+        <div class="padded-btns center-align">
+          <span class="btn-small red-btn off-white login-modal-button"
+            ><a class="off-white" href="{{ url_for('register') }}"><i class="fas fa-user-plus"></i> Register</a></span
+          >
+          <span class="btn-small blue-background blue-btn login-modal-button"
+            ><a class="off-white" href="{{ url_for('login') }}"><i class="fas fa-sign-in-alt"></i> Log in</span
+          >
+        </div>
+      </div>
+    </div>
+    </div>
 </div>
 {% endblock %}

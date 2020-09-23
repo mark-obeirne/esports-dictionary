@@ -260,9 +260,9 @@ body {
 }
 
 
-/* Modal */
+/* Modals */
 
-.my-modal {
+.modal-target {
     position: fixed;
     top: 0;
     left: 0;
@@ -277,6 +277,15 @@ body {
     padding: 2rem;
     width: 75%;
     margin: 20% auto;
+}
+
+.close {
+    padding-bottom: 2rem;
+}
+
+.login-modal-button {
+    display: block;
+    margin: 1rem;
 }
 
 
