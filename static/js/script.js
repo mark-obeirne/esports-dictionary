@@ -126,31 +126,17 @@ document.addEventListener('DOMContentLoaded', function() {
             correspondingDownArrow.classList.remove("active");
             correspondingDownArrow.classList.add("inactive");
             changeRating(chosenArrowIndex / 2, 2)
-            // thisRatingNumber += 2;
-            // thisRating.innerHTML = thisRatingNumber;
         } else if (parentSpan.classList.contains("inactive")) {
             chosenArrow.classList.remove("inactive");
             chosenArrow.classList.add("active");
             changeRating(chosenArrowIndex / 2, 1)
-            // thisRatingNumber += 1;
-            // thisRating.innerHTML = thisRatingNumber;
         } else return
     }
 
     function handleUpvote(e) {
         e.stopPropagation()
         const clickedArrow = e.target
-        //const allArrows = Array.from(document.querySelectorAll("[data-value]"))
-        //const parentSpan = clickedArrow.parentElement
-        //const chosenArrowIndex = allArrows.indexOf(clickedArrow)
-        //const correspondingDownArrow =  allArrows[chosenArrowIndex + 1]
-        //const correspondingArrowParent = correspondingDownArrow.parentElement
-
         arrowOnUpvote(clickedArrow)
-
-        /* const allRatings = document.querySelectorAll(".term-rating")
-        let thisRating = allRatings[chosenArrowIndex / 2]
-        let thisRatingNumber = parseInt(thisRating.innerHTML, 10) */
 
         const termID = clickedArrow.dataset.value
         const username = clickedArrow.dataset.user
@@ -159,22 +145,6 @@ document.addEventListener('DOMContentLoaded', function() {
         request.open('POST', 'upvote/' + termID + "/" + username, true);
         request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         request.send(termID, username);
-
-        /* if (parentSpan.classList.contains("inactive") && correspondingArrowParent.classList.contains("active")) {
-            clickedArrow.classList.remove("inactive");
-            clickedArrow.classList.add("active");
-            correspondingDownArrow.classList.remove("active");
-            correspondingDownArrow.classList.add("inactive");
-            
-            thisRatingNumber += 2;
-            thisRating.innerHTML = thisRatingNumber;
-        } else if (parentSpan.classList.contains("inactive")) {
-            clickedArrow.classList.remove("inactive");
-            clickedArrow.classList.add("active");
-            thisRatingNumber += 1;
-            thisRating.innerHTML = thisRatingNumber;
-        } else return */
-       
     }
 
         function decreaseTermRating(e) {
