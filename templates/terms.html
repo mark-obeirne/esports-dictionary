@@ -370,10 +370,10 @@
         {% set ns = namespace(username="") %}
         <li class="term-container">
           <div class="collapsible-header hoverable dark-background off-white">
+            <!--Term Rating-->
             <div class="col s3 rating-container center-align">
             {% if session["user"] %}
-              <span class="block rating-arrow uparrow"><i class="fas fa-arrow-alt-circle-up" data-value="{{ term._id }}"></i></span>
-              <!--<a href="{{ url_for('upvote', term_id=term._id, user=session['user']) }}">-->
+              <span class="block rating-arrow uparrow"><i class="fas fa-arrow-alt-circle-up" data-value="{{ term._id }}" data-user="{{ session['user'] }}"></i></span>
               <p>{{ term.rating }}</p>
               <span class="block rating-arrow downarrow"><i class="fas fa-arrow-alt-circle-down" data-value="{{ term._id }}"></i></span>
             {% else %}
@@ -383,6 +383,7 @@
             {% endif %}
             </div>
             <div class="col s9 term-section">
+              <!--Term Definitions-->
               <strong class="uppercase term">{{ term.term_header}}</strong>
               <div class="divider"></div>
               {% for game in games %} {% if game._id == term.game_fk %}
@@ -454,5 +455,4 @@
     </div>
   </div>
 </div>
-<button class="testme">Click</button>
 {% endblock %}
