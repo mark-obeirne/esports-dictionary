@@ -124,12 +124,13 @@ document.addEventListener('DOMContentLoaded', function() {
         e.stopPropagation()
         const clickedArrow = e.target
         const termID = clickedArrow.dataset.value
+        const username = clickedArrow.dataset.user
             console.log("Downvoting " + termID)
 
         let request = new XMLHttpRequest();
-        request.open('POST', 'downvote/' + termID, true);
+        request.open('POST', 'downvote/' + termID + "/" + username, true);
         request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-        request.send(termID);
+        request.send(termID, username);
     }
 
   // Event Listeners
