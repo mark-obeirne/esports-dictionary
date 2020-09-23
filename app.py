@@ -124,15 +124,21 @@ def delete_definition(term_id):
 def upvote(term_id, username):
     if request.method == "POST":
         user = mongo.db.users.find_one({"username": session["user"]})
-        try:
-            print("Increasing rating of " + term_id)
-            print(user["_id"])
-            mongo.db.terms.update_one(
-                {"_id": ObjectId(term_id)}, {"$inc": {"rating": 1}})
-            mongo.db.terms.update_one({"_id": ObjectId(term_id)}, {"$push": {"upvoted_by": user["_id"]}})
-            return "nothing"
-        except TypeError:
-            pass
+        term = dict(mongo.db.terms.find_one({"_id": ObjectId(term_id)}))
+        upvoted_array = list(term.get("upvoted_by", "no_users"))
+        # check if user has upvoted term already, if not increase rating and add userID to array of upvoters
+        if user["_id"] not in upvoted_array:
+            try:
+                print("Increasing rating of " + term_id)
+                print(user["_id"])
+                mongo.db.terms.update_one(
+                    {"_id": ObjectId(term_id)}, {"$inc": {"rating": 1}})
+                mongo.db.terms.update_one({"_id": ObjectId(term_id)}, {"$push": {"upvoted_by": user["_id"]}})
+                return "nothing"
+            except TypeError:
+                pass
+        else:
+            print("In array")
     return redirect(url_for("get_terms"))
 
 
