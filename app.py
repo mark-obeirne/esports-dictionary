@@ -6,7 +6,6 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from datetime import date
 from werkzeug.security import generate_password_hash, check_password_hash
-from operator import itemgetter
 if os.path.exists("env.py"):
     import env
 
@@ -45,7 +44,7 @@ def submit_definition():
             "submitted_by": user["_id"],
             "submission_date": submission_date,
             "rating": 1,
-            "number_ratings": 1
+            "upvoted_by": [user["_id"]]
         }
         mongo.db.terms.insert_one(definition)
         flash(f"Thank you, {session['user']}, for your submission",
