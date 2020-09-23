@@ -305,6 +305,12 @@ body {
 
 .flashed-messages {
     margin: 0;
+    font-weight: bold;
+}
+
+.flash-message a {
+    color: #F5F5F4;
+    text-decoration: underline;
 }
 
 .success {
