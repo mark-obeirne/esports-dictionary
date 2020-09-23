@@ -20,11 +20,21 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/get_terms")
 def get_terms():
-    terms = mongo.db.terms.find({"rating": {"$gt": -2}}).sort(
-        [("term_header", 1), ("rating", -1), ("submission_date", 1)])
-    games = list(mongo.db.games.find().sort("game_name", 1))
-    users = list(mongo.db.users.find())
-    return render_template("terms.html", terms=terms, games=games, users=users)
+    if session["user"]:
+        terms = mongo.db.terms.find({"rating": {"$gt": -2}}).sort(
+            [("term_header", 1), ("rating", -1), ("submission_date", 1)])
+        games = list(mongo.db.games.find().sort("game_name", 1))
+        users = list(mongo.db.users.find())
+        current_user = mongo.db.users.find_one({"username": session["user"]})
+        userid = current_user["_id"]
+        print(userid)
+        return render_template("terms.html", terms=terms, games=games, users=users, userid=userid)
+    else:
+        terms = mongo.db.terms.find({"rating": {"$gt": -2}}).sort(
+            [("term_header", 1), ("rating", -1), ("submission_date", 1)])
+        games = list(mongo.db.games.find().sort("game_name", 1))
+        users = list(mongo.db.users.find())
+        return render_template("terms.html", terms=terms, games=games, users=users)
 
 
 @app.route("/submit_definition", methods=["GET", "POST"])
