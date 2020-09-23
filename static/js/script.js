@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function deleteTermModal(e) {
-        const modal = document.querySelector(".my-modal")
+        const modal = document.querySelector(".delete-term-modal")
         const closeBtn = document.querySelector(".close-modal")
         const confirmDeleteBtn = document.querySelector(".modal-delete-btn")
         const term = e.target.dataset.id
