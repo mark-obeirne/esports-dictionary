@@ -121,15 +121,19 @@ document.addEventListener('DOMContentLoaded', function() {
         const correspondingArrowParent = correspondingDownArrow.parentElement;
 
         if (parentSpan.classList.contains("inactive") && correspondingArrowParent.classList.contains("active")) {
-            chosenArrow.classList.remove("inactive");
-            chosenArrow.classList.add("active");
-            correspondingDownArrow.classList.remove("active");
-            correspondingDownArrow.classList.add("inactive");
+            parentSpan.classList.remove("inactive");
+            parentSpan.classList.add("active");
+            correspondingArrowParent.classList.remove("active");
+            correspondingArrowParent.classList.add("inactive");
             changeRating(chosenArrowIndex / 2, 2)
         } else if (parentSpan.classList.contains("inactive")) {
-            chosenArrow.classList.remove("inactive");
-            chosenArrow.classList.add("active");
+            parentSpan.classList.remove("inactive");
+            parentSpan.classList.add("active");
             changeRating(chosenArrowIndex / 2, 1)
+        } else if (parentSpan.classList.contains("active")) {
+            parentSpan.classList.remove("active");
+            parentSpan.classList.add("inactive");
+            changeRating(chosenArrowIndex / 2, -1)
         } else return
     }
 
