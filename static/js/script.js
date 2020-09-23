@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const termID = clickedArrow.dataset.value
         const username = clickedArrow.dataset.user
 
-        if (clickedArrow.classList.contains("inactive")) {
+        if (!clickedArrow.classList.contains("inactive")) {
             clickedArrow.classList.remove("inactive");
             clickedArrow.classList.add("active");
             correspondingDownArrow.classList.remove("active");
