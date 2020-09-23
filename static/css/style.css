@@ -207,6 +207,10 @@ body {
     margin-bottom: 1.4rem;
 }
 
+.collapsible-body {
+    background-color: #F5F5F4;
+}
+
 
 /* Ratings */
 
