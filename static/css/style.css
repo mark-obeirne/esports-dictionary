@@ -314,13 +314,13 @@ body {
 }
 
 .success {
-    background-color: green;
-    border: 1.6rem solid green;
+    background-color: #185a18;
+    border: 1.6rem solid #185a18;
 }
 
 .error {
-    background-color: red;
-    border: 1.6rem solid red;
+    background-color: #AC1610;
+    border: 1.6rem solid #AC1610;
 }
 
 
