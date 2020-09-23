@@ -373,9 +373,9 @@
             <!--Term Rating-->
             <div class="col s3 rating-container center-align">
             {% if session["user"] %}
-              <span class="block rating-arrow uparrow"><i class="fas fa-arrow-alt-circle-up" data-value="{{ term._id }}" data-user="{{ session['user'] }}"></i></span>
+              <span class="block rating-arrow uparrow inactive"><i class="fas fa-arrow-alt-circle-up" data-value="{{ term._id }}" data-user="{{ session['user'] }}"></i></span>
               <p>{{ term.rating }}</p>
-              <span class="block rating-arrow downarrow"><i class="fas fa-arrow-alt-circle-down" data-value="{{ term._id }}"></i></span>
+              <span class="block rating-arrow downarrow inactive"><i class="fas fa-arrow-alt-circle-down" data-value="{{ term._id }}" data-user="{{ session['user'] }}"></i></span>
             {% else %}
               <span class="block rating-arrow uparrow inactive"><i class="fas fa-arrow-alt-circle-up"></i></span>
               <p>{{ term.rating }}</p>
