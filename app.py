@@ -6,6 +6,7 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from datetime import date
 from werkzeug.security import generate_password_hash, check_password_hash
+from operator import itemgetter
 if os.path.exists("env.py"):
     import env
 
@@ -125,19 +126,39 @@ def upvote(term_id, username):
     if request.method == "POST":
         user = mongo.db.users.find_one({"username": session["user"]})
         term = dict(mongo.db.terms.find_one({"_id": ObjectId(term_id)}))
-        upvoted_array = list(term.get("upvoted_by", "no_users"))
-        # check if user has upvoted term already, if not increase rating and add userID to array of upvoters
+        same_term = dict(mongo.db.terms.find_one({"_id": ObjectId(term_id)}))
+        upvoted_array = list(term.get("upvoted_by", []))
+        downvoted_array = list(term.get("downvoted_by", []))
+        # check if user has upvoted term
         if user["_id"] not in upvoted_array:
-            try:
-                print("Increasing rating of " + term_id)
-                print(user["_id"])
-                mongo.db.terms.update_one(
-                    {"_id": ObjectId(term_id)}, {"$inc": {"rating": 1}})
-                mongo.db.terms.update_one({"_id": ObjectId(term_id)}, {"$push": {"upvoted_by": user["_id"]}})
-                return "nothing"
-            except TypeError:
-                pass
+            # check if user has previously downvoted term
+            # if so, cancel out the downvote by increasing rating by 2, remove userID from list of users who have downvoted term,
+            # and add userID to list of users who have upvoted term
+            if user["_id"] in downvoted_array:
+                try:
+                    print("Cancelling downvote of " + term_id + " and increasing")
+                    print(user["_id"])
+                    mongo.db.terms.update_one(
+                        {"_id": ObjectId(term_id)}, {"$inc": {"rating": 2}})
+                    mongo.db.terms.update_one({"_id": ObjectId(term_id)}, {"$pull": {"downvoted_by": user["_id"]}})
+                    mongo.db.terms.update_one({"_id": ObjectId(term_id)}, {"$push": {"upvoted_by": user["_id"]}})
+                    return "nothing"
+                except TypeError:
+                    pass
+            else:
+                # user has not downvoted term
+                # increase rating by 1 and add userID to list of users who have upvoted term
+                try:
+                    print("Increasing rating of " + term_id)
+                    print(user["_id"])
+                    mongo.db.terms.update_one(
+                        {"_id": ObjectId(term_id)}, {"$inc": {"rating": 1}})
+                    mongo.db.terms.update_one({"_id": ObjectId(term_id)}, {"$push": {"upvoted_by": user["_id"]}})
+                    return "nothing"
+                except TypeError:
+                    pass
         else:
+            # user has upvoted term and action should be ignored
             print("In array")
     return redirect(url_for("get_terms"))
 
