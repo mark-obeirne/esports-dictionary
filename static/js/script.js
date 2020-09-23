@@ -109,15 +109,31 @@ document.addEventListener('DOMContentLoaded', function() {
     function increaseTermRating(e) {
         e.stopPropagation()
         const clickedArrow = e.target
+        const allArrows = Array.from(document.querySelectorAll("[data-value]"))
+        // console.log(clickedArrow)
+        console.log(allArrows)
+        
+        const chosenArrowIndex = allArrows.indexOf(clickedArrow)
+        // console.log(chosenArrowIndex)
+        const correspondingDownArrow =  allArrows[chosenArrowIndex + 1]
+        // console.log(correspondingDownArrow)
+
         const termID = clickedArrow.dataset.value
         const username = clickedArrow.dataset.user
-        console.log("Upvoting " + termID)
-        console.log(username)
+
+        if (clickedArrow.classList.contains("inactive")) {
+            clickedArrow.classList.remove("inactive");
+            clickedArrow.classList.add("active");
+            correspondingDownArrow.classList.remove("active");
+            correspondingDownArrow.classList.add("inactive");
+        }
 
         let request = new XMLHttpRequest();
         request.open('POST', 'upvote/' + termID + "/" + username, true);
         request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         request.send(termID, username);
+
+        
     }
 
         function decreaseTermRating(e) {
