@@ -245,6 +245,10 @@ body {
     border: 0.05rem solid #2D2A32;
 }
 
+.clear-filter {
+    margin: 1.4rem;
+}
+
 
 /* Registration */
 
