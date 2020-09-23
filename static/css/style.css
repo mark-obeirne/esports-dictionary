@@ -339,4 +339,8 @@ body {
     .spotlight .spotlight-btn {
         width: 100%;
     }
+
+    .search-section {
+        background-color: #E2E1DF;
+    }
 }
