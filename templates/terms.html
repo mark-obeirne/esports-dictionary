@@ -342,16 +342,16 @@
 							<span class="block rating-arrow downarrow inactive"><i class="fas fa-arrow-alt-circle-down" data-value="{{ term._id }}" data-user="{{ session['user'] }}"></i></span>
 							{% elif userid in term.downvoted_by %}
 							<span class="block rating-arrow uparrow inactive"><i class="fas fa-arrow-alt-circle-up" data-value="{{ term._id }}" data-user="{{ session['user'] }}"></i></span>
-							<p>{{ term.rating }}</p>
+							<p class="term-rating">{{ term.rating }}</p>
 							<span class="block rating-arrow downarrow active"><i class="fas fa-arrow-alt-circle-down" data-value="{{ term._id }}" data-user="{{ session['user'] }}"></i></span>
 							{% else %}
 							<span class="block rating-arrow uparrow inactive"><i class="fas fa-arrow-alt-circle-up" data-value="{{ term._id }}" data-user="{{ session['user'] }}"></i></span>
-							<p>{{ term.rating }}</p>
+							<p class="term-rating">{{ term.rating }}</p>
 							<span class="block rating-arrow downarrow inactive"><i class="fas fa-arrow-alt-circle-down" data-value="{{ term._id }}" data-user="{{ session['user'] }}"></i></span>
 							{% endif %}
 							{% else %}
 							<span class="block rating-arrow modal-arrow inactive"><i class="fas fa-arrow-alt-circle-up"></i></span>
-							<p>{{ term.rating }}</p>
+							<p class="term-rating">{{ term.rating }}</p>
 							<span class="block rating-arrow modal-arrow inactive"><i class="fas fa-arrow-alt-circle-down"></i></span>
 							{% endif %}
 						</div>
