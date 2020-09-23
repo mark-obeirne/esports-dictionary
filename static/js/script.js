@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function deleteGameModal(e) {
-        const modal = document.querySelector(".my-modal")
+        const modal = document.querySelector(".game-modal")
         const closeBtn = document.querySelector(".close-modal")
         const confirmDeleteBtn = document.querySelector(".modal-delete-btn")
         const game = e.target.dataset.id
