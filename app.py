@@ -120,13 +120,16 @@ def delete_definition(term_id):
         return redirect(url_for("get_terms"))
 
 
-@app.route("/upvote/<term_id>", methods=["GET", "POST"])
-def upvote(term_id):
+@app.route("/upvote/<term_id>/<username>", methods=["GET", "POST"])
+def upvote(term_id, username):
     if request.method == "POST":
+        user = mongo.db.users.find_one({"username": session["user"]})
         try:
             print("Increasing rating of " + term_id)
+            print(user["_id"])
             mongo.db.terms.update_one(
                 {"_id": ObjectId(term_id)}, {"$inc": {"rating": 1}})
+            mongo.db.terms.update_one({"_id": ObjectId(term_id)}, {"$push": {"upvoted_by": user["_id"]}})
             return "nothing"
         except TypeError:
             pass
