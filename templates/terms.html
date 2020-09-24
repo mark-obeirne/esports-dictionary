@@ -32,13 +32,15 @@
 	<div class="sticky">
 		<div class="col s12 l5 push-l7 search-section">
 			<h2 class="heading uppercase center-align">Search Filters</h2>
-			<div class="search-filters">
+			<!--Custom Search-->
+            <div class="search-filters">
 				<input
           type="text"
           class="searchbar"
           placeholder="Filter by term or game"
         />
-				<div class="input-field">
+				<!--Select Game Dropdown-->
+                <div class="input-field">
 					<select id="game-filter" name="game-filter" class="game-filter">
             <option value="" disabled selected>Choose game</option>
             {% for game in games %}
@@ -48,17 +50,20 @@
 					<label for="game-filter">Or filter by game</label>
 				</div>
 				<div class="padded-btns center-align hide-on-large-only">
-					<span
+					<!--Alphabetical Sidebar-->
+                    <span
             class="btn-small alpha-filter blue-btn blue-background sidenav-trigger"
             data-target="alphabet-filter"
             >Or filter alphabetically</span>
-				<div class="clear-filter">
+				<!--Clear Filters Button-->
+                <div class="clear-filter">
 					<span class="btn-small clear-btn red-btn">Clear Filters</span>
                 </div>
                 </div>
 				
 				<div class="col l8 offset-l2 hide-on-med-and-down show-on-large center-align">
-					<button
+					<!--Alphabetical Buttons Acting As Filters-->
+                    <button
             class="alpha-btns blue-btn blue-background off-white alphabet-letter"
           >
             A
@@ -196,7 +201,7 @@
             </div>
         </div>
 	</div>
-	<!--Alphabetical Filter Sidebar-->
+	<!--Alphabetical Filter Sidebar On Mobile/Tablet-->
 	<ul id="alphabet-filter" class="sidenav">
 		<li><a class="sidenav-close" href="#!">Close</a></li>
 		<li>
@@ -336,12 +341,12 @@
 						<h2 class="heading uppercase center-align">Definitions</h2>
 						<div class="container">
 							<ul class="collapsible">
-
 								{% for term in terms %}
 								{% set ns = namespace(username="") %}
 								<li class="term-container">
 									<div class="collapsible-header hoverable dark-background off-white">
 										<!--Term Rating-->
+                                        <!--Checks if user is logged in and displays their current ratings given to term-->
 										<div class="col s3 rating-container center-align">
 											{% if session["user"] %}
 											{% if userid in term.upvoted_by %}
@@ -369,17 +374,17 @@
 											<div class="divider"></div>
 											{% for game in games %} {% if game._id == term.game_fk %}
 											<span class="game-name small-text block">{{ game.game_name }}</span>
-											<!--<span class="game-name block">{{ term.game_name }}</span>
-              <span class="game-name block">{{ term.game_fk }}</span>-->
 											{% endif %} {% endfor %}
 											<p class="definition">{{ term.short_definition }}</p>
 											{% for user in users %} {% if user._id == term.submitted_by %}
 											{% set ns.username = user.username %}
+                                            <!--Display Username-->
 											<span class="username block italic"
                 >Submitted by {{ user.username }}</span>
 											{% endif %} {% endfor %}
 										</div>
 									</div>
+                                    <!--Collapsible For Added Details-->
 									<div class="collapsible-body dark-text">
 										{% if term.long_description %}
 										<span class="strong">Description</span>
@@ -393,10 +398,10 @@
 											{% if term.youtube_link %} {{ term.youtube_link }} {% endif %}
 										</div>
 									</div>
-									<!--Buttons for original submitter or an admin user to edit or delete a definition-->
 									<div class="admin-btns padded-btns dark-background center-align">
 										{% if ns.username == session["user"] or session["admin"] %}
-										<span class="btn-small blue-background blue-btn"
+										<!--Buttons for original submitter or an admin user to edit or delete a definition-->
+                                        <span class="btn-small blue-background blue-btn"
               ><a
                 href="{{ url_for('edit_definition', term_id=term._id) }}"
                 class="off-white"
