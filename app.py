@@ -1,3 +1,4 @@
+# Import modules
 import os
 from flask import (
     Flask, flash, render_template,
@@ -9,18 +10,28 @@ from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
 
+# Create Flask instance
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
+# Add PyMongo
 mongo = PyMongo(app)
 
 
+# Homepage
 @app.route("/")
 @app.route("/get_terms")
 def get_terms():
+    """
+    Displays definitions stored in database alphabetically, provided their
+    current rating is greater than -2. If the user is logged in, pass the
+    userID to terms.html as a variable, otherwise display the page without
+    this information.
+    """
     try:
+        # Check if user is logged in
         if session["user"]:
             terms = mongo.db.terms.find({"rating": {"$gt": -2}}).collation(
                 {"locale": "en"}).sort(
@@ -32,12 +43,11 @@ def get_terms():
             current_user = mongo.db.users.find_one(
                 {"username": session["user"]})
             userid = current_user["_id"]
-            print(userid)
             return render_template(
                 "terms.html",
                 terms=terms, games=games, users=users, userid=userid)
     except KeyError:
-        # user is not logged in and doesn't have session cookie set
+        # User is not logged in and doesn't have session cookie set
         terms = mongo.db.terms.find(
             {"rating": {"$gt": -2}}).collation({"locale": "en"}).sort(
             [("term_header", 1), ("rating", -1), ("submission_date", 1)])
@@ -50,6 +60,13 @@ def get_terms():
 
 @app.route("/submit_definition", methods=["GET", "POST"])
 def submit_definition():
+    """
+    Check that user is logged in and displays form to submit a definition if
+    so. If not, the user is redirected to homepage with a flash message
+    inviting them to log in or register.
+    Gather data provided in form and insert new definition to database with
+    the user added as a user who has upvoted the term.
+    """
     if request.method == "POST":
         game = mongo.db.games.find_one(
             {"game_name": request.form.get("game_name")})
@@ -72,12 +89,13 @@ def submit_definition():
               category="success")
         return redirect(url_for("get_terms"))
     try:
+        # Ensure that user is logged in before displaying page
         if session["user"]:
             games = mongo.db.games.find().collation(
                 {"locale": "en"}).sort("game_name", 1)
             return render_template("add_term.html", games=games)
     except KeyError:
-        # redirect user to homepage if not logged in
+        # Redirect user to homepage if not logged in
         flash(Markup("Please <a href='login'>"
                      "login</a> to add a new definition"), category="error")
         return redirect(url_for("get_terms"))
@@ -85,6 +103,11 @@ def submit_definition():
 
 @app.route("/edit_definition/<term_id>", methods=["GET", "POST"])
 def edit_definition(term_id):
+    """
+    Search the database for the term being edited and provide this data to
+    the form when populating. When user submits form, gather the provided data
+    and update the relevant term in the database.
+    """
     term = mongo.db.terms.find_one({"_id": ObjectId(term_id)})
     games = mongo.db.games.find().collation(
         {"locale": "en"}).sort("game_name", 1)
@@ -110,6 +133,7 @@ def edit_definition(term_id):
         return redirect(url_for("get_terms"))
 
     try:
+        # Check that user is logged in or is an admin
         user = mongo.db.users.find_one({"username": session["user"]})
         is_admin = True if "admin" in session else False
         if user["_id"] == term["submitted_by"] or is_admin:
@@ -120,6 +144,7 @@ def edit_definition(term_id):
                   category="error")
             return redirect(url_for("get_terms"))
     except KeyError:
+        # Redirect user to homepage if not logged in
         flash(Markup("Please <a href='login'>"
                      "login</a> to edit a definition"), category="error")
         return redirect(url_for("get_terms"))
@@ -127,6 +152,10 @@ def edit_definition(term_id):
 
 @app.route("/delete_definition/<term_id>")
 def delete_definition(term_id):
+    """
+    Check that user is logged in and is the original poster of the term or is
+    an Admin. Search the database for the term being deleted and remove it.
+    """
     term = mongo.db.terms.find_one({"_id": ObjectId(term_id)})
     try:
         user = mongo.db.users.find_one({"username": session["user"]})
@@ -147,6 +176,15 @@ def delete_definition(term_id):
 
 @app.route("/upvote/<term_id>/<username>", methods=["GET", "POST"])
 def upvote(term_id, username):
+    """
+    Gather data related to the username and the term ID provided. Check if the
+    user has not previously upvoted the definition. If not, check if the user
+    has previously downvoted the definition. Based on the results of these
+    checks, reduce the rating by 1 (if they have upvoted before), increase the
+    rating by 1 (if they have not rated the definition), or increase by 2 (if
+    they have previously downvoted as this cancels out their original downvote
+    and applies an upvote).
+    """
     if request.method == "POST":
         user = mongo.db.users.find_one({"username": session["user"]})
         term = dict(mongo.db.terms.find_one({"_id": ObjectId(term_id)}))
@@ -154,10 +192,12 @@ def upvote(term_id, username):
         downvoted_array = list(term.get("downvoted_by", []))
         # check if user has not upvoted term
         if user["_id"] not in upvoted_array:
-            # check if user has previously downvoted term
-            # if so, cancel out the downvote by increasing rating by 2,
-            # remove userID from list of users who have downvoted term,
-            # and add userID to list of users who have upvoted term
+            """
+            Check if user has previously downvoted term. If so, cancel out the
+            downvote by increasing rating by 2, remove userID from list of
+            users who have downvoted term, and add userID to list of users
+            who have upvoted term
+            """
             if user["_id"] in downvoted_array:
                 try:
                     mongo.db.terms.update_one(
@@ -172,12 +212,11 @@ def upvote(term_id, username):
                 except TypeError:
                     pass
             else:
-                # user has not downvoted term
-                # increase rating by 1 and add userID
-                # to list of users who have upvoted term
+                """
+                User has not downvoted term. Increase rating by 1 and add
+                userID to list of users who have upvoted term
+                """
                 try:
-                    print("Increasing rating of " + term_id)
-                    print(user["_id"])
                     mongo.db.terms.update_one(
                         {"_id": ObjectId(term_id)}, {"$inc": {"rating": 1}})
                     mongo.db.terms.update_one(
@@ -187,10 +226,8 @@ def upvote(term_id, username):
                 except TypeError:
                     pass
         else:
-            # user has upvoted term and upvote should be taken back
+            # User has upvoted term and upvote should be taken back
             try:
-                print("Decreasing rating of " + term_id)
-                print(user["_id"])
                 mongo.db.terms.update_one(
                     {"_id": ObjectId(term_id)}, {"$inc": {"rating": -1}})
                 mongo.db.terms.update_one(
@@ -199,23 +236,33 @@ def upvote(term_id, username):
                 return "nothing"
             except TypeError:
                 pass
-            print("In array")
     return redirect(url_for("get_terms"))
 
 
 @app.route("/downvote/<term_id>/<username>", methods=["GET", "POST"])
 def downvote(term_id, username):
+    """
+    Gather data related to the username and the term ID provided. Check if the
+    user has not previously downvoted the definition. If not, check if the user
+    has previously upvoted the definition. Based on the results of these
+    checks, increase the rating by 1 (if they have downvoted before), decrease
+    the rating by 1 (if they have not rated the definition), or decrease by 2
+    (if they have previously upvoted as this cancels out their original upvote
+    and applies a downvote).
+    """
     if request.method == "POST":
         user = mongo.db.users.find_one({"username": session["user"]})
         term = dict(mongo.db.terms.find_one({"_id": ObjectId(term_id)}))
         upvoted_array = list(term.get("upvoted_by", []))
         downvoted_array = list(term.get("downvoted_by", []))
-        # check if user has not downvoted term
+        # Check if user has not downvoted term
         if user["_id"] not in downvoted_array:
-            # check if user has previously upvoted term
-            # if so, cancel out the upvote by decreasing rating by 2,
-            # remove userID from list of users who have upvoted term,
-            # and add userID to list of users who have downvoted term
+            """
+            Check if user has previously upvoted term. If so, cancel out the
+            upvote by decreasing rating by 2, remove userID from list of users
+            who have upvoted term, and add userID to list of users who have
+            downvoted term
+            """
             if user["_id"] in upvoted_array:
                 try:
                     mongo.db.terms.update_one(
@@ -230,12 +277,11 @@ def downvote(term_id, username):
                 except TypeError:
                     pass
             else:
-                # user has not upvoted term
-                # decrease rating by 1 and add userID
-                # to list of users who have downvoted term
+                """
+                User has not upvoted term. Decrease rating by 1 and add userID
+                to list of users who have downvoted term
+                """
                 try:
-                    print("Decreasing rating of " + term_id)
-                    print(user["_id"])
                     mongo.db.terms.update_one(
                         {"_id": ObjectId(term_id)}, {"$inc": {"rating": -1}})
                     mongo.db.terms.update_one(
@@ -245,10 +291,8 @@ def downvote(term_id, username):
                 except TypeError:
                     pass
         else:
-            # user has downvoted term and downvote should be taken back
+            # User has downvoted term and downvote should be taken back
             try:
-                print("Increasing rating of " + term_id)
-                print(user["_id"])
                 mongo.db.terms.update_one(
                     {"_id": ObjectId(term_id)}, {"$inc": {"rating": 1}})
                 mongo.db.terms.update_one(
@@ -257,18 +301,25 @@ def downvote(term_id, username):
                 return "nothing"
             except TypeError:
                 pass
-            print("In array")
     return redirect(url_for("get_terms"))
 
 
 @app.route("/profile")
 def profile():
+    """
+    Display user profile
+    """
     return render_template("profile.html")
 
 
 @app.route("/get_games")
 def get_games():
-    # check if user has admin permission to access this page
+    """
+    Check if the user is an admin before displaying page. Get list of
+    currently supported games in the database and display these for the admin
+    to manage
+    """
+    # Check if user has admin permission to access this page
     is_admin = True if "admin" in session else False
 
     if is_admin:
@@ -284,11 +335,15 @@ def get_games():
 
 @app.route("/add_game", methods=["GET", "POST"])
 def add_game():
-    # check if user has admin permission to access this page
+    """
+    Check if user is an admin before displaying page. Get details provided in
+    form and add game to collection in database
+    """
+    # Check if user has admin permission to access this page
     is_admin = True if "admin" in session else False
 
     if request.method == "POST":
-        # check if game currently exists in DB
+        # Check if game currently exists in DB
         existing_game = mongo.db.games.find_one(
             {"game_name": request.form.get("game_name").lower()})
 
@@ -300,13 +355,13 @@ def add_game():
             # https://pythonpedia.com/en/knowledge-base/21248718/how-to-flashing-a-message-with-link-using-flask-flash-
             return render_template(url_for("add_game"))
 
-        # gather form data
+        # Gather form data
         game_details = {
             "game_name": request.form.get("game_name"),
             "game_icon": request.form.get("game_icon")
             }
 
-        # submit data to DB
+        # Submit data to DB
         mongo.db.games.insert_one(game_details)
 
         flash("Game successfully added", category="success")
@@ -322,6 +377,11 @@ def add_game():
 
 @app.route("/edit_game/<game_id>", methods=["GET", "POST"])
 def edit_game(game_id):
+    """
+    Search the database for the game being edited and provide this data to
+    the form when populating. When user submits form, gather the provided data
+    and update the relevant game in the database.
+    """
     game = mongo.db.games.find_one({"_id": ObjectId(game_id)})
 
     if request.method == "POST":
@@ -334,7 +394,7 @@ def edit_game(game_id):
         flash("Game details updated successfully", category="success")
         return redirect(url_for("get_games"))
 
-    # check if user has admin permission to access this page
+    # Check if user has admin permission to access this page
     is_admin = True if "admin" in session else False
     if is_admin:
         return render_template("edit_game.html", game=game)
@@ -346,6 +406,10 @@ def edit_game(game_id):
 
 @app.route("/delete_game/<game_id>")
 def delete_game(game_id):
+    """
+    Check that user is logged in and is an admin. Search the database for the
+    game being deleted and remove it.
+    """
     try:
         is_admin = True if "admin" in session else False
         if is_admin:
@@ -364,8 +428,12 @@ def delete_game(game_id):
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    """
+    Check if username exists in database. If not, gather the data supplied in
+    the form and insert into collection in database
+    """
     if request.method == "POST":
-        # check if username currently exists in DB
+        # Check if username currently exists in DB
         existing_username = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
@@ -377,7 +445,7 @@ def register():
             # https://pythonpedia.com/en/knowledge-base/21248718/how-to-flashing-a-message-with-link-using-flask-flash-
             return render_template(url_for("register"))
 
-        # gather form data
+        # Gather form data
         registration = {
             "username": request.form.get("username"),
             "password": generate_password_hash(request.form.get("password")),
@@ -385,10 +453,10 @@ def register():
             "fav_competitors": request.form.get("fav_competitors")
             }
 
-        # submit data to DB
+        # Submit data to DB
         mongo.db.users.insert_one(registration)
 
-        # create session cookie and redirect to dictionary
+        # Create session cookie and redirect to dictionary
         session["user"] = request.form.get("username")
         flash(Markup("Thanks for signing up, " + request.form.get("username")),
               category="success")
@@ -399,16 +467,21 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    """
+    Check if username exists and hashed password matches the hashed password
+    stored. Check if the user is an admin and set an admin session cookie if
+    so. Set a user session cookie.
+    """
     if request.method == "POST":
-        # check that username exists
+        # Check that username exists
         existing_username = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
         if existing_username:
-            # ensure hashed password matches input
+            # Ensure hashed password matches input
             if check_password_hash(
                     existing_username["password"], request.form.get(
                     "password")):
-                # check if user is an admin
+                # Check if user is an admin
                 is_admin = existing_username.get("is_admin", False)
                 if is_admin:
                     session["admin"] = True
@@ -417,11 +490,11 @@ def login():
                       category="success")
                 return redirect(url_for("get_terms"))
             else:
-                # invalid password entered
+                # Invalid password entered
                 flash("Username and/or password incorrect", category="error")
                 return redirect(url_for("login"))
         else:
-            # username doesn't exist
+            # Username doesn't exist
             flash("Username and/or password incorrect", category="error")
             return redirect(url_for("login"))
 
@@ -430,6 +503,11 @@ def login():
 
 @app.route("/logout")
 def logout():
+    """
+    Check if user is currently logged in and log them out, removing the user
+    session cookie. Check if user is an admin and remove the admin session
+    cookie if so.
+    """
     try:
         if session["user"]:
             flash("You have logged out successfully", category="success")
@@ -448,6 +526,10 @@ def logout():
 
 @app.errorhandler(404)
 def invalid_route(e):
+    """
+    Display 404.html if user clicks on a link that doesn't work or navigates
+    to a page that does not exist.
+    """
     return render_template("404.html")
 
 
