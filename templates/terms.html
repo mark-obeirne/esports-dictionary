@@ -37,9 +37,10 @@
 				<input
           type="text"
           class="searchbar"
-          placeholder="Filter by term or game"
+          placeholder="Search for term or game"
         />
 				<!--Select Game Dropdown-->
+                <h3 class="heading uppercase center-align">Filter By Game</h3>
                 <div class="input-field">
 					<select id="game-filter" name="game-filter" class="game-filter">
             <option value="" disabled selected>Choose game</option>
@@ -47,7 +48,7 @@
             <option value="{{ game.game_name }}">{{ game.game_name }}</option>
             {% endfor %}
           </select>
-					<label for="game-filter">Or filter by game</label>
+					<!--<label for="game-filter">Or filter by game</label>-->
 				</div>
 				<div class="padded-btns center-align hide-on-large-only">
 					<!--Alphabetical Sidebar-->
@@ -63,6 +64,7 @@
 				
 				<div class="col l8 offset-l2 hide-on-med-and-down show-on-large center-align">
 					<!--Alphabetical Buttons Acting As Filters-->
+                    <h3 class="heading uppercase center-align">Filter alphabetically</h3>
                     <button
             class="alpha-btns blue-btn blue-background off-white alphabet-letter"
           >
