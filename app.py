@@ -34,10 +34,9 @@ def get_terms():
     try:
         # Check if user is logged in
         if session["user"]:
-            terms = mongo.db.terms.find({"rating": {"$gt": -2}}).collation(
-                {"locale": "en"}).sort(
+            terms = mongo.db.terms.find({"rating": {"$gt": -2}}).sort(
                     [("term_header", 1),
-                        ("rating", -1), ("submission_date", 1)])
+                        ("rating", -1)])
             games = list(mongo.db.games.find().collation(
                 {"locale": "en"}).sort("game_name", 1))
             users = list(mongo.db.users.find())
