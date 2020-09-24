@@ -7,6 +7,7 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from datetime import date
 from werkzeug.security import generate_password_hash, check_password_hash
+import re
 if os.path.exists("env.py"):
     import env
 
@@ -41,7 +42,7 @@ def get_terms():
                 {"locale": "en"}).sort("game_name", 1))
             users = list(mongo.db.users.find())
             current_user = mongo.db.users.find_one(
-                {"username": (session["user"]).lower()})
+                {"username": session["user"]})
             userid = current_user["_id"]
             return render_template(
                 "terms.html",
@@ -435,9 +436,13 @@ def register():
     if request.method == "POST":
         print("Checking DB for username")
         # Check if username currently exists in DB
+        desired_username = request.form.get("username")
         existing_username = mongo.db.users.find_one(
-            {"username": (request.form.get("username")).lower()})
-
+            {"username": re.compile(
+                "^" + desired_username + "$", re.IGNORECASE)})
+        # Credit for case insensitivity comparison:
+        # https://stackoverflow.com/questions/6266555/querying-mongodb-via-pymongo-in-case-insensitive-efficiently
+        print(existing_username)
         if existing_username:
             flash(Markup("Username already exists. "
                          "Please choose another or <a href=''>login</a>."),
@@ -449,7 +454,8 @@ def register():
         # Gather form data
         registration = {
             "username": request.form.get("username"),
-            "password": generate_password_hash(request.form.get("password")),
+            "password": generate_password_hash(
+                request.form.get("password")),
             "fav_games": request.form.get("fav_games"),
             "fav_competitors": request.form.get("fav_competitors")
             }
@@ -458,8 +464,9 @@ def register():
         mongo.db.users.insert_one(registration)
 
         # Create session cookie and redirect to dictionary
-        session["user"] = request.form.get("username")
-        flash(Markup("Thanks for signing up, " + request.form.get("username")),
+        session["user"] = registration["username"]
+        print(session["user"])
+        flash(Markup("Thanks for signing up, " + session['user']),
               category="success")
         return redirect(url_for("get_terms"))
 
@@ -476,7 +483,8 @@ def login():
     if request.method == "POST":
         # Check that username exists
         existing_username = mongo.db.users.find_one(
-            {"username": (request.form.get("username")).lower()})
+            {"username": request.form.get("username")})
+        print(existing_username)
         if existing_username:
             print("User exists")
             # Ensure hashed password matches input
