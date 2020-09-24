@@ -20,13 +20,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
   // Functions
-    
+    /* 
+        Filter displayed definitions based on the letter that the user selects 
+        from the alphabetical buttons displayed. Hide containers where the 
+        first letter of the term doesn't match the selected filter
+    */
     function filterByLetter() {
         showAllDefinitions()
         const letter = this.innerText;
         const allTerms = Array.from(document.querySelectorAll(".term"))
         const allTermContainers = Array.from(document.querySelectorAll(".term-container"))
-        // Hide a definition's container if the first letter doesn't match the selected letter
         allTerms.forEach(term => {
             if (term.textContent[0] !== letter) {
                 term.parentElement.parentElement.parentElement.classList.add("hidden")
@@ -34,12 +37,16 @@ document.addEventListener('DOMContentLoaded', function() {
         })
     }
 
+
+    /* 
+        Filter displayed definitions based on the game that the user selects 
+        from the game dropdown
+    */
     function filterByGame() {
         showAllDefinitions()
         const chosenGame = this.value;
         const allGameCategories = Array.from(document.querySelectorAll(".game-name"));
         const allTermContainers = Array.from(document.querySelectorAll(".term-container"));
-        // Hide a definition's container if the term's associated game doesn't match the selected game
         allGameCategories.forEach(gameName => {
             if (gameName.textContent !== chosenGame) {
                 gameName.parentElement.parentElement.parentElement.classList.add("hidden")
@@ -47,11 +54,23 @@ document.addEventListener('DOMContentLoaded', function() {
         })
     }
 
+    
+    /* 
+        Show all definitions. Used when changing filters or when the user 
+        clicks the Clear Filters button
+    */
     function showAllDefinitions() {
         const allTermContainers = Array.from(document.querySelectorAll(".term-container"))
         allTermContainers.forEach(container => container.classList.remove("hidden"))
     }
 
+
+    /*
+        When registering, check the confirm password field against the password
+        field. If the two do not match, display a warning that advises user 
+        that they don't match, highlight the field in red (as other validation
+        checks do), and disable the Register button
+    */
     function confirmPasswordMatch() {
         const passwordField = document.querySelector("#password")
         const confirmPassword = document.querySelector("#confirm-password")
@@ -73,6 +92,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     }
 
+
+    /*
+        Update the "Back to homepage" button on 404.html with a randomly chosen
+        gaming term from a predefined list
+    */
     function updateHomepageButton() {
         const homepageBtn = document.querySelector(".homepage-button")
         phrases = ["Rocket Jump", "Bunny Hop", "Auto Run", "Fast Travel", "Teleport", "Strafe Jump", "Barrel Roll", "Shootdodge", "Noclip"]
@@ -81,6 +105,13 @@ document.addEventListener('DOMContentLoaded', function() {
         homepageBtn.innerHTML = "<i class='fas fa-home'></i> " + choice + " back to the homepage"
     }
 
+
+    /*
+        Display modal to confirm that the user wishes to delete a term. 
+        Function updates the button with the href that targets the 
+        delete_definition function in app.py and supplies the term's ID
+
+    */
     function deleteTermModal(e) {
         const modal = document.querySelector(".delete-term-modal")
         const closeBtn = document.querySelector(".close-modal")
@@ -93,6 +124,13 @@ document.addEventListener('DOMContentLoaded', function() {
         })
     }
 
+
+    /*
+        Display modal to confirm that the user wishes to delete a game. 
+        Function updates the button with the href that targets the 
+        delete_game function in app.py and supplies the game's ID
+
+    */
     function deleteGameModal(e) {
         const modal = document.querySelector(".game-modal")
         const closeBtn = document.querySelector(".close-modal")
@@ -105,6 +143,11 @@ document.addEventListener('DOMContentLoaded', function() {
         })
     }
 
+
+    /* 
+        Update rating displayed in real time as user upvotes or downvotes a 
+        definition. 
+    */
     function changeRating(ratingIndex, changeOfRating) {
         const allRatings = document.querySelectorAll(".term-rating")
         let thisRating = allRatings[ratingIndex]
@@ -113,6 +156,13 @@ document.addEventListener('DOMContentLoaded', function() {
         thisRating.innerHTML = thisRatingNumber;
     }
     
+
+    /* 
+        Controls behaviour of upvote arrow when a user clicks upon it.
+        Changes the class of the arrow's parent based on if the user had 
+        previously upvoted, downvoted, or had not voted. Calls upon 
+        changeRating function to update the rating based on these same factors.
+    */
     function arrowOnUpvote(chosenArrow) {
         const allArrows = Array.from(document.querySelectorAll("[data-value]"));
         const chosenArrowIndex = allArrows.indexOf(chosenArrow);
@@ -137,6 +187,11 @@ document.addEventListener('DOMContentLoaded', function() {
         } else return
     }
 
+
+    /*
+        Gets the ID of the term being rated as well as the username of the user
+        rating the term. Passes these details to the upvote function in app.py.
+    */
     function handleUpvote(e) {
         e.stopPropagation()
         const clickedArrow = e.target
@@ -151,6 +206,13 @@ document.addEventListener('DOMContentLoaded', function() {
         request.send(termID, username);
     }
 
+
+    /* 
+        Controls behaviour of downvote arrow when a user clicks upon it.
+        Changes the class of the arrow's parent based on if the user had 
+        previously downvoted, upvoted, or had not voted. Calls upon 
+        changeRating function to update the rating based on these same factors.
+    */
     function arrowOnDownvote(chosenArrow) {
         const allArrows = Array.from(document.querySelectorAll("[data-value]"));
         const chosenArrowIndex = allArrows.indexOf(chosenArrow);
@@ -175,6 +237,11 @@ document.addEventListener('DOMContentLoaded', function() {
         } else return
     }
 
+
+    /*
+        Gets the ID of the term being rated as well as the username of the user
+        rating the term. Passes these details to the downvote function in app.py.
+    */
     function handleDownvote(e) {
         e.stopPropagation()
         const clickedArrow = e.target
@@ -189,6 +256,11 @@ document.addEventListener('DOMContentLoaded', function() {
         request.send(termID, username);
     }
 
+
+    /*
+        Displays modal if user tries to rate a term while not logged in to 
+        encourage them to register or log in
+    */
     function loginModalPrompt(e) {
         e.stopPropagation()
         console.log("Opening modal")
