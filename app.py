@@ -75,7 +75,7 @@ def submit_definition():
         today = date.today()
         submission_date = today.strftime("%Y/%m/%d")
         definition = {
-            "term_header": request.form.get("term_header"),
+            "term_header": request.form.get("term_header").upper(),
             "game_fk": game['_id'],
             "short_definition": request.form.get("short_definition"),
             "long_description": request.form.get("long_description", False),
@@ -85,6 +85,7 @@ def submit_definition():
             "rating": 1,
             "upvoted_by": [user["_id"]]
         }
+        print(definition["term_header"])
         mongo.db.terms.insert_one(definition)
         flash(f"Thank you, {session['user']}, for your submission",
               category="success")
