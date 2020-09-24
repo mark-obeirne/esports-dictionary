@@ -368,7 +368,7 @@
 											<span class="block rating-arrow modal-arrow inactive"><i class="fas fa-arrow-alt-circle-down"></i></span>
 											{% endif %}
 										</div>
-										<div class="col s9 term-section">
+										<div class="col s8 term-section">
 											<!--Term Definitions-->
 											<span class="uppercase term strong">{{ term.term_header}}</span>
 											<div class="divider"></div>
@@ -383,6 +383,9 @@
                 >Submitted by {{ user.username }}</span>
 											{% endif %} {% endfor %}
 										</div>
+                                        <div class="col s1 carets valign-wrapper">
+                                            <i class="fas fa-caret-square-down"></i>
+                                        </div>
 									</div>
                                     <!--Collapsible For Added Details-->
 									<div class="collapsible-body dark-text">
