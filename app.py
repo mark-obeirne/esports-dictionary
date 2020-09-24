@@ -434,7 +434,6 @@ def register():
     the form and insert into collection in database
     """
     if request.method == "POST":
-        print("Checking DB for username")
         # Check if username currently exists in DB
         desired_username = request.form.get("username")
         existing_username = mongo.db.users.find_one(
@@ -442,7 +441,6 @@ def register():
                 "^" + desired_username + "$", re.IGNORECASE)})
         # Credit for case insensitivity comparison:
         # https://stackoverflow.com/questions/6266555/querying-mongodb-via-pymongo-in-case-insensitive-efficiently
-        print(existing_username)
         if existing_username:
             flash(Markup("Username already exists. "
                          "Please choose another or <a href=''>login</a>."),
@@ -450,7 +448,6 @@ def register():
             # Credit for using Markup to display link in flash message:
             # https://pythonpedia.com/en/knowledge-base/21248718/how-to-flashing-a-message-with-link-using-flask-flash-
             return redirect(url_for("register"))
-        print("User 'didnt exist'")
         # Gather form data
         registration = {
             "username": request.form.get("username"),
@@ -465,7 +462,6 @@ def register():
 
         # Create session cookie and redirect to dictionary
         session["user"] = registration["username"]
-        print(session["user"])
         flash(Markup("Thanks for signing up, " + session['user']),
               category="success")
         return redirect(url_for("get_terms"))
@@ -485,9 +481,7 @@ def login():
         existing_username = mongo.db.users.find_one(
             {"username": re.compile(
                 "^" + request.form.get("username") + "$", re.IGNORECASE)})
-        print(existing_username)
         if existing_username:
-            print("User exists")
             # Ensure hashed password matches input
             if check_password_hash(
                     existing_username["password"], request.form.get(
@@ -496,19 +490,16 @@ def login():
                 is_admin = existing_username.get("is_admin", False)
                 if is_admin:
                     session["admin"] = True
-                print("Setting session cookie")
                 session["user"] = existing_username["username"]
                 flash(Markup("Welcome, ") + session["user"],
                       category="success")
                 return redirect(url_for("get_terms"))
             else:
                 # Invalid password entered
-                print("Password doesn't match")
                 flash("Username and/or password incorrect", category="error")
                 return redirect(url_for("login"))
         else:
             # Username doesn't exist
-            print("No user in DB")
             flash("Username and/or password incorrect", category="error")
             return redirect(url_for("login"))
 
