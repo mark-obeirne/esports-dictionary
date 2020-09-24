@@ -22,21 +22,30 @@ mongo = PyMongo(app)
 def get_terms():
     try:
         if session["user"]:
-            terms = mongo.db.terms.find({"rating": {"$gt": -2}}).collation({"locale": "en" }).sort(
-                [("term_header", 1), ("rating", -1), ("submission_date", 1)])
-            games = list(mongo.db.games.find().collation({"locale": "en" }).sort("game_name", 1))
+            terms = mongo.db.terms.find({"rating": {"$gt": -2}}).collation(
+                {"locale": "en"}).sort(
+                    [("term_header", 1),
+                        ("rating", -1), ("submission_date", 1)])
+            games = list(mongo.db.games.find().collation(
+                {"locale": "en"}).sort("game_name", 1))
             users = list(mongo.db.users.find())
-            current_user = mongo.db.users.find_one({"username": session["user"]})
+            current_user = mongo.db.users.find_one(
+                {"username": session["user"]})
             userid = current_user["_id"]
             print(userid)
-            return render_template("terms.html", terms=terms, games=games, users=users, userid=userid)
+            return render_template(
+                "terms.html",
+                terms=terms, games=games, users=users, userid=userid)
     except KeyError:
         # user is not logged in and doesn't have session cookie set
-        terms = mongo.db.terms.find({"rating": {"$gt": -2}}).collation({"locale": "en" }).sort(
+        terms = mongo.db.terms.find(
+            {"rating": {"$gt": -2}}).collation({"locale": "en"}).sort(
             [("term_header", 1), ("rating", -1), ("submission_date", 1)])
-        games = list(mongo.db.games.find().collation({"locale": "en" }).sort("game_name", 1))
+        games = list(mongo.db.games.find().collation(
+            {"locale": "en"}).sort("game_name", 1))
         users = list(mongo.db.users.find())
-        return render_template("terms.html", terms=terms, games=games, users=users)
+        return render_template(
+            "terms.html", terms=terms, games=games, users=users)
 
 
 @app.route("/submit_definition", methods=["GET", "POST"])
@@ -64,7 +73,8 @@ def submit_definition():
         return redirect(url_for("get_terms"))
     try:
         if session["user"]:
-            games = mongo.db.games.find().collation({"locale": "en" }).sort("game_name", 1)
+            games = mongo.db.games.find().collation(
+                {"locale": "en"}).sort("game_name", 1)
             return render_template("add_term.html", games=games)
     except KeyError:
         # redirect user to homepage if not logged in
@@ -145,28 +155,34 @@ def upvote(term_id, username):
         # check if user has not upvoted term
         if user["_id"] not in upvoted_array:
             # check if user has previously downvoted term
-            # if so, cancel out the downvote by increasing rating by 2, remove userID from list of users who have downvoted term,
+            # if so, cancel out the downvote by increasing rating by 2,
+            # remove userID from list of users who have downvoted term,
             # and add userID to list of users who have upvoted term
             if user["_id"] in downvoted_array:
                 try:
-                    print("Cancelling downvote of " + term_id + " and increasing")
-                    print(user["_id"])
                     mongo.db.terms.update_one(
                         {"_id": ObjectId(term_id)}, {"$inc": {"rating": 2}})
-                    mongo.db.terms.update_one({"_id": ObjectId(term_id)}, {"$pull": {"downvoted_by": user["_id"]}})
-                    mongo.db.terms.update_one({"_id": ObjectId(term_id)}, {"$push": {"upvoted_by": user["_id"]}})
+                    mongo.db.terms.update_one(
+                        {"_id": ObjectId(term_id)},
+                        {"$pull": {"downvoted_by": user["_id"]}})
+                    mongo.db.terms.update_one(
+                        {"_id": ObjectId(term_id)},
+                        {"$push": {"upvoted_by": user["_id"]}})
                     return "nothing"
                 except TypeError:
                     pass
             else:
                 # user has not downvoted term
-                # increase rating by 1 and add userID to list of users who have upvoted term
+                # increase rating by 1 and add userID
+                # to list of users who have upvoted term
                 try:
                     print("Increasing rating of " + term_id)
                     print(user["_id"])
                     mongo.db.terms.update_one(
                         {"_id": ObjectId(term_id)}, {"$inc": {"rating": 1}})
-                    mongo.db.terms.update_one({"_id": ObjectId(term_id)}, {"$push": {"upvoted_by": user["_id"]}})
+                    mongo.db.terms.update_one(
+                        {"_id": ObjectId(term_id)},
+                        {"$push": {"upvoted_by": user["_id"]}})
                     return "nothing"
                 except TypeError:
                     pass
@@ -177,7 +193,9 @@ def upvote(term_id, username):
                 print(user["_id"])
                 mongo.db.terms.update_one(
                     {"_id": ObjectId(term_id)}, {"$inc": {"rating": -1}})
-                mongo.db.terms.update_one({"_id": ObjectId(term_id)}, {"$pull": {"upvoted_by": user["_id"]}})
+                mongo.db.terms.update_one(
+                    {"_id": ObjectId(term_id)},
+                    {"$pull": {"upvoted_by": user["_id"]}})
                 return "nothing"
             except TypeError:
                 pass
@@ -190,34 +208,39 @@ def downvote(term_id, username):
     if request.method == "POST":
         user = mongo.db.users.find_one({"username": session["user"]})
         term = dict(mongo.db.terms.find_one({"_id": ObjectId(term_id)}))
-        same_term = dict(mongo.db.terms.find_one({"_id": ObjectId(term_id)}))
         upvoted_array = list(term.get("upvoted_by", []))
         downvoted_array = list(term.get("downvoted_by", []))
         # check if user has not downvoted term
         if user["_id"] not in downvoted_array:
             # check if user has previously upvoted term
-            # if so, cancel out the upvote by decreasing rating by 2, remove userID from list of users who have upvoted term,
+            # if so, cancel out the upvote by decreasing rating by 2,
+            # remove userID from list of users who have upvoted term,
             # and add userID to list of users who have downvoted term
             if user["_id"] in upvoted_array:
                 try:
-                    print("Cancelling upvote of " + term_id + " and decreasing")
-                    print(user["_id"])
                     mongo.db.terms.update_one(
                         {"_id": ObjectId(term_id)}, {"$inc": {"rating": -2}})
-                    mongo.db.terms.update_one({"_id": ObjectId(term_id)}, {"$pull": {"upvoted_by": user["_id"]}})
-                    mongo.db.terms.update_one({"_id": ObjectId(term_id)}, {"$push": {"downvoted_by": user["_id"]}})
+                    mongo.db.terms.update_one(
+                        {"_id": ObjectId(term_id)},
+                        {"$pull": {"upvoted_by": user["_id"]}})
+                    mongo.db.terms.update_one(
+                        {"_id": ObjectId(term_id)},
+                        {"$push": {"downvoted_by": user["_id"]}})
                     return "nothing"
                 except TypeError:
                     pass
             else:
                 # user has not upvoted term
-                # decrease rating by 1 and add userID to list of users who have downvoted term
+                # decrease rating by 1 and add userID
+                # to list of users who have downvoted term
                 try:
                     print("Decreasing rating of " + term_id)
                     print(user["_id"])
                     mongo.db.terms.update_one(
                         {"_id": ObjectId(term_id)}, {"$inc": {"rating": -1}})
-                    mongo.db.terms.update_one({"_id": ObjectId(term_id)}, {"$push": {"downvoted_by": user["_id"]}})
+                    mongo.db.terms.update_one(
+                        {"_id": ObjectId(term_id)},
+                        {"$push": {"downvoted_by": user["_id"]}})
                     return "nothing"
                 except TypeError:
                     pass
@@ -228,7 +251,9 @@ def downvote(term_id, username):
                 print(user["_id"])
                 mongo.db.terms.update_one(
                     {"_id": ObjectId(term_id)}, {"$inc": {"rating": 1}})
-                mongo.db.terms.update_one({"_id": ObjectId(term_id)}, {"$pull": {"downvoted_by": user["_id"]}})
+                mongo.db.terms.update_one(
+                    {"_id": ObjectId(term_id)},
+                    {"$pull": {"downvoted_by": user["_id"]}})
                 return "nothing"
             except TypeError:
                 pass
@@ -247,7 +272,9 @@ def get_games():
     is_admin = True if "admin" in session else False
 
     if is_admin:
-        games = list(mongo.db.games.find().collation({"locale": "en" }).sort("game_name", 1))
+        games = list(
+            mongo.db.games.find()
+            .collation({"locale": "en"}).sort("game_name", 1))
         return render_template("games.html", games=games)
     else:
         flash("You do not have permission to access this page",
