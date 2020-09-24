@@ -48,9 +48,9 @@ def get_terms():
                 terms=terms, games=games, users=users, userid=userid)
     except KeyError:
         # User is not logged in and doesn't have session cookie set
-        terms = mongo.db.terms.find(
-            {"rating": {"$gt": -2}}).collation({"locale": "en"}).sort(
-            [("term_header", 1), ("rating", -1), ("submission_date", 1)])
+        terms = mongo.db.terms.find({"rating": {"$gt": -2}}).sort(
+                    [("term_header", 1),
+                        ("rating", -1)])
         games = list(mongo.db.games.find().collation(
             {"locale": "en"}).sort("game_name", 1))
         users = list(mongo.db.users.find())
