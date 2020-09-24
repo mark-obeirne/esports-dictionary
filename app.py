@@ -341,7 +341,8 @@ def add_game():
     if request.method == "POST":
         # Check if game currently exists in DB
         existing_game = mongo.db.games.find_one(
-            {"game_name": request.form.get("game_name").lower()})
+            {"game_name": re.compile(
+                "^" + request.form.get("game_name") + "$", re.IGNORECASE)})
 
         if existing_game:
             flash(Markup("Game is currently supported. You can manage "
@@ -349,7 +350,7 @@ def add_game():
                   category="error")
             # Credit for using Markup to display link in flash message:
             # https://pythonpedia.com/en/knowledge-base/21248718/how-to-flashing-a-message-with-link-using-flask-flash-
-            return render_template(url_for("add_game"))
+            return redirect(url_for("add_game"))
 
         # Gather form data
         game_details = {
