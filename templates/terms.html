@@ -368,11 +368,11 @@
 											<span class="uppercase term strong">{{ term.term_header}}</span>
 											<div class="divider"></div>
 											{% for game in games %} {% if game._id == term.game_fk %}
-											<span class="game-name block">{{ game.game_name }}</span>
+											<span class="game-name small-text block">{{ game.game_name }}</span>
 											<!--<span class="game-name block">{{ term.game_name }}</span>
               <span class="game-name block">{{ term.game_fk }}</span>-->
 											{% endif %} {% endfor %}
-											<span>{{ term.short_definition }}</span>
+											<p class="definition">{{ term.short_definition }}</p>
 											{% for user in users %} {% if user._id == term.submitted_by %}
 											{% set ns.username = user.username %}
 											<span class="username block italic"

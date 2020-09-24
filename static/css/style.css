@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Roboto&display=swap');
+
 /* General Styles */
 
 :root {
@@ -8,6 +10,7 @@ body {
     font-size: 1.6rem;
     background-color: #E2E1DF;
     color: #2D2A32;
+    font-family: 'Roboto', sans-serif;
 }
 
 
@@ -44,6 +47,12 @@ body {
 .optional-info {
     position: relative;
     top: -1.5rem;
+}
+
+.term {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    letter-spacing: 0.1em;
 }
 
 /* Colours */
@@ -212,6 +221,11 @@ body {
 }
 
 
+
+.definition {
+    padding-left: 1rem;
+}
+
 /* Ratings */
 
 .inactive {
@@ -220,6 +234,10 @@ body {
 
 .active {
     color: purple;
+}
+
+.uparrow {
+    margin-top: 2rem;
 }
 
 /* Search Filters */
