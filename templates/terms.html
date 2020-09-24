@@ -386,17 +386,18 @@
 									</div>
                                     <!--Collapsible For Added Details-->
 									<div class="collapsible-body dark-text">
-										{% if term.long_description %}
+										{% if term.long_description != "            " %}
 										<span class="strong">Description</span>
 										<p>{{ term.long_description }}</p>
 										{% else %}
-										<p class="strong">Description: {{ term.short_definition }}</p>
-										{% endif %} {% if term.image_link %}
-										<div>{{ term.image_link }}</div>
-										{% endif %}
-										<div>
-											{% if term.youtube_link %} {{ term.youtube_link }} {% endif %}
+										<span class="strong">Description:</span>
+                                        <p>{{ term.short_definition }}</p>
+										{% endif %} 
+										{% if term.youtube_link %} 
+                                        <div>
+											{{ term.youtube_link }} 
 										</div>
+                                        {% endif %}
 									</div>
 									<div class="admin-btns padded-btns dark-background center-align">
 										{% if ns.username == session["user"] or session["admin"] %}
