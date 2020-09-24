@@ -483,7 +483,8 @@ def login():
     if request.method == "POST":
         # Check that username exists
         existing_username = mongo.db.users.find_one(
-            {"username": request.form.get("username")})
+            {"username": re.compile(
+                "^" + request.form.get("username") + "$", re.IGNORECASE)})
         print(existing_username)
         if existing_username:
             print("User exists")
