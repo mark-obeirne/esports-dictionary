@@ -34,10 +34,9 @@ def get_terms():
     try:
         # Check if user is logged in
         if session["user"]:
-            terms = mongo.db.terms.find({"rating": {"$gt": -2}}).collation(
-                {"locale": "en"}).sort(
+            terms = mongo.db.terms.find({"rating": {"$gt": -2}}).sort(
                     [("term_header", 1),
-                        ("rating", -1), ("submission_date", 1)])
+                        ("rating", -1)])
             games = list(mongo.db.games.find().collation(
                 {"locale": "en"}).sort("game_name", 1))
             users = list(mongo.db.users.find())
@@ -49,9 +48,9 @@ def get_terms():
                 terms=terms, games=games, users=users, userid=userid)
     except KeyError:
         # User is not logged in and doesn't have session cookie set
-        terms = mongo.db.terms.find(
-            {"rating": {"$gt": -2}}).collation({"locale": "en"}).sort(
-            [("term_header", 1), ("rating", -1), ("submission_date", 1)])
+        terms = mongo.db.terms.find({"rating": {"$gt": -2}}).sort(
+                    [("term_header", 1),
+                        ("rating", -1)])
         games = list(mongo.db.games.find().collation(
             {"locale": "en"}).sort("game_name", 1))
         users = list(mongo.db.users.find())
@@ -75,7 +74,7 @@ def submit_definition():
         today = date.today()
         submission_date = today.strftime("%Y/%m/%d")
         definition = {
-            "term_header": request.form.get("term_header"),
+            "term_header": request.form.get("term_header").upper(),
             "game_fk": game['_id'],
             "short_definition": request.form.get("short_definition"),
             "long_description": request.form.get("long_description", False),
@@ -85,6 +84,7 @@ def submit_definition():
             "rating": 1,
             "upvoted_by": [user["_id"]]
         }
+        print(definition["term_header"])
         mongo.db.terms.insert_one(definition)
         flash(f"Thank you, {session['user']}, for your submission",
               category="success")
