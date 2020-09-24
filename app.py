@@ -37,8 +37,7 @@ def get_terms():
             terms = mongo.db.terms.find({"rating": {"$gt": -2}}).sort(
                     [("term_header", 1),
                         ("rating", -1)])
-            games = list(mongo.db.games.find().collation(
-                {"locale": "en"}).sort("game_name", 1))
+            games = list(mongo.db.games.find().sort("game_name", 1))
             users = list(mongo.db.users.find())
             current_user = mongo.db.users.find_one(
                 {"username": session["user"]})
@@ -51,8 +50,7 @@ def get_terms():
         terms = mongo.db.terms.find({"rating": {"$gt": -2}}).sort(
                     [("term_header", 1),
                         ("rating", -1)])
-        games = list(mongo.db.games.find().collation(
-            {"locale": "en"}).sort("game_name", 1))
+        games = list(mongo.db.games.find().sort("game_name", 1))
         users = list(mongo.db.users.find())
         return render_template(
             "terms.html", terms=terms, games=games, users=users)
@@ -92,8 +90,7 @@ def submit_definition():
     try:
         # Ensure that user is logged in before displaying page
         if session["user"]:
-            games = mongo.db.games.find().collation(
-                {"locale": "en"}).sort("game_name", 1)
+            games = mongo.db.games.find().sort("game_name", 1)
             return render_template("add_term.html", games=games)
     except KeyError:
         # Redirect user to homepage if not logged in
@@ -110,8 +107,7 @@ def edit_definition(term_id):
     and update the relevant term in the database.
     """
     term = mongo.db.terms.find_one({"_id": ObjectId(term_id)})
-    games = mongo.db.games.find().collation(
-        {"locale": "en"}).sort("game_name", 1)
+    games = mongo.db.games.find().sort("game_name", 1)
     selected_game = mongo.db.games.find_one(
             {"game_name": request.form.get("game_name")})
 
@@ -325,8 +321,7 @@ def get_games():
 
     if is_admin:
         games = list(
-            mongo.db.games.find()
-            .collation({"locale": "en"}).sort("game_name", 1))
+            mongo.db.games.find().sort("game_name", 1))
         return render_template("games.html", games=games)
     else:
         flash("You do not have permission to access this page",
@@ -346,7 +341,8 @@ def add_game():
     if request.method == "POST":
         # Check if game currently exists in DB
         existing_game = mongo.db.games.find_one(
-            {"game_name": request.form.get("game_name").lower()})
+            {"game_name": re.compile(
+                "^" + request.form.get("game_name") + "$", re.IGNORECASE)})
 
         if existing_game:
             flash(Markup("Game is currently supported. You can manage "
@@ -354,7 +350,7 @@ def add_game():
                   category="error")
             # Credit for using Markup to display link in flash message:
             # https://pythonpedia.com/en/knowledge-base/21248718/how-to-flashing-a-message-with-link-using-flask-flash-
-            return render_template(url_for("add_game"))
+            return redirect(url_for("add_game"))
 
         # Gather form data
         game_details = {
