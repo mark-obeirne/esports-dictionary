@@ -41,7 +41,7 @@ def get_terms():
                 {"locale": "en"}).sort("game_name", 1))
             users = list(mongo.db.users.find())
             current_user = mongo.db.users.find_one(
-                {"username": session["user"]})
+                {"username": (session["user"]).lower()})
             userid = current_user["_id"]
             return render_template(
                 "terms.html",
@@ -433,9 +433,10 @@ def register():
     the form and insert into collection in database
     """
     if request.method == "POST":
+        print("Checking DB for username")
         # Check if username currently exists in DB
         existing_username = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
+            {"username": (request.form.get("username")).lower()})
 
         if existing_username:
             flash(Markup("Username already exists. "
@@ -443,8 +444,8 @@ def register():
                   category="error")
             # Credit for using Markup to display link in flash message:
             # https://pythonpedia.com/en/knowledge-base/21248718/how-to-flashing-a-message-with-link-using-flask-flash-
-            return render_template(url_for("register"))
-
+            return redirect(url_for("register"))
+        print("User 'didnt exist'")
         # Gather form data
         registration = {
             "username": request.form.get("username"),
@@ -475,8 +476,9 @@ def login():
     if request.method == "POST":
         # Check that username exists
         existing_username = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
+            {"username": (request.form.get("username")).lower()})
         if existing_username:
+            print("User exists")
             # Ensure hashed password matches input
             if check_password_hash(
                     existing_username["password"], request.form.get(
@@ -485,16 +487,19 @@ def login():
                 is_admin = existing_username.get("is_admin", False)
                 if is_admin:
                     session["admin"] = True
-                session["user"] = request.form.get("username")
-                flash(Markup("Welcome, ") + request.form.get("username"),
+                print("Setting session cookie")
+                session["user"] = existing_username["username"]
+                flash(Markup("Welcome, ") + session["user"],
                       category="success")
                 return redirect(url_for("get_terms"))
             else:
                 # Invalid password entered
+                print("Password doesn't match")
                 flash("Username and/or password incorrect", category="error")
                 return redirect(url_for("login"))
         else:
             # Username doesn't exist
+            print("No user in DB")
             flash("Username and/or password incorrect", category="error")
             return redirect(url_for("login"))
 
