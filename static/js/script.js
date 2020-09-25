@@ -327,6 +327,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
 
+    /* 
+        Prevent definition's collapsible body from opening if user clicks on
+        username that submitted a definition to view their profile
+    */
+   function stayCollapsed(e) {
+       e.stopPropagation()
+   }
+   
+
   // Event Listeners
   // Test for existence
 
@@ -400,6 +409,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const clearBtn = document.querySelector("#clear")
         if (clearBtn) {
             clearBtn.addEventListener("click", clearSearchbar)
+        }
+
+        // Prevent collapsible body from opening if user clicks submitted by username
+        const submissionCredit = document.querySelectorAll(".username")
+        if (submissionCredit) {
+            submissionCredit.forEach(username => username.addEventListener("click", stayCollapsed))
         }
     });
 
