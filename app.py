@@ -323,7 +323,8 @@ def profile(username):
     Display user profile for chosen user
     """
     user = mongo.db.users.find_one({"username": username})
-    terms = list(mongo.db.terms.find({"submitted_by": user["_id"]}))
+    terms = list(mongo.db.terms.find(
+        {"submitted_by": user["_id"], "rating": {"$gt": -2}}))
     ordered = sortTermsAlphabetically(terms)
     toprated = sortTermsByRating(terms)
     games = mongo.db.games.find()

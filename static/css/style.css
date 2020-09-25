@@ -65,6 +65,10 @@ body {
     color: #F5F5F4;
 }
 
+.collapsible {
+    background-color: #e2e1df;
+}
+
 .dark-background {
     background-color: #2D2A32;
 }
@@ -76,6 +80,11 @@ body {
 .warning {
     color: #AC1610;
 }
+
+.top-rated {
+    background-color: gold;
+}
+
 
 /* Form Colours */
 
@@ -192,6 +201,10 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
 
 #clear:hover {
     cursor: pointer;
+}
+
+.profile-rating .term-rating {
+    margin: 0 auto;
 }
 
 /* Buttons */
@@ -391,6 +404,13 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
 
 .error-card {
     padding: 1rem;
+}
+
+
+/* Profile Pages */
+
+.profile-term {
+    margin-bottom: 1.4rem;
 }
 
 
