@@ -2,24 +2,26 @@
 endblock %} {% block content %}
 <div class="row">
   <div class="col s12 l4 user-details-section">
-        <h1 class="user-title">{{ user.username }}'s Profile</h1>
-        <span class="user-rating">Total Rating: [User Rating]</span>
-        <span class="user-stars">[stars]</span>
-        <a href="#">Show More</a>
-        <a href="#">Update User Details</a>
+    <h1 class="user-title">{{ user.username }}'s Profile</h1>
+    <span class="user-rating">Total Rating: [User Rating]</span>
+    <span class="user-stars">[stars]</span>
+    <a href="#">Show More</a>
+    <a href="#">Update User Details</a>
   </div>
   <div class="col s12 l8 user-submissions">
     <h2 class="heading uppercase center-align">Top Rated Submission</h2>
     <div class="container">
       <ul class="collapsible">
         <li class="term-container">
-          <div class="collapsible-header hoverable dark-background off-white">
-            <div class="col s2 rating-container valign-wrapper center-align">
+          <div class="collapsible-header top-rated hoverable dark-text">
+            <div class="col s2 rating-container profile-rating valign-wrapper">
               <p class="term-rating">{{ toprated[0].rating }}</p>
             </div>
             <div class="col s9 term-section">
-              <span class="uppercase term strong">{{ toprated[0].term_header}}</span>
-              <div class="divider"></div>
+              <span class="uppercase term strong"
+                >{{ toprated[0].term_header}}</span
+              >
+              <div class="divider dark-background"></div>
               {% for game in games %} {% if game._id == toprated[0].game_fk %}
               <span class="game-name small-text block"
                 >{{ game.game_name }}</span
@@ -28,8 +30,8 @@ endblock %} {% block content %}
               <p class="definition">{{ toprated[0].short_definition }}</p>
             </div>
             <div class="col s1 carets valign-wrapper">
-            <i class="fas fa-caret-square-down"></i>
-          </div>
+              <i class="fas fa-caret-square-down"></i>
+            </div>
           </div>
           <div class="collapsible-body dark-text">
             {% if toprated[0].long_description != " " %}
@@ -40,7 +42,10 @@ endblock %} {% block content %}
             <p>{{ toprated[0].short_definition }}</p>
             {% endif %} {% if toprated[0].youtube_link %}
             <div>
-              <a href="{{ toprated[0].youtube_link }}" target="_blank" rel="noopener"
+              <a
+                href="{{ toprated[0].youtube_link }}"
+                target="_blank"
+                rel="noopener"
                 >Watch video on YouTube
                 <i class="fas fa-external-link-alt prefix"></i
               ></a>
@@ -52,13 +57,48 @@ endblock %} {% block content %}
     </div>
 
     <h2 class="heading uppercase center-align">All Submissions</h2>
-    {% for term in terms %}
-    <p>{{ term.term_header }}</p>
-    {% endfor %}
-
-
-
+    <div class="container">
+      <ul class="collapsible profile-collapsible">
+        {% for term in terms %}
+        <li class="term-container profile-term">
+          <div class="collapsible-header hoverable dark-background off-white">
+            <div class="col s2 rating-container profile-rating valign-wrapper">
+              <p class="term-rating">{{ term.rating }}</p>
+            </div>
+            <div class="col s9 term-section">
+              <span class="uppercase term strong">{{ term.term_header}}</span>
+              <div class="divider"></div>
+              {% for game in games %} {% if game._id == term.game_fk %}
+              <span class="game-name small-text block"
+                >{{ game.game_name }}</span
+              >
+              {% endif %} {% endfor %}
+              <p class="definition">{{ term.short_definition }}</p>
+            </div>
+            <div class="col s1 carets valign-wrapper">
+              <i class="fas fa-caret-square-down"></i>
+            </div>
+          </div>
+          <div class="collapsible-body dark-text">
+            {% if term.long_description != "            " %}
+            <span class="strong">Description</span>
+            <p>{{ term.long_description }}</p>
+            {% else %}
+            <span class="strong">Description:</span>
+            <p>{{ term.short_definition }}</p>
+            {% endif %} {% if term.youtube_link %}
+            <div>
+              <a href="{{ term.youtube_link }}" target="_blank" rel="noopener"
+                >Watch video on YouTube
+                <i class="fas fa-external-link-alt prefix"></i
+              ></a>
+            </div>
+            {% endif %}
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
   </div>
-  
 </div>
 {% endblock %}
