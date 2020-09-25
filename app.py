@@ -410,6 +410,7 @@ def delete_game(game_id):
     try:
         is_admin = True if "admin" in session else False
         if is_admin:
+            mongo.db.terms.remove({"game_fk": ObjectId(game_id)})
             mongo.db.games.remove({"_id": ObjectId(game_id)})
             flash("Game successfully deleted", category="success")
             return redirect(url_for("get_games"))
