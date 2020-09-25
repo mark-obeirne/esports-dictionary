@@ -290,6 +290,14 @@ document.addEventListener('DOMContentLoaded', function() {
             return term.match(regex)
         })
         console.log(found)
+
+
+        allTerms.forEach(term => {
+            if (found.includes(term.textContent)) {
+                term.parentElement.parentElement.parentElement.classList.remove("hidden")
+            } else (term.parentElement.parentElement.parentElement.classList.add("hidden"))
+        })
+
     }
 
 
