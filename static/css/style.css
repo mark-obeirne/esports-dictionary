@@ -229,6 +229,15 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
     padding: 1.4rem;
 }
 
+.homepage-button {
+    background-color: #AC1610;
+    padding: 1rem;
+}
+
+.homepage-button:hover {
+    background-color: #DB1C14;
+}
+
 /* Dividers */
 .term-section .divider {
     width: 60%;
