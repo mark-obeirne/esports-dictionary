@@ -146,7 +146,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     /* 
         Update rating displayed in real time as user upvotes or downvotes a 
-        definition. 
+        definition. If a user has previously upvoted and upvotes again, it will
+        remove that initial upvote, reducing the total rating by 1. If the user
+        has previously downvoted a rating and now upvotes it, it removes the 
+        initial downvote (increasing the rating by 1) before applying the new 
+        upvote (increasing the rating by another 1) 
     */
     function changeRating(ratingIndex, changeOfRating) {
         const allRatings = document.querySelectorAll(".term-rating")
@@ -272,6 +276,32 @@ document.addEventListener('DOMContentLoaded', function() {
         })
     }
 
+
+    /* 
+        Search for terms as user types in the searchbar
+    */
+    function searchTerms(e) {
+        const searchField = document.querySelector(".searchbar");
+        const searchTerm = searchField.value;
+        const regex = new RegExp(searchTerm, "gi")
+        const allTerms = Array.from(document.querySelectorAll(".term"))
+        const termText = allTerms.map(term => term.textContent)
+        const found = termText.filter(term => {
+            return term.match(regex)
+        })
+        filterBySearch(allTerms, found)
+    }
+
+
+    function filterBySearch(allTerms, matches) {
+        allTerms.forEach(term => {
+            if (matches.includes(term.textContent)) {
+                term.parentElement.parentElement.parentElement.classList.remove("hidden")
+            } else (term.parentElement.parentElement.parentElement.classList.add("hidden"))
+        })
+    }
+
+
   // Event Listeners
   // Test for existence
 
@@ -333,6 +363,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const loginPrompt = document.querySelectorAll(".modal-arrow")
         if (loginPrompt) {
             loginPrompt.forEach(button => button.addEventListener("click", loginModalPrompt))
+        }
+
+        const searchbar = document.querySelector(".searchbar")
+        if (searchbar) {
+            searchbar.addEventListener("keyup", searchTerms)
         }
     });
 

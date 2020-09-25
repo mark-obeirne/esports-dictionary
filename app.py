@@ -7,6 +7,7 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from datetime import date
 from werkzeug.security import generate_password_hash, check_password_hash
+import re
 if os.path.exists("env.py"):
     import env
 
@@ -33,12 +34,10 @@ def get_terms():
     try:
         # Check if user is logged in
         if session["user"]:
-            terms = mongo.db.terms.find({"rating": {"$gt": -2}}).collation(
-                {"locale": "en"}).sort(
+            terms = mongo.db.terms.find({"rating": {"$gt": -2}}).sort(
                     [("term_header", 1),
-                        ("rating", -1), ("submission_date", 1)])
-            games = list(mongo.db.games.find().collation(
-                {"locale": "en"}).sort("game_name", 1))
+                        ("rating", -1)])
+            games = list(mongo.db.games.find().sort("game_name", 1))
             users = list(mongo.db.users.find())
             current_user = mongo.db.users.find_one(
                 {"username": session["user"]})
@@ -48,11 +47,10 @@ def get_terms():
                 terms=terms, games=games, users=users, userid=userid)
     except KeyError:
         # User is not logged in and doesn't have session cookie set
-        terms = mongo.db.terms.find(
-            {"rating": {"$gt": -2}}).collation({"locale": "en"}).sort(
-            [("term_header", 1), ("rating", -1), ("submission_date", 1)])
-        games = list(mongo.db.games.find().collation(
-            {"locale": "en"}).sort("game_name", 1))
+        terms = mongo.db.terms.find({"rating": {"$gt": -2}}).sort(
+                    [("term_header", 1),
+                        ("rating", -1)])
+        games = list(mongo.db.games.find().sort("game_name", 1))
         users = list(mongo.db.users.find())
         return render_template(
             "terms.html", terms=terms, games=games, users=users)
@@ -74,7 +72,7 @@ def submit_definition():
         today = date.today()
         submission_date = today.strftime("%Y/%m/%d")
         definition = {
-            "term_header": request.form.get("term_header"),
+            "term_header": request.form.get("term_header").upper(),
             "game_fk": game['_id'],
             "short_definition": request.form.get("short_definition"),
             "long_description": request.form.get("long_description", False),
@@ -84,6 +82,7 @@ def submit_definition():
             "rating": 1,
             "upvoted_by": [user["_id"]]
         }
+        print(definition["term_header"])
         mongo.db.terms.insert_one(definition)
         flash(f"Thank you, {session['user']}, for your submission",
               category="success")
@@ -91,8 +90,7 @@ def submit_definition():
     try:
         # Ensure that user is logged in before displaying page
         if session["user"]:
-            games = mongo.db.games.find().collation(
-                {"locale": "en"}).sort("game_name", 1)
+            games = mongo.db.games.find().sort("game_name", 1)
             return render_template("add_term.html", games=games)
     except KeyError:
         # Redirect user to homepage if not logged in
@@ -109,8 +107,7 @@ def edit_definition(term_id):
     and update the relevant term in the database.
     """
     term = mongo.db.terms.find_one({"_id": ObjectId(term_id)})
-    games = mongo.db.games.find().collation(
-        {"locale": "en"}).sort("game_name", 1)
+    games = mongo.db.games.find().sort("game_name", 1)
     selected_game = mongo.db.games.find_one(
             {"game_name": request.form.get("game_name")})
 
@@ -324,8 +321,7 @@ def get_games():
 
     if is_admin:
         games = list(
-            mongo.db.games.find()
-            .collation({"locale": "en"}).sort("game_name", 1))
+            mongo.db.games.find().sort("game_name", 1))
         return render_template("games.html", games=games)
     else:
         flash("You do not have permission to access this page",
@@ -345,7 +341,8 @@ def add_game():
     if request.method == "POST":
         # Check if game currently exists in DB
         existing_game = mongo.db.games.find_one(
-            {"game_name": request.form.get("game_name").lower()})
+            {"game_name": re.compile(
+                "^" + request.form.get("game_name") + "$", re.IGNORECASE)})
 
         if existing_game:
             flash(Markup("Game is currently supported. You can manage "
@@ -353,7 +350,7 @@ def add_game():
                   category="error")
             # Credit for using Markup to display link in flash message:
             # https://pythonpedia.com/en/knowledge-base/21248718/how-to-flashing-a-message-with-link-using-flask-flash-
-            return render_template(url_for("add_game"))
+            return redirect(url_for("add_game"))
 
         # Gather form data
         game_details = {
@@ -434,21 +431,24 @@ def register():
     """
     if request.method == "POST":
         # Check if username currently exists in DB
+        desired_username = request.form.get("username")
         existing_username = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
-
+            {"username": re.compile(
+                "^" + desired_username + "$", re.IGNORECASE)})
+        # Credit for case insensitivity comparison:
+        # https://stackoverflow.com/questions/6266555/querying-mongodb-via-pymongo-in-case-insensitive-efficiently
         if existing_username:
             flash(Markup("Username already exists. "
                          "Please choose another or <a href=''>login</a>."),
                   category="error")
             # Credit for using Markup to display link in flash message:
             # https://pythonpedia.com/en/knowledge-base/21248718/how-to-flashing-a-message-with-link-using-flask-flash-
-            return render_template(url_for("register"))
-
+            return redirect(url_for("register"))
         # Gather form data
         registration = {
             "username": request.form.get("username"),
-            "password": generate_password_hash(request.form.get("password")),
+            "password": generate_password_hash(
+                request.form.get("password")),
             "fav_games": request.form.get("fav_games"),
             "fav_competitors": request.form.get("fav_competitors")
             }
@@ -457,8 +457,8 @@ def register():
         mongo.db.users.insert_one(registration)
 
         # Create session cookie and redirect to dictionary
-        session["user"] = request.form.get("username")
-        flash(Markup("Thanks for signing up, " + request.form.get("username")),
+        session["user"] = registration["username"]
+        flash(Markup("Thanks for signing up, " + session['user']),
               category="success")
         return redirect(url_for("get_terms"))
 
@@ -475,7 +475,8 @@ def login():
     if request.method == "POST":
         # Check that username exists
         existing_username = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
+            {"username": re.compile(
+                "^" + request.form.get("username") + "$", re.IGNORECASE)})
         if existing_username:
             # Ensure hashed password matches input
             if check_password_hash(
@@ -485,8 +486,8 @@ def login():
                 is_admin = existing_username.get("is_admin", False)
                 if is_admin:
                     session["admin"] = True
-                session["user"] = request.form.get("username")
-                flash(Markup("Welcome, ") + request.form.get("username"),
+                session["user"] = existing_username["username"]
+                flash(Markup("Welcome, ") + session["user"],
                       category="success")
                 return redirect(url_for("get_terms"))
             else:
