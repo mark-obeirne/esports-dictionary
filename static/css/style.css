@@ -173,6 +173,24 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
     z-index: 2;    
 }
 
+.search {
+    position: relative;
+}
+
+#clear {
+    position: absolute;
+    right: 2rem;
+    top: .2rem;
+    border: 1px solid #C0C0C0;
+    background-color: #C0C0C0;
+    padding: 0 .5rem;
+    border-radius: 50%;
+}
+
+#clear:hover {
+    cursor: pointer;
+}
+
 /* Buttons */
 
 .red-btn {
