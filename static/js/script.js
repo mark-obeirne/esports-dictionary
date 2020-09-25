@@ -272,6 +272,27 @@ document.addEventListener('DOMContentLoaded', function() {
         })
     }
 
+
+    /* 
+        Search for terms as user types in the searchbar
+    */
+    function searchTerms(e) {
+        console.log(e)
+        const searchField = document.querySelector(".searchbar");
+        let searchTerm = searchField.value;
+        console.log(searchTerm)
+        const regex = new RegExp(searchTerm, "gi")
+        let allTerms = Array.from(document.querySelectorAll(".term"))
+        let termText = allTerms.map(term => term.textContent)
+        console.log(allTerms)
+        console.log(termText)
+        const found = termText.filter(term => {
+            return term.match(regex)
+        })
+        console.log(found)
+    }
+
+
   // Event Listeners
   // Test for existence
 
@@ -333,6 +354,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const loginPrompt = document.querySelectorAll(".modal-arrow")
         if (loginPrompt) {
             loginPrompt.forEach(button => button.addEventListener("click", loginModalPrompt))
+        }
+
+        const searchbar = document.querySelector(".searchbar")
+        if (searchbar) {
+            searchbar.addEventListener("keyup", searchTerms)
         }
     });
 
