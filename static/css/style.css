@@ -187,6 +187,10 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
     border-radius: 50%;
 }
 
+#clear:hover {
+    cursor: pointer;
+}
+
 /* Buttons */
 
 .red-btn {

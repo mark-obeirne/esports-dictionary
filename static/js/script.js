@@ -21,12 +21,44 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Functions
     /* 
+        Search for terms as user types in the searchbar
+    */
+    function searchTerms(e) {
+        const searchField = document.querySelector(".searchbar");
+        const searchTerm = searchField.value;
+        const regex = new RegExp(searchTerm, "gi")
+        const allTerms = Array.from(document.querySelectorAll(".term"))
+        const termText = allTerms.map(term => term.textContent)
+        const found = termText.filter(term => {
+            return term.match(regex)
+        })
+        filterBySearch(allTerms, found)
+    }
+
+
+    function filterBySearch(allTerms, matches) {
+        allTerms.forEach(term => {
+            if (matches.includes(term.textContent)) {
+                term.parentElement.parentElement.parentElement.classList.remove("hidden")
+            } else (term.parentElement.parentElement.parentElement.classList.add("hidden"))
+        })
+    }
+
+
+    function clearSearchbar() {
+        const searchbar = document.querySelector(".searchbar");
+        searchbar.value = "";
+        showAllDefinitions()
+    }
+  
+  
+    /* 
         Filter displayed definitions based on the letter that the user selects 
         from the alphabetical buttons displayed. Hide containers where the 
         first letter of the term doesn't match the selected filter
     */
     function filterByLetter() {
-        showAllDefinitions()
+        clearSearchbar()
         const letter = this.innerText;
         const allTerms = Array.from(document.querySelectorAll(".term"))
         const allTermContainers = Array.from(document.querySelectorAll(".term-container"))
@@ -43,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
         from the game dropdown
     */
     function filterByGame() {
-        showAllDefinitions()
+        clearSearchbar()
         const chosenGame = this.value;
         const allGameCategories = Array.from(document.querySelectorAll(".game-name"));
         const allTermContainers = Array.from(document.querySelectorAll(".term-container"));
@@ -275,32 +307,7 @@ document.addEventListener('DOMContentLoaded', function() {
             modal.classList.add("hidden")
         })
     }
-
-
-    /* 
-        Search for terms as user types in the searchbar
-    */
-    function searchTerms(e) {
-        const searchField = document.querySelector(".searchbar");
-        const searchTerm = searchField.value;
-        const regex = new RegExp(searchTerm, "gi")
-        const allTerms = Array.from(document.querySelectorAll(".term"))
-        const termText = allTerms.map(term => term.textContent)
-        const found = termText.filter(term => {
-            return term.match(regex)
-        })
-        filterBySearch(allTerms, found)
-    }
-
-
-    function filterBySearch(allTerms, matches) {
-        allTerms.forEach(term => {
-            if (matches.includes(term.textContent)) {
-                term.parentElement.parentElement.parentElement.classList.remove("hidden")
-            } else (term.parentElement.parentElement.parentElement.classList.add("hidden"))
-        })
-    }
-
+    
 
   // Event Listeners
   // Test for existence
@@ -365,9 +372,16 @@ document.addEventListener('DOMContentLoaded', function() {
             loginPrompt.forEach(button => button.addEventListener("click", loginModalPrompt))
         }
 
+        // Search and filter terms based on user's keypresses
         const searchbar = document.querySelector(".searchbar")
         if (searchbar) {
             searchbar.addEventListener("keyup", searchTerms)
+        }
+
+        // Clear the searchbar
+        const clearBtn = document.querySelector("#clear")
+        if (clearBtn) {
+            clearBtn.addEventListener("click", clearSearchbar)
         }
     });
 
