@@ -32,6 +32,10 @@ body {
     font-style: italic;
 }
 
+.underline {
+    text-decoration: underline;
+}
+
 .small-text {
     font-size: 1.2rem;
 }
