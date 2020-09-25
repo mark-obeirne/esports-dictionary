@@ -146,7 +146,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     /* 
         Update rating displayed in real time as user upvotes or downvotes a 
-        definition. 
+        definition. If a user has previously upvoted and upvotes again, it will
+        remove that initial upvote, reducing the total rating by 1. If the user
+        has previously downvoted a rating and now upvotes it, it removes the 
+        initial downvote (increasing the rating by 1) before applying the new 
+        upvote (increasing the rating by another 1) 
     */
     function changeRating(ratingIndex, changeOfRating) {
         const allRatings = document.querySelectorAll(".term-rating")
