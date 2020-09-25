@@ -425,6 +425,15 @@
 								</li>
 								{% endfor %}
 							</ul>
+                            <div class="blank-search hidden">
+                                {% if session["user"] %}
+                                <h4>No Terms Found</h4>
+                                <p>Sorry! We couldn't find any terms that fit your search. <a href="{{ url_for('submit_definition') }}">Can you submit a definition to help others in the future?</a></p>
+                                {% else %}
+                                <h4>No Terms Found</h4>
+                                <p>Sorry! We couldn't find any terms that fit your search. If you can help, why not <a href="{{ url_for('login') }}">log in</a> or <a href="{{ url_for('register') }}">register</a> and submit a definition.</p>
+                                {% endif %}
+                            </div>
 						</div>
 						<!--Confirm Term Deletion Modal-->
 						<div class="delete-term-modal modal-target hidden" id="delete-term-modal">
