@@ -301,12 +301,21 @@ def downvote(term_id, username):
     return redirect(url_for("get_terms"))
 
 
-@app.route("/profile")
-def profile():
+def sortTermsAlphabetically(terms):
+    sorted_list = sorted(terms, key=lambda i: i["term_header"])
+    return sorted_list
+
+
+@app.route("/profile/<username>")
+def profile(username):
     """
-    Display user profile
+    Display user profile for chosen user
     """
-    return render_template("profile.html")
+    user = mongo.db.users.find_one({"username": username})
+    terms = list(mongo.db.terms.find({"submitted_by": user["_id"]}))
+    ordered = sortTermsAlphabetically(terms)
+    print(ordered)
+    return render_template("profile.html", user=user, terms=ordered)
 
 
 @app.route("/get_games")
