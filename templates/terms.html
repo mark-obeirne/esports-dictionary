@@ -387,7 +387,7 @@
 											{% set ns.username = user.username %}
                                             <!--Display Username-->
 											<span class="username block italic"
-                >Submitted by {{ user.username }}</span>
+                ><a href="{{ url_for('profile', username=user.username) }}" class="off-white underline">Submitted by {{ user.username }}</a></span>
 											{% endif %} {% endfor %}
 										</div>
                                         <div class="col s1 carets valign-wrapper">
