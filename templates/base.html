@@ -44,7 +44,6 @@
             {% if session.admin %}
             <li><a href="{{ url_for('get_games') }}">Manage Games</a></li>
             {% endif %}
-            <li><a href="">Shop</a></li>
             <li><a href="">Contact Us</a></li>
             {% if session.user %}
             <li><a href="{{ url_for('logout') }}">Log Out</a></li>
@@ -68,7 +67,6 @@
         {% if session.admin %}
         <li><a href="{{ url_for('get_games') }}">Manage Games</a></li>
         {% endif %}
-        <li><a href="">Shop</a></li>
         <li><a href="">Contact Us</a></li>
         {% if session.user %}
         <li><a href="{{ url_for('logout') }}">Log Out</a></li>
