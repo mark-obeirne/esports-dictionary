@@ -128,6 +128,23 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
     color: #0F66D2;
 }
 
+    /* Placeholder text colour */
+        /* Credit: https://stackoverflow.com/questions/14431818/css-styling-placeholder-text */
+    ::-webkit-input-placeholder {
+   color: #2D2A32;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: #2D2A32;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #2D2A32;  
+}
+
+:-ms-input-placeholder {  
+   color: #2D2A32;  
+}
 
 /* Layout */
 

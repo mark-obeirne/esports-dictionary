@@ -1,7 +1,4 @@
-{% extends "base.html" %} 
-{% block title %}Esports Dictionary{% endblock %}
-
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <!--Image Jumbotron-->
 <div class="full-container">
 	<div class="jumbotron-overlay">&nbsp;</div>
@@ -34,15 +31,16 @@
 	<!--Search/Filter Section-->
 	<div class="sticky">
 		<div class="col s12 l5 push-l7 search-section">
-			<h2 class="heading uppercase center-align">Search Filters</h2>
+			<h2 class="heading uppercase center-align">Search Terms</h2>
 			<!--Custom Search-->
             <div class="search-filters">
 				<input
           type="text"
           class="searchbar"
-          placeholder="Filter by term or game"
+          placeholder="Search for term"
         />
 				<!--Select Game Dropdown-->
+                <h3 class="heading uppercase center-align">Search By Game</h3>
                 <div class="input-field">
 					<select id="game-filter" name="game-filter" class="game-filter">
             <option value="" disabled selected>Choose game</option>
@@ -50,14 +48,14 @@
             <option value="{{ game.game_name }}">{{ game.game_name }}</option>
             {% endfor %}
           </select>
-					<label for="game-filter">Or filter by game</label>
+					<!--<label for="game-filter">Or filter by game</label>-->
 				</div>
 				<div class="padded-btns center-align hide-on-large-only">
 					<!--Alphabetical Sidebar-->
                     <span
             class="btn-small alpha-filter blue-btn blue-background sidenav-trigger"
             data-target="alphabet-filter"
-            >Or filter alphabetically</span>
+            >Filter alphabetically</span>
 				<!--Clear Filters Button-->
                 <div class="clear-filter">
 					<span class="btn-small clear-btn red-btn">Clear Filters</span>
@@ -66,6 +64,7 @@
 				
 				<div class="col l8 offset-l2 hide-on-med-and-down show-on-large center-align">
 					<!--Alphabetical Buttons Acting As Filters-->
+                    <h3 class="heading uppercase center-align">Filter alphabetically</h3>
                     <button
             class="alpha-btns blue-btn blue-background off-white alphabet-letter"
           >
@@ -366,9 +365,9 @@
 											<span class="block rating-arrow downarrow inactive"><i class="fas fa-arrow-alt-circle-down" data-value="{{ term._id }}" data-user="{{ session['user'] }}"></i></span>
 											{% endif %}
 											{% else %}
-											<span class="block modal-arrow modal-uparrow inactive"><i class="fas fa-arrow-alt-circle-up"></i></span>
+											<span class="block rating-arrow modal-arrow inactive"><i class="fas fa-arrow-alt-circle-up"></i></span>
 											<p class="term-rating">{{ term.rating }}</p>
-											<span class="block modal-arrow modal-downarrow inactive"><i class="fas fa-arrow-alt-circle-down"></i></span>
+											<span class="block rating-arrow modal-arrow inactive"><i class="fas fa-arrow-alt-circle-down"></i></span>
 											{% endif %}
 										</div>
 										<div class="col s8 term-section">
@@ -401,7 +400,7 @@
 										{% endif %} 
 										{% if term.youtube_link %} 
                                         <div>
-											<a href="{{ term.youtube_link }}" target="_blank" rel="noopener">Watch video on YouTube <i class="fas fa-external-link-alt prefix"></i></a> 
+											{{ term.youtube_link }} 
 										</div>
                                         {% endif %}
 									</div>
