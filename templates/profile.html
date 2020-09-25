@@ -5,7 +5,7 @@
     <div class="col s12 l4 user-details-section">
         <div class="card">
             <div class="card-content">
-                <span class="card-title">[Username]'s Profile</span>
+                <span class="card-title">{{ user.username }}'s Profile</span>
                 <span class="user-rating">Total Rating: [User Rating]</span>
                 <span class="user-stars">[stars]</span>
             </div>
@@ -20,7 +20,9 @@
     </div>
     <div class="col s12 l8 all-submissions">
         <h2 class="heading uppercase center-align">All Submissions</h2>
-        
+        {% for term in terms %}
+            <p>{{ term.term_header }}</p>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}
