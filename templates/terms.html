@@ -425,6 +425,10 @@
 								</li>
 								{% endfor %}
 							</ul>
+                            <div class="blank-search hidden">
+                                <h4>No Terms Found</h4>
+                                <p>Sorry! We couldn't find any terms that fit your search. <a href="{{ url_for('submit_definition') }}">Can you submit a definition to help others in the future?</a></p>
+                            </div>
 						</div>
 						<!--Confirm Term Deletion Modal-->
 						<div class="delete-term-modal modal-target hidden" id="delete-term-modal">

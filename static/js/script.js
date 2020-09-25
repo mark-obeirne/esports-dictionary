@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 term.parentElement.parentElement.parentElement.classList.remove("hidden")
             } else (term.parentElement.parentElement.parentElement.classList.add("hidden"))
         })
+        checkAllTermsHidden()
     }
 
 
@@ -67,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 term.parentElement.parentElement.parentElement.classList.add("hidden")
             } else (term.parentElement.parentElement.parentElement.classList.remove("hidden"))
         })
+        checkAllTermsHidden()
     }
 
 
@@ -84,6 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 gameName.parentElement.parentElement.parentElement.classList.add("hidden")
             } else (gameName.parentElement.parentElement.parentElement.classList.remove("hidden"))
         })
+        checkAllTermsHidden()
     }
 
     
@@ -94,6 +97,21 @@ document.addEventListener('DOMContentLoaded', function() {
     function showAllDefinitions() {
         const allTermContainers = Array.from(document.querySelectorAll(".term-container"))
         allTermContainers.forEach(container => container.classList.remove("hidden"))
+        checkAllTermsHidden()
+    }
+
+    /* 
+        Check if filter applied has hidden every definition
+    */
+    function checkAllTermsHidden() {
+        const allTermContainers = Array.from(document.querySelectorAll(".term-container"))
+        const allHidden = allTermContainers.every(container => container.classList.contains("hidden"))
+        const prompt = document.querySelector(".blank-search")
+        if (allHidden) {
+            prompt.classList.remove("hidden")
+        } else {
+            prompt.classList.add("hidden")
+        }
     }
 
 
