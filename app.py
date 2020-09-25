@@ -302,8 +302,19 @@ def downvote(term_id, username):
 
 
 def sortTermsAlphabetically(terms):
-    sorted_list = sorted(terms, key=lambda i: i["term_header"])
+    """
+    Sort provided list of terms alphabetically and then by rating
+    """
+    sorted_list = sorted(terms, key=lambda i: (i["term_header"], i["rating"]))
     return sorted_list
+
+
+def sortTermsByRating(terms):
+    """
+    Sort provided list of terms by highest rated
+    """
+    sorted_rating = sorted(terms, key=lambda i: i["rating"], reverse=True)
+    return sorted_rating
 
 
 @app.route("/profile/<username>")
@@ -314,8 +325,12 @@ def profile(username):
     user = mongo.db.users.find_one({"username": username})
     terms = list(mongo.db.terms.find({"submitted_by": user["_id"]}))
     ordered = sortTermsAlphabetically(terms)
+    toprated = sortTermsByRating(terms)
+    games = mongo.db.games.find()
     print(ordered)
-    return render_template("profile.html", user=user, terms=ordered)
+    return render_template(
+        "profile.html", user=user, terms=ordered,
+        toprated=toprated, games=games)
 
 
 @app.route("/get_games")

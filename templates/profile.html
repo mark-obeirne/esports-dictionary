@@ -1,28 +1,64 @@
-{% extends "base.html" %}
-{% block title %}Esports Dictionary | Profile{% endblock %}
-{% block content %}
+{% extends "base.html" %} {% block title %}Esports Dictionary | Profile{%
+endblock %} {% block content %}
 <div class="row">
-    <div class="col s12 l4 user-details-section">
-        <div class="card">
-            <div class="card-content">
-                <span class="card-title">{{ user.username }}'s Profile</span>
-                <span class="user-rating">Total Rating: [User Rating]</span>
-                <span class="user-stars">[stars]</span>
+  <div class="col s12 l4 user-details-section">
+        <h1 class="user-title">{{ user.username }}'s Profile</h1>
+        <span class="user-rating">Total Rating: [User Rating]</span>
+        <span class="user-stars">[stars]</span>
+        <a href="#">Show More</a>
+        <a href="#">Update User Details</a>
+  </div>
+  <div class="col s12 l8 user-submissions">
+    <h2 class="heading uppercase center-align">Top Rated Submission</h2>
+    <div class="container">
+      <ul class="collapsible">
+        <li class="term-container">
+          <div class="collapsible-header hoverable dark-background off-white">
+            <div class="col s2 rating-container valign-wrapper center-align">
+              <p class="term-rating">{{ toprated[0].rating }}</p>
             </div>
-            <div class="card-action">
-              <a href="#">Show More</a>
-              <a href="#">Update User Details</a>
+            <div class="col s9 term-section">
+              <span class="uppercase term strong">{{ toprated[0].term_header}}</span>
+              <div class="divider"></div>
+              {% for game in games %} {% if game._id == toprated[0].game_fk %}
+              <span class="game-name small-text block"
+                >{{ game.game_name }}</span
+              >
+              {% endif %} {% endfor %}
+              <p class="definition">{{ toprated[0].short_definition }}</p>
             </div>
-        </div>
+            <div class="col s1 carets valign-wrapper">
+            <i class="fas fa-caret-square-down"></i>
+          </div>
+          </div>
+          <div class="collapsible-body dark-text">
+            {% if toprated[0].long_description != " " %}
+            <span class="strong">Description</span>
+            <p>{{ toprated[0].long_description }}</p>
+            {% else %}
+            <span class="strong">Description:</span>
+            <p>{{ toprated[0].short_definition }}</p>
+            {% endif %} {% if toprated[0].youtube_link %}
+            <div>
+              <a href="{{ toprated[0].youtube_link }}" target="_blank" rel="noopener"
+                >Watch video on YouTube
+                <i class="fas fa-external-link-alt prefix"></i
+              ></a>
+            </div>
+            {% endif %}
+          </div>
+        </li>
+      </ul>
     </div>
-    <div class="col s12 l8 user-submissions">
-        <h2 class="heading uppercase center-align">Top Rated Submission</h2>
-    </div>
-    <div class="col s12 l8 all-submissions">
-        <h2 class="heading uppercase center-align">All Submissions</h2>
-        {% for term in terms %}
-            <p>{{ term.term_header }}</p>
-        {% endfor %}
-    </div>
+
+    <h2 class="heading uppercase center-align">All Submissions</h2>
+    {% for term in terms %}
+    <p>{{ term.term_header }}</p>
+    {% endfor %}
+
+
+
+  </div>
+  
 </div>
 {% endblock %}
