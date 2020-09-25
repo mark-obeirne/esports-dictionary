@@ -277,27 +277,24 @@ document.addEventListener('DOMContentLoaded', function() {
         Search for terms as user types in the searchbar
     */
     function searchTerms(e) {
-        console.log(e)
         const searchField = document.querySelector(".searchbar");
-        let searchTerm = searchField.value;
-        console.log(searchTerm)
+        const searchTerm = searchField.value;
         const regex = new RegExp(searchTerm, "gi")
-        let allTerms = Array.from(document.querySelectorAll(".term"))
-        let termText = allTerms.map(term => term.textContent)
-        console.log(allTerms)
-        console.log(termText)
+        const allTerms = Array.from(document.querySelectorAll(".term"))
+        const termText = allTerms.map(term => term.textContent)
         const found = termText.filter(term => {
             return term.match(regex)
         })
-        console.log(found)
+        filterBySearch(allTerms, found)
+    }
 
 
+    function filterBySearch(allTerms, matches) {
         allTerms.forEach(term => {
-            if (found.includes(term.textContent)) {
+            if (matches.includes(term.textContent)) {
                 term.parentElement.parentElement.parentElement.classList.remove("hidden")
             } else (term.parentElement.parentElement.parentElement.classList.add("hidden"))
         })
-
     }
 
 
