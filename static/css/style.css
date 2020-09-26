@@ -13,6 +13,10 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+html, body {
+    margin: 0;
+}
+
 
 /* Text Styles */
 
@@ -38,6 +42,10 @@ body {
 
 .small-text {
     font-size: 1.2rem;
+}
+
+.large-text {
+    font-size: 1.8rem;
 }
 
 .sublabel {
@@ -69,6 +77,10 @@ body {
     color: #F5F5F4;
 }
 
+.white-bg {
+    background-color: #F5F5F4;
+}
+
 .collapsible {
     background-color: #e2e1df;
 }
@@ -86,7 +98,7 @@ body {
 }
 
 .top-rated {
-    background-color: gold;
+    background-color: #FFD700;
 }
 
 
@@ -211,6 +223,10 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
     margin: 0 auto;
 }
 
+.user-stars {
+    padding-bottom: 1rem;
+}
+
 /* Buttons */
 
 .red-btn {
@@ -267,8 +283,7 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
 /* Footer */
 
 .social-footer {
-    font-size: 2.5rem;
-    margin: 1rem 0 0 0; 
+    font-size: 2.5rem; 
 }
 
 .social-link {
@@ -425,13 +440,6 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
 }
 
 
-/* Profile Pages */
-
-.profile-term {
-    margin-bottom: 1.4rem;
-}
-
-
 /* Modals */
 
 .modal-target {
@@ -485,6 +493,24 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
 }
 
 
+/* Profile Pages */
+
+.profile-term {
+    margin-bottom: 1.4rem;
+}
+
+.profile .user-details-section {
+    padding: 2.5rem
+}
+
+.profile .padded-section {
+    padding: 0 2.5rem;
+}
+
+.row.profile {
+    margin: 0;
+}
+
 /* Grow Shadow */
 /* Credit: https://github.com/IanLunn/Hover */
 .hvr-grow-shadow {
@@ -518,5 +544,9 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
 
     .search-section {
         background-color: #E2E1DF;
+    }
+
+    .profile .user-details-section {
+        height: 100vh;
     }
 }
