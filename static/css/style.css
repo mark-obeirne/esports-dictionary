@@ -224,7 +224,7 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
 }
 
 .user-stars {
-    padding-bottom: 1rem;
+    padding-bottom: 2rem;
 }
 
 /* Buttons */
