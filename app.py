@@ -335,7 +335,7 @@ def profile(username):
         {"submitted_by": user["_id"], "rating": {"$gt": -2}}))
     ordered = sortTermsAlphabetically(terms)
     toprated = sortTermsByRating(terms)
-    games = mongo.db.games.find()
+    games = list(mongo.db.games.find())
     print(ordered)
     return render_template(
         "profile.html", user=user, terms=ordered,
