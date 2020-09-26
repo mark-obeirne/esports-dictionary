@@ -387,7 +387,7 @@
 											{% set ns.username = user.username %}
                                             <!--Display Username-->
 											<span class="username block italic"
-                ><a href="{{ url_for('profile', username=user.username) }}" class="off-white underline">Submitted by {{ user.username }}</a></span>
+                ><a href="{{ url_for('profile', username=user.username) }}" class="off-white underline submitter tooltipped" data-position="right" data-tooltip="<span class='profile-tooltip'>Click link to view profile</span>"><i class="fas fa-id-card"></i> Submitted by {{ user.username }}</a></span>
 											{% endif %} {% endfor %}
 										</div>
                                         <div class="col s1 carets valign-wrapper">

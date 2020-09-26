@@ -18,6 +18,12 @@ document.addEventListener('DOMContentLoaded', function() {
     var instances = M.Collapsible.init(elems, {outDuration: 200});
   }); 
 
+  // Initialize Tooltips
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.tooltipped');
+    var instances = M.Tooltip.init(elems, {html: true});
+  });
+
 
   // Functions
     /* 
