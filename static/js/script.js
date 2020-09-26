@@ -339,7 +339,7 @@ document.addEventListener('DOMContentLoaded', function() {
    function addProfileStars(quantity) {
         const starSection = document.querySelector(".user-stars")
         console.log(typeof(quantity))
-        starSection.innerHTML += "*".repeat(quantity)
+        starSection.innerHTML += "<i class='fas fa-star'></i> ".repeat(quantity)
    }
 
 
