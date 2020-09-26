@@ -3,10 +3,12 @@ endblock %} {% block content %}
 <div class="row">
   <div class="col s12 l4 user-details-section">
     <h1 class="user-title">{{ user.username }}'s Profile</h1>
-    <span class="user-rating">Total Rating: [User Rating]</span>
+    <span class="user-rating">Total Rating: {{ user.total_rating }}</span>
     <span class="user-stars">[stars]</span>
     <a href="#">Show More</a>
+    {% if user.username == session["user"] %}
     <a href="#">Update User Details</a>
+    {% endif %}
   </div>
   <div class="col s12 l8 user-submissions">
     <h2 class="heading uppercase center-align">Top Rated Submission</h2>
