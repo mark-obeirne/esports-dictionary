@@ -101,6 +101,14 @@ html, body {
     background-color: #FFD700;
 }
 
+.profile-tooltip {
+    background-color: #0F66D2;
+    border: .5rem solid #0F66D2;
+    border-radius: 5%;
+    padding: .2rem;
+    color: #F5F5F4;
+}
+
 
 /* Form Colours */
 
@@ -371,6 +379,7 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
 .definition {
     padding-left: 1rem;
 }
+
 
 /* Ratings */
 
