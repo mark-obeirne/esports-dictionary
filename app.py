@@ -496,6 +496,7 @@ def register():
             "fav_games": request.form.get("fav_games"),
             "is_admin": False,
             "fav_competitors": request.form.get("fav_competitors"),
+            "submitted_terms": [],
             "total_rating": 0
             }
 
