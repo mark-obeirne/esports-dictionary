@@ -69,6 +69,10 @@ body {
     color: #F5F5F4;
 }
 
+.white-bg {
+    background-color: #F5F5F4;
+}
+
 .collapsible {
     background-color: #e2e1df;
 }
