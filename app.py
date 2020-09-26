@@ -570,6 +570,27 @@ def logout():
         return redirect(url_for("get_terms"))
 
 
+@app.route("/edit_user/<user_id>", methods=["GET", "POST"])
+def edit_user(user_id):
+    """
+    Get user details for provided username and if the account belongs to the
+    visitor, allow them to edit and update details in the database
+    """
+    user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+    try:
+        if session["user"] == user["username"]:
+            return render_template("edit_user.html", user=user)
+        else:
+            flash("You do not have permission to edit this user's details",
+                  category="error")
+        return redirect(url_for("get_terms"))
+    except KeyError:
+        # Redirect user to homepage if not logged in
+        flash(Markup("Please <a href='login'>"
+                     "login</a> to edit your details"), category="error")
+        return redirect(url_for("get_terms"))
+
+
 @app.errorhandler(404)
 def invalid_route(e):
     """
