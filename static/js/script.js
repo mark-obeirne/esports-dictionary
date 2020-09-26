@@ -335,14 +335,20 @@ document.addEventListener('DOMContentLoaded', function() {
         e.stopPropagation()
    }
 
-
+   /*
+        Add stars to the user's profile page under their total rating based on
+        the value passed through from displayStarRating function
+    */
    function addProfileStars(quantity) {
         const starSection = document.querySelector(".user-stars")
         console.log(typeof(quantity))
         starSection.innerHTML += "<i class='fas fa-star'></i> ".repeat(quantity)
    }
 
-
+   /* 
+        Calculate how many stars should be displayed on a user's profile page
+        based on their total rating stored in the database
+   */
    function displayStarRating() {
         const userRating = document.querySelector(".total-rating").textContent
         if (userRating < 10) {
@@ -356,9 +362,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             addProfileStars(5)
         }
-       
-
-   }
+    }
    
 
   // Event Listeners
