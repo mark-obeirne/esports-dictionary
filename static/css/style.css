@@ -279,6 +279,10 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
     margin: 0;
 }
 
+.img-logo {
+    height: 6.4rem;
+}
+
 
 /* Footer */
 
