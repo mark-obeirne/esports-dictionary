@@ -332,7 +332,32 @@ document.addEventListener('DOMContentLoaded', function() {
         username that submitted a definition to view their profile
     */
    function stayCollapsed(e) {
-       e.stopPropagation()
+        e.stopPropagation()
+   }
+
+
+   function addProfileStars(quantity) {
+        const starSection = document.querySelector(".user-stars")
+        console.log(typeof(quantity))
+        starSection.innerHTML += "*".repeat(quantity)
+   }
+
+
+   function displayStarRating() {
+        const userRating = document.querySelector(".total-rating").textContent
+        if (userRating < 10) {
+            addProfileStars(1)
+        } else if (userRating >= 10 && userRating <= 100) {
+            addProfileStars(2)
+        } else if (userRating > 100 && userRating <= 200) {
+            addProfileStars(3)
+        } else if (userRating > 200 && userRating <= 500) {
+            addProfileStars(4)
+        } else {
+            addProfileStars(5)
+        }
+       
+
    }
    
 
@@ -415,6 +440,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const submissionCredit = document.querySelectorAll(".username")
         if (submissionCredit) {
             submissionCredit.forEach(username => username.addEventListener("click", stayCollapsed))
+        }
+
+        // Display stars on user profile
+        const userRating = document.querySelector(".user-rating")
+        if (userRating) {
+            window.addEventListener("load", displayStarRating)
         }
     });
 
