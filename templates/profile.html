@@ -28,6 +28,7 @@ endblock %} {% block content %}
     <a href="#">Update User Details</a>
     {% endif %}
   </div>
+  {% if top_rated %}
   <div class="col s12 l8 user-submissions padded-section">
     <h2 class="heading uppercase center-align">Top Rated Submission</h2>
       <ul class="collapsible">
@@ -74,8 +75,10 @@ endblock %} {% block content %}
         </li>
       </ul>
     </div>
+    {% endif %}
     <div class="col s12 l8 all-submissions padded-section">
     <h2 class="heading uppercase center-align">All Submissions</h2>
+      {% if terms %}
       <ul class="collapsible profile-collapsible">
         {% for term in terms %}
         <li class="term-container profile-term">
@@ -116,6 +119,15 @@ endblock %} {% block content %}
         </li>
         {% endfor %}
       </ul>
+      {% else %}
+        {% if user.username == session["user"] %}
+            <h4>No Submissions Yet</h4>
+            <p>It doesn't look like you've contributed any terms yet. Why not <a href="{{ url_for('submit_definition') }}" class="underline">submit one now</a> and start earning points</p>
+        {% else %}
+            <h4>No Submissions Yet</h4>
+            <p>It looks like {{ user.username }} is shy and hasn't contributed any terms yet.</p>
+        {% endif %}
+      {% endif %}
     </div>
     </div>
 {% endblock %}
