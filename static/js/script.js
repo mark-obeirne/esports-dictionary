@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     /* 
         Search for terms as user types in the searchbar
     */
-    function searchTerms(e) {
+    function searchTerms() {
         const searchField = document.querySelector(".searchbar");
         const searchTerm = searchField.value;
         const regex = new RegExp(searchTerm, "gi")
@@ -68,7 +68,6 @@ document.addEventListener('DOMContentLoaded', function() {
         clearSearchbar()
         const letter = this.innerText;
         const allTerms = Array.from(document.querySelectorAll(".term"))
-        const allTermContainers = Array.from(document.querySelectorAll(".term-container"))
         allTerms.forEach(term => {
             if (term.textContent[0] !== letter) {
                 term.parentElement.parentElement.parentElement.classList.add("hidden")
@@ -86,7 +85,6 @@ document.addEventListener('DOMContentLoaded', function() {
         clearSearchbar()
         const chosenGame = this.value;
         const allGameCategories = Array.from(document.querySelectorAll(".game-name"));
-        const allTermContainers = Array.from(document.querySelectorAll(".term-container"));
         allGameCategories.forEach(gameName => {
             if (gameName.textContent !== chosenGame) {
                 gameName.parentElement.parentElement.parentElement.classList.add("hidden")
@@ -157,7 +155,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const homepageBtn = document.querySelector(".homepage-button")
         phrases = ["Rocket Jump", "Bunny Hop", "Auto Run", "Fast Travel", "Teleport", "Strafe Jump", "Barrel Roll", "Shootdodge", "Noclip"]
         choice = phrases[Math.floor(Math.random() * phrases.length)]
-        const homeIcon = "<i class='fas fa-home'></i>"
         homepageBtn.innerHTML = "<i class='fas fa-home'></i> " + choice + " back to the homepage"
     }
 

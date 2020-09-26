@@ -434,6 +434,10 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
     border: 0.05rem solid #2D2A32;
 }
 
+.alphabet-letter:hover {
+    cursor: pointer;
+}
+
 .clear-filter {
     margin: 1.4rem;
 }
