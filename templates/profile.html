@@ -1,23 +1,35 @@
-{% extends "base.html" %} {% block title %}Esports Dictionary | Profile{%
+{% extends "base.html" %} {% block title %}Esports Dictionary | {{user.username}}'s Profile{%
 endblock %} {% block content %}
-<div class="row">
+<div class="row profile">
   <div class="col s12 l4 user-details-section white-bg">
-  <div class="container">
-    <h1 class="user-title">{{ user.username }}'s Profile</h1>
+    <h1 class="user-title center-align">{{ user.username }}</h1>
+    <div class="divider"></div>
     <div class="rating-section center-align">
-    <span class="user-rating block">Total Rating: <span class="total-rating">{{ user.total_rating }}</span></span>
-    <span class="user-stars block">[stars]</span>
+    <h2 class="user-rating block">User Rating: <span class="total-rating">{{ user.total_rating }}</span></h2>
+    {% if user.is_admin %}
+    <span class="user-stars warning block large-text"></span>
+    {% else %}
+    <span class="user-stars block large-text"></span>
+    {% endif %}
     </div>
-    <a href="#">Show More</a>
+    {% if user.fav_games %} 
+    <div class="fav-games">
+        <h3><i class="fas fa-gamepad"></i> Favourite Games</h3>
+        <p>{{ user.fav_games }}</p>
+    </div>
+    {% endif %}
+    {% if user.fav_competitors %} 
+    <div class="fav-competitors">
+        <h3><i class="fas fa-fist-raised"></i> Supports</h3>
+        <p>{{ user.fav_competitors }}</p>
+    </div>
+    {% endif %}
     {% if user.username == session["user"] %}
     <a href="#">Update User Details</a>
     {% endif %}
   </div>
-  </div>
-  <div class="container">
-  <div class="col s12 l8 user-submissions">
+  <div class="col s12 l8 user-submissions padded-section">
     <h2 class="heading uppercase center-align">Top Rated Submission</h2>
-    <div class="container">
       <ul class="collapsible">
         <li class="term-container">
           <div class="collapsible-header top-rated hoverable dark-text">
@@ -62,9 +74,8 @@ endblock %} {% block content %}
         </li>
       </ul>
     </div>
-
+    <div class="col s12 l8 all-submissions padded-section">
     <h2 class="heading uppercase center-align">All Submissions</h2>
-    <div class="container">
       <ul class="collapsible profile-collapsible">
         {% for term in terms %}
         <li class="term-container profile-term">
@@ -106,7 +117,5 @@ endblock %} {% block content %}
         {% endfor %}
       </ul>
     </div>
-  </div>
-  </div>
-</div>
+    </div>
 {% endblock %}
