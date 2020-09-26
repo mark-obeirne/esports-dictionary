@@ -494,7 +494,9 @@ def register():
             "password": generate_password_hash(
                 request.form.get("password")),
             "fav_games": request.form.get("fav_games"),
-            "fav_competitors": request.form.get("fav_competitors")
+            "is_admin": False,
+            "fav_competitors": request.form.get("fav_competitors"),
+            "total_rating": 0
             }
 
         # Submit data to DB
@@ -566,6 +568,83 @@ def logout():
         # user is not an admin
         pass
     finally:
+        return redirect(url_for("get_terms"))
+
+
+@app.route("/edit_user/<user_id>", methods=["GET", "POST"])
+def edit_user(user_id):
+    """
+    Get user details for provided username and if the account belongs to the
+    visitor, allow them to edit and update details in the database
+    """
+    user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+    if request.method == "POST":
+        # Check if username currently exists in DB
+        current_username = user["username"]
+        desired_username = request.form.get("username")
+        existing_username = mongo.db.users.find_one(
+            {"username": re.compile(
+                "^" + desired_username + "$", re.IGNORECASE)})
+
+        if current_username != desired_username:
+            if existing_username:
+                flash("Username already exists. "
+                      "Please choose another.",
+                      category="error")
+                return redirect(url_for("edit_user", user_id=user["_id"]))
+        # Ensure hashed password matches input
+        if check_password_hash(
+                    user["password"], request.form.get(
+                        "password")):
+            # Gather form data
+            new_password = request.form.get("new-password")
+            if new_password:
+                update = {
+                    "username": request.form.get("username"),
+                    "password": generate_password_hash(
+                        new_password),
+                    "fav_games": request.form.get("fav_games"),
+                    "is_admin": user["is_admin"],
+                    "fav_competitors": request.form.get("fav_competitors"),
+                    "submitted_terms": user["submitted_terms"],
+                    "total_rating": user["total_rating"]
+                    }
+            else:
+                update = {
+                    "username": request.form.get("username"),
+                    "password": generate_password_hash(
+                        request.form.get("password")),
+                    "fav_games": request.form.get("fav_games"),
+                    "is_admin": user["is_admin"],
+                    "fav_competitors": request.form.get("fav_competitors"),
+                    "submitted_terms": user["submitted_terms"],
+                    "total_rating": user["total_rating"]
+                    }
+
+            # Submit data to DB
+            mongo.db.users.update({"_id": ObjectId(user_id)}, update)
+
+            # Create session cookie and redirect to dictionary
+            session["user"] = update["username"]
+            flash("Details for " + session['user'] + " successfully changed",
+                  category="success")
+            return redirect(url_for("profile", username=session["user"]))
+        else:
+            # Password incorrect
+            flash("Details incorrect. Please try again",
+                  category="error")
+            return redirect(url_for("edit_user", user_id=user["_id"]))
+    try:
+        if session["user"] == user["username"]:
+            return render_template("edit_user.html", user=user)
+        else:
+            flash("You do not have permission to edit this user's details",
+                  category="error")
+        return redirect(url_for("get_terms"))
+    except KeyError:
+        # Redirect user to homepage if not logged in
+        flash(Markup("Please <a href='login'>"
+                     "login</a> to edit your details"), category="error")
         return redirect(url_for("get_terms"))
 
 
