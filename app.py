@@ -494,7 +494,8 @@ def register():
             "password": generate_password_hash(
                 request.form.get("password")),
             "fav_games": request.form.get("fav_games"),
-            "fav_competitors": request.form.get("fav_competitors")
+            "fav_competitors": request.form.get("fav_competitors"),
+            "total_rating": 0
             }
 
         # Submit data to DB
