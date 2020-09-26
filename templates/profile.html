@@ -25,7 +25,15 @@ endblock %} {% block content %}
     </div>
     {% endif %}
     {% if user.username == session["user"] %}
-    <a href="#">Update User Details</a>
+    <div class="divider"></div>
+    <div class="edit center-align">
+    <span class="btn-small blue-background blue-btn"
+              ><a
+                href="{{ url_for('edit_user', user_id=user._id) }}"
+                class="off-white"
+                ><i class="fas fa-edit"></i> Edit User Details</a
+              ></span>
+    </div>
     {% endif %}
   </div>
   {% if top_rated %}
