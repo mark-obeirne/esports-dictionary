@@ -84,6 +84,7 @@ def submit_definition():
         }
         print(definition["term_header"])
         mongo.db.terms.insert_one(definition)
+        updateUserRating(definition, 1)
         flash(f"Thank you, {session['user']}, for your submission",
               category="success")
         return redirect(url_for("get_terms"))
@@ -156,6 +157,7 @@ def delete_definition(term_id):
     term = mongo.db.terms.find_one({"_id": ObjectId(term_id)})
     try:
         user = mongo.db.users.find_one({"username": session["user"]})
+        updateUserRating(term, - term["rating"])
         is_admin = True if "admin" in session else False
         if user["_id"] == term["submitted_by"] or is_admin:
             mongo.db.terms.remove({"_id": ObjectId(term_id)})
@@ -199,6 +201,7 @@ def upvote(term_id, username):
                 try:
                     mongo.db.terms.update_one(
                         {"_id": ObjectId(term_id)}, {"$inc": {"rating": 2}})
+                    updateUserRating(term, 2)
                     mongo.db.terms.update_one(
                         {"_id": ObjectId(term_id)},
                         {"$pull": {"downvoted_by": user["_id"]}})
@@ -216,6 +219,7 @@ def upvote(term_id, username):
                 try:
                     mongo.db.terms.update_one(
                         {"_id": ObjectId(term_id)}, {"$inc": {"rating": 1}})
+                    updateUserRating(term, 1)
                     mongo.db.terms.update_one(
                         {"_id": ObjectId(term_id)},
                         {"$push": {"upvoted_by": user["_id"]}})
@@ -227,6 +231,7 @@ def upvote(term_id, username):
             try:
                 mongo.db.terms.update_one(
                     {"_id": ObjectId(term_id)}, {"$inc": {"rating": -1}})
+                updateUserRating(term, -1)
                 mongo.db.terms.update_one(
                     {"_id": ObjectId(term_id)},
                     {"$pull": {"upvoted_by": user["_id"]}})
@@ -264,6 +269,7 @@ def downvote(term_id, username):
                 try:
                     mongo.db.terms.update_one(
                         {"_id": ObjectId(term_id)}, {"$inc": {"rating": -2}})
+                    updateUserRating(term, -2)
                     mongo.db.terms.update_one(
                         {"_id": ObjectId(term_id)},
                         {"$pull": {"upvoted_by": user["_id"]}})
@@ -281,6 +287,7 @@ def downvote(term_id, username):
                 try:
                     mongo.db.terms.update_one(
                         {"_id": ObjectId(term_id)}, {"$inc": {"rating": -1}})
+                    updateUserRating(term, -1)
                     mongo.db.terms.update_one(
                         {"_id": ObjectId(term_id)},
                         {"$push": {"downvoted_by": user["_id"]}})
@@ -292,6 +299,7 @@ def downvote(term_id, username):
             try:
                 mongo.db.terms.update_one(
                     {"_id": ObjectId(term_id)}, {"$inc": {"rating": 1}})
+                updateUserRating(term, 1)
                 mongo.db.terms.update_one(
                     {"_id": ObjectId(term_id)},
                     {"$pull": {"downvoted_by": user["_id"]}})
@@ -332,6 +340,16 @@ def profile(username):
     return render_template(
         "profile.html", user=user, terms=ordered,
         toprated=toprated, games=games)
+
+
+def updateUserRating(definition, increase):
+    """
+    Calculate a user's total points earned through upvotes
+    """
+    user = mongo.db.users.find_one({"_id": definition["submitted_by"]})
+    mongo.db.users.update_one(
+                        {"_id": user["_id"]},
+                        {"$inc": {"total_rating": increase}})
 
 
 @app.route("/get_games")
