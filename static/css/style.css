@@ -25,6 +25,12 @@ html, body {
     font-variant: small-caps;
 }
 
+.modal-heading {
+    font-family: 'Playfair Display', serif;
+    text-transform: capitalize;
+    font-variant: small-caps;
+}
+
 /* Text Styles */
 
 .text-shadow {
@@ -532,6 +538,7 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
     padding: 2rem;
     width: 75%;
     margin: 20% auto;
+    border-top: 1.5rem solid #0F66D2;
 }
 
 .close {
