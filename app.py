@@ -96,7 +96,8 @@ def submit_definition():
     except KeyError:
         # Redirect user to homepage if not logged in
         flash(Markup("Please <a href='login'>"
-                     "login</a> to add a new definition"), category="error")
+                     "login</a> or <a href='register'>"
+                     "register</a> to add a new definition"), category="error")
         return redirect(url_for("get_terms"))
 
 
@@ -483,7 +484,7 @@ def register():
         # https://stackoverflow.com/questions/6266555/querying-mongodb-via-pymongo-in-case-insensitive-efficiently
         if existing_username:
             flash(Markup("Username already exists. "
-                         "Please choose another or <a href=''>login</a>."),
+                         "Please choose another or <a href='login'>login</a>."),
                   category="error")
             # Credit for using Markup to display link in flash message:
             # https://pythonpedia.com/en/knowledge-base/21248718/how-to-flashing-a-message-with-link-using-flask-flash-
