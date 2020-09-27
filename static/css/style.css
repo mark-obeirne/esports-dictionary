@@ -70,6 +70,8 @@ html, body {
 
 .term {
     font-family: 'Playfair Display', serif;
+    text-transform: capitalize;
+    font-variant: small-caps;
     font-size: 1.8rem;
     letter-spacing: 0.1em;
 }
@@ -254,6 +256,10 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
 
 .blue-btn:hover {
     background-color: #257FEF;
+}
+
+.blue-background:active, .blue-background:focus {
+    background-color: #257FEF
 }
 
 .padded-btns {

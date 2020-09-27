@@ -46,7 +46,7 @@ endblock %} {% block content %}
               <p class="term-rating">{{ toprated[0].rating }}</p>
             </div>
             <div class="col s9 term-section">
-              <span class="uppercase term strong"
+              <span class="term strong"
                 >{{ toprated[0].term_header}}</span
               >
               <div class="divider dark-background"></div>
@@ -95,7 +95,7 @@ endblock %} {% block content %}
               <p class="term-rating">{{ term.rating }}</p>
             </div>
             <div class="col s9 term-section">
-              <span class="uppercase term strong">{{ term.term_header}}</span>
+              <span class="term strong">{{ term.term_header}}</span>
               <div class="divider"></div>
               {% for game in games %} {% if game._id == term.game_fk %}
               <span class="game-name small-text block"
