@@ -34,18 +34,18 @@
 	<!--Search/Filter Section-->
 	<div class="sticky">
 		<div class="col s12 l5 push-l7 search-section">
-            <h2 class="page-heading center-align blue-background off-white">Search Terms</h2>
 			<!--Custom Search-->
             <div class="search-filters">
 			<div class="search">
             	<input
           type="search"
+          name="searchbar"
           class="searchbar"
           placeholder="Search for term"
         /><span id="clear">x</span>
+        <label for="searchbar" class="sublabel dark-text">Search for term</label>
             </div>
 				<!--Select Game Dropdown-->
-                <h3 class="heading uppercase center-align">Search By Game</h3>
                 <div class="input-field">
 					<select id="game-filter" name="game-filter" class="game-filter">
             <option value="" disabled selected>Choose game</option>
@@ -53,7 +53,7 @@
             <option value="{{ game.game_name }}">{{ game.game_name }}</option>
             {% endfor %}
           </select>
-					<!--<label for="game-filter">Or filter by game</label>-->
+          <label for="game-filter" class="sublabel dark-text">Filter by game</label>
 				</div>
 				<div class="padded-btns center-align hide-on-large-only">
 					<!--Alphabetical Sidebar-->
