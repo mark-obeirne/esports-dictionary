@@ -17,6 +17,13 @@ html, body {
     margin: 0;
 }
 
+.page-heading {
+    padding: 1rem;
+    border-radius: 1.1rem;
+    font-family: 'Playfair Display', serif;
+    text-transform: capitalize;
+    font-variant: small-caps;
+}
 
 /* Text Styles */
 
@@ -278,6 +285,10 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
 .navigation a:hover {
     box-shadow: 0rem -.35rem 0rem #F5F5F4 inset;
 }
+
+.navigation a.brand-logo:hover {
+    box-shadow: none;
+} 
 
 .sidenav-close {
     text-align: right;
