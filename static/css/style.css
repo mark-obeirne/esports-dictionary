@@ -17,6 +17,13 @@ html, body {
     margin: 0;
 }
 
+.page-heading {
+    padding: 1rem;
+    border-radius: 1.1rem;
+    font-family: 'Playfair Display', serif;
+    text-transform: capitalize;
+    font-variant: small-caps;
+}
 
 /* Text Styles */
 
@@ -279,6 +286,10 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
     box-shadow: 0rem -.35rem 0rem #F5F5F4 inset;
 }
 
+.navigation a.brand-logo:hover {
+    box-shadow: none;
+} 
+
 .sidenav-close {
     text-align: right;
 }
@@ -288,7 +299,7 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
 }
 
 .img-logo {
-    height: 6.4rem;
+    height: 5.6rem;
 }
 
 
@@ -582,8 +593,14 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
     .search-section {
         background-color: #E2E1DF;
     }
+}
 
+@media screen and (min-width: 992px) {
     .profile .user-details-section {
         height: 100vh;
     }
+
+    .img-logo {
+        height: 6.3rem;
+}
 }

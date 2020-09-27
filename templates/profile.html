@@ -2,7 +2,7 @@
 endblock %} {% block content %}
 <div class="row profile">
   <div class="col s12 l4 user-details-section white-bg">
-    <h1 class="user-title center-align">{{ user.username }}</h1>
+    <h1 class="page-heading center-align blue-background off-white">{{ user.username }}</h1>
     <div class="divider"></div>
     <div class="rating-section center-align">
     <h2 class="user-rating block">User Rating: <span class="total-rating">{{ user.total_rating }}</span></h2>
@@ -38,7 +38,7 @@ endblock %} {% block content %}
   </div>
   {% if toprated %}
   <div class="col s12 l8 user-submissions padded-section">
-    <h2 class="heading uppercase center-align">Top Rated Submission</h2>
+    <h2 class="page-heading center-align blue-background off-white">Top Rated Definition</h2>
       <ul class="collapsible">
         <li class="term-container">
           <div class="collapsible-header top-rated hoverable dark-text">
@@ -85,7 +85,7 @@ endblock %} {% block content %}
     </div>
     {% endif %}
     <div class="col s12 l8 all-submissions padded-section">
-    <h2 class="heading uppercase center-align">All Submissions</h2>
+    <h2 class="page-heading center-align blue-background off-white">All Definitions</h2>
       {% if terms %}
       <ul class="collapsible profile-collapsible">
         {% for term in terms %}
