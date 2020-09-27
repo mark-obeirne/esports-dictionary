@@ -593,7 +593,9 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
     .search-section {
         background-color: #E2E1DF;
     }
+}
 
+@media screen and (min-width: 992px) {
     .profile .user-details-section {
         height: 100vh;
     }
