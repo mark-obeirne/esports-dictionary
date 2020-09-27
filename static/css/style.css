@@ -70,6 +70,8 @@ html, body {
 
 .term {
     font-family: 'Playfair Display', serif;
+    text-transform: capitalize;
+    font-variant: small-caps;
     font-size: 1.8rem;
     letter-spacing: 0.1em;
 }
@@ -262,6 +264,26 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
 }
 
 .blue-btn:hover {
+    background-color: #257FEF;
+}
+
+.blue-btn:active, .blue-btn:focus, .blue-btn:hover {
+    background-color: #257FEF
+}
+
+.dark-btn {
+    background-color: #2D2A32;
+}
+
+.dark-btn:hover, .dark-btn:active, .dark-btn:focus {
+    background-color: #46414E;
+}
+
+.btn-floating.blue-btn {
+    background-color: #0F66D2;
+}
+
+.btn-floating.blue-btn:hover {
     background-color: #257FEF;
 }
 
