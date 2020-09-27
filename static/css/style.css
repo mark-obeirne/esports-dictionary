@@ -242,6 +242,15 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
     padding-bottom: 2rem;
 }
 
+/* Materialize Fixed Action Button */
+.fixed-action-btn {
+    right: 1rem;
+}
+
+.fixed-action-btn ul {
+    bottom: 3rem;
+}
+
 /* Buttons */
 
 .red-btn {
@@ -602,5 +611,9 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
 
     .img-logo {
         height: 6.3rem;
-}
+    }
+
+    .fixed-action-btn {
+        right: 2rem;
+    }
 }
