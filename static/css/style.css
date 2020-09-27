@@ -387,8 +387,24 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
     color: #C0C0C0;
 }
 
-.active {
-    color: purple;
+.uparrow.active {
+    color: #0F66D2;
+}
+
+.downarrow.active {
+    color: #AC1610;
+}
+
+.uparrow.active:hover {
+    color: #257FEF;
+}
+
+.downarrow.active:hover {
+    color: #DB1C14;
+}
+
+.rating-arrow:hover,.modal-arrow:hover {
+    color: #F5F5F4;
 }
 
 .uparrow {
