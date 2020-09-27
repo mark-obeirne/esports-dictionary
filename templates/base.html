@@ -132,13 +132,13 @@
 
     <!--Floating Action Button-->
     <div class="fixed-action-btn">
-      <a class="btn-floating btn-small blue-background">
+      <a class="btn-floating btn-small blue-btn">
         <i class="fas fa-wind"></i>
       </a>
       <ul>
         {% if session["user"] %}
         <li>
-          <a class="btn-floating dark-background" href="{{ url_for('profile', username=session['user']) }}"
+          <a class="btn-floating dark-btn" href="{{ url_for('profile', username=session['user']) }}"
             ><i class="fas fa-user-circle"></i></a
           >
         </li>
@@ -149,13 +149,13 @@
         </li>
         {% else %}
         <li>
-          <a class="btn-floating dark-background" href="{{ url_for('register') }}"
+          <a class="btn-floating dark-btn" href="{{ url_for('register') }}"
             ><i class="fas fa-user-plus"></i></a
           >
         </li>
         {% endif %}
         <li>
-          <a class="btn-floating blue-background" href="#top"
+          <a class="btn-floating blue-btn" href="#top"
             ><i class="fas fa-chevron-circle-up"></i></a
           >
         </li>

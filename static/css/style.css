@@ -267,8 +267,24 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
     background-color: #257FEF;
 }
 
-.blue-background:active, .blue-background:focus {
+.blue-btn:active, .blue-btn:focus, .blue-btn:hover {
     background-color: #257FEF
+}
+
+.dark-btn {
+    background-color: #2D2A32;
+}
+
+.dark-btn:hover, .dark-btn:active, .dark-btn:focus {
+    background-color: #46414E;
+}
+
+.btn-floating.blue-btn {
+    background-color: #0F66D2;
+}
+
+.btn-floating.blue-btn:hover {
+    background-color: #257FEF;
 }
 
 .padded-btns {
