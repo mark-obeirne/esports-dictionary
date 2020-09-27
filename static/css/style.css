@@ -299,7 +299,7 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
 }
 
 .img-logo {
-    height: 6.4rem;
+    height: 5.6rem;
 }
 
 
@@ -599,4 +599,8 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
     .profile .user-details-section {
         height: 100vh;
     }
+
+    .img-logo {
+        height: 6.3rem;
+}
 }
