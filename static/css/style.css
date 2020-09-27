@@ -23,6 +23,7 @@ html, body {
     font-family: 'Playfair Display', serif;
     text-transform: capitalize;
     font-variant: small-caps;
+    text-shadow: .2rem .2rem .5rem rgba(0, 0, 0, 0.7);
 }
 
 .modal-heading {
