@@ -314,6 +314,8 @@ def sortTermsAlphabetically(terms):
     """
     Sort provided list of terms alphabetically and then by rating
     """
+    # Tutorial for sorting credit:
+    # https://www.geeksforgeeks.org/ways-sort-list-dictionaries-values-python-using-lambda-function/
     sorted_list = sorted(terms, key=lambda i: (i["term_header"], i["rating"]))
     return sorted_list
 
@@ -322,6 +324,8 @@ def sortTermsByRating(terms):
     """
     Sort provided list of terms by highest rated
     """
+    # Tutorial for sorting credit:
+    # https://www.geeksforgeeks.org/ways-sort-list-dictionaries-values-python-using-lambda-function/
     sorted_rating = sorted(terms, key=lambda i: i["rating"], reverse=True)
     return sorted_rating
 
