@@ -371,7 +371,27 @@ document.addEventListener('DOMContentLoaded', function() {
             addProfileStars(5)
         }
     }
-   
+
+
+    /*
+        Handle messages posted from Contact Us page
+    */
+   function sendMessage(e) {
+    const contactForm = document.querySelector(".contact-form")
+    e.preventDefault()
+    emailjs.send("gmail", "esportsdictionary", {
+        "name": contactForm.name.value,
+        "email": contactForm.email.value,
+        "message": contactForm.message.value
+    })
+    .then(function(response) {
+        contactForm.submit()
+    }, function(error) {
+        console.log("Failed", error);
+    })
+    return false; 
+}
+
 
   // Event Listeners
   // Test for existence
@@ -458,6 +478,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const userRating = document.querySelector(".user-rating")
         if (userRating) {
             window.addEventListener("load", displayStarRating)
+        }
+
+        // Send message via EmailJS
+        const contactForm = document.querySelector(".contact-form")
+        if (contactForm) {
+            contactForm.addEventListener("submit", sendMessage)
         }
     });
 
