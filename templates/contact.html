@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title%}Esports Dictionary | Contact Us{% endblock %}
+
+{% block content %}
+<div class="container contact-form-container">
+  <h1 class="page-heading center-align blue-background off-white">Contact Us</h1>
+  <p class="center-align dark-text">Want to get in touch with a suggestion, motivational comment, or to report a bug? We'd love to hear from you!</p>
+  <div class="row">
+    <form
+      class="col s12 m6 offset-m3 contact-form"
+      method="POST"
+    >
+      <div class="card-panel hoverable">
+        <!--Username-->
+        <div class="row">
+          <div class="input-field col s12 register-field">
+            <i class="fas fa-user-tag prefix"></i>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              class="validate"
+              required
+            />
+            <label for="name">Enter Your Username/Name</label>
+          </div>
+        </div>
+        <!--Email-->
+        <div class="row">
+          <div class="input-field col s12 register-field">
+            <i class="fas fa-envelope prefix"></i>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              class="validate"
+              required
+            />
+            <label for="email">Enter Your Email</label>
+          </div>
+        </div>
+        <!--Message-->
+        <div class="row">
+          <div class="input-field col s12 register-field">
+            <i class="fas fa-comment-dots prefix"></i>
+            <textarea id="message" name="message" type="text" class="validate materialize-textarea" required></textarea>
+            <label for="message">Enter Message</label>
+          </div>
+        </div>
+        <!--Submit Button-->
+        <div class="row">
+          <button
+            type="submit"
+            class="col s12 btn-large blue-background blue-btn off-white text-shadow"
+          >
+            <i class="fas fa-paper-plane prefix"></i> Send Message
+          </button>
+        </div>
+    </div>
+    </form>
+  </div>
+  </div>
+{% endblock %}
+
+{% block script %}
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.1/dist/email.min.js"></script>
+  <script type="text/javascript">
+        (function(){
+           emailjs.init('user_x5XipwOnBUbTqmGeMORZI');
+        })();
+</script>
+{% endblock %}

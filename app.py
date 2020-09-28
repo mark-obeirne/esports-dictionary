@@ -14,6 +14,8 @@ if os.path.exists("env.py"):
 
 # Create Flask instance
 app = Flask(__name__)
+
+# App Configs
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
@@ -618,7 +620,7 @@ def edit_user(user_id):
                       "Please choose another.",
                       category="error")
                 return redirect(url_for("edit_user", user_id=user["_id"]))
-        
+
         # Check username for profanity
         if profanity.contains_profanity(desired_username):
             flash("This username is unavailable. Please choose another.",
@@ -679,6 +681,14 @@ def edit_user(user_id):
         flash(Markup("Please <a href='login'>"
                      "login</a> to edit your details"), category="error")
         return redirect(url_for("get_terms"))
+
+
+@app.route("/contact", methods=["GET", "POST"])
+def contact():
+    if request.method == "POST":
+        flash("Thanks for your message", category="success")
+        return redirect(url_for("get_terms"))
+    return render_template("contact.html")
 
 
 @app.errorhandler(404)
