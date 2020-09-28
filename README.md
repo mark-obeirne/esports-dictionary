@@ -96,23 +96,145 @@ The Contact Page contains a form, which invites users to get in touch with any c
 If a user attempts to navigate to a page that does not exist or stumbles upon a link that does not work, they are presented with a straightforward 404 page that can help them get back to the homepage easily. This page features a button that generates a gaming term from a predefined list as a fun little tie-in with the site's theme. However, the core message of "back to the homepage" remains consistent.
 
 ## Future Features
+### Profile Gamification
+As outlined in the Site Owner's user story, we are looking for further ways to encourage users to get involved. A rating system is one that has worked on sites such as Reddit, but we would like to expand this further. 
 
+Achievements are an integral part of videogames and we would like to explore this avenue with achivements that would feature on a user's profile. These achievements would reward users for submissions, for submitting well-received terms, for account longevity, for filling out their profile, and more.  
+
+### Shop
+As the site depends on user submissions, it is too early to launch a shop to sell site-related merchandise. As outlined, it is planned that the shop will feature products that draw upon contributed definitions and knowledge such as cute and cartoony A-Z books aimed at parents who are gamers.
+
+### Report Terms
+While the site features a rating system, which could enable the community to prevent spam and malicious posting by downvoting submissions, we would like to go further by implementing a reporting system. This would enable users to highlight submissions to an Admin that may need to be edited or deleted. 
+
+Admins are currently able to edit or delete any term, and this system could help them do their job more thoroughly. 
+
+### Favourite Terms
+In the future, we plan to enable users to favourite individual terms or definitions for later consultation.
+
+### YouTube API Integration
 
 ## Skeleton
 ### Mobile Wireframes
+[Dictionary / Home Page]
+[Register Page]
+[Submit Definition Page]
+[Edit Definition Page]
+[Profile Page]
+[Edit User Page]
+[Contact Us Page]
+[Manage Games Page - Admins]
+[Edit Game Page - Admins]
+[404 Page]
 
 ### Tablet Wireframes
+[Dictionary / Home Page]
+[Register Page]
+[Submit Definition Page]
+[Edit Definition Page]
+[Profile Page]
+[Edit User Page]
+[Contact Us Page]
+[Manage Games Page - Admins]
+[Edit Game Page - Admins]
+[404 Page]
 
 ### Desktop Wireframes
+[Dictionary / Home Page]
+[Register Page]
+[Submit Definition Page]
+[Edit Definition Page]
+[Profile Page]
+[Edit User Page]
+[Contact Us Page]
+[Manage Games Page - Admins]
+[Edit Game Page - Admins]
+[404 Page]
 
+## Structure
+The navbar links available are different based on the user's logged in status, while Admins have another link available to them. The navbar features the site's logo in the centre of the page with the hamburger menu to the right on mobile. On larger devices, the logo shifts to the left-hand side of the page with the navigation options spreading out across the right.
+
+Visitors who are logged out will be presented with these naviation links:
+* Dictionary
+* Register
+* Log In
+* Contact
+
+Visitors who log in will see these navigation options:
+* Dictionary
+* Submit Definition
+* My Profile
+* Contact Us
+* Log Out
+
+Finally, users who are granted Admin status will see:
+* Dictionary
+* Submit Definition
+* My Profile
+* Manage Games
+* Contact Us
+* Log Out
+
+This order was chosen to emphasise the dictionary for all users, which is where the bulk of the site's content lives. When a user logs in, we want the Submit Definition page to be visible as an integral part of the site, while the user's profile can present interesting information that will keep them coming back for more (particularly if they become attached to their rating).
+
+For Admins, managing the games available should not be an every day task, while we do not expect users to be emailing frequently with issues or comments. Finally, the Log Out button is kept on the far right to adhere to traditional placement.
 
 ## Surface
-### Colours
-
 ### Fonts
+As the site is a dictionary, Playfair Display was chosen as the font for page headings and terms. It was decided to use small caps with the first letter capitalised as it looked more appealing in testing.
 
-## Technology Used
+Roboto was used as the font across the rest of the site as it is easily readable at a range of font-sizes, is easy on the eyes in instances where there is a lot of text (which may be the case in longer descriptions), and combines well with Playfair Display.
 
+### Colours
+Gaming websites as a whole have moved away from the black or dark websites that once populated the internet. In addition, Esports takes some of its cues from the world of sports. As highlighted by an [article on Redbull about Esports branding](https://www.redbull.com/ca-en/how-esports-branding-works), the palette of the most notable Esports teams is reds, blues, and whites. This is reminiscent of sports leagues such as the NBA and MLB. This is a palette that we wanted to utilise across the site.
+
+The main colour featured across the site is a rich blue (#0F66D2). This acts as a perfect background colour for areas where there is text, such as the navbar, page icons, and buttons. 
+
+A red colour (#AC1610) is used more sparingly across the site, commonly appearing as the background colour for delete buttons. It is also used as the background colour for the "Add Term" button within the jumbotron, however, as it contrasts well with the background and stands out when positioned between the blue navbar and the grey and blue elements below. 
+
+A platinum grey (#E2E1DF) is used as the background colour across the site, enabling headings, buttons, and other elements to be the primary focus. 
+
+Raisin black (#2D2A32) acts as the background for the collapsible headers that house terms and their short definitions, as well as the admin buttons underneath. This provides a good contrast against the rating arrows (regardless of their status), the text to describe a term, and the colour of the buttons. This colour is also used for the darker text across the site. 
+
+Finally, a cultured white (#F5F5F4) is used as the white text in headings and in the collapsible headers. This contrasts well against the other colours used for elements without straining the eyes.
+
+On hover, blue, red, and black elements are highlighted by changing to a colour that is 10% lighter, according to [colorbook.io](https://www.colorbook.io).
+
+
+## Technologies Used
+HTML & CSS programming languages - For the basic site structure and design elements.
+
+JavaScript - To enhance the user's experience, enable filtering in real time, provide feedback when rating terms, and to pop up modals to defensively program against accidental deletions.
+
+Python - To handle data provided by the database.
+
+MongoDB - To store our database and collections relating to users, terms, and supported games.
+
+PyMongo - To enable communication between MongoDB and Python.
+
+Flask - To construct and render page templates.
+
+Jinja - To handle the display of data provided by the backend in addition to traditional HTML code.
+
+Materialize - To create elements such as the Floating Action Button, the sidenav, and tooltips, and to layout each page's structure.
+
+Git - To track changes in code during development.
+
+GitHub - To host the project’s repository.
+
+Balsamiq - To create the wireframes that the site's design and layout is based upon.
+
+Coolors - For finding a suitable palette for the site.
+
+Google Fonts - To find the right fonts for this site's purpose.
+
+Font Awesome - For icons used across the site, which provide the user with additional context at first glance.
+
+Gimp 2 - For image manipulation and to create the brand logo.
+
+TinyPNG - To compress and optimise image files.
+
+Favicon Converter - To create the favicon based on the brand logo.
 
 ## Testing
 Separate doc?
