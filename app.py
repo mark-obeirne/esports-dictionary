@@ -8,6 +8,7 @@ from bson.objectid import ObjectId
 from datetime import date
 from werkzeug.security import generate_password_hash, check_password_hash
 import re
+from better_profanity import profanity
 if os.path.exists("env.py"):
     import env
 
@@ -314,6 +315,8 @@ def sortTermsAlphabetically(terms):
     """
     Sort provided list of terms alphabetically and then by rating
     """
+    # Tutorial for sorting credit:
+    # https://www.geeksforgeeks.org/ways-sort-list-dictionaries-values-python-using-lambda-function/
     sorted_list = sorted(terms, key=lambda i: (i["term_header"], i["rating"]))
     return sorted_list
 
@@ -322,6 +325,8 @@ def sortTermsByRating(terms):
     """
     Sort provided list of terms by highest rated
     """
+    # Tutorial for sorting credit:
+    # https://www.geeksforgeeks.org/ways-sort-list-dictionaries-values-python-using-lambda-function/
     sorted_rating = sorted(terms, key=lambda i: i["rating"], reverse=True)
     return sorted_rating
 
@@ -484,11 +489,19 @@ def register():
         # https://stackoverflow.com/questions/6266555/querying-mongodb-via-pymongo-in-case-insensitive-efficiently
         if existing_username:
             flash(Markup("Username already exists. "
-                         "Please choose another or <a href='login'>login</a>."),
+                         "Please choose another or "
+                         "<a href='login'>login</a>."),
                   category="error")
             # Credit for using Markup to display link in flash message:
             # https://pythonpedia.com/en/knowledge-base/21248718/how-to-flashing-a-message-with-link-using-flask-flash-
             return redirect(url_for("register"))
+
+        # Check username for profanity
+        if profanity.contains_profanity(desired_username):
+            flash("This username is unavailable. Please choose another.",
+                  category="error")
+            return redirect(url_for("register"))
+
         # Gather form data
         registration = {
             "username": request.form.get("username"),
@@ -509,8 +522,13 @@ def register():
         flash(Markup("Thanks for signing up, " + session['user']),
               category="success")
         return redirect(url_for("get_terms"))
-
-    return render_template("register.html")
+    try:
+        if session["user"]:
+            flash("You are already registered and logged in",
+                  category="error")
+            return redirect(url_for("get_terms"))
+    except KeyError:
+        return render_template("register.html")
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -547,7 +565,13 @@ def login():
             flash("Username and/or password incorrect", category="error")
             return redirect(url_for("login"))
 
-    return render_template("login.html")
+    try:
+        if session["user"]:
+            flash("You are already logged in",
+                  category="error")
+            return redirect(url_for("get_terms"))
+    except KeyError:
+        return render_template("login.html")
 
 
 @app.route("/logout")
@@ -594,6 +618,13 @@ def edit_user(user_id):
                       "Please choose another.",
                       category="error")
                 return redirect(url_for("edit_user", user_id=user["_id"]))
+        
+        # Check username for profanity
+        if profanity.contains_profanity(desired_username):
+            flash("This username is unavailable. Please choose another.",
+                  category="error")
+            return redirect(url_for("edit_user", user_id=user["_id"]))
+
         # Ensure hashed password matches input
         if check_password_hash(
                     user["password"], request.form.get(
@@ -663,3 +694,4 @@ if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
             debug=True)
+    profanity.load_censor_words()
