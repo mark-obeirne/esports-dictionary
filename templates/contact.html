@@ -3,14 +3,13 @@
 {% block title%}Esports Dictionary | Contact Us{% endblock %}
 
 {% block content %}
-<div class="container registration-form">
+<div class="container contact-form-container">
   <h1 class="page-heading center-align blue-background off-white">Contact Us</h1>
   <p class="center-align dark-text">Want to get in touch with a suggestion, motivational comment, or to report a bug? We'd love to hear from you!</p>
   <div class="row">
     <form
-      class="col s12 m6 offset-m3"
+      class="col s12 m6 offset-m3 contact-form"
       method="POST"
-      action="{{ url_for('register') }}"
     >
       <div class="card-panel hoverable">
         <!--Username-->
@@ -18,13 +17,13 @@
           <div class="input-field col s12 register-field">
             <i class="fas fa-user-tag prefix"></i>
             <input
-              id="username"
-              name="username"
+              id="name"
+              name="name"
               type="text"
               class="validate"
               required
             />
-            <label for="username">Enter Your Username/Name</label>
+            <label for="name">Enter Your Username/Name</label>
           </div>
         </div>
         <!--Email-->
@@ -53,10 +52,22 @@
         <div class="row">
           <button
             type="submit"
-            class="col s12 btn-large blue-background blue-btn off-white text-shadow registerBtn"
+            class="col s12 btn-large blue-background blue-btn off-white text-shadow"
           >
-            <i class="fas fa-user-plus prefix"></i> Send
+            <i class="fas fa-paper-plane prefix"></i> Send Message
           </button>
         </div>
+    </div>
+    </form>
+  </div>
+  </div>
+{% endblock %}
 
+{% block script %}
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.1/dist/email.min.js"></script>
+  <script type="text/javascript">
+        (function(){
+           emailjs.init('user_x5XipwOnBUbTqmGeMORZI');
+        })();
+</script>
 {% endblock %}
