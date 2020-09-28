@@ -8,6 +8,7 @@ from bson.objectid import ObjectId
 from datetime import date
 from werkzeug.security import generate_password_hash, check_password_hash
 import re
+from better_profanity import profanity
 if os.path.exists("env.py"):
     import env
 
@@ -488,11 +489,19 @@ def register():
         # https://stackoverflow.com/questions/6266555/querying-mongodb-via-pymongo-in-case-insensitive-efficiently
         if existing_username:
             flash(Markup("Username already exists. "
-                         "Please choose another or <a href='login'>login</a>."),
+                         "Please choose another or "
+                         "<a href='login'>login</a>."),
                   category="error")
             # Credit for using Markup to display link in flash message:
             # https://pythonpedia.com/en/knowledge-base/21248718/how-to-flashing-a-message-with-link-using-flask-flash-
             return redirect(url_for("register"))
+
+        # Check username for profanity
+        if profanity.contains_profanity(desired_username):
+            flash("This username is unavailable. Please choose another.",
+                  category="error")
+            return redirect(url_for("register"))
+
         # Gather form data
         registration = {
             "username": request.form.get("username"),
@@ -678,3 +687,4 @@ if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
             debug=True)
+    profanity.load_censor_words()
