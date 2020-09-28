@@ -618,6 +618,13 @@ def edit_user(user_id):
                       "Please choose another.",
                       category="error")
                 return redirect(url_for("edit_user", user_id=user["_id"]))
+        
+        # Check username for profanity
+        if profanity.contains_profanity(desired_username):
+            flash("This username is unavailable. Please choose another.",
+                  category="error")
+            return redirect(url_for("edit_user", user_id=user["_id"]))
+
         # Ensure hashed password matches input
         if check_password_hash(
                     user["password"], request.form.get(
