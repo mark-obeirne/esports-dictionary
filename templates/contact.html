@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title%}Esports Dictionary | Contact Us{% endblock %}
+
+{% block content %}
+<div class="container registration-form">
+  <h1 class="page-heading center-align blue-background off-white">Contact Us</h1>
+  <p class="center-align dark-text">Want to get in touch with a suggestion, motivational comment, or to report a bug? We'd love to hear from you!</p>
+  <div class="row">
+    <form
+      class="col s12 m6 offset-m3"
+      method="POST"
+      action="{{ url_for('register') }}"
+    >
+      <div class="card-panel hoverable">
+        <!--Username-->
+        <div class="row">
+          <div class="input-field col s12 register-field">
+            <i class="fas fa-user-tag prefix"></i>
+            <input
+              id="username"
+              name="username"
+              type="text"
+              class="validate"
+              required
+            />
+            <label for="username">Enter Your Username/Name</label>
+          </div>
+        </div>
+        <!--Email-->
+        <div class="row">
+          <div class="input-field col s12 register-field">
+            <i class="fas fa-envelope prefix"></i>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              class="validate"
+              required
+            />
+            <label for="email">Enter Your Email</label>
+          </div>
+        </div>
+        <!--Message-->
+        <div class="row">
+          <div class="input-field col s12 register-field">
+            <i class="fas fa-comment-dots prefix"></i>
+            <textarea id="message" name="message" type="text" class="validate materialize-textarea" required></textarea>
+            <label for="message">Enter Message</label>
+          </div>
+        </div>
+        <!--Submit Button-->
+        <div class="row">
+          <button
+            type="submit"
+            class="col s12 btn-large blue-background blue-btn off-white text-shadow registerBtn"
+          >
+            <i class="fas fa-user-plus prefix"></i> Send
+          </button>
+        </div>
+
+{% endblock %}

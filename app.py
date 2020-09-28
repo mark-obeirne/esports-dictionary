@@ -618,7 +618,7 @@ def edit_user(user_id):
                       "Please choose another.",
                       category="error")
                 return redirect(url_for("edit_user", user_id=user["_id"]))
-        
+
         # Check username for profanity
         if profanity.contains_profanity(desired_username):
             flash("This username is unavailable. Please choose another.",
@@ -679,6 +679,11 @@ def edit_user(user_id):
         flash(Markup("Please <a href='login'>"
                      "login</a> to edit your details"), category="error")
         return redirect(url_for("get_terms"))
+
+
+@app.route("/contact", methods=["GET", "POST"])
+def contact():
+    return render_template("contact.html")
 
 
 @app.errorhandler(404)
