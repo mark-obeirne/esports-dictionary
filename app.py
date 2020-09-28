@@ -513,8 +513,13 @@ def register():
         flash(Markup("Thanks for signing up, " + session['user']),
               category="success")
         return redirect(url_for("get_terms"))
-
-    return render_template("register.html")
+    try:
+        if session["user"]:
+            flash("You are already registered and logged in",
+                  category="error")
+            return redirect(url_for("get_terms"))
+    except KeyError:
+        return render_template("register.html")
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -551,7 +556,13 @@ def login():
             flash("Username and/or password incorrect", category="error")
             return redirect(url_for("login"))
 
-    return render_template("login.html")
+    try:
+        if session["user"]:
+            flash("You are already logged in",
+                  category="error")
+            return redirect(url_for("get_terms"))
+    except KeyError:
+        return render_template("login.html")
 
 
 @app.route("/logout")
