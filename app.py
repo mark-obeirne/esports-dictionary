@@ -14,6 +14,8 @@ if os.path.exists("env.py"):
 
 # Create Flask instance
 app = Flask(__name__)
+
+# App Configs
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
@@ -683,6 +685,9 @@ def edit_user(user_id):
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
+    if request.method == "POST":
+        flash("Thanks for your message", category="success")
+        return redirect(url_for("get_terms"))
     return render_template("contact.html")
 
 
