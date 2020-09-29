@@ -1,26 +1,14 @@
-{% extends "base.html" %} 
-{% block title %}Esports Dictionary | Log In{% endblock %}
-{% block content %}
+{% extends "base.html" %} {% block title %}Esports Dictionary | Log In{% endblock %} {% block content %}
 <div class="container login-form">
   <h1 class="page-heading center-align blue-background off-white">Log In</h1>
   <div class="row">
-    <form
-      class="col s12 m6 offset-m3"
-      method="POST"
-      action="{{ url_for('login') }}"
-    >
+    <form class="col s12 m6 offset-m3" method="POST" action="{{ url_for('login') }}">
       <div class="card-panel hoverable">
         <!--Username-->
         <div class="row">
           <div class="input-field col s12 register-field">
             <i class="fas fa-user prefix"></i>
-            <input
-              id="username"
-              name="username"
-              type="text"
-              class="validate"
-              required
-            />
+            <input id="username" name="username" type="text" class="validate" required />
             <label for="username">Enter Your Username</label>
           </div>
         </div>
@@ -28,24 +16,13 @@
         <div class="row">
           <div class="input-field col s12 register-field">
             <i class="fas fa-lock prefix"></i>
-            <input
-              id="password"
-              type="password"
-              name="password"
-              class="validate"
-              required
-            />
+            <input id="password" type="password" name="password" class="validate" required />
             <label for="password">Password</label>
           </div>
         </div>
         <!--Log In Button-->
         <div class="row">
-          <button
-            type="submit"
-            class="col s12 btn-large blue-background blue-btn off-white text-shadow loginBtn"
-          >
-            <i class="fas fa-sign-in-alt"></i> Log In
-          </button>
+          <button type="submit" class="col s12 btn-large blue-background blue-btn off-white text-shadow loginBtn"><i class="fas fa-sign-in-alt"></i> Log In</button>
         </div>
         <!--Invite Visitor To Register-->
         <div class="row">
@@ -60,4 +37,4 @@
     </form>
   </div>
 </div>
-  {% endblock %}
+{% endblock %}

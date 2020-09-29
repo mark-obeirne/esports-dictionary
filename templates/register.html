@@ -1,29 +1,14 @@
-{% extends "base.html" %} 
-{% block title %}Esports Dictionary | Register{% endblock %}
-{% block content %}
+{% extends "base.html" %} {% block title %}Esports Dictionary | Register{% endblock %} {% block content %}
 <div class="container registration-form">
   <h1 class="page-heading center-align blue-background off-white">Register</h1>
   <div class="row">
-    <form
-      class="col s12 m6 offset-m3"
-      method="POST"
-      action="{{ url_for('register') }}"
-    >
+    <form class="col s12 m6 offset-m3" method="POST" action="{{ url_for('register') }}">
       <div class="card-panel hoverable">
         <!--Username-->
         <div class="row">
           <div class="input-field col s12 register-field">
             <i class="fas fa-user-tag prefix"></i>
-            <input
-              id="username"
-              name="username"
-              type="text"
-              pattern="^[a-zA-Z0-9]{4,15}$"
-              minlength="4"
-              maxlength="15"
-              class="validate"
-              required
-            />
+            <input id="username" name="username" type="text" pattern="^[a-zA-Z0-9]{4,15}$" minlength="4" maxlength="15" class="validate" required />
             <label for="username">Enter Your Username</label>
             <span class="sublabel dark-text">4-15 characters</span>
           </div>
@@ -32,40 +17,18 @@
         <div class="row">
           <div class="input-field col s12 register-field">
             <i class="fas fa-lock prefix"></i>
-            <input
-              id="password"
-              type="password"
-              name="password"
-              pattern="^[a-zA-Z0-9]{6,15}$"
-              minlength="6"
-              maxlength="15"
-              class="validate"
-              required
-            />
+            <input id="password" type="password" name="password" pattern="^[a-zA-Z0-9]{6,15}$" minlength="6" maxlength="15" class="validate" required />
             <label for="password">Password</label>
-            <span class="sublabel dark-text"
-              >Password must be 6-15 characters</span
-            >
+            <span class="sublabel dark-text">Password must be 6-15 characters</span>
           </div>
         </div>
         <!--Confirm Password-->
         <div class="row">
           <div class="input-field col s12">
             <i class="fas fa-check-circle prefix"></i>
-            <input
-              id="confirm-password"
-              type="password"
-              name="confirm-password"
-              pattern="^[a-zA-Z0-9]{6,15}$"
-              minlength="6"
-              maxlength="15"
-              class="validate"
-              required
-            />
+            <input id="confirm-password" type="password" name="confirm-password" pattern="^[a-zA-Z0-9]{6,15}$" minlength="6" maxlength="15" class="validate" required />
             <label for="confirm-password">Confirm Password</label>
-            <span class="sublabel dark-text confirm-warning hidden"
-              >Passwords do not match</span
-            >
+            <span class="sublabel dark-text confirm-warning hidden">Passwords do not match</span>
           </div>
         </div>
         <!--Optional User Profile Fields-->
@@ -73,9 +36,7 @@
           <h2 class="heading uppercase">
             Optional Profile Details
           </h2>
-          <span class="small-text optional-info italic"
-            >These details will be shared on your public profile</span
-          >
+          <span class="small-text optional-info italic">These details will be shared on your public profile</span>
         </div>
         <div class="row">
           <!--Favourite Games-->
@@ -90,19 +51,12 @@
           <div class="input-field col s12">
             <i class="fas fa-users prefix"></i>
             <input id="fav_competitors" name="fav_competitors" type="text" />
-            <label for="fav_competitors"
-              >Favourite Esports Team/Player</label
-            >
+            <label for="fav_competitors">Favourite Esports Team/Player</label>
           </div>
         </div>
         <!--Register Button-->
         <div class="row">
-          <button
-            type="submit"
-            class="col s12 btn-large blue-background blue-btn off-white text-shadow registerBtn"
-          >
-            <i class="fas fa-user-plus prefix"></i> Register
-          </button>
+          <button type="submit" class="col s12 btn-large blue-background blue-btn off-white text-shadow registerBtn"><i class="fas fa-user-plus prefix"></i> Register</button>
         </div>
         <!--Invite User To Log In-->
         <div class="row">

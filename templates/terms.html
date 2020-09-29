@@ -1,480 +1,352 @@
-{% extends "base.html" %}  
-{% block title %}Esports Dictionary{% endblock %}
-
-{% block content %}
+{% extends "base.html" %} {% block title %}Esports Dictionary{% endblock %} {% block content %}
 <!--Image Jumbotron-->
 <div class="full-container">
-	<div class="jumbotron-overlay">&nbsp;</div>
-	<div class="row">
-		<div class="col s12 spotlight valign-wrapper">
-			<div class="row">
-				<div class="col s8 offset-s1 spotlight-content">
-					{% if session.user %}
-					<a href="{{ url_for('submit_definition') }}"
-						class="btn submit-def red-btn spotlight-btn text-shadow"><i class="fas fa-plus-circle"></i> Add Term</a>
-					<p class="benefits small-text off-white">
-						Submit definitions for popular esports terms and earn points
-					</p>
-					{% else %}
-					<a href="{{ url_for('register') }}"
-						class="btn register-btn red-btn spotlight-btn text-shadow"><i class="fas fa-user-plus"></i> Register</a>
-					<a href="{{ url_for('login') }}"
-						class="btn login-btn blue-btn blue-background spotlight-btn text-shadow"><i class="fas fa-sign-in-alt"></i>
-						Log in</a>
-					<p class="benefits small-text off-white">
-						Register or log in to add definitions and rate submissions
-					</p>
-					{% endif %}
-				</div>
-			</div>
-		</div>
-	</div>
+  <div class="jumbotron-overlay">&nbsp;</div>
+  <div class="row">
+    <div class="col s12 spotlight valign-wrapper">
+      <div class="row">
+        <div class="col s8 offset-s1 spotlight-content">
+          {% if session.user %}
+          <a href="{{ url_for('submit_definition') }}" class="btn submit-def red-btn spotlight-btn text-shadow"><i class="fas fa-plus-circle"></i> Add Term</a>
+          <p class="benefits small-text off-white">
+            Submit definitions for popular esports terms and earn points
+          </p>
+          {% else %}
+          <a href="{{ url_for('register') }}" class="btn register-btn red-btn spotlight-btn text-shadow"><i class="fas fa-user-plus"></i> Register</a>
+          <a href="{{ url_for('login') }}" class="btn login-btn blue-btn blue-background spotlight-btn text-shadow"><i class="fas fa-sign-in-alt"></i> Log in</a>
+          <p class="benefits small-text off-white">
+            Register or log in to add definitions and rate submissions
+          </p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="row">
-	<!--Search/Filter Section-->
-	<div class="sticky">
-		<div class="col s12 l5 push-l7 search-section">
-            <h2 class="page-heading center-align blue-background off-white">Search Terms</h2>
-			<!--Custom Search-->
-            <div class="search-filters">
-			<div class="search">
-            	<input
-          type="search"
-          class="searchbar"
-          placeholder="Search for term"
-        /><span id="clear">x</span>
-            </div>
-				<!--Select Game Dropdown-->
-                <div class="input-field">
-					<select id="game-filter" name="game-filter" class="game-filter">
+  <!--Search/Filter Section-->
+  <div class="sticky">
+    <div class="col s12 l5 push-l7 search-section">
+      <h2 class="page-heading center-align blue-background off-white">Search Terms</h2>
+      <!--Custom Search-->
+      <div class="search-filters">
+        <div class="search"><input type="search" class="searchbar" placeholder="Search for term" /><span id="clear">x</span></div>
+        <!--Select Game Dropdown-->
+        <div class="input-field">
+          <select id="game-filter" name="game-filter" class="game-filter">
             <option value="" disabled selected>Choose game</option>
             {% for game in games %}
             <option value="{{ game.game_name }}">{{ game.game_name }}</option>
             {% endfor %}
           </select>
-					<label for="game-filter">Filter by game</label>
-				</div>
-				<div class="padded-btns center-align hide-on-large-only">
-					<!--Alphabetical Sidebar-->
-                    <span
-            class="btn-small alpha-filter blue-btn blue-background sidenav-trigger text-shadow"
-            data-target="alphabet-filter"
-            >Filter alphabetically</span>
-				<!--Clear Filters Button-->
-                <div class="clear-filter">
-					<span class="btn-small clear-btn red-btn text-shadow">Clear Filters</span>
-                </div>
-                </div>
-				
-				<div class="col l8 offset-l2 hide-on-med-and-down show-on-large center-align">
-					<!--Alphabetical Buttons Acting As Filters-->
-                    <span class="heading center-align block">Filter alphabetically</span>
-                    <button
-            class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow"
-          >
+          <label for="game-filter">Filter by game</label>
+        </div>
+        <div class="padded-btns center-align hide-on-large-only">
+          <!--Alphabetical Sidebar-->
+          <span class="btn-small alpha-filter blue-btn blue-background sidenav-trigger text-shadow" data-target="alphabet-filter">Filter alphabetically</span>
+          <!--Clear Filters Button-->
+          <div class="clear-filter">
+            <span class="btn-small clear-btn red-btn text-shadow">Clear Filters</span>
+          </div>
+        </div>
+
+        <div class="col l8 offset-l2 hide-on-med-and-down show-on-large center-align">
+          <!--Alphabetical Buttons Acting As Filters-->
+          <span class="heading center-align block">Filter alphabetically</span>
+          <button class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow">
             A
           </button>
-					<button
-            class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow"
-          >
+          <button class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow">
             B
           </button>
-					<button
-            class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow"
-          >
+          <button class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow">
             C
           </button>
-					<button
-            class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow"
-          >
+          <button class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow">
             D
           </button>
-					<button
-            class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow"
-          >
+          <button class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow">
             E
           </button>
-					<button
-            class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow"
-          >
+          <button class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow">
             F
           </button>
-					<button
-            class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow"
-          >
+          <button class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow">
             G
           </button>
-					<button
-            class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow"
-          >
+          <button class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow">
             H
           </button>
-					<button
-            class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow"
-          >
+          <button class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow">
             I
           </button>
-					<button
-            class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow"
-          >
+          <button class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow">
             J
           </button>
-					<button
-            class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow"
-          >
+          <button class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow">
             K
           </button>
-					<button
-            class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow"
-          >
+          <button class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow">
             L
           </button>
-					<button
-            class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow"
-          >
+          <button class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow">
             M
           </button>
-					<button
-            class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow"
-          >
+          <button class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow">
             N
           </button>
-					<button
-            class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow"
-          >
+          <button class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow">
             O
           </button>
-					<button
-            class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow"
-          >
+          <button class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow">
             P
           </button>
-					<button
-            class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow"
-          >
+          <button class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow">
             Q
           </button>
-					<button
-            class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow"
-          >
+          <button class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow">
             R
           </button>
-					<button
-            class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow"
-          >
+          <button class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow">
             S
           </button>
-					<button
-            class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow"
-          >
+          <button class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow">
             T
           </button>
-					<button
-            class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow"
-          >
+          <button class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow">
             U
           </button>
-					<button
-            class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow"
-          >
+          <button class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow">
             V
           </button>
-					<button
-            class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow"
-          >
+          <button class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow">
             W
           </button>
-					<button
-            class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow"
-          >
+          <button class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow">
             X
           </button>
-					<button
-            class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow"
-          >
+          <button class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow">
             Y
           </button>
-					<button
-            class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow"
-          >
+          <button class="alpha-btns blue-btn blue-background off-white alphabet-letter text-shadow">
             Z
           </button>
-			<div class="clear-filter">
-                <span class="btn-small clear-btn red-btn text-shadow">Clear Filters</span>
-            </div>
-            	</div>
-			
-            </div>
+          <div class="clear-filter">
+            <span class="btn-small clear-btn red-btn text-shadow">Clear Filters</span>
+          </div>
         </div>
-	</div>
-	<!--Alphabetical Filter Sidebar On Mobile/Tablet-->
-	<ul id="alphabet-filter" class="sidenav">
-		<li><a class="sidenav-close" href="#!">Close</a></li>
-		<li>
-			<span
-        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
-        >A</span>
-					</li>
-					<li>
-						<span
-        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
-        >B</span>
-					</li>
-					<li>
-						<span
-        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
-        >C</span>
-					</li>
-					<li>
-						<span
-        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
-        >D</span>
-					</li>
-					<li>
-						<span
-        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
-        >E</span>
-					</li>
-					<li>
-						<span
-        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
-        >F</span>
-					</li>
-					<li>
-						<span
-        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
-        >G</span>
-					</li>
-					<li>
-						<span
-        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
-        >H</span>
-					</li>
-					<li>
-						<span
-        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
-        >I</span>
-					</li>
-					<li>
-						<span
-        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
-        >J</span>
-					</li>
-					<li>
-						<span
-        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
-        >K</span>
-					</li>
-					<li>
-						<span
-        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
-        >L</span>
-					</li>
-					<li>
-						<span
-        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
-        >M</span>
-					</li>
-					<li>
-						<span
-        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
-        >N</span>
-					</li>
-					<li>
-						<span
-        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
-        >O</span>
-					</li>
-					<li>
-						<span
-        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
-        >P</span>
-					</li>
-					<li>
-						<span
-        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
-        >Q</span>
-					</li>
-					<li>
-						<span
-        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
-        >R</span>
-					</li>
-					<li>
-						<span
-        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
-        >S</span>
-					</li>
-					<li>
-						<span
-        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
-        >T</span>
-					</li>
-					<li>
-						<span
-        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
-        >U</span>
-					</li>
-					<li>
-						<span
-        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
-        >V</span>
-					</li>
-					<li>
-						<span
-        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
-        >W</span>
-					</li>
-					<li>
-						<span
-        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
-        >X</span>
-					</li>
-					<li>
-						<span
-        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
-        >Y</span>
-					</li>
-					<li>
-						<span
-        class="sidenav-close alphabet-letter blue-btn blue-background off-white"
-        >Z</span>
-					</li>
-					</ul>
+      </div>
+    </div>
+  </div>
+  <!--Alphabetical Filter Sidebar On Mobile/Tablet-->
+  <ul id="alphabet-filter" class="sidenav">
+    <li><a class="sidenav-close" href="#!">Close</a></li>
+    <li>
+      <span class="sidenav-close alphabet-letter blue-btn blue-background off-white">A</span>
+    </li>
+    <li>
+      <span class="sidenav-close alphabet-letter blue-btn blue-background off-white">B</span>
+    </li>
+    <li>
+      <span class="sidenav-close alphabet-letter blue-btn blue-background off-white">C</span>
+    </li>
+    <li>
+      <span class="sidenav-close alphabet-letter blue-btn blue-background off-white">D</span>
+    </li>
+    <li>
+      <span class="sidenav-close alphabet-letter blue-btn blue-background off-white">E</span>
+    </li>
+    <li>
+      <span class="sidenav-close alphabet-letter blue-btn blue-background off-white">F</span>
+    </li>
+    <li>
+      <span class="sidenav-close alphabet-letter blue-btn blue-background off-white">G</span>
+    </li>
+    <li>
+      <span class="sidenav-close alphabet-letter blue-btn blue-background off-white">H</span>
+    </li>
+    <li>
+      <span class="sidenav-close alphabet-letter blue-btn blue-background off-white">I</span>
+    </li>
+    <li>
+      <span class="sidenav-close alphabet-letter blue-btn blue-background off-white">J</span>
+    </li>
+    <li>
+      <span class="sidenav-close alphabet-letter blue-btn blue-background off-white">K</span>
+    </li>
+    <li>
+      <span class="sidenav-close alphabet-letter blue-btn blue-background off-white">L</span>
+    </li>
+    <li>
+      <span class="sidenav-close alphabet-letter blue-btn blue-background off-white">M</span>
+    </li>
+    <li>
+      <span class="sidenav-close alphabet-letter blue-btn blue-background off-white">N</span>
+    </li>
+    <li>
+      <span class="sidenav-close alphabet-letter blue-btn blue-background off-white">O</span>
+    </li>
+    <li>
+      <span class="sidenav-close alphabet-letter blue-btn blue-background off-white">P</span>
+    </li>
+    <li>
+      <span class="sidenav-close alphabet-letter blue-btn blue-background off-white">Q</span>
+    </li>
+    <li>
+      <span class="sidenav-close alphabet-letter blue-btn blue-background off-white">R</span>
+    </li>
+    <li>
+      <span class="sidenav-close alphabet-letter blue-btn blue-background off-white">S</span>
+    </li>
+    <li>
+      <span class="sidenav-close alphabet-letter blue-btn blue-background off-white">T</span>
+    </li>
+    <li>
+      <span class="sidenav-close alphabet-letter blue-btn blue-background off-white">U</span>
+    </li>
+    <li>
+      <span class="sidenav-close alphabet-letter blue-btn blue-background off-white">V</span>
+    </li>
+    <li>
+      <span class="sidenav-close alphabet-letter blue-btn blue-background off-white">W</span>
+    </li>
+    <li>
+      <span class="sidenav-close alphabet-letter blue-btn blue-background off-white">X</span>
+    </li>
+    <li>
+      <span class="sidenav-close alphabet-letter blue-btn blue-background off-white">Y</span>
+    </li>
+    <li>
+      <span class="sidenav-close alphabet-letter blue-btn blue-background off-white">Z</span>
+    </li>
+  </ul>
 
-					<!--Display Definitions-->
-					<div class="col s12 l7 pull-l5">
-						<h2 class="page-heading center-align blue-background off-white">Definitions</h2>
-                        <div class="container">
-							<ul class="collapsible">
-								{% for term in terms %}
-								{% set ns = namespace(username="") %}
-								<li class="term-container">
-									<div class="collapsible-header hoverable dark-background off-white">
-										<!--Term Rating-->
-                                        <!--Checks if user is logged in and displays their current ratings given to term-->
-										<div class="col s3 rating-container center-align">
-											{% if session["user"] %}
-											{% if userid in term.upvoted_by %}
-											<span class="block rating-arrow uparrow active"><i class="fas fa-arrow-alt-circle-up" data-value="{{ term._id }}" data-user="{{ session['user'] }}"></i></span>
-											<p class="term-rating">{{ term.rating }}</p>
-											<span class="block rating-arrow downarrow inactive"><i class="fas fa-arrow-alt-circle-down" data-value="{{ term._id }}" data-user="{{ session['user'] }}"></i></span>
-											{% elif userid in term.downvoted_by %}
-											<span class="block rating-arrow uparrow inactive"><i class="fas fa-arrow-alt-circle-up" data-value="{{ term._id }}" data-user="{{ session['user'] }}"></i></span>
-											<p class="term-rating">{{ term.rating }}</p>
-											<span class="block rating-arrow downarrow active"><i class="fas fa-arrow-alt-circle-down" data-value="{{ term._id }}" data-user="{{ session['user'] }}"></i></span>
-											{% else %}
-											<span class="block rating-arrow uparrow inactive"><i class="fas fa-arrow-alt-circle-up" data-value="{{ term._id }}" data-user="{{ session['user'] }}"></i></span>
-											<p class="term-rating">{{ term.rating }}</p>
-											<span class="block rating-arrow downarrow inactive"><i class="fas fa-arrow-alt-circle-down" data-value="{{ term._id }}" data-user="{{ session['user'] }}"></i></span>
-											{% endif %}
-											{% else %}
-											<span class="block modal-uparrow modal-arrow inactive"><i class="fas fa-arrow-alt-circle-up"></i></span>
-											<p class="term-rating">{{ term.rating }}</p>
-											<span class="block modal-downarrow modal-arrow inactive"><i class="fas fa-arrow-alt-circle-down"></i></span>
-											{% endif %}
-										</div>
-										<div class="col s8 term-section">
-											<!--Term Definitions-->
-											<span class="term strong">{{ term.term_header}}</span>
-											<div class="divider"></div>
-											{% for game in games %} {% if game._id == term.game_fk %}
-											<span class="game-name small-text block">{{ game.game_name }}</span>
-											{% endif %} {% endfor %}
-											<p class="definition">{{ term.short_definition }}</p>
-											{% for user in users %} {% if user._id == term.submitted_by %}
-											{% set ns.username = user.username %}
-                                            <!--Display Username-->
-											<span class="username block italic"
-                ><a href="{{ url_for('profile', username=user.username) }}" class="off-white underline submitter tooltipped" data-position="right" data-tooltip="<span class='profile-tooltip'>Click link to view profile</span>"><i class="fas fa-id-card"></i> Submitted by {{ user.username }}</a></span>
-											{% endif %} {% endfor %}
-										</div>
-                                        <div class="col s1 carets valign-wrapper">
-                                            <i class="fas fa-caret-square-down"></i>
-                                        </div>
-									</div>
-                                    <!--Collapsible For Added Details-->
-									<div class="collapsible-body dark-text">
-										{% if term.long_description %}
-										<span class="strong">Description</span>
-										<p>{{ term.long_description }}</p>
-										{% else %}
-										<span class="strong">Description:</span>
-                                        <p>{{ term.short_definition }}</p>
-										{% endif %} 
-										{% if term.youtube_link %} 
-                                        <div>
-											<a href="{{ term.youtube_link }}" target="_blank" rel="noopener">Watch video on YouTube <i class="fas fa-external-link-alt prefix"></i></a> 
-										</div>
-                                        {% endif %}
-									</div>
-									<div class="admin-btns padded-btns dark-background center-align">
-										{% if ns.username == session["user"] or session["admin"] %}
-										<!--Buttons for original submitter or an admin user to edit or delete a definition-->
-                                        <span class="btn-small blue-background blue-btn text-shadow"
-              ><a
-                href="{{ url_for('edit_definition', term_id=term._id) }}"
-                class="off-white"
-                ><i class="fas fa-edit"></i> Edit</a
-              ></span>
-										<span
-              class="btn-small red-btn off-white term-modal-btn text-shadow"
-              id="modal-btn"
-              data-id="{{term._id}}"
-              ><i class="fas fa-trash"></i> Delete</span>
-										{% endif %}
-									</div>
-								</li>
-								{% endfor %}
-							</ul>
-                            <div class="blank-search hidden">
-                                {% if session["user"] %}
-                                <h4>No Terms Found</h4>
-                                <p>Sorry! We couldn't find any terms that fit your search. <a href="{{ url_for('submit_definition') }}">Can you submit a definition to help others in the future?</a></p>
-                                {% else %}
-                                <h4>No Terms Found</h4>
-                                <p>Sorry! We couldn't find any terms that fit your search. If you can help, why not <a href="{{ url_for('login') }}">log in</a> or <a href="{{ url_for('register') }}">register</a> and submit a definition.</p>
-                                {% endif %}
-                            </div>
-						</div>
-						<!--Confirm Term Deletion Modal-->
-						<div class="delete-term-modal modal-target hidden" id="delete-term-modal">
-							<div class="modal-content center-align">
-								<h3 class="dark-text confirm-delete modal-heading"><span class="warning"><i class="fas fa-exclamation-triangle"></i></span> Delete Term?</h3>
-								<p>
-									Are you sure you wish to delete the definition and all related data
-									for this term?
-								</p>
-								<div class="padded-btns center-align">
-									<span class="btn-small blue-background blue-btn close-modal text-shadow"
-            ><i class="fas fa-window-close"></i> Cancel</span>
-									<span class="btn-small red-btn off-white text-shadow"
-            ><a class="modal-delete-btn off-white" href=""><i class="fas fa-check-square"></i> Delete</a></span>
-								</div>
-							</div>
-						</div>
-						<!--Login Prompt Modal-->
-						<div class="login-modal modal-target hidden" id="login-modal">
-							<div class="modal-content">
-								<div class="close right-align">
-									<a class="close-prompt dark-text" href="#!">X</a>
-								</div>
-								<div class="divider"></div>
-								<div class="center-align">
-									<h3 class="dark-text confirm-delete modal-heading">Register / Log in</h3>
-									<p>
-										Register or log in to join a community of esports enthusiasts who share and rate
-										definitions of terms and gaming lingo.
-									</p>
-									<div class="padded-btns center-align">
-										<span class="btn-small red-btn off-white login-modal-button text-shadow"
-            ><a class="off-white" href="{{ url_for('register') }}"><i class="fas fa-user-plus"></i> Register</a></span>
-										<span class="btn-small blue-background blue-btn login-modal-button text-shadow"
-            ><a class="off-white" href="{{ url_for('login') }}"><i class="fas fa-sign-in-alt"></i> Log in</a></span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-                </div>
-					{% endblock %}
+  <!--Display Definitions-->
+  <div class="col s12 l7 pull-l5">
+    <h2 class="page-heading center-align blue-background off-white">Definitions</h2>
+    <div class="container">
+      <ul class="collapsible">
+        {% for term in terms %} {% set ns = namespace(username="") %}
+        <li class="term-container">
+          <div class="collapsible-header hoverable dark-background off-white">
+            <!--Term Rating-->
+            <!--Checks if user is logged in and displays their current ratings given to term-->
+            <div class="col s3 rating-container center-align">
+              {% if session["user"] %} {% if userid in term.upvoted_by %}
+              <span class="block rating-arrow uparrow active"><i class="fas fa-arrow-alt-circle-up" data-value="{{ term._id }}" data-user="{{ session['user'] }}"></i></span>
+              <p class="term-rating">{{ term.rating }}</p>
+              <span class="block rating-arrow downarrow inactive"><i class="fas fa-arrow-alt-circle-down" data-value="{{ term._id }}" data-user="{{ session['user'] }}"></i></span>
+              {% elif userid in term.downvoted_by %}
+              <span class="block rating-arrow uparrow inactive"><i class="fas fa-arrow-alt-circle-up" data-value="{{ term._id }}" data-user="{{ session['user'] }}"></i></span>
+              <p class="term-rating">{{ term.rating }}</p>
+              <span class="block rating-arrow downarrow active"><i class="fas fa-arrow-alt-circle-down" data-value="{{ term._id }}" data-user="{{ session['user'] }}"></i></span>
+              {% else %}
+              <span class="block rating-arrow uparrow inactive"><i class="fas fa-arrow-alt-circle-up" data-value="{{ term._id }}" data-user="{{ session['user'] }}"></i></span>
+              <p class="term-rating">{{ term.rating }}</p>
+              <span class="block rating-arrow downarrow inactive"><i class="fas fa-arrow-alt-circle-down" data-value="{{ term._id }}" data-user="{{ session['user'] }}"></i></span>
+              {% endif %} {% else %}
+              <span class="block modal-uparrow modal-arrow inactive"><i class="fas fa-arrow-alt-circle-up"></i></span>
+              <p class="term-rating">{{ term.rating }}</p>
+              <span class="block modal-downarrow modal-arrow inactive"><i class="fas fa-arrow-alt-circle-down"></i></span>
+              {% endif %}
+            </div>
+            <div class="col s8 term-section">
+              <!--Term Definitions-->
+              <span class="term strong">{{ term.term_header}}</span>
+              <div class="divider"></div>
+              {% for game in games %} {% if game._id == term.game_fk %}
+              <span class="game-name small-text block">{{ game.game_name }}</span>
+              {% endif %} {% endfor %}
+              <p class="definition">{{ term.short_definition }}</p>
+              {% for user in users %} {% if user._id == term.submitted_by %} {% set ns.username = user.username %}
+              <!--Display Username-->
+              <span class="username block italic">
+                <a href="{{ url_for('profile', username=user.username) }}" class="off-white underline submitter tooltipped" data-position="right" data-tooltip="<span class='profile-tooltip'>Click link to view profile</span>">
+                  <i class="fas fa-id-card"></i> Submitted by {{ user.username }}
+                </a>
+              </span>
+              {% endif %} {% endfor %}
+            </div>
+            <div class="col s1 carets valign-wrapper">
+              <i class="fas fa-caret-square-down"></i>
+            </div>
+          </div>
+          <!--Collapsible For Added Details-->
+          <div class="collapsible-body dark-text">
+            {% if term.long_description %}
+            <span class="strong">Description</span>
+            <p>{{ term.long_description }}</p>
+            {% else %}
+            <span class="strong">Description:</span>
+            <p>{{ term.short_definition }}</p>
+            {% endif %} {% if term.youtube_link %}
+            <div>
+              <a href="{{ term.youtube_link }}" target="_blank" rel="noopener">Watch video on YouTube <i class="fas fa-external-link-alt prefix"></i></a>
+            </div>
+            {% endif %}
+          </div>
+          <div class="admin-btns padded-btns dark-background center-align">
+            {% if ns.username == session["user"] or session["admin"] %}
+            <!--Buttons for original submitter or an admin user to edit or delete a definition-->
+            <span class="btn-small blue-background blue-btn text-shadow">
+              <a href="{{ url_for('edit_definition', term_id=term._id) }}" class="off-white"><i class="fas fa-edit"></i> Edit</a>
+            </span>
+            <span class="btn-small red-btn off-white term-modal-btn text-shadow" id="modal-btn" data-id="{{term._id}}"><i class="fas fa-trash"></i> Delete</span>
+            {% endif %}
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+      <div class="blank-search hidden">
+        {% if session["user"] %}
+        <h4>No Terms Found</h4>
+        <p>Sorry! We couldn't find any terms that fit your search. <a href="{{ url_for('submit_definition') }}">Can you submit a definition to help others in the future?</a></p>
+        {% else %}
+        <h4>No Terms Found</h4>
+        <p>Sorry! We couldn't find any terms that fit your search. If you can help, why not <a href="{{ url_for('login') }}">log in</a> or <a href="{{ url_for('register') }}">register</a> and submit a definition.</p>
+        {% endif %}
+      </div>
+    </div>
+    <!--Confirm Term Deletion Modal-->
+    <div class="delete-term-modal modal-target hidden" id="delete-term-modal">
+      <div class="modal-content center-align">
+        <h3 class="dark-text confirm-delete modal-heading">
+          <span class="warning"><i class="fas fa-exclamation-triangle"></i></span> Delete Term?
+        </h3>
+        <p>
+          Are you sure you wish to delete the definition and all related data for this term?
+        </p>
+        <div class="padded-btns center-align">
+          <span class="btn-small blue-background blue-btn close-modal text-shadow"><i class="fas fa-window-close"></i> Cancel</span>
+          <span class="btn-small red-btn off-white text-shadow">
+            <a class="modal-delete-btn off-white" href=""><i class="fas fa-check-square"></i> Delete</a>
+          </span>
+        </div>
+      </div>
+    </div>
+    <!--Login Prompt Modal-->
+    <div class="login-modal modal-target hidden" id="login-modal">
+      <div class="modal-content">
+        <div class="close right-align">
+          <a class="close-prompt dark-text" href="#!">X</a>
+        </div>
+        <div class="divider"></div>
+        <div class="center-align">
+          <h3 class="dark-text confirm-delete modal-heading">Register / Log in</h3>
+          <p>
+            Register or log in to join a community of esports enthusiasts who share and rate definitions of terms and gaming lingo.
+          </p>
+          <div class="padded-btns center-align">
+            <span class="btn-small red-btn off-white login-modal-button text-shadow">
+              <a class="off-white" href="{{ url_for('register') }}"><i class="fas fa-user-plus"></i> Register</a>
+            </span>
+            <span class="btn-small blue-background blue-btn login-modal-button text-shadow">
+              <a class="off-white" href="{{ url_for('login') }}"><i class="fas fa-sign-in-alt"></i> Log in</a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

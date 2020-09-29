@@ -1,141 +1,118 @@
-{% extends "base.html" %} {% block title %}Esports Dictionary | {{user.username}}'s Profile{%
-endblock %} {% block content %}
+{% extends "base.html" %} {% block title %}Esports Dictionary | {{user.username}}'s Profile{% endblock %} {% block content %}
 <div class="row profile">
   <div class="col s12 l4 user-details-section white-bg">
     <h1 class="page-heading center-align blue-background off-white">{{ user.username }}</h1>
     <div class="divider"></div>
     <div class="rating-section center-align">
-    <h2 class="user-rating block">User Rating: <span class="total-rating">{{ user.total_rating }}</span></h2>
-    {% if user.is_admin %}
-    <span class="user-stars warning block large-text"></span>
-    {% else %}
-    <span class="user-stars block large-text"></span>
-    {% endif %}
+      <h2 class="user-rating block">User Rating: <span class="total-rating">{{ user.total_rating }}</span></h2>
+      {% if user.is_admin %}
+      <span class="user-stars warning block large-text"></span>
+      {% else %}
+      <span class="user-stars block large-text"></span>
+      {% endif %}
     </div>
-    {% if user.fav_games %} 
+    {% if user.fav_games %}
     <div class="fav-games">
-        <h3><i class="fas fa-gamepad"></i> Favourite Games</h3>
-        <p>{{ user.fav_games }}</p>
+      <h3><i class="fas fa-gamepad"></i> Favourite Games</h3>
+      <p>{{ user.fav_games }}</p>
     </div>
-    {% endif %}
-    {% if user.fav_competitors %} 
+    {% endif %} {% if user.fav_competitors %}
     <div class="fav-competitors">
-        <h3><i class="fas fa-fist-raised"></i> Supports</h3>
-        <p>{{ user.fav_competitors }}</p>
+      <h3><i class="fas fa-fist-raised"></i> Supports</h3>
+      <p>{{ user.fav_competitors }}</p>
     </div>
-    {% endif %}
-    {% if user.username == session["user"] %}
+    {% endif %} {% if user.username == session["user"] %}
     <div class="divider"></div>
     <div class="edit center-align">
-    <span class="btn-small blue-background blue-btn"
-              ><a
-                href="{{ url_for('edit_user', user_id=user._id) }}"
-                class="off-white"
-                ><i class="fas fa-edit"></i> Edit User Details</a
-              ></span>
+      <span class="btn-small blue-background blue-btn">
+        <a href="{{ url_for('edit_user', user_id=user._id) }}" class="off-white"><i class="fas fa-edit"></i> Edit User Details</a>
+      </span>
     </div>
     {% endif %}
   </div>
   {% if toprated %}
   <div class="col s12 l8 user-submissions padded-section">
     <h2 class="page-heading center-align blue-background off-white">Top Rated Definition</h2>
-      <ul class="collapsible">
-        <li class="term-container">
-          <div class="collapsible-header top-rated hoverable dark-text">
-            <div class="col s2 rating-container profile-rating valign-wrapper">
-              <p class="term-rating">{{ toprated[0].rating }}</p>
-            </div>
-            <div class="col s9 term-section">
-              <span class="term strong"
-                >{{ toprated[0].term_header}}</span
-              >
-              <div class="divider dark-background"></div>
-              {% for game in games %} {% if game._id == toprated[0].game_fk %}
-              <span class="game-name small-text block"
-                >{{ game.game_name }}</span
-              >
-              {% endif %} {% endfor %}
-              <p class="definition">{{ toprated[0].short_definition }}</p>
-            </div>
-            <div class="col s1 carets valign-wrapper">
-              <i class="fas fa-caret-square-down"></i>
-            </div>
+    <ul class="collapsible">
+      <li class="term-container">
+        <div class="collapsible-header top-rated hoverable dark-text">
+          <div class="col s2 rating-container profile-rating valign-wrapper">
+            <p class="term-rating">{{ toprated[0].rating }}</p>
           </div>
-          <div class="collapsible-body dark-text">
-            {% if toprated[0].long_description != " " %}
-            <span class="strong">Description</span>
-            <p>{{ toprated[0].long_description }}</p>
-            {% else %}
-            <span class="strong">Description:</span>
-            <p>{{ toprated[0].short_definition }}</p>
-            {% endif %} {% if toprated[0].youtube_link %}
-            <div>
-              <a
-                href="{{ toprated[0].youtube_link }}"
-                target="_blank"
-                rel="noopener"
-                >Watch video on YouTube
-                <i class="fas fa-external-link-alt prefix"></i
-              ></a>
-            </div>
-            {% endif %}
+          <div class="col s9 term-section">
+            <span class="term strong">{{ toprated[0].term_header}}</span>
+            <div class="divider dark-background"></div>
+            {% for game in games %} {% if game._id == toprated[0].game_fk %}
+            <span class="game-name small-text block">{{ game.game_name }}</span>
+            {% endif %} {% endfor %}
+            <p class="definition">{{ toprated[0].short_definition }}</p>
           </div>
-        </li>
-      </ul>
-    </div>
-    {% endif %}
-    <div class="col s12 l8 all-submissions padded-section">
+          <div class="col s1 carets valign-wrapper">
+            <i class="fas fa-caret-square-down"></i>
+          </div>
+        </div>
+        <div class="collapsible-body dark-text">
+          {% if toprated[0].long_description != " " %}
+          <span class="strong">Description</span>
+          <p>{{ toprated[0].long_description }}</p>
+          {% else %}
+          <span class="strong">Description:</span>
+          <p>{{ toprated[0].short_definition }}</p>
+          {% endif %} {% if toprated[0].youtube_link %}
+          <div>
+            <a href="{{ toprated[0].youtube_link }}" target="_blank" rel="noopener">Watch video on YouTube <i class="fas fa-external-link-alt prefix"></i></a>
+          </div>
+          {% endif %}
+        </div>
+      </li>
+    </ul>
+  </div>
+  {% endif %}
+  <div class="col s12 l8 all-submissions padded-section">
     <h2 class="page-heading center-align blue-background off-white">All Definitions</h2>
-      {% if terms %}
-      <ul class="collapsible profile-collapsible">
-        {% for term in terms %}
-        <li class="term-container profile-term">
-          <div class="collapsible-header hoverable dark-background off-white">
-            <div class="col s2 rating-container profile-rating valign-wrapper">
-              <p class="term-rating">{{ term.rating }}</p>
-            </div>
-            <div class="col s9 term-section">
-              <span class="term strong">{{ term.term_header}}</span>
-              <div class="divider"></div>
-              {% for game in games %} {% if game._id == term.game_fk %}
-              <span class="game-name small-text block"
-                >{{ game.game_name }}</span
-              >
-              {% endif %} {% endfor %}
-              <p class="definition">{{ term.short_definition }}</p>
-            </div>
-            <div class="col s1 carets valign-wrapper">
-              <i class="fas fa-caret-square-down"></i>
-            </div>
+    {% if terms %}
+    <ul class="collapsible profile-collapsible">
+      {% for term in terms %}
+      <li class="term-container profile-term">
+        <div class="collapsible-header hoverable dark-background off-white">
+          <div class="col s2 rating-container profile-rating valign-wrapper">
+            <p class="term-rating">{{ term.rating }}</p>
           </div>
-          <div class="collapsible-body dark-text">
-            {% if term.long_description != "            " %}
-            <span class="strong">Description</span>
-            <p>{{ term.long_description }}</p>
-            {% else %}
-            <span class="strong">Description:</span>
-            <p>{{ term.short_definition }}</p>
-            {% endif %} {% if term.youtube_link %}
-            <div>
-              <a href="{{ term.youtube_link }}" target="_blank" rel="noopener"
-                >Watch video on YouTube
-                <i class="fas fa-external-link-alt prefix"></i
-              ></a>
-            </div>
-            {% endif %}
+          <div class="col s9 term-section">
+            <span class="term strong">{{ term.term_header}}</span>
+            <div class="divider"></div>
+            {% for game in games %} {% if game._id == term.game_fk %}
+            <span class="game-name small-text block">{{ game.game_name }}</span>
+            {% endif %} {% endfor %}
+            <p class="definition">{{ term.short_definition }}</p>
           </div>
-        </li>
-        {% endfor %}
-      </ul>
-      {% else %}
-        {% if user.username == session["user"] %}
-            <h4>No Submissions Yet</h4>
-            <p>It doesn't look like you've contributed any terms yet. Why not <a href="{{ url_for('submit_definition') }}" class="underline">submit one now</a> and start earning points</p>
-        {% else %}
-            <h4>No Submissions Yet</h4>
-            <p>It looks like {{ user.username }} is shy and hasn't contributed any terms yet.</p>
-        {% endif %}
-      {% endif %}
-    </div>
-    </div>
+          <div class="col s1 carets valign-wrapper">
+            <i class="fas fa-caret-square-down"></i>
+          </div>
+        </div>
+        <div class="collapsible-body dark-text">
+          {% if term.long_description != " " %}
+          <span class="strong">Description</span>
+          <p>{{ term.long_description }}</p>
+          {% else %}
+          <span class="strong">Description:</span>
+          <p>{{ term.short_definition }}</p>
+          {% endif %} {% if term.youtube_link %}
+          <div>
+            <a href="{{ term.youtube_link }}" target="_blank" rel="noopener">Watch video on YouTube <i class="fas fa-external-link-alt prefix"></i></a>
+          </div>
+          {% endif %}
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %} {% if user.username == session["user"] %}
+    <h4>No Submissions Yet</h4>
+    <p>It doesn't look like you've contributed any terms yet. Why not <a href="{{ url_for('submit_definition') }}" class="underline">submit one now</a> and start earning points</p>
+    {% else %}
+    <h4>No Submissions Yet</h4>
+    <p>It looks like {{ user.username }} is shy and hasn't contributed any terms yet.</p>
+    {% endif %} {% endif %}
+  </div>
+</div>
 {% endblock %}

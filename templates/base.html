@@ -4,31 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}{% endblock %}</title>
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="{{ url_for('static', filename='favicons/apple-touch-icon.png') }}"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="{{ url_for('static', filename='favicons/favicon-32x32.png') }}"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="{{ url_for('static', filename='favicons/favicon-16x16.png') }}"
-    />
-    <link
-      rel="manifest"
-      href="{{ url_for('static', filename='favicons/site.webmanifest') }}"
-    />
-    <link
-      rel="shortcut icon"
-      href="{{ url_for('static', filename='favicon.ico') }}"
-    />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='favicons/apple-touch-icon.png') }}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicons/favicon-32x32.png') }}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicons/favicon-16x16.png') }}" />
+    <link rel="manifest" href="{{ url_for('static', filename='favicons/site.webmanifest') }}" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
@@ -36,16 +16,8 @@
       crossorigin="anonymous"
       type="text/css"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-      type="text/css"
-    />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/style.css') }}"
-      type="text/css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" />
   </head>
 
   <body>
@@ -53,18 +25,10 @@
       <!--Desktop navbar -->
       <nav class="navigation blue-background text-shadow" id="top">
         <div class="nav-wrapper">
-          <a href="/" class="brand-logo"
-            ><img
-              src="{{ url_for('static', filename='images/logo/esd-logo.png') }}"
-              alt="Esports Dictionary Logo"
-              class="img-logo"
-            /><span class="brand-logo page-heading hide-on-med-and-down"
-              >ESDictionary</span
-            ></a
-          >
-          <a href="#" data-target="sidenav-menu" class="sidenav-trigger right"
-            ><i class="fas fa-bars"></i
-          ></a>
+          <a href="/" class="brand-logo">
+            <img src="{{ url_for('static', filename='images/logo/esd-logo.png') }}" alt="Esports Dictionary Logo" class="img-logo" /><span class="brand-logo page-heading hide-on-med-and-down">ESDictionary</span>
+          </a>
+          <a href="#" data-target="sidenav-menu" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
           <ul class="right hide-on-med-and-down">
             <li><a href="{{ url_for('get_terms') }}">Dictionary</a></li>
             {% if not session.user %}
@@ -75,9 +39,7 @@
               <a href="{{ url_for('submit_definition') }}">Submit Definition</a>
             </li>
             <li>
-              <a href="{{ url_for('profile', username=session['user']) }}"
-                >My Profile</a
-              >
+              <a href="{{ url_for('profile', username=session['user']) }}">My Profile</a>
             </li>
             {% endif %} {% if session.admin %}
             <li><a href="{{ url_for('get_games') }}">Manage Games</a></li>
@@ -103,9 +65,7 @@
           <a href="{{ url_for('submit_definition') }}">Submit Definition</a>
         </li>
         <li>
-          <a href="{{ url_for('profile', username=session['user']) }}"
-            >My Profile</a
-          >
+          <a href="{{ url_for('profile', username=session['user']) }}">My Profile</a>
         </li>
         {% endif %} {% if session.admin %}
         <li><a href="{{ url_for('get_games') }}">Manage Games</a></li>
@@ -120,8 +80,7 @@
     <!--Main Page Content-->
     <main>
       <!--Flash Messages-->
-      {% with messages = get_flashed_messages(with_categories=true) %} {% if
-      messages %}
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
       <ul class="flashed-messages center-align off-white">
         {% for message in messages %}
         <li class="flash-message {{ message[0] }}">{{ message[1] }}</li>
@@ -138,26 +97,18 @@
       <ul>
         {% if session["user"] %}
         <li>
-          <a class="btn-floating dark-btn" href="{{ url_for('profile', username=session['user']) }}"
-            ><i class="fas fa-user-circle"></i></a
-          >
+          <a class="btn-floating dark-btn" href="{{ url_for('profile', username=session['user']) }}"><i class="fas fa-user-circle"></i></a>
         </li>
         <li>
-          <a class="btn-floating red-btn" href="{{ url_for('submit_definition') }}"
-            ><i class="fas fa-plus-circle"></i></a
-          >
+          <a class="btn-floating red-btn" href="{{ url_for('submit_definition') }}"><i class="fas fa-plus-circle"></i></a>
         </li>
         {% else %}
         <li>
-          <a class="btn-floating dark-btn" href="{{ url_for('register') }}"
-            ><i class="fas fa-user-plus"></i></a
-          >
+          <a class="btn-floating dark-btn" href="{{ url_for('register') }}"><i class="fas fa-user-plus"></i></a>
         </li>
         {% endif %}
         <li>
-          <a class="btn-floating blue-btn" href="#top"
-            ><i class="fas fa-chevron-circle-up"></i></a
-          >
+          <a class="btn-floating blue-btn" href="#top"><i class="fas fa-chevron-circle-up"></i></a>
         </li>
       </ul>
     </div>
@@ -169,27 +120,9 @@
           <div class="col s12">
             <!--Social Media Links-->
             <ul class="social-media-links">
-              <a
-                href="https://www.facebook.com"
-                target="_blank"
-                rel="noopener"
-                class="social-link text-shadow hvr-grow-shadow"
-                ><i class="fab fa-facebook-square"></i
-              ></a>
-              <a
-                href="https://www.instagram.com"
-                target="_blank"
-                rel="noopener"
-                class="social-link text-shadow hvr-grow-shadow"
-                ><i class="fab fa-instagram-square"></i
-              ></a>
-              <a
-                href="https://www.twitter.com"
-                target="_blank"
-                rel="noopener"
-                class="social-link text-shadow hvr-grow-shadow"
-                ><i class="fab fa-twitter-square"></i
-              ></a>
+              <a href="https://www.facebook.com" target="_blank" rel="noopener" class="social-link text-shadow hvr-grow-shadow"><i class="fab fa-facebook-square"></i></a>
+              <a href="https://www.instagram.com" target="_blank" rel="noopener" class="social-link text-shadow hvr-grow-shadow"><i class="fab fa-instagram-square"></i></a>
+              <a href="https://www.twitter.com" target="_blank" rel="noopener" class="social-link text-shadow hvr-grow-shadow"><i class="fab fa-twitter-square"></i></a>
             </ul>
           </div>
         </div>
@@ -197,7 +130,6 @@
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    {% block script %}
-    {% endblock %}
+    {% block script %} {% endblock %}
   </body>
 </html>
