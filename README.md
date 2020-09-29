@@ -387,10 +387,27 @@ In order to deploy this project to Heroku:
  
 
 ## Credits
+### Code
+[Using Markup to display flash messages with links](https://pythonpedia.com/en/knowledge-base/21248718/how-to-flashing-a-message-with-link-using-flask-flash-): This enabled me to feature links to the register / login page in flash messages displayed if a user attempts to complete an action that they do not have permission to do (submitting or deleting a term if logged out, for example).
+
+[HoverCSS](https://github.com/IanLunn/Hover): This package of CSS was used to alter the behaviour of the social media icons in the footer of hover, enabling them to grow and stand out more.
+
+[Sorting list of dictionaries](https://www.geeksforgeeks.org/ways-sort-list-dictionaries-values-python-using-lambda-function/): As lambda functions were not something that I had much experience with to date, I consulted this guide, which pointed me in the right direction for sorting a list of dictionaries by value. This enabled me to hand over the sorting of terms to its own unique function.
 
 
+### Media
+[Logo Image](https://cdn.pixabay.com/photo/2017/09/08/00/05/icon-2727224_960_720.png)
 
-## Acknowledgement
+[Rocket League Image](https://rocketleague.media.zestyio.com/rl_platform_keyart_2019.309bf22bd29c2e411e9dd8eb07575bb1.jpg)
+
+[Team Fortress 2 Spy - 404 Page](https://e7.pngegg.com/pngimages/509/122/png-clipart-team-fortress-2-dota-2-valve-corporation-mod-steam-chic-spy-day-face-team.png)
+
+## Acknowledgements
+I would like to thank my mentor, Antonio Rodriguez for their support and advice over the course of the project.
+
+I would also like to thank my fellow Code Institute students and the alumni who provided support, advice, and a second opinion on Slack.
+
+Finally, I would like to thank all those who took the time to test this website and provide feedback and suggestions.
 
 
 ## Disclaimer
