@@ -114,6 +114,9 @@ In the future, we plan to enable users to favourite individual terms or definiti
 
 ### YouTube API Integration
 
+### Expand Profanity Filter
+
+
 ## Skeleton
 ### Mobile Wireframes
 [Dictionary / Home Page]
@@ -202,21 +205,28 @@ On hover, blue, red, and black elements are highlighted by changing to a colour 
 
 
 ## Technologies Used
-HTML & CSS programming languages - For the basic site structure and design elements.
+### Languages
+HTML & CSS - For the basic site structure and design elements.
 
 JavaScript - To enhance the user's experience, enable filtering in real time, provide feedback when rating terms, and to pop up modals to defensively program against accidental deletions.
 
 Python - To handle data provided by the database.
 
-MongoDB - To store our database and collections relating to users, terms, and supported games.
-
-PyMongo - To enable communication between MongoDB and Python.
-
-Flask - To construct and render page templates.
-
 Jinja - To handle the display of data provided by the backend in addition to traditional HTML code.
 
+### Framworks
+Flask - To construct and render page templates.
+
 Materialize - To create elements such as the Floating Action Button, the sidenav, and tooltips, and to layout each page's structure.
+
+
+### Tools
+
+MongoDB - To store our database and collections relating to users, terms, and supported games.
+
+PIP - To install and manage software packages.
+
+PyMongo - To enable communication between MongoDB and Python.
 
 Git - To track changes in code during development.
 
@@ -321,12 +331,60 @@ Admin Features
 
 
 ## Deployment
-### Heroku
+### Configure Mongo Atlas Database
+* Sign in or sign up to [MongoDB](https://account.mongodb.com/account)
+* Create a new cluster
+* Clicking on the "Connect" button will enable you to connect to this cluster
+* Under the Collections tab, click Create Database
+* For ease of use, this project has collections for games, terms, and users; set these collections up
+* Under the Security Menu on the left, select Database Access.
+* Add a new database user, and keep the credentials secure
+* Within the Network Access option, add IP Address 0.0.0.0 
 
 
 ### Local Deployment
+To clone this project and deploy it locally:
+* Navigate to the [Esports Dictionary project respository](https://github.com/mark-obeirne/esports-dictionary)
+* Click on the green button, marked "Code"
+* Copy the link provided (https://github.com/mark-obeirne/esports-dictionary.git)
+* Using your terminal, type "git clone" followed by the link 
+* As Python is utilised, it is recommended to operate within a virtual environment. The instructions on setting up and activating a virtual environment can differ based on your operating system, so it is best to consult the offical [Python Documentation](https://docs.python.org/3/library/venv.html).
+* Install required modules used in this project with the command "pip -r requirements.txt"
+* Create a file called ".flaskenv" and within this file, create the SECRET_KEY and MONGO_URI variables. The MONGO_URI will link to your own database and will look like this:
 
 
+    mongodb+srv://<username>:<password>@<cluster_name>-qtxun.mongodb.net/<database_name>?retryWrites=true&w=majority
+
+* You should now be able to run this application locally by typing "python3 app.py"
+* The website will be available at http://127.0.0.1:5000
+
+
+
+### Heroku
+In order to deploy this project to Heroku:
+* Create a requirements.txt file by typing "pip3 freeze --local > requirements.txt" into the terminal line
+* Create a Procfile by typing "echo web: python app.py > Procfile". It is important to note that the first letter of "Procfile" is capitalised.
+* Add, commit, and push these files to GitHub
+* Navigate to the [Heroku website](https://dashboard.heroku.com/)
+* Click on "New" in the top right hand corner and then select "Create new app" from the dropdown
+* Proceed to give it a unique app name and choose a region that is local to you
+* Once created, scroll down to the Deployment method section on the app's dashboard
+* For the purpose of this project, Github was utilised, enabling us to search for the relevant repository to connect to
+* Once connected, navigate to the app's settings page and find the section marked "Config Vars"
+* Reveal Config Vars and set the following:
+
+
+    IP = 0.0.0.0
+    MONGO_DBNAME = [Name of MongoDB chosen]
+    MONGO_URI = mongodb+srv://<username>:<password>@<cluster_name>-qtxun.mongodb.net/<database_name>?retryWrites=true&w=majority
+    PORT = 5000
+    SECRET_KEY = [Secret key chosen]
+
+* Click the Deploy tablet
+* Under "Manual Deployment", ensure that the master branch is selected and click "Deploy Branch"
+
+
+ 
 
 ## Credits
 
