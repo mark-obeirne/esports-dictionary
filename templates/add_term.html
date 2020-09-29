@@ -1,28 +1,14 @@
-{% extends "base.html" %} 
-{% block title %}Esports Dictionary | Add Definition{% endblock %}
-{% block content %}
+{% extends "base.html" %} {% block title %}Esports Dictionary | Add Definition{% endblock %} {% block content %}
 <div class="container submit-definition-form">
   <h1 class="page-heading center-align blue-background off-white">Submit Definition</h1>
   <div class="row">
-    <form
-      class="col s12 m8 offset-m2"
-      method="POST"
-      action="{{ url_for('submit_definition') }}"
-    >
+    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('submit_definition') }}">
       <div class="card-panel hoverable">
         <!--Term-->
         <div class="row">
           <div class="input-field col s12 m6 register-field">
             <i class="fas fa-keyboard prefix"></i>
-            <input
-              id="term_header"
-              name="term_header"
-              type="text"
-              minlength="1"
-              maxlength="35"
-              class="validate"
-              required
-            />
+            <input id="term_header" name="term_header" type="text" minlength="1" maxlength="35" class="validate" required />
             <label for="term_header">Enter Term</label>
             <span class="sublabel dark-text">Max 35 characters</span>
           </div>
@@ -41,15 +27,7 @@
         <div class="row">
           <div class="input-field col s12 register-field">
             <i class="fas fa-comment-medical prefix"></i>
-            <input
-              id="short_definition"
-              name="short_definition"
-              type="text"
-              minlength="1"
-              maxlength="100"
-              class="validate"
-              required
-            />
+            <input id="short_definition" name="short_definition" type="text" minlength="1" maxlength="100" class="validate" required />
             <label for="short_definition">Enter Short Definition</label>
             <span class="sublabel dark-text">Max 100 characters</span>
           </div>
@@ -66,27 +44,20 @@
         <div class="row">
           <div class="input-field col s12 register-field">
             <i class="fab fa-youtube prefix"></i>
-            <input
-              id="youtube_link"
-              name="youtube_link"
-              type="text"
-            />
+            <input id="youtube_link" name="youtube_link" type="text" />
             <label for="youtube_link">YouTube Link (optional)</label>
             <span class="sublabel dark-text">Provide a YouTube link for context</span>
           </div>
         </div>
         <!--Submit Button-->
         <div class="row">
-            <div class="col s12 center-align">
-                <a href="{{ url_for('get_terms') }}" class="btn-large blue-background blue-btn"><i class="fas fa-window-close"></i> Cancel</a>
-                <button type="submit" class="btn-large red-btn text-shadow">
-                    <i class="fas fa-plus-circle"></i> Add Definition
-                </button>
-            </div>
+          <div class="col s12 center-align">
+            <a href="{{ url_for('get_terms') }}" class="btn-large blue-background blue-btn"><i class="fas fa-window-close"></i> Cancel</a>
+            <button type="submit" class="btn-large red-btn text-shadow"><i class="fas fa-plus-circle"></i> Add Definition</button>
+          </div>
         </div>
       </div>
     </form>
   </div>
 </div>
-        {% endblock %}
-
+{% endblock %}
