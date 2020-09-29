@@ -55,7 +55,6 @@
       <!--Mobile nav menu-->
       <ul class="sidenav" id="sidenav-menu">
         <li><a class="sidenav-close" href="#!">X</a></li>
-        <div class="divider navbar-divider"></div>
         <li><a href="{{ url_for('get_terms') }}">Dictionary</a></li>
         {% if not session.user %}
         <li><a href="{{ url_for('register') }}">Register</a></li>
@@ -120,9 +119,9 @@
           <div class="col s12">
             <!--Social Media Links-->
             <ul class="social-media-links">
-              <a href="https://www.facebook.com" target="_blank" rel="noopener" class="social-link text-shadow hvr-grow-shadow"><i class="fab fa-facebook-square"></i></a>
-              <a href="https://www.instagram.com" target="_blank" rel="noopener" class="social-link text-shadow hvr-grow-shadow"><i class="fab fa-instagram-square"></i></a>
-              <a href="https://www.twitter.com" target="_blank" rel="noopener" class="social-link text-shadow hvr-grow-shadow"><i class="fab fa-twitter-square"></i></a>
+              <li class="social-link"><a href="https://www.facebook.com" target="_blank" rel="noopener" class="social-link text-shadow hvr-grow-shadow"><i class="fab fa-facebook-square"></i></a></li>
+              <li class="social-link"><a href="https://www.instagram.com" target="_blank" rel="noopener" class="social-link text-shadow hvr-grow-shadow"><i class="fab fa-instagram-square"></i></a></li>
+              <li class="social-link"><a href="https://www.twitter.com" target="_blank" rel="noopener" class="social-link text-shadow hvr-grow-shadow"><i class="fab fa-twitter-square"></i></a></li>
             </ul>
           </div>
         </div>
