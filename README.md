@@ -119,40 +119,40 @@ In the future, we plan to enable users to favourite individual terms or definiti
 
 ## Skeleton
 ### Mobile Wireframes
-[Dictionary / Home Page]
-[Register Page]
-[Submit Definition Page]
-[Edit Definition Page]
-[Profile Page]
-[Edit User Page]
-[Contact Us Page]
-[Manage Games Page - Admins]
-[Edit Game Page - Admins]
-[404 Page]
+* [Dictionary / Home Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Dictionary%20-%20Mobile.png)
+* [Register Page]
+* [Submit Definition Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Submit%20Definition%20Mobile.png)
+* [Edit Definition Page]
+* [Profile Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Profile%20Mobile.png)
+* [Edit User Page]
+* [Contact Us Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Contact%20Mobile.png)
+* [Manage Games Page - Admins](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Manage%20Supported%20Games%20Mobile.png)
+* [Edit Game Page - Admins]
+* [404 Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/404%20Template%20Mobile.png)
 
 ### Tablet Wireframes
-[Dictionary / Home Page]
-[Register Page]
-[Submit Definition Page]
-[Edit Definition Page]
-[Profile Page]
-[Edit User Page]
-[Contact Us Page]
-[Manage Games Page - Admins]
-[Edit Game Page - Admins]
-[404 Page]
+* [Dictionary / Home Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Dictionary%20Tablet.png)
+* [Register Page]
+* [Submit Definition Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Submit%20Definition%20Tablet.png)
+* [Edit Definition Page]
+* [Profile Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Profile%20Tablet.png)
+* [Edit User Page]
+* [Contact Us Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Contact%20Tablet.png)
+* [Manage Games Page - Admins](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Manage%20Games%20Tablet.png)
+* [Edit Game Page - Admins]
+* [404 Page]
 
 ### Desktop Wireframes
-[Dictionary / Home Page]
-[Register Page]
-[Submit Definition Page]
-[Edit Definition Page]
-[Profile Page]
-[Edit User Page]
-[Contact Us Page]
-[Manage Games Page - Admins]
-[Edit Game Page - Admins]
-[404 Page]
+* [Dictionary / Home Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Dictionary%20Desktop.png)
+* [Register Page]
+* [Submit Definition Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Submit%20Definition%20Desktop.png)
+* [Edit Definition Page]
+* [Profile Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Profile%20Desktop.png)
+* [Edit User Page]
+* [Contact Us Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Contact%20Desktop.png)
+* [Manage Games Page - Admins](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Manage%20Games%20Desktop.png)
+* [Edit Game Page - Admins]
+* [404 Page]
 
 ## Changes to Wireframes
 ### Dictionary Page
