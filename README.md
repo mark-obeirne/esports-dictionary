@@ -154,6 +154,13 @@ In the future, we plan to enable users to favourite individual terms or definiti
 [Edit Game Page - Admins]
 [404 Page]
 
+## Changes to Wireframes
+### Dictionary Page
+On tablet, it was decided to emulate the behaviour and layout of the mobile view when it came to the Alphabetical Filters. In testing, the approach of having a sidebar slide out to allow the user to select a letter was more appealing. On larger devices, the full alphabet could be displayed without taking up too much screen real estate or seeming overwhelming.
+
+### Manage Supported Games
+In order to give each game card more space, the number of cards in each row on tablet was reduced to 2 and to 3 on desktop and larger devices.
+
 ## Structure
 The navbar links available are different based on the user's logged in status, while Admins have another link available to them. The navbar features the site's logo in the centre of the page with the hamburger menu to the right on mobile. On larger devices, the logo shifts to the left-hand side of the page with the navigation options spreading out across the right.
 
