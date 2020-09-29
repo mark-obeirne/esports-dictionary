@@ -7,9 +7,44 @@ Live Heroku Link: http://esports-dictionary.herokuapp.com/
 [Multi-Device Mockup]
 
 ## Table of Contents
-* [Summary](##Summary)
-* [Background](##Background)
-* [Aim of the Site](##Aim-of-the-Site)
+* [Summary](#summary)
+* [Background](#background)
+* [Aim of the Site](#aim-of-the-site)
+* [Scope](#scope)
+    * [User Stories](#user-stories)
+* [Site Features](#site-features)
+    * [Jumbotron](#jumbotron)
+    * [Search Filters](#search-filters)
+    * [User Ratings](#user-ratings)
+        * [Explanation of the rating system](#explanation-of-the-rating-system)
+    * [Floating Action Button](#floating-action-button)
+    * [User Profiles](#user-profiles)
+    * [Contact Page](#contact-page)
+    * [404 Page](#404-page)
+* [Future Features](#future-features)
+    * [Profile Gamification](#profile-gamification)
+    * [Shop](#shop)
+    * [Report Terms](#report-terms)
+    * [Favourite Terms](#favourite-terms)
+    * [YouTube API Integration](#youtube-api-integration)
+    * [Expand Profanity Filter](#expand-profanity-filter)
+* [Skeleton](#skeleton)
+    * [Mobile Wireframes](#mobile-wireframes)
+    * [Tablet Wireframes](#tablet-wireframes)
+    * [Desktop Wireframes](#desktop-wireframes)
+* [Changes to Wireframes](#changes-to-wireframes)
+* [Structure](#structure)
+* [Surface](#surface)
+    * [Fonts](#fonts)
+    * [Colours](#colours)
+* [Technologies Used](#technologies-used)
+* [Testing]
+* [Issues Encountered and Resolutions](#issues-encountered-and-resolutions)
+    * [Any known issues?](#any-known-issues)
+* [Deployment](#deployment)
+* [Credits](#credits)
+* [Acknowledgements](#acknowledgements)
+
 
 ## Summary
 Esports Dictionary is a user-generated collection of definitions of terms used in relation to competitive gaming, a.k.a Esports.
