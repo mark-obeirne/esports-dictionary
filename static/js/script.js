@@ -43,31 +43,31 @@ document.addEventListener('DOMContentLoaded', function () {
 function searchTerms() {
   const searchField = document.querySelector(".searchbar");
   const searchTerm = searchField.value;
-  const regex = new RegExp(searchTerm, "gi")
-  const allTerms = Array.from(document.querySelectorAll(".term"))
-  const termText = allTerms.map(term => term.textContent)
+  const regex = new RegExp(searchTerm, "gi");
+  const allTerms = Array.from(document.querySelectorAll(".term"));
+  const termText = allTerms.map(term => term.textContent);
   const found = termText.filter(term => {
-    return term.match(regex)
-  })
-  filterBySearch(allTerms, found)
+    return term.match(regex);
+  });
+  filterBySearch(allTerms, found);
 }
 
 
 function filterBySearch(allTerms, matches) {
   allTerms.forEach(term => {
     if (matches.includes(term.textContent)) {
-      term.parentElement.parentElement.parentElement.classList.remove("hidden")
+      term.parentElement.parentElement.parentElement.classList.remove("hidden");
     }
-    else(term.parentElement.parentElement.parentElement.classList.add("hidden"))
-  })
-  checkAllTermsHidden()
+    else(term.parentElement.parentElement.parentElement.classList.add("hidden"));
+  });
+  checkAllTermsHidden();
 }
 
 
 function clearSearchbar() {
   const searchbar = document.querySelector(".searchbar");
   searchbar.value = "";
-  showAllDefinitions()
+  showAllDefinitions();
 }
 
 
@@ -77,16 +77,16 @@ function clearSearchbar() {
     first letter of the term doesn't match the selected filter
 */
 function filterByLetter() {
-  clearSearchbar()
+  clearSearchbar();
   const letter = this.innerText;
-  const allTerms = Array.from(document.querySelectorAll(".term"))
+  const allTerms = Array.from(document.querySelectorAll(".term"));
   allTerms.forEach(term => {
     if (term.textContent[0] !== letter) {
-      term.parentElement.parentElement.parentElement.classList.add("hidden")
+      term.parentElement.parentElement.parentElement.classList.add("hidden");
     }
-    else(term.parentElement.parentElement.parentElement.classList.remove("hidden"))
-  })
-  checkAllTermsHidden()
+    else(term.parentElement.parentElement.parentElement.classList.remove("hidden"));
+  });
+  checkAllTermsHidden();
 }
 
 
@@ -95,16 +95,16 @@ function filterByLetter() {
     from the game dropdown
 */
 function filterByGame() {
-  clearSearchbar()
+  clearSearchbar();
   const chosenGame = this.value;
   const allGameCategories = Array.from(document.querySelectorAll(".game-name"));
   allGameCategories.forEach(gameName => {
     if (gameName.textContent !== chosenGame) {
-      gameName.parentElement.parentElement.parentElement.classList.add("hidden")
+      gameName.parentElement.parentElement.parentElement.classList.add("hidden");
     }
-    else(gameName.parentElement.parentElement.parentElement.classList.remove("hidden"))
-  })
-  checkAllTermsHidden()
+    else(gameName.parentElement.parentElement.parentElement.classList.remove("hidden"));
+  });
+  checkAllTermsHidden();
 }
 
 
@@ -113,23 +113,23 @@ function filterByGame() {
     clicks the Clear Filters button
 */
 function showAllDefinitions() {
-  const allTermContainers = Array.from(document.querySelectorAll(".term-container"))
-  allTermContainers.forEach(container => container.classList.remove("hidden"))
-  checkAllTermsHidden()
+  const allTermContainers = Array.from(document.querySelectorAll(".term-container"));
+  allTermContainers.forEach(container => container.classList.remove("hidden"));
+  checkAllTermsHidden();
 }
 
 /* 
     Check if filter applied has hidden every definition
 */
 function checkAllTermsHidden() {
-  const allTermContainers = Array.from(document.querySelectorAll(".term-container"))
-  const allHidden = allTermContainers.every(container => container.classList.contains("hidden"))
-  const prompt = document.querySelector(".blank-search")
+  const allTermContainers = Array.from(document.querySelectorAll(".term-container"));
+  const allHidden = allTermContainers.every(container => container.classList.contains("hidden"));
+  const prompt = document.querySelector(".blank-search");
   if (allHidden) {
-    prompt.classList.remove("hidden")
+    prompt.classList.remove("hidden");
   }
   else {
-    prompt.classList.add("hidden")
+    prompt.classList.add("hidden");
   }
 }
 
@@ -141,22 +141,22 @@ function checkAllTermsHidden() {
     checks do), and disable the Register button
 */
 function confirmPasswordMatch() {
-  const passwordField = document.querySelector("#password")
-  const confirmPassword = document.querySelector("#confirm-password")
-  const passwordWarningText = document.querySelector(".confirm-warning")
-  const btn = document.querySelector(".registerBtn")
+  const passwordField = document.querySelector("#password");
+  const confirmPassword = document.querySelector("#confirm-password");
+  const passwordWarningText = document.querySelector(".confirm-warning");
+  const btn = document.querySelector(".registerBtn");
 
 
   if (confirmPassword.value !== passwordField.value) {
-    confirmPassword.classList.remove("valid")
-    confirmPassword.classList.add("invalid")
-    passwordWarningText.classList.remove("hidden")
-    btn.classList.add("disabled")
+    confirmPassword.classList.remove("valid");
+    confirmPassword.classList.add("invalid");
+    passwordWarningText.classList.remove("hidden");
+    btn.classList.add("disabled");
 
   }
   else {
-    passwordWarningText.classList.add("hidden")
-    btn.classList.remove("disabled")
+    passwordWarningText.classList.add("hidden");
+    btn.classList.remove("disabled");
   }
 
 }
@@ -167,10 +167,10 @@ function confirmPasswordMatch() {
     gaming term from a predefined list
 */
 function updateHomepageButton() {
-  const homepageBtn = document.querySelector(".homepage-button")
-  phrases = ["Rocket Jump", "Bunny Hop", "Auto Run", "Fast Travel", "Teleport", "Strafe Jump", "Barrel Roll", "Shootdodge", "Noclip"]
-  choice = phrases[Math.floor(Math.random() * phrases.length)]
-  homepageBtn.innerHTML = "<i class='fas fa-home'></i> " + choice + " back to the homepage"
+  const homepageBtn = document.querySelector(".homepage-button");
+  const phrases = ["Rocket Jump", "Bunny Hop", "Auto Run", "Fast Travel", "Teleport", "Strafe Jump", "Barrel Roll", "Shootdodge", "Noclip"];
+  const choice = phrases[Math.floor(Math.random() * phrases.length)];
+  homepageBtn.innerHTML = "<i class='fas fa-home'></i> " + choice + " back to the homepage";
 }
 
 
@@ -181,15 +181,15 @@ function updateHomepageButton() {
 
 */
 function deleteTermModal(e) {
-  const modal = document.querySelector(".delete-term-modal")
-  const closeBtn = document.querySelector(".close-modal")
-  const confirmDeleteBtn = document.querySelector(".modal-delete-btn")
-  const term = e.target.dataset.id
-  modal.classList.remove("hidden")
-  confirmDeleteBtn.setAttribute("href", "delete_definition/" + term)
+  const modal = document.querySelector(".delete-term-modal");
+  const closeBtn = document.querySelector(".close-modal");
+  const confirmDeleteBtn = document.querySelector(".modal-delete-btn");
+  const term = e.target.dataset.id;
+  modal.classList.remove("hidden");
+  confirmDeleteBtn.setAttribute("href", "delete_definition/" + term);
   closeBtn.addEventListener("click", function () {
-    modal.classList.add("hidden")
-  })
+    modal.classList.add("hidden");
+  });
 }
 
 
@@ -200,15 +200,15 @@ function deleteTermModal(e) {
 
 */
 function deleteGameModal(e) {
-  const modal = document.querySelector(".game-modal")
-  const closeBtn = document.querySelector(".close-modal")
-  const confirmDeleteBtn = document.querySelector(".modal-delete-btn")
-  const game = e.target.dataset.id
-  modal.classList.remove("hidden")
-  confirmDeleteBtn.setAttribute("href", "delete_game/" + game)
+  const modal = document.querySelector(".game-modal");
+  const closeBtn = document.querySelector(".close-modal");
+  const confirmDeleteBtn = document.querySelector(".modal-delete-btn");
+  const game = e.target.dataset.id;
+  modal.classList.remove("hidden");
+  confirmDeleteBtn.setAttribute("href", "delete_game/" + game);
   closeBtn.addEventListener("click", function () {
-    modal.classList.add("hidden")
-  })
+    modal.classList.add("hidden");
+  });
 }
 
 
@@ -221,9 +221,9 @@ function deleteGameModal(e) {
     upvote (increasing the rating by another 1) 
 */
 function changeRating(ratingIndex, changeOfRating) {
-  const allRatings = document.querySelectorAll(".term-rating")
-  let thisRating = allRatings[ratingIndex]
-  let thisRatingNumber = parseInt(thisRating.innerHTML, 10)
+  const allRatings = document.querySelectorAll(".term-rating");
+  let thisRating = allRatings[ratingIndex];
+  let thisRatingNumber = parseInt(thisRating.innerHTML, 10);
   thisRatingNumber += changeOfRating;
   thisRating.innerHTML = thisRatingNumber;
 }
@@ -247,19 +247,19 @@ function arrowOnUpvote(chosenArrow) {
     parentSpan.classList.add("active");
     correspondingArrowParent.classList.remove("active");
     correspondingArrowParent.classList.add("inactive");
-    changeRating(chosenArrowIndex / 2, 2)
+    changeRating(chosenArrowIndex / 2, 2);
   }
   else if (parentSpan.classList.contains("inactive")) {
     parentSpan.classList.remove("inactive");
     parentSpan.classList.add("active");
-    changeRating(chosenArrowIndex / 2, 1)
+    changeRating(chosenArrowIndex / 2, 1);
   }
   else if (parentSpan.classList.contains("active")) {
     parentSpan.classList.remove("active");
     parentSpan.classList.add("inactive");
-    changeRating(chosenArrowIndex / 2, -1)
+    changeRating(chosenArrowIndex / 2, -1);
   }
-  else return
+  else return;
 }
 
 
@@ -268,12 +268,12 @@ function arrowOnUpvote(chosenArrow) {
     rating the term. Passes these details to the upvote function in app.py.
 */
 function handleUpvote(e) {
-  e.stopPropagation()
-  const clickedArrow = e.target
-  arrowOnUpvote(clickedArrow)
+  e.stopPropagation();
+  const clickedArrow = e.target;
+  arrowOnUpvote(clickedArrow);
 
-  const termID = clickedArrow.dataset.value
-  const username = clickedArrow.dataset.user
+  const termID = clickedArrow.dataset.value;
+  const username = clickedArrow.dataset.user;
 
   let request = new XMLHttpRequest();
   request.open('POST', 'upvote/' + termID + "/" + username, true);
@@ -300,19 +300,19 @@ function arrowOnDownvote(chosenArrow) {
     parentSpan.classList.add("active");
     correspondingArrowParent.classList.remove("active");
     correspondingArrowParent.classList.add("inactive");
-    changeRating((chosenArrowIndex - 1) / 2, -2)
+    changeRating((chosenArrowIndex - 1) / 2, -2);
   }
   else if (parentSpan.classList.contains("inactive")) {
     parentSpan.classList.remove("inactive");
     parentSpan.classList.add("active");
-    changeRating((chosenArrowIndex - 1) / 2, -1)
+    changeRating((chosenArrowIndex - 1) / 2, -1);
   }
   else if (parentSpan.classList.contains("active")) {
     parentSpan.classList.remove("active");
     parentSpan.classList.add("inactive");
-    changeRating((chosenArrowIndex - 1) / 2, 1)
+    changeRating((chosenArrowIndex - 1) / 2, 1);
   }
-  else return
+  else return;
 }
 
 
@@ -321,12 +321,12 @@ function arrowOnDownvote(chosenArrow) {
     rating the term. Passes these details to the downvote function in app.py.
 */
 function handleDownvote(e) {
-  e.stopPropagation()
-  const clickedArrow = e.target
-  arrowOnDownvote(clickedArrow)
+  e.stopPropagation();
+  const clickedArrow = e.target;
+  arrowOnDownvote(clickedArrow);
 
-  const termID = clickedArrow.dataset.value
-  const username = clickedArrow.dataset.user
+  const termID = clickedArrow.dataset.value;
+  const username = clickedArrow.dataset.user;
 
   let request = new XMLHttpRequest();
   request.open('POST', 'downvote/' + termID + "/" + username, true);
@@ -340,14 +340,14 @@ function handleDownvote(e) {
     encourage them to register or log in
 */
 function loginModalPrompt(e) {
-  e.stopPropagation()
-  console.log("Opening modal")
-  const modal = document.querySelector(".login-modal")
-  const closeBtn = document.querySelector(".close-prompt")
-  modal.classList.remove("hidden")
+  e.stopPropagation();
+  console.log("Opening modal");
+  const modal = document.querySelector(".login-modal");
+  const closeBtn = document.querySelector(".close-prompt");
+  modal.classList.remove("hidden");
   closeBtn.addEventListener("click", function () {
-    modal.classList.add("hidden")
-  })
+    modal.classList.add("hidden");
+  });
 }
 
 
@@ -356,7 +356,7 @@ function loginModalPrompt(e) {
     username that submitted a definition to view their profile
 */
 function stayCollapsed(e) {
-  e.stopPropagation()
+  e.stopPropagation();
 }
 
 /*
@@ -364,9 +364,9 @@ function stayCollapsed(e) {
      the value passed through from displayStarRating function
  */
 function addProfileStars(quantity) {
-  const starSection = document.querySelector(".user-stars")
-  console.log(typeof (quantity))
-  starSection.innerHTML += "<i class='fas fa-star'></i> ".repeat(quantity)
+  const starSection = document.querySelector(".user-stars");
+  console.log(typeof (quantity));
+  starSection.innerHTML += "<i class='fas fa-star'></i> ".repeat(quantity);
 }
 
 /* 
@@ -374,21 +374,21 @@ function addProfileStars(quantity) {
      based on their total rating stored in the database
 */
 function displayStarRating() {
-  const userRating = document.querySelector(".total-rating").textContent
+  const userRating = document.querySelector(".total-rating").textContent;
   if (userRating < 10) {
     addProfileStars(1)
   }
   else if (userRating >= 10 && userRating <= 100) {
-    addProfileStars(2)
+    addProfileStars(2);
   }
   else if (userRating > 100 && userRating <= 200) {
-    addProfileStars(3)
+    addProfileStars(3);
   }
   else if (userRating > 200 && userRating <= 500) {
-    addProfileStars(4)
+    addProfileStars(4);
   }
   else {
-    addProfileStars(5)
+    addProfileStars(5);
   }
 }
 
@@ -397,15 +397,15 @@ function displayStarRating() {
     Handle messages posted from Contact Us page
 */
 function sendMessage(e) {
-  const contactForm = document.querySelector(".contact-form")
-  e.preventDefault()
+  const contactForm = document.querySelector(".contact-form");
+  e.preventDefault();
   emailjs.send("gmail", "esportsdictionary", {
       "name": contactForm.name.value,
       "email": contactForm.email.value,
       "message": contactForm.message.value
     })
     .then(function (response) {
-      contactForm.submit()
+      contactForm.submit();
     }, function (error) {
       console.log("Failed", error);
     })
@@ -420,89 +420,89 @@ document.addEventListener("DOMContentLoaded", function () {
   // Filter definitions displayed on Dictionary page by letter 
   const alphabetFilters = document.querySelectorAll(".alphabet-letter");
   if (alphabetFilters) {
-    alphabetFilters.forEach(letter => letter.addEventListener("click", filterByLetter))
+    alphabetFilters.forEach(letter => letter.addEventListener("click", filterByLetter));
   }
 
   // Filter definitions displayed on Dictionary page by game
   const gameDropdown = document.querySelector(".game-filter");
   if (gameDropdown) {
-    gameDropdown.addEventListener("change", filterByGame)
+    gameDropdown.addEventListener("change", filterByGame);
   }
 
   // Clear filters
-  const clearFilterBtn = document.querySelectorAll(".clear-btn")
+  const clearFilterBtn = document.querySelectorAll(".clear-btn");
   if (clearFilterBtn) {
-    clearFilterBtn.forEach(button => button.addEventListener("click", showAllDefinitions))
+    clearFilterBtn.forEach(button => button.addEventListener("click", showAllDefinitions));
   }
 
   // Check if password and confirm password fields match on registration page
-  const confirmPasswordField = document.querySelector("#confirm-password")
+  const confirmPasswordField = document.querySelector("#confirm-password");
   if (confirmPasswordField) {
-    confirmPasswordField.addEventListener("focusout", confirmPasswordMatch)
+    confirmPasswordField.addEventListener("focusout", confirmPasswordMatch);
   }
 
   // Update text contained within homepage button on 404 page
-  const homepageRedirect = document.querySelector(".homepage-button")
+  const homepageRedirect = document.querySelector(".homepage-button");
   if (homepageRedirect) {
-    window.addEventListener("load", updateHomepageButton)
+    window.addEventListener("load", updateHomepageButton);
   }
 
   // Open modal to confirm if user wishes to delete a term
-  const termModalBtn = document.querySelectorAll(".term-modal-btn")
+  const termModalBtn = document.querySelectorAll(".term-modal-btn");
   if (termModalBtn) {
-    termModalBtn.forEach(button => button.addEventListener("click", deleteTermModal))
+    termModalBtn.forEach(button => button.addEventListener("click", deleteTermModal));
   }
 
   // Open modal to confirm if user wishes to delete a game
-  const gameModalBtn = document.querySelectorAll(".game-modal-btn")
+  const gameModalBtn = document.querySelectorAll(".game-modal-btn");
   if (gameModalBtn) {
-    gameModalBtn.forEach(button => button.addEventListener("click", deleteGameModal))
+    gameModalBtn.forEach(button => button.addEventListener("click", deleteGameModal));
   }
 
   // Handle upvotes and downvotes
-  const upArrow = document.querySelectorAll(".uparrow")
+  const upArrow = document.querySelectorAll(".uparrow");
   if (upArrow) {
-    upArrow.forEach(arrow => arrow.addEventListener("click", handleUpvote))
+    upArrow.forEach(arrow => arrow.addEventListener("click", handleUpvote));
   }
 
-  const downArrow = document.querySelectorAll(".downarrow")
+  const downArrow = document.querySelectorAll(".downarrow");
   if (downArrow) {
-    downArrow.forEach(arrow => arrow.addEventListener("click", handleDownvote))
+    downArrow.forEach(arrow => arrow.addEventListener("click", handleDownvote));
   }
 
   // Prompt logged out users to login if they try to rate a term
-  const loginPrompt = document.querySelectorAll(".modal-arrow")
+  const loginPrompt = document.querySelectorAll(".modal-arrow");
   if (loginPrompt) {
-    loginPrompt.forEach(button => button.addEventListener("click", loginModalPrompt))
+    loginPrompt.forEach(button => button.addEventListener("click", loginModalPrompt));
   }
 
   // Search and filter terms based on user's keypresses
-  const searchbar = document.querySelector(".searchbar")
+  const searchbar = document.querySelector(".searchbar");
   if (searchbar) {
-    searchbar.addEventListener("keyup", searchTerms)
+    searchbar.addEventListener("keyup", searchTerms);
   }
 
   // Clear the searchbar
-  const clearBtn = document.querySelector("#clear")
+  const clearBtn = document.querySelector("#clear");
   if (clearBtn) {
-    clearBtn.addEventListener("click", clearSearchbar)
+    clearBtn.addEventListener("click", clearSearchbar);
   }
 
   // Prevent collapsible body from opening if user clicks submitted by username
-  const submissionCredit = document.querySelectorAll(".username")
+  const submissionCredit = document.querySelectorAll(".username");
   if (submissionCredit) {
-    submissionCredit.forEach(username => username.addEventListener("click", stayCollapsed))
+    submissionCredit.forEach(username => username.addEventListener("click", stayCollapsed));
   }
 
   // Display stars on user profile
-  const userRating = document.querySelector(".user-rating")
+  const userRating = document.querySelector(".user-rating");
   if (userRating) {
-    window.addEventListener("load", displayStarRating)
+    window.addEventListener("load", displayStarRating);
   }
 
   // Send message via EmailJS
-  const contactForm = document.querySelector(".contact-form")
+  const contactForm = document.querySelector(".contact-form");
   if (contactForm) {
-    contactForm.addEventListener("submit", sendMessage)
+    contactForm.addEventListener("submit", sendMessage);
   }
 });
