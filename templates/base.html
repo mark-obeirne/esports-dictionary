@@ -28,7 +28,7 @@
           <a href="/" class="brand-logo">
             <img src="{{ url_for('static', filename='images/logo/esd-logo.png') }}" alt="Esports Dictionary Logo" class="img-logo" /><span class="brand-logo page-heading hide-on-med-and-down">ESDictionary</span>
           </a>
-          <a href="#" data-target="sidenav-menu" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
+          <a href="#" data-target="sidenav-menu" class="sidenav-trigger right"><i class="fas fa-bars" alt="Open sidenav menu"></i></a>
           <ul class="right hide-on-med-and-down">
             <li><a href="{{ url_for('get_terms') }}">Dictionary</a></li>
             {% if not session.user %}
@@ -96,18 +96,18 @@
       <ul>
         {% if session["user"] %}
         <li>
-          <a class="btn-floating dark-btn" href="{{ url_for('profile', username=session['user']) }}"><i class="fas fa-user-circle"></i></a>
+          <a class="btn-floating dark-btn" href="{{ url_for('profile', username=session['user']) }}"><i class="fas fa-user-circle" alt="View My Profile"></i></a>
         </li>
         <li>
-          <a class="btn-floating red-btn" href="{{ url_for('submit_definition') }}"><i class="fas fa-plus-circle"></i></a>
+          <a class="btn-floating red-btn" href="{{ url_for('submit_definition') }}"><i class="fas fa-plus-circle" alt="Submit Definition"></i></a>
         </li>
         {% else %}
         <li>
-          <a class="btn-floating dark-btn" href="{{ url_for('register') }}"><i class="fas fa-user-plus"></i></a>
+          <a class="btn-floating dark-btn" href="{{ url_for('register') }}"><i class="fas fa-user-plus" alt="Register"></i></a>
         </li>
         {% endif %}
         <li>
-          <a class="btn-floating blue-btn" href="#top"><i class="fas fa-chevron-circle-up"></i></a>
+          <a class="btn-floating blue-btn" href="#top"><i class="fas fa-chevron-circle-up" alt="Navigate to top of page"></i></a>
         </li>
       </ul>
     </div>
@@ -119,9 +119,9 @@
           <div class="col s12">
             <!--Social Media Links-->
             <ul class="social-media-links">
-              <li class="social-link"><a href="https://www.facebook.com" target="_blank" rel="noopener" class="social-link text-shadow hvr-grow-shadow"><i class="fab fa-facebook-square"></i></a></li>
-              <li class="social-link"><a href="https://www.instagram.com" target="_blank" rel="noopener" class="social-link text-shadow hvr-grow-shadow"><i class="fab fa-instagram-square"></i></a></li>
-              <li class="social-link"><a href="https://www.twitter.com" target="_blank" rel="noopener" class="social-link text-shadow hvr-grow-shadow"><i class="fab fa-twitter-square"></i></a></li>
+              <li class="social-link"><a href="https://www.facebook.com" target="_blank" rel="noopener" class="social-link text-shadow hvr-grow-shadow"><i class="fab fa-facebook-square" alt="Facebook"></i></a></li>
+              <li class="social-link"><a href="https://www.instagram.com" target="_blank" rel="noopener" class="social-link text-shadow hvr-grow-shadow"><i class="fab fa-instagram-square" alt="Instagram"></i></a></li>
+              <li class="social-link"><a href="https://www.twitter.com" target="_blank" rel="noopener" class="social-link text-shadow hvr-grow-shadow"><i class="fab fa-twitter-square" alt="Twitter"></i></a></li>
             </ul>
           </div>
         </div>
