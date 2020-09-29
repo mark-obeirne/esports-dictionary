@@ -30,16 +30,17 @@
       <h2 class="page-heading center-align blue-background off-white">Search Terms</h2>
       <!--Custom Search-->
       <div class="search-filters">
-        <div class="search"><input type="search" class="searchbar" placeholder="Search for term" /><span id="clear">x</span></div>
+        <div class="search"><input type="search" class="searchbar" id="search" placeholder="Search for term" /><span id="clear">x</span></div>
+        <label class="visuallyhidden" for="search">Search by term</label>
         <!--Select Game Dropdown-->
-        <div class="input-field">
+        <div class="input-field game-dropdown">
           <select id="game-filter" name="game-filter" class="game-filter">
             <option value="" disabled selected>Choose game</option>
             {% for game in games %}
             <option value="{{ game.game_name }}">{{ game.game_name }}</option>
             {% endfor %}
           </select>
-          <label for="game-filter">Filter by game</label>
+          <label for="game-filter" class="visuallyhidden">Filter by game</label>
         </div>
         <div class="padded-btns center-align hide-on-large-only">
           <!--Alphabetical Sidebar-->
@@ -299,11 +300,11 @@
       </ul>
       <div class="blank-search hidden">
         {% if session["user"] %}
-        <h4>No Terms Found</h4>
-        <p>Sorry! We couldn't find any terms that fit your search. <a href="{{ url_for('submit_definition') }}">Can you submit a definition to help others in the future?</a></p>
+        <h3>No Terms Found</h3>
+        <p>Sorry! We couldn't find any terms that fit your search. Can you <a href="{{ url_for('submit_definition') }}" class="blue-link underline">submit a definition</a> to help others in the future?</p>
         {% else %}
-        <h4>No Terms Found</h4>
-        <p>Sorry! We couldn't find any terms that fit your search. If you can help, why not <a href="{{ url_for('login') }}">log in</a> or <a href="{{ url_for('register') }}">register</a> and submit a definition.</p>
+        <h3>No Terms Found</h3>
+        <p>Sorry! We couldn't find any terms that fit your search. If you can help, why not <a href="{{ url_for('login') }}" class="blue-link underline">log in</a> or <a href="{{ url_for('register') }}" class="blue-link underline">register</a> and submit a definition.</p>
         {% endif %}
       </div>
     </div>
