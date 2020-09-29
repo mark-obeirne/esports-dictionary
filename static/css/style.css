@@ -367,6 +367,7 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
 
 .sidenav-close {
   text-align: right;
+  border-bottom: 0.05rem solid #2D2A32;
 }
 
 .sidenav .navbar-divider {
@@ -387,6 +388,7 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
 .social-link {
   margin: 0 1rem;
   color: #C0C0C0;
+  display: inline-block;
 }
 
 .social-link:hover {
