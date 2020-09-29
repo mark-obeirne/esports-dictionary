@@ -114,6 +114,9 @@ In the future, we plan to enable users to favourite individual terms or definiti
 
 ### YouTube API Integration
 
+### Expand Profanity Filter
+
+
 ## Skeleton
 ### Mobile Wireframes
 [Dictionary / Home Page]
@@ -202,21 +205,28 @@ On hover, blue, red, and black elements are highlighted by changing to a colour 
 
 
 ## Technologies Used
-HTML & CSS programming languages - For the basic site structure and design elements.
+### Languages
+HTML & CSS - For the basic site structure and design elements.
 
 JavaScript - To enhance the user's experience, enable filtering in real time, provide feedback when rating terms, and to pop up modals to defensively program against accidental deletions.
 
 Python - To handle data provided by the database.
 
-MongoDB - To store our database and collections relating to users, terms, and supported games.
-
-PyMongo - To enable communication between MongoDB and Python.
-
-Flask - To construct and render page templates.
-
 Jinja - To handle the display of data provided by the backend in addition to traditional HTML code.
 
+### Framworks
+Flask - To construct and render page templates.
+
 Materialize - To create elements such as the Floating Action Button, the sidenav, and tooltips, and to layout each page's structure.
+
+
+### Tools
+
+MongoDB - To store our database and collections relating to users, terms, and supported games.
+
+PIP - To install and manage software packages.
+
+PyMongo - To enable communication between MongoDB and Python.
 
 Git - To track changes in code during development.
 
@@ -321,18 +331,83 @@ Admin Features
 
 
 ## Deployment
-### Heroku
+### Configure Mongo Atlas Database
+* Sign in or sign up to [MongoDB](https://account.mongodb.com/account)
+* Create a new cluster
+* Clicking on the "Connect" button will enable you to connect to this cluster
+* Under the Collections tab, click Create Database
+* For ease of use, this project has collections for games, terms, and users; set these collections up
+* Under the Security Menu on the left, select Database Access.
+* Add a new database user, and keep the credentials secure
+* Within the Network Access option, add IP Address 0.0.0.0 
 
 
 ### Local Deployment
+To clone this project and deploy it locally:
+* Navigate to the [Esports Dictionary project respository](https://github.com/mark-obeirne/esports-dictionary)
+* Click on the green button, marked "Code"
+* Copy the link provided (https://github.com/mark-obeirne/esports-dictionary.git)
+* Using your terminal, type "git clone" followed by the link 
+* As Python is utilised, it is recommended to operate within a virtual environment. The instructions on setting up and activating a virtual environment can differ based on your operating system, so it is best to consult the offical [Python Documentation](https://docs.python.org/3/library/venv.html).
+* Install required modules used in this project with the command "pip -r requirements.txt"
+* Create a file called ".flaskenv" and within this file, create the SECRET_KEY and MONGO_URI variables. The MONGO_URI will link to your own database and will look like this:
 
 
+    mongodb+srv://<username>:<password>@<cluster_name>-qtxun.mongodb.net/<database_name>?retryWrites=true&w=majority
+
+* You should now be able to run this application locally by typing "python3 app.py"
+* The website will be available at http://127.0.0.1:5000
+
+
+
+### Heroku
+In order to deploy this project to Heroku:
+* Create a requirements.txt file by typing "pip3 freeze --local > requirements.txt" into the terminal line
+* Create a Procfile by typing "echo web: python app.py > Procfile". It is important to note that the first letter of "Procfile" is capitalised.
+* Add, commit, and push these files to GitHub
+* Navigate to the [Heroku website](https://dashboard.heroku.com/)
+* Click on "New" in the top right hand corner and then select "Create new app" from the dropdown
+* Proceed to give it a unique app name and choose a region that is local to you
+* Once created, scroll down to the Deployment method section on the app's dashboard
+* For the purpose of this project, Github was utilised, enabling us to search for the relevant repository to connect to
+* Once connected, navigate to the app's settings page and find the section marked "Config Vars"
+* Reveal Config Vars and set the following:
+
+
+    IP = 0.0.0.0
+    MONGO_DBNAME = [Name of MongoDB chosen]
+    MONGO_URI = mongodb+srv://<username>:<password>@<cluster_name>-qtxun.mongodb.net/<database_name>?retryWrites=true&w=majority
+    PORT = 5000
+    SECRET_KEY = [Secret key chosen]
+
+* Click the Deploy tablet
+* Under "Manual Deployment", ensure that the master branch is selected and click "Deploy Branch"
+
+
+ 
 
 ## Credits
+### Code
+[Using Markup to display flash messages with links](https://pythonpedia.com/en/knowledge-base/21248718/how-to-flashing-a-message-with-link-using-flask-flash-): This enabled me to feature links to the register / login page in flash messages displayed if a user attempts to complete an action that they do not have permission to do (submitting or deleting a term if logged out, for example).
+
+[HoverCSS](https://github.com/IanLunn/Hover): This package of CSS was used to alter the behaviour of the social media icons in the footer of hover, enabling them to grow and stand out more.
+
+[Sorting list of dictionaries](https://www.geeksforgeeks.org/ways-sort-list-dictionaries-values-python-using-lambda-function/): As lambda functions were not something that I had much experience with to date, I consulted this guide, which pointed me in the right direction for sorting a list of dictionaries by value. This enabled me to hand over the sorting of terms to its own unique function.
 
 
+### Media
+[Logo Image](https://cdn.pixabay.com/photo/2017/09/08/00/05/icon-2727224_960_720.png)
 
-## Acknowledgement
+[Rocket League Image](https://rocketleague.media.zestyio.com/rl_platform_keyart_2019.309bf22bd29c2e411e9dd8eb07575bb1.jpg)
+
+[Team Fortress 2 Spy - 404 Page](https://e7.pngegg.com/pngimages/509/122/png-clipart-team-fortress-2-dota-2-valve-corporation-mod-steam-chic-spy-day-face-team.png)
+
+## Acknowledgements
+I would like to thank my mentor, Antonio Rodriguez for their support and advice over the course of the project.
+
+I would also like to thank my fellow Code Institute students and the alumni who provided support, advice, and a second opinion on Slack.
+
+Finally, I would like to thank all those who took the time to test this website and provide feedback and suggestions.
 
 
 ## Disclaimer
