@@ -200,11 +200,10 @@ The Esports Dictionary database is made up of three collections: games, terms an
 | Favourite Games | fav_games | String |
 | Admin | is_admin | Boolean |
 | Favourite Competitors | fav_competitors | String |
-| Submitted Terms | submitted_terms | Array |
 | User Rating | total_rating | Int 32 |
 
 ##### Relational Data
-A user's _id is used as the value for the submitted_by, upvoted_by, and downvoted_by fields in terms where relevant. The appropriate term's _id value is included in the submitted_terms array for the user that posted the definition. Finally, the relevant game _id value is used as the game_fk value within the terms collection.
+A user's _id is used as the value for the submitted_by, upvoted_by, and downvoted_by fields in terms where relevant. The relevant game _id value is used as the game_fk value within the terms collection.
 
 ## Skeleton
 ### Mobile Wireframes
