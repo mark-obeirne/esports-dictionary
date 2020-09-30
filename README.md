@@ -28,6 +28,7 @@ Live Heroku Link: http://esports-dictionary.herokuapp.com/
     * [Favourite Terms](#favourite-terms)
     * [YouTube API Integration](#youtube-api-integration)
     * [Expand Profanity Filter](#expand-profanity-filter)
+* [Information Architecture](#information-architecture)
 * [Skeleton](#skeleton)
     * [Mobile Wireframes](#mobile-wireframes)
     * [Tablet Wireframes](#tablet-wireframes)
@@ -38,7 +39,7 @@ Live Heroku Link: http://esports-dictionary.herokuapp.com/
     * [Fonts](#fonts)
     * [Colours](#colours)
 * [Technologies Used](#technologies-used)
-* [Testing]
+* [Testing](#testing)
 * [Issues Encountered and Resolutions](#issues-encountered-and-resolutions)
     * [Any known issues?](#any-known-issues)
 * [Deployment](#deployment)
@@ -570,8 +571,20 @@ Buttons
 
 
 ## Issues Encountered and Resolutions
+### Edit / Delete Buttons
+Initially, usernames as strings were utilised to record who had submitted a term. This made the process of checking the session user cookie against the username in the submitted_by field very straightforward. However, my mentor indicated that it would be better to utilise IDs as foreign keys to allow for any changes to usernames to be reflected. Some refactoring was done, but this made the process of displaying usernames next to definitions more tricky. 
 
+I decided against setting a session cookie with the user's id for security. Consulting the Jinja documentation, it seemed that a namespace object would be a good approach to take. This enabled me to run a loop over the list of users in the database and show the username whose ID matched the ID of the submitter. Then if the user accessing the page had the same username as the username displayed under a definition, they could be shown the admin buttons to edit or delete a term.
 
+### Ratings
+It was important to be able to rate definitions without leaving the page or forcing users to reload the page. When researching potential solutions, I found an idea [on StackOverflow](https://stackoverflow.com/questions/21566649/flask-button-run-python-without-refreshing-page) that utilised AJAX. This enabled me to run a JavaScript function that could get the ID of the term being rated, handle the feedback on the front end, and pass data (such as the term's ID, to the backend for updating.
+
+### Sticky Navbar
+Identifying that the dictionary could be quite long when left unfiltered, I tested a sticky navbar. However, on mobile, the search filters section is also sticky so that it is readily accessible. This resulted in a lot of screen real estate being taken up as the user scrolled down (as well as an overlap of the navbar and the search section).
+
+Initially, I experimented with JavaScript to hide elements within the search section when the screen was scrolled down to a certain point. While some experimenting enabled the headings to hide or display relatively smoothly and other elements to move upwards into this freed up space, there was a point on the page where the function would meet the hide conditions and when hidden, the window scrollY value would cause the elements to display again. 
+
+In the end, I decided that a more elegant approach would be to include a Floating Action Button on each page. This provides users with quick access to important navigation links, and doesn't take up a lot of space.
 
 ### Any known issues?
 
