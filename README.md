@@ -208,9 +208,8 @@ A user's _id is used as the value for the submitted_by, upvoted_by, and downvote
 ## Skeleton
 ### Mobile Wireframes
 * [Dictionary / Home Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Dictionary%20-%20Mobile.png)
-* [Register Page]
-* [Submit Definition Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Submit%20Definition%20Mobile.png)
-* [Edit Definition Page]
+* [Register Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Register%20-%20Mobile.png)
+* [Submit / Edit Definition Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Submit%20Definition%20Mobile.png)
 * [Profile Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Profile%20Mobile.png)
 * [Edit User Page]
 * [Contact Us Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Contact%20Mobile.png)
@@ -220,27 +219,25 @@ A user's _id is used as the value for the submitted_by, upvoted_by, and downvote
 
 ### Tablet Wireframes
 * [Dictionary / Home Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Dictionary%20Tablet.png)
-* [Register Page]
-* [Submit Definition Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Submit%20Definition%20Tablet.png)
-* [Edit Definition Page]
+* [Register Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Register%20-%20Tablet.png)
+* [Submit / Edit Definition Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Submit%20Definition%20Tablet.png)
 * [Profile Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Profile%20Tablet.png)
 * [Edit User Page]
 * [Contact Us Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Contact%20Tablet.png)
 * [Manage Games Page - Admins](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Manage%20Games%20Tablet.png)
 * [Edit Game Page - Admins]
-* [404 Page]
+* [404 Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/404%20Template%20Tablet.png)
 
 ### Desktop Wireframes
 * [Dictionary / Home Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Dictionary%20Desktop.png)
-* [Register Page]
-* [Submit Definition Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Submit%20Definition%20Desktop.png)
-* [Edit Definition Page]
+* [Register Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Register%20-%20Desktop.png)
+* [Submit / Edit Definition Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Submit%20Definition%20Desktop.png)
 * [Profile Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Profile%20Desktop.png)
 * [Edit User Page]
 * [Contact Us Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Contact%20Desktop.png)
 * [Manage Games Page - Admins](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Manage%20Games%20Desktop.png)
 * [Edit Game Page - Admins]
-* [404 Page]
+* [404 Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/404%20Template%20Desktop.png)
 
 ## Changes to Wireframes
 ### Dictionary Page
