@@ -151,23 +151,36 @@ function confirmPasswordMatch() {
   const passwordField = document.querySelector("#password");
   const confirmPassword = document.querySelector("#confirm-password");
   const passwordWarningText = document.querySelector(".confirm-warning");
-  const btn = document.querySelector(".registerBtn");
-
 
   if (confirmPassword.value !== passwordField.value) {
     confirmPassword.classList.remove("valid");
     confirmPassword.classList.add("invalid");
     passwordWarningText.classList.remove("hidden");
-    btn.classList.add("disabled");
-
   }
   else {
     passwordWarningText.classList.add("hidden");
-    btn.classList.remove("disabled");
   }
 
 }
 
+
+/* 
+    Disable / Enable Register button depending on valid status of registration 
+    fields
+*/
+function checkAllValid() {
+  const requiredFields = Array.from(document.querySelectorAll(".validate"))
+  const btn = document.querySelector(".registerBtn");
+  const allValid = requiredFields.every(field => field.classList.contains("valid"))
+  
+  if (allValid) {
+      console.log("Valid")
+      btn.classList.remove("disabled");
+  } else {
+      console.log("Invalid")
+      btn.classList.add("disabled");
+  }
+}
 
 /*
     Update the "Back to homepage" button on 404.html with a randomly chosen
@@ -511,5 +524,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const contactForm = document.querySelector(".contact-form");
   if (contactForm) {
     contactForm.addEventListener("submit", sendMessage);
+  }
+
+  // Check all registration fields valid
+  const registrationForm = document.querySelector(".registration-form");
+  if (registrationForm) {
+    const requiredFields = document.querySelectorAll(".validate");
+    requiredFields.forEach(field => field.addEventListener("focusout", checkAllValid));  
   }
 });
