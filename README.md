@@ -390,22 +390,47 @@ While testing this site, a regular user and an admin account were utilised to ch
 * Attempt to navigate directly to the edit definition page for a term while logged out. Ensure that the user is redirected to the homepage and a flash message appears informing them to log in to edit a definition.
 
 #### Delete Term
+1. On the Dictionary page, find a term submitted by own username and click the edit button. Ensure that the modal pops up correctly. 
+2. On the resulting modal, click the cancel button to close the modal.
+3. Reopen the delete button. Click the X in the top right corner of the modal to close it.
+4. Open the modal one more time and click Delete
 
 
+##### Additional Checks
+* Attempt to process a deletion of a term directly by inputting the ID of a term; if you submitted the term, it should reload the homepage and confirm that the term has been deleted.
+* Attempt to delete a term submitted by another user by inputting the URL for delete definition and the ID of a term; the user should be directed to the homepage with a flash message informing them that they cannot delete a term they did not submit.
+* Attempt to delete a term while logged out by inputting the URL for delete definition and the ID of a term; the user should be directed to the homepage with a flash message informing them that they cannot delete a term while logged out.
 
- 
-Delete Term
- - Try to delete a term by someone else
- - Try to delete a term while logged out
-Profile page
-- Profile of user that hasn't posted
-- Test links and hover behaviour on mouseover of submitted by link
-Edit User
- - Change username (same as existing, different than existing)
- - Get password wrong
- - Change password
- - Edit a different user while logged In
- - Try to edit a user while logged out
+
+#### Profile Page
+1. Use the navbar to visit My Profile when logged in and ensure the page loads correctly
+2. Click on the edit user details button when viewing own profile and ensure that the edit user details page loads correctly. This page is tested further at a later point.
+3. Click on the collapsible headers on the profile page and ensure that they open and display the relevant details.
+4. On the Dictionary page, hover over a username and ensure that the tooltip appears to indicate that the user's profile page can be visited.
+5. On the Dictionary page, click on a username and ensure that their profile page displays correctly. 
+6. Visit the profile page of an account that has not submitted a definition yet and ensure that the visitor is informed that the user hasn't posted yet.
+
+#### Edit User Details
+1. Navigate to the profile of the user logged in
+2. Click the edit user details button
+3. Attempt to update the username to one that is currently in use. The page should reload with a flash message indicating that the username is unavailable.
+4. Attempt to update username or password without filling in current password. The form validation should highlight that this is a necessary field.
+5. Cancel any changes by clicking the cancel button. The user is brought back to the homepage.
+6. Proceed with changing user details. Upon submission ensure that the user is brought to their profile page and their new username is displayed.
+7. Ensure that this new username is featured on any submitted terms to date. 
+
+##### Additional Checks
+* Attempt to access the edit user page directly while logged out; the user is redirected to the homepage with a flash message advising that they need to log in to update their details.
+* Attempt to access the edit user page directly while logged in as a different user; the user is redirected to the homepage and a flash message displays informing them that they do not have permission to edit the user's details.
+
+#### Navigation
+1. Access each page in the navbar while logged in.
+2. Access each page featured in the mobile side navbar while logged in.
+3. Access each page in the navbar while logged out.
+4. Access each page featured in the mobile side navbar while logged out.
+5. Log in as an admin and navigate to the Manage Games page using the navbar.
+6. While logged in as an admin, navigate to the Manage Games page using the mobile side navbar.
+
 Nav Links
 - Sidebar nav Links
 Jumbotron
