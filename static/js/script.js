@@ -1,6 +1,6 @@
 // Materialize Initialisation
 
-// Initialize Sidenav
+// Initialise Sidenav
 document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('.sidenav');
   var instances = M.Sidenav.init(elems, {
@@ -8,13 +8,13 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-// Initialize Dictionary Select Dropdown
+// Initialise Dictionary Select Dropdown
 document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('select');
   var instances = M.FormSelect.init(elems, {});
 });
 
-// Initialize Dictionary Collapsible
+// Initialise Dictionary Collapsible
 document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('.collapsible');
   var instances = M.Collapsible.init(elems, {
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-// Initialize Tooltips
+// Initialise Tooltips
 document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('.tooltipped');
   var instances = M.Tooltip.init(elems, {
@@ -30,11 +30,18 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-// Initialize Floating Action Button
+// Initialise Floating Action Button
 document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('.fixed-action-btn');
   var instances = M.FloatingActionButton.init(elems, {});
 });
+
+// Initialise Character Counter
+document.addEventListener('DOMContentLoaded', function() {
+  const elems = document.querySelector("#long_description");
+  const instances = M.CharacterCounter.init(elems, {});
+});
+
 
 // Functions
 /* 
