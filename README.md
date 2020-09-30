@@ -329,6 +329,8 @@ Git - To track changes in code during development.
 
 GitHub - To host the project’s repository.
 
+[Trello](https://trello.com/) - To track work that needed to be done, including bugs and tweaks found during testing, and check off completed work. 
+
 [Balsamiq](https://balsamiq.com/wireframes/desktop/#) - To create the wireframes that the site's design and layout is based upon.
 
 [Coolors](https://coolors.co/) - For finding a suitable palette for the site.
