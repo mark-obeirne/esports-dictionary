@@ -299,8 +299,6 @@ GitHub - To host the project’s repository.
 
 
 ## Testing
-Separate doc?
-
 ### Validators and Tools
 [W3C Markup Validation Service](https://validator.w3.org/) - Every page across the site was input directly into this service, resulting in no highlighted errors. This was done in a state of being logged in and logged out for thoroughness.
 
@@ -390,7 +388,7 @@ While testing this site, a regular user and an admin account were utilised to ch
 * Attempt to navigate directly to the edit definition page for a term while logged out. Ensure that the user is redirected to the homepage and a flash message appears informing them to log in to edit a definition.
 
 #### Delete Term
-1. On the Dictionary page, find a term submitted by own username and click the edit button. Ensure that the modal pops up correctly. 
+1. On the Dictionary page, find a term submitted by own username and click the delete button. Ensure that the modal pops up correctly. 
 2. On the resulting modal, click the cancel button to close the modal.
 3. Reopen the delete button. Click the X in the top right corner of the modal to close it.
 4. Open the modal one more time and click Delete
@@ -431,41 +429,92 @@ While testing this site, a regular user and an admin account were utilised to ch
 5. Log in as an admin and navigate to the Manage Games page using the navbar.
 6. While logged in as an admin, navigate to the Manage Games page using the mobile side navbar.
 
-Nav Links
-- Sidebar nav Links
-Jumbotron
-- Register / Log In Links
-- Add Definition Link
-404 page
-- Check randomly generated button text
-- Ensure page appears when link incorrect
-Upvote / Downvote
-- Rate while logged out
-    - Test Modal link
-- Give same rating previously given (take back)
-- Give a upvote rating
-- Give a downvote rating
-- Give opposite rating to previously given
-- Check terms disappear when rating drops below threshold
+#### Jumbotron Links
+1. While logged out, click on the Register button in the jumbotron and ensure the page loads correctly.
+2. While logged out, click on the Log In button in the jumbotron and ensure the page loads correctly.
+3. While logged in, ensure that the button in the jumbotron displays "Add Term".
+4. Click on the Add Term button and ensure the page loads correctly.
+
+#### 404 Page
+1. Navigate to the 404 page by typing an incorrect URL into the address bar and ensure the page loads correctly.
+2. Refresh the resulting 404 page and check text in the "Back to Homepage" button.
+3. Click on the back to homepage button and ensure that the page loads correctly.
+
+
+#### Upvote / Downvote Functionality
+1. Attempt to rate a definition while logged out; a modal inviting the user to register or login should appear
+2. Test these links to ensure they bring the user to the correct pages.
+3. Give an upvote to a definition. Ensure that the arrow turns blue and the number ticks up by 1.
+4. Click on the upvote arrow on the same definition to indicate a change of mind. Ensure that the arrow turns grey and the rating is reduced by 1.
+5. Give a downvote to a different definition. Ensure that the arrow turns blue and the rating is decreased by 1.
+6. Click on the downvote arrow on the same definition to indicate a change of mind. Ensure that the arrow turns grey and the rating is increased by 1.
+7. Using a term already rated, click on the opposite arrow to the rating given previously. Ensure that the active arrow changes to reflect the new verdict and the rating changes by 2 - 1 to take back the rating initialy left and 1 to increase or decrease the rating to reflect new verdict. 
+    * If the rating simply changed by 1, that would leave the definition's rating at a neutral level rather than indicating that the user now likes it (as if they had upvoted in the first place) or dislikes it (as though they had initially downvoted). 
+8. Downvote a definition (using multiple accounts if necessary) to drop its rating to -2. Refresh the page and ensure that this definition is now hidden from view.
+
+#### Search Filters
+1. Start typing a desired search term in the input field. 
+    * Ensure that terms with letters matching the input are displayed while all other terms are hidden.
+    * If no matching search terms exist, ensure that a message is displayed to the user inviting them to submit a definition (or log in or register to submit a definition if logged out).
+2. Select a game from the dropdown list to filter by the selected game.
+    * Ensure that all terms displayed match the chosen game filter.
+    * If no matching search terms exist, ensure that a message is displayed to the user inviting them to submit a definition (or log in or register to submit a definition if logged out).
+    * Ensure that the search input field is set back to a blank value
+3. On mobile, click the Filter Alphabetically button and ensure the sidenav menu pops out.
+4. Select a letter from the sidenav and ensure that filtered terms start with the chosen letter.
+    * If no matching search terms exist, ensure that a message is displayed to the user inviting them to submit a definition (or log in or register to submit a definition if logged out).
+    * Ensure that the search input field is set back to a blank value
+5. Replicate the above step on desktop by clicking on a letter to filter.
+6. Click the Clear Filters button and ensure that all terms are displayed once more.
+
+
+#### Admin Features
+The following tests are run while logged into an Admin account.
+#### Edit A Term
+1. Click the edit button on a definition. Ensure that edit page loads correctly. 
+2. Click on the cancel button and ensure that user is brought to homepage.
+3. From the edit definition page again, edit some fields and click the update definition button. Ensure that the dictionary page loads, the term's details have updated and other details have remained the same. 
+
+#### Delete A Term
+1. On the Dictionary page, click the delete button atttached to a term. Ensure that the modal pops up correctly. 
+2. On the resulting modal, click the cancel button to close the modal.
+3. Reopen the delete button. Click the X in the top right corner of the modal to close it.
+4. Open the modal one more time and click Delete and ensure that the page reloads and the term is deleted.
+
+#### Add New Game
+1. Navigate to the Manage Games page.
+2. Click the Add Game button and ensure that the page loads correctly.
+3. Click the cancel button and ensure that the user is brought back to the Manage Games page.
+4. Complete the form and click the add game button. Ensure that the user is redirected to the Manage Games page with a flash message to inform them that the game was added correctly.
+
+#### Edit Game
+1. Navigate to the Manage Games page.
+2. Click the edit button on a game.
+3. Click the cancel button and ensure that the user is brought back to the Manage Games page.
+4. Complete the form and click Update Game Details. Ensure that the user is brought to the Manage Games page and that changes have been applied.
+
+#### Delete Game
+1. Navigate to the Manage Games page.
+2. Click the delete button on a game and ensure that the modal opens correctly. 
+3. Click the cancel button and ensure that the modal closes. 
+4. Open the modal again and click delete. Ensure that the page reloads, a flash message informs the user that the game has been deleted, and the game has been removed.
+5. Navigate to the Dictionary page and ensure that any terms associated with the game have been removed due to cascading delete.
+
+##### Additional checks
+* Attempt to navigate to the Manage Games page while logged out. The user should be redirected to the homepage and informed that they do not have permission to access the page. 
+* Attempt to navigate to the Manage Games page while logged in as a regular user. The user should be redirected to the homepage and informed that they do not have permission to access the page.
+* Attempt to add a game while logged out. The user should be redirected to the homepage and informed that they do not have permission to access the page. 
+* Attempt to add a game while logged in as a regular user. The user should be redirected to the homepage and informed that they do not have permission to access the page. 
+* Attempt to edit a game while logged out. The user should be redirected to the homepage and informed that they do not have permission to access the page. 
+* Attempt to edit a game while logged in as a regular user. The user should be redirected to the homepage and informed that they do not have permission to access the page. 
+* Attempt to delete a game while logged out. The user should be redirected to the homepage and informed that they do not have permission to manage supported games. 
+* Attempt to delete a game while logged in as a regular user. The user should be redirected to the homepage and informed that they do not have permission to manage supported games. 
+
+
 Buttons
 - Hover behaviour and Colours
 - Actions on click
-Filters
-- Search for a term
-    - Terms exist
-    - No results (test link) - logged in and logged out
-    - Test x button to clear
-- Game Dropdown
-- Filter by letter
-    - Test behaviours of other filters when changing each other filter
-- Clear filters button
 
-Admin Features
- - Edit a term
- - Delete a term
- - Add a new game
- - Edit a supported game 
- - Delete a supported game
 
 ## Issues Encountered and Resolutions
 
