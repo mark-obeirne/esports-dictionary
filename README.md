@@ -1,10 +1,10 @@
 # [Esports Dictionary](http://esports-dictionary.herokuapp.com/)
 
-Code Institute - Milestone Project 3
+## Code Institute - Milestone Project 3
 
-Live Heroku Link: http://esports-dictionary.herokuapp.com/
+### Live Heroku Link: http://esports-dictionary.herokuapp.com/
 
-[Multi-Device Mockup]
+![Multi-Device Mockup](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/images/multi-mockup.PNG)
 
 ## Table of Contents
 * [Summary](#summary)
@@ -353,7 +353,7 @@ GitHub - To host the project’s repository.
 
 
 ## Testing
-Information related to the testing of this project, issues encountered, and any known outstanding bugs can be found in the [testing.md]() file.
+Information related to the testing of this project, issues encountered, and any known outstanding bugs can be found in the [testing.md](https://github.com/mark-obeirne/esports-dictionary/blob/master/testing.md) file.
 
 ## Meeting user expectations
 
