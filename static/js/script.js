@@ -1,6 +1,6 @@
 // Materialize Initialisation
 
-// Initialize Sidenav
+// Initialise Sidenav
 document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('.sidenav');
   var instances = M.Sidenav.init(elems, {
@@ -8,13 +8,13 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-// Initialize Dictionary Select Dropdown
+// Initialise Dictionary Select Dropdown
 document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('select');
   var instances = M.FormSelect.init(elems, {});
 });
 
-// Initialize Dictionary Collapsible
+// Initialise Dictionary Collapsible
 document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('.collapsible');
   var instances = M.Collapsible.init(elems, {
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-// Initialize Tooltips
+// Initialise Tooltips
 document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('.tooltipped');
   var instances = M.Tooltip.init(elems, {
@@ -30,11 +30,18 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-// Initialize Floating Action Button
+// Initialise Floating Action Button
 document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('.fixed-action-btn');
   var instances = M.FloatingActionButton.init(elems, {});
 });
+
+// Initialise Character Counter
+document.addEventListener('DOMContentLoaded', function() {
+  const elems = document.querySelector("#long_description");
+  const instances = M.CharacterCounter.init(elems, {});
+});
+
 
 // Functions
 /* 
@@ -144,23 +151,36 @@ function confirmPasswordMatch() {
   const passwordField = document.querySelector("#password");
   const confirmPassword = document.querySelector("#confirm-password");
   const passwordWarningText = document.querySelector(".confirm-warning");
-  const btn = document.querySelector(".registerBtn");
-
 
   if (confirmPassword.value !== passwordField.value) {
     confirmPassword.classList.remove("valid");
     confirmPassword.classList.add("invalid");
     passwordWarningText.classList.remove("hidden");
-    btn.classList.add("disabled");
-
   }
   else {
     passwordWarningText.classList.add("hidden");
-    btn.classList.remove("disabled");
   }
 
 }
 
+
+/* 
+    Disable / Enable Register button depending on valid status of registration 
+    fields
+*/
+function checkAllValid() {
+  const requiredFields = Array.from(document.querySelectorAll(".validate"))
+  const btn = document.querySelector(".registerBtn");
+  const allValid = requiredFields.every(field => field.classList.contains("valid"))
+  
+  if (allValid) {
+      console.log("Valid")
+      btn.classList.remove("disabled");
+  } else {
+      console.log("Invalid")
+      btn.classList.add("disabled");
+  }
+}
 
 /*
     Update the "Back to homepage" button on 404.html with a randomly chosen
@@ -504,5 +524,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const contactForm = document.querySelector(".contact-form");
   if (contactForm) {
     contactForm.addEventListener("submit", sendMessage);
+  }
+
+  // Check all registration fields valid
+  const registrationForm = document.querySelector(".registration-form");
+  if (registrationForm) {
+    const requiredFields = document.querySelectorAll(".validate");
+    requiredFields.forEach(field => field.addEventListener("focusout", checkAllValid));  
   }
 });

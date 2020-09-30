@@ -7,13 +7,13 @@
       <div class="row">
         <div class="col s8 offset-s1 spotlight-content">
           {% if session.user %}
-          <a href="{{ url_for('submit_definition') }}" class="btn submit-def red-btn spotlight-btn text-shadow"><i class="fas fa-plus-circle"></i> Add Term</a>
+          <a href="{{ url_for('submit_definition') }}" class="btn submit-def red-btn spotlight-btn  off-white text-shadow"><i class="fas fa-plus-circle"></i> Add Term</a>
           <p class="benefits small-text off-white">
             Submit definitions for popular esports terms and earn points
           </p>
           {% else %}
-          <a href="{{ url_for('register') }}" class="btn register-btn red-btn spotlight-btn text-shadow"><i class="fas fa-user-plus"></i> Register</a>
-          <a href="{{ url_for('login') }}" class="btn login-btn blue-btn blue-background spotlight-btn text-shadow"><i class="fas fa-sign-in-alt"></i> Log in</a>
+          <a href="{{ url_for('register') }}" class="btn register-btn red-btn spotlight-btn off-white text-shadow"><i class="fas fa-user-plus"></i> Register</a>
+          <a href="{{ url_for('login') }}" class="btn login-btn blue-btn blue-background spotlight-btn off-white text-shadow"><i class="fas fa-sign-in-alt"></i> Log in</a>
           <p class="benefits small-text off-white">
             Register or log in to add definitions and rate submissions
           </p>
@@ -289,10 +289,10 @@
           <div class="admin-btns padded-btns dark-background center-align">
             {% if ns.username == session["user"] or session["admin"] %}
             <!--Buttons for original submitter or an admin user to edit or delete a definition-->
-            <span class="btn-small blue-background blue-btn text-shadow">
+            <span class="btn-small blue-background blue-btn off-white text-shadow">
               <a href="{{ url_for('edit_definition', term_id=term._id) }}" class="off-white"><i class="fas fa-edit"></i> Edit</a>
             </span>
-            <span class="btn-small red-btn off-white term-modal-btn text-shadow" id="delete-{{term._id}}" data-id="{{term._id}}"><i class="fas fa-trash"></i> Delete</span>
+            <span class="btn-small red-btn off-white term-modal-btn off-white text-shadow" id="delete-{{term._id}}" data-id="{{term._id}}"><i class="fas fa-trash"></i> Delete</span>
             {% endif %}
           </div>
         </li>

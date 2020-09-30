@@ -200,18 +200,16 @@ The Esports Dictionary database is made up of three collections: games, terms an
 | Favourite Games | fav_games | String |
 | Admin | is_admin | Boolean |
 | Favourite Competitors | fav_competitors | String |
-| Submitted Terms | submitted_terms | Array |
 | User Rating | total_rating | Int 32 |
 
 ##### Relational Data
-A user's _id is used as the value for the submitted_by, upvoted_by, and downvoted_by fields in terms where relevant. The appropriate term's _id value is included in the submitted_terms array for the user that posted the definition. Finally, the relevant game _id value is used as the game_fk value within the terms collection.
+A user's _id is used as the value for the submitted_by, upvoted_by, and downvoted_by fields in terms where relevant. The relevant game _id value is used as the game_fk value within the terms collection.
 
 ## Skeleton
 ### Mobile Wireframes
 * [Dictionary / Home Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Dictionary%20-%20Mobile.png)
-* [Register Page]
-* [Submit Definition Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Submit%20Definition%20Mobile.png)
-* [Edit Definition Page]
+* [Register Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Register%20-%20Mobile.png)
+* [Submit / Edit Definition Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Submit%20Definition%20Mobile.png)
 * [Profile Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Profile%20Mobile.png)
 * [Edit User Page]
 * [Contact Us Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Contact%20Mobile.png)
@@ -221,27 +219,25 @@ A user's _id is used as the value for the submitted_by, upvoted_by, and downvote
 
 ### Tablet Wireframes
 * [Dictionary / Home Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Dictionary%20Tablet.png)
-* [Register Page]
-* [Submit Definition Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Submit%20Definition%20Tablet.png)
-* [Edit Definition Page]
+* [Register Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Register%20-%20Tablet.png)
+* [Submit / Edit Definition Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Submit%20Definition%20Tablet.png)
 * [Profile Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Profile%20Tablet.png)
 * [Edit User Page]
 * [Contact Us Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Contact%20Tablet.png)
 * [Manage Games Page - Admins](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Manage%20Games%20Tablet.png)
 * [Edit Game Page - Admins]
-* [404 Page]
+* [404 Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/404%20Template%20Tablet.png)
 
 ### Desktop Wireframes
 * [Dictionary / Home Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Dictionary%20Desktop.png)
-* [Register Page]
-* [Submit Definition Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Submit%20Definition%20Desktop.png)
-* [Edit Definition Page]
+* [Register Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Register%20-%20Desktop.png)
+* [Submit / Edit Definition Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Submit%20Definition%20Desktop.png)
 * [Profile Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Profile%20Desktop.png)
 * [Edit User Page]
 * [Contact Us Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Contact%20Desktop.png)
 * [Manage Games Page - Admins](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Manage%20Games%20Desktop.png)
 * [Edit Game Page - Admins]
-* [404 Page]
+* [404 Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/404%20Template%20Desktop.png)
 
 ## Changes to Wireframes
 ### Dictionary Page
@@ -329,6 +325,8 @@ PyMongo - To enable communication between MongoDB and Python.
 Git - To track changes in code during development.
 
 GitHub - To host the project’s repository.
+
+[Trello](https://trello.com/) - To track work that needed to be done, including bugs and tweaks found during testing, and check off completed work. 
 
 [Balsamiq](https://balsamiq.com/wireframes/desktop/#) - To create the wireframes that the site's design and layout is based upon.
 

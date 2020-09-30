@@ -4,19 +4,20 @@
   <div class="row">
     <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('submit_definition') }}">
       <div class="card-panel hoverable">
+        <span class="dark-text">* indicates a required field</span>
         <!--Term-->
         <div class="row">
           <div class="input-field col s12 m6 register-field">
             <i class="fas fa-keyboard prefix"></i>
             <input id="term_header" name="term_header" type="text" minlength="1" maxlength="35" class="validate" required />
-            <label for="term_header">Enter Term</label>
+            <label for="term_header">Enter Term *</label>
             <span class="sublabel dark-text">Max 35 characters</span>
           </div>
           <!--Select Game-->
           <div class="input-field col s12 m6">
             <i class="fas fa-gamepad prefix"></i>
-            <select id="game_name" name="game_name" class="game_name">
-              <option value="" disabled selected>Choose game</option>
+            <select id="game_name" name="game_name" class="game_name" required>
+              <option value="" disabled selected>Choose game *</option>
               {% for game in games %}
               <option value="{{ game.game_name }}">{{ game.game_name }}</option>
               {% endfor %}
@@ -28,7 +29,7 @@
           <div class="input-field col s12 register-field">
             <i class="fas fa-comment-medical prefix"></i>
             <input id="short_definition" name="short_definition" type="text" minlength="1" maxlength="100" class="validate" required />
-            <label for="short_definition">Enter Short Definition</label>
+            <label for="short_definition">Enter Short Definition *</label>
             <span class="sublabel dark-text">Max 100 characters</span>
           </div>
         </div>
@@ -36,8 +37,8 @@
         <div class="row">
           <div class="input-field col s12 register-field">
             <i class="fas fa-comment-dots prefix"></i>
-            <textarea id="long_description" name="long_description" minlength="0" maxlength="300" class="validate materialize-textarea"></textarea>
-            <label for="long_description">Enter Long Description (optional)</label>
+            <textarea id="long_description" name="long_description" minlength="0" maxlength="300" class="validate materialize-textarea" data-length="300"></textarea>
+            <label for="long_description">Description (optional)</label>
           </div>
         </div>
         <!--YouTube Link-->
@@ -52,8 +53,10 @@
         <!--Submit Button-->
         <div class="row">
           <div class="col s12 center-align">
-            <a href="{{ url_for('get_terms') }}" class="btn-large blue-background blue-btn"><i class="fas fa-window-close"></i> Cancel</a>
-            <button type="submit" class="btn-large red-btn text-shadow"><i class="fas fa-plus-circle"></i> Add Definition</button>
+            <div class="padded-btns">
+              <a href="{{ url_for('get_terms') }}" class="btn-small blue-background blue-btn off-white text-shadow"><i class="fas fa-window-close"></i> Cancel</a>
+              <button type="submit" class="btn-small red-btn off-white text-shadow"><i class="fas fa-plus-circle"></i> Add Term</button>
+            </div>
           </div>
         </div>
       </div>
