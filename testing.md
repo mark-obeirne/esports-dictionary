@@ -117,7 +117,7 @@ While testing this site, a regular user and an admin account were utilised to ch
 2. Click the edit user details button
 3. Attempt to update the username to one that is currently in use. The page should reload with a flash message indicating that the username is unavailable.
 4. Attempt to update username or password without filling in current password. The form validation should highlight that this is a necessary field.
-5. Cancel any changes by clicking the cancel button. The user is brought back to the homepage.
+5. Cancel any changes by clicking the cancel button. The user is brought back to their profile page.
 6. Proceed with changing user details. Upon submission ensure that the user is brought to their profile page and their new username is displayed.
 7. Ensure that this new username is featured on any submitted terms to date. 
 
