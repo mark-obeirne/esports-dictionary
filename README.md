@@ -152,6 +152,59 @@ In the future, we plan to enable users to favourite individual terms or definiti
 ### Expand Profanity Filter
 
 
+## Information Architecture
+### Database Choice
+The NoSQL database, MongoDB, was chosen as the database for this particular project. While there were some elements that would have been better suited, the requirements of this project stipulated that MongoDB should be utilised. As a result, IDs were used as foreign keys where relationships were required.
+
+### Data Storage Types
+Esports Dictionary utilised the following data types:
+* ObjectId
+* String
+* Int 32
+* Array
+* Boolean
+
+### Database Schema
+The Esports Dictionary database is made up of three collections: games, terms and users. They contain the following keys as standard:
+
+#### Games Collection
+
+| Name    | Database key | Data Type |
+| --- | --- | --- |
+|ID  | _id   | ObjectId |
+|Game Name | game_name | String |
+
+
+#### Terms Collection
+| Name    | Database key | Data Type |
+| --- | ---- | --- |
+|ID | _id | ObjectId |
+|Term | term_header | String |
+| Game | game_fk | String |
+| Short Definition | short_definition | String |
+| Long Description | long_description | String |
+| YouTube Link | youtube_link | String |
+| Submitted By | submitted_by | ObjectId |
+| Submission Date | submission_date | String |
+| Rating | rating | Int 32 |
+| Upvoted By | upvoted_by | Array |
+| Downvoted By | downvoted_by | Array |
+
+#### Users Collection
+| Name    | Database key | Data Type |
+| --- | ---- | --- |
+|ID | _id | ObjectId |
+| Username | username | String |
+| Password | password | String |
+| Favourite Games | fav_games | String |
+| Admin | is_admin | Boolean |
+| Favourite Competitors | fav_competitors | String |
+| Submitted Terms | submitted_terms | Array |
+| User Rating | total_rating | Int 32 |
+
+##### Relational Data
+A user's _id is used as the value for the submitted_by, upvoted_by, and downvoted_by fields in terms where relevant. The appropriate term's _id value is included in the submitted_terms array for the user that posted the definition. Finally, the relevant game _id value is used as the game_fk value within the terms collection.
+
 ## Skeleton
 ### Mobile Wireframes
 * [Dictionary / Home Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Dictionary%20-%20Mobile.png)
