@@ -233,6 +233,8 @@ Roboto was used as the font across the rest of the site as it is easily readable
 ### Colours
 Gaming websites as a whole have moved away from the black or dark websites that once populated the internet. In addition, Esports takes some of its cues from the world of sports. As highlighted by an [article on Redbull about Esports branding](https://www.redbull.com/ca-en/how-esports-branding-works), the palette of the most notable Esports teams is reds, blues, and whites. This is reminiscent of sports leagues such as the NBA and MLB. This is a palette that we wanted to utilise across the site.
 
+![Site Colours](https://i.imgur.com/akI3bJo.png)
+
 The main colour featured across the site is a rich blue (#0F66D2). This acts as a perfect background colour for areas where there is text, such as the navbar, page icons, and buttons. 
 
 A red colour (#AC1610) is used more sparingly across the site, commonly appearing as the background colour for delete buttons. It is also used as the background colour for the "Add Term" button within the jumbotron, however, as it contrasts well with the background and stands out when positioned between the blue navbar and the grey and blue elements below. 
@@ -274,45 +276,124 @@ Git - To track changes in code during development.
 
 GitHub - To host the project’s repository.
 
-Balsamiq - To create the wireframes that the site's design and layout is based upon.
+[Balsamiq](https://balsamiq.com/wireframes/desktop/#) - To create the wireframes that the site's design and layout is based upon.
 
-Coolors - For finding a suitable palette for the site.
+[Coolors](https://coolors.co/) - For finding a suitable palette for the site.
 
-Google Fonts - To find the right fonts for this site's purpose.
+[Google Fonts](https://fonts.google.com/) - To find the right fonts for this site's purpose.
 
-Font Awesome - For icons used across the site, which provide the user with additional context at first glance.
+[Font Awesome](https://fontawesome.com/) - For icons used across the site, which provide the user with additional context at first glance.
 
-Gimp 2 - For image manipulation and to create the brand logo.
+[Gimp 2](https://www.gimp.org/) - For image manipulation and to create the brand logo.
 
-TinyPNG - To compress and optimise image files.
+[TinyPNG](https://tinypng.com/) - To compress and optimise image files.
 
-Favicon Converter - To create the favicon based on the brand logo.
+[Favicon Converter](https://favicon.io/favicon-converter/) - To create the favicon based on the brand logo.
+
+[HTML Formatter](https://webformatter.com/html) - To format HTML files and ensure consistency in spacing.
+
+[FreeFormatter CSS Beautifier](https://www.freeformatter.com/css-beautifier.html#ad-output) - To format CSS stylesheet.
+
+[FreeFormatter JS Beautifier](https://www.freeformatter.com/javascript-beautifier.html) - To format script.js file.
+
+
 
 ## Testing
 Separate doc?
 
 ### Validators and Tools
+[W3C Markup Validation Service](https://validator.w3.org/) - Every page across the site was input directly into this service, resulting in no highlighted errors. This was done in a state of being logged in and logged out for thoroughness.
 
-### Manual Testing
-#### Devices Used for Testing
+[W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/) - No errors were highlighted after inputting the style.css file into this service.
 
-#### Manual Testing Process
-Register
-- While logged in
-- Test password fields
-- Link to log in page
-- Capitalized / lower case
-Sign In 
-- While already signed in
-- Link to register page
-- Incorrect case (should be fine)
-Sign Out
-- While signed out
-Submit Definition
-- While logged out
-Edit Term
- - Try to edit a term by someone else
- - Try to edit a term while logged out
+[JSHint](https://jshint.com/) - JSHint highlighted unused variable errors in relation to the initialisation of Materialise components. One error was highlighted in relation to custom JS whereby the EmailJS variables were undeclared. Scripts relating to this page are, however, found on the Contact page alone and were inaccessible by this online tool when testing.
+
+[ESPrima (JS)](https://esprima.org/demo/validate.html) - Code was returned as being syntactically valid.
+
+[Pep8 Online](http://pep8online.com/checkresult) - No errors were highlighted when testing Python code.
+
+[Web Accessibility by Level access](https://www.webaccessibility.com/) - Esports Dictionary received a compliance rating of 92%. One note highlighted that it is best practice to provide warning in relation to links that open new windows, which is the case with the icons in the footer. 
+
+[WAVE](https://wave.webaim.org/report#/http://esports-dictionary.herokuapp.com/) - After fixing highlighted errors, no further errors were flagged. Contrast errors were highlighted however. These related to text that is visible to screen readers only and text that appears over the jumbotron image where the background colour of this image is ignored. To ensure that there is adequate contrast used across the site, Google's Developer Tools have been utilised extensively throughout the project.
+
+
+
+## Manual Testing
+### Devices Used for Testing
+Please note that this project does not support Internet Explorer due to the use of ES6 features and notation. Esports Dictionary was tested on a variety of devices, including:
+
+Dell Laptop
+* Google Chrome
+* Microsoft Edge
+* Mozilla Firefox
+
+Samsung Galaxy S10 Mobile
+* Google Chrome
+
+iPhone 8 Mobile
+
+
+### Manual Testing Process
+While testing this site, a regular user and an admin account were utilised to check behaviour across these usergroups. In addition, many functions were tested while logged out to ensure that some defensive programming measures were in place.
+
+#### Register Functionality
+1. Click on the Register button while logged out and ensure that the page loads
+2. Enter a username
+3. Enter a password
+4. Enter a mismatched password when confirming password. Ensure that this is highlighted as invalid and the submit button disables.
+5. Click Register
+    * If the username is available, the user should be logged in, redirected to the homepage, and greeted with a flash message
+    * If the username is currently in use, the page should reload and a flash message should inform the user that they have to choose another username
+
+##### Additional Checks
+* While logged in, attempt to access the register page directly via the link. Ensure that the homepage is loaded with a flash message informing the user that they are already registered and logged in. 
+* Click on link to log in page. Ensure that the correct page loads.
+* Attempt to sign up with a swear word as a username. The page should reload and inform the user that this username is unavailable. Testing has found that there are some workarounds despite better-profanity's ability to swap in numbers for letters and match swear words.
+* Try to sign up with the same username as another user but in a different case. Ensure that the user is informed that they cannot use this username.
+
+#### Log In Functionality
+1. Click on the Log In button while logged out and ensure that the page loads.
+2. Enter an incorrect username and/or password. The page should reload and inform the user that they have supplied the wrong details by way of a flash message.
+3. Enter the correct details and click log in.
+4. The user should be redirected to the homepage and greeted with a flash message.
+
+##### Additional Checks
+* While logged in, attempt to access the log in page directly via the link. Ensure that the homepage is loaded with a flash message informing the user that they are already logged in.
+* Click on link to register page. Ensure that the correct page loads.
+* Attempt to log in with a case that doesn't match the original username. The user should be able to log in and flash message should display username stored in the database.
+
+#### Sign Out Functionality
+1. While logged in, click on the log out button. The homepage should load with a flash message to inform the user that they have logged out.
+
+##### Additional Checks
+* If the user is an admin, ensure that they are unable to access admin areas after logging out.
+* While logged out, attempt to visit the log out URL directly. Ensure that the homepage loads with a flash message informing the user that they are not logged in.
+
+#### Submit Definition
+1. Click on Submit Definition link and ensure that page loads correctly.
+2. Avoid filling out one of the mandatory fields and attempt to submit the form. Ensure that the form does not submit and the user is informed that they have not completed a required field.
+3. Click the cancel button and ensure that user is brought to homepage.
+4. Complete the form correctly and click the add definition button. Ensure that the user is redirected to the homepage and a flash message thanks them for their submission.
+
+##### Additional Checks
+* While logged out, attempt to access the submit definition URL directly. The user should be redirected to the homepage and informed through a flash message that they must register or log in to submit a definition.
+* After submitting a definition, ensure that the user's term is displayed on the homepage and has been upvoted by them as standard.
+
+
+#### Edit Term
+1. On the Dictionary page, find a term submitted by own username and click the edit button. Ensure that edit page loads correctly. 
+2. Click on the cancel button and ensure that user is brought to homepage.
+3. From the edit definition page again, edit some fields and click the update definition button. Ensure that the dictionary page loads, the term's details have updated and other details have remained the same. 
+
+##### Additional Checks
+* Attempt to navigate directly to the edit definition page, adding the ID of another existing term by another user. Ensure that the user is redirected to the homepage and a flash message is shown to tell them that they cannot edit a definition by another user.
+* Attempt to navigate directly to the edit definition page for a term while logged out. Ensure that the user is redirected to the homepage and a flash message appears informing them to log in to edit a definition.
+
+#### Delete Term
+
+
+
+ 
 Delete Term
  - Try to delete a term by someone else
  - Try to delete a term while logged out
