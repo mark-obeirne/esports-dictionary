@@ -28,6 +28,7 @@ Live Heroku Link: http://esports-dictionary.herokuapp.com/
     * [Favourite Terms](#favourite-terms)
     * [YouTube API Integration](#youtube-api-integration)
     * [Expand Profanity Filter](#expand-profanity-filter)
+* [Information Architecture](#information-architecture)
 * [Skeleton](#skeleton)
     * [Mobile Wireframes](#mobile-wireframes)
     * [Tablet Wireframes](#tablet-wireframes)
@@ -38,7 +39,7 @@ Live Heroku Link: http://esports-dictionary.herokuapp.com/
     * [Fonts](#fonts)
     * [Colours](#colours)
 * [Technologies Used](#technologies-used)
-* [Testing]
+* [Testing](#testing)
 * [Issues Encountered and Resolutions](#issues-encountered-and-resolutions)
     * [Any known issues?](#any-known-issues)
 * [Deployment](#deployment)
@@ -152,6 +153,59 @@ In the future, we plan to enable users to favourite individual terms or definiti
 ### Expand Profanity Filter
 
 
+## Information Architecture
+### Database Choice
+The NoSQL database, MongoDB, was chosen as the database for this particular project. While there were some elements that would have been better suited, the requirements of this project stipulated that MongoDB should be utilised. As a result, IDs were used as foreign keys where relationships were required.
+
+### Data Storage Types
+Esports Dictionary utilised the following data types:
+* ObjectId
+* String
+* Int 32
+* Array
+* Boolean
+
+### Database Schema
+The Esports Dictionary database is made up of three collections: games, terms and users. They contain the following keys as standard:
+
+#### Games Collection
+
+| Name    | Database key | Data Type |
+| --- | --- | --- |
+|ID  | _id   | ObjectId |
+|Game Name | game_name | String |
+
+
+#### Terms Collection
+| Name    | Database key | Data Type |
+| --- | ---- | --- |
+|ID | _id | ObjectId |
+|Term | term_header | String |
+| Game | game_fk | String |
+| Short Definition | short_definition | String |
+| Long Description | long_description | String |
+| YouTube Link | youtube_link | String |
+| Submitted By | submitted_by | ObjectId |
+| Submission Date | submission_date | String |
+| Rating | rating | Int 32 |
+| Upvoted By | upvoted_by | Array |
+| Downvoted By | downvoted_by | Array |
+
+#### Users Collection
+| Name    | Database key | Data Type |
+| --- | ---- | --- |
+|ID | _id | ObjectId |
+| Username | username | String |
+| Password | password | String |
+| Favourite Games | fav_games | String |
+| Admin | is_admin | Boolean |
+| Favourite Competitors | fav_competitors | String |
+| Submitted Terms | submitted_terms | Array |
+| User Rating | total_rating | Int 32 |
+
+##### Relational Data
+A user's _id is used as the value for the submitted_by, upvoted_by, and downvoted_by fields in terms where relevant. The appropriate term's _id value is included in the submitted_terms array for the user that posted the definition. Finally, the relevant game _id value is used as the game_fk value within the terms collection.
+
 ## Skeleton
 ### Mobile Wireframes
 * [Dictionary / Home Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Dictionary%20-%20Mobile.png)
@@ -233,6 +287,8 @@ Roboto was used as the font across the rest of the site as it is easily readable
 ### Colours
 Gaming websites as a whole have moved away from the black or dark websites that once populated the internet. In addition, Esports takes some of its cues from the world of sports. As highlighted by an [article on Redbull about Esports branding](https://www.redbull.com/ca-en/how-esports-branding-works), the palette of the most notable Esports teams is reds, blues, and whites. This is reminiscent of sports leagues such as the NBA and MLB. This is a palette that we wanted to utilise across the site.
 
+![Site Colours](https://i.imgur.com/akI3bJo.png)
+
 The main colour featured across the site is a rich blue (#0F66D2). This acts as a perfect background colour for areas where there is text, such as the navbar, page icons, and buttons. 
 
 A red colour (#AC1610) is used more sparingly across the site, commonly appearing as the background colour for delete buttons. It is also used as the background colour for the "Add Term" button within the jumbotron, however, as it contrasts well with the background and stands out when positioned between the blue navbar and the grey and blue elements below. 
@@ -274,99 +330,30 @@ Git - To track changes in code during development.
 
 GitHub - To host the project’s repository.
 
-Balsamiq - To create the wireframes that the site's design and layout is based upon.
+[Balsamiq](https://balsamiq.com/wireframes/desktop/#) - To create the wireframes that the site's design and layout is based upon.
 
-Coolors - For finding a suitable palette for the site.
+[Coolors](https://coolors.co/) - For finding a suitable palette for the site.
 
-Google Fonts - To find the right fonts for this site's purpose.
+[Google Fonts](https://fonts.google.com/) - To find the right fonts for this site's purpose.
 
-Font Awesome - For icons used across the site, which provide the user with additional context at first glance.
+[Font Awesome](https://fontawesome.com/) - For icons used across the site, which provide the user with additional context at first glance.
 
-Gimp 2 - For image manipulation and to create the brand logo.
+[Gimp 2](https://www.gimp.org/) - For image manipulation and to create the brand logo.
 
-TinyPNG - To compress and optimise image files.
+[TinyPNG](https://tinypng.com/) - To compress and optimise image files.
 
-Favicon Converter - To create the favicon based on the brand logo.
+[Favicon Converter](https://favicon.io/favicon-converter/) - To create the favicon based on the brand logo.
+
+[HTML Formatter](https://webformatter.com/html) - To format HTML files and ensure consistency in spacing.
+
+[FreeFormatter CSS Beautifier](https://www.freeformatter.com/css-beautifier.html#ad-output) - To format CSS stylesheet.
+
+[FreeFormatter JS Beautifier](https://www.freeformatter.com/javascript-beautifier.html) - To format script.js file.
+
+
 
 ## Testing
-Separate doc?
-
-### Validators and Tools
-
-### Manual Testing
-#### Devices Used for Testing
-
-#### Manual Testing Process
-Register
-- While logged in
-- Test password fields
-- Link to log in page
-- Capitalized / lower case
-Sign In 
-- While already signed in
-- Link to register page
-- Incorrect case (should be fine)
-Sign Out
-- While signed out
-Submit Definition
-- While logged out
-Edit Term
- - Try to edit a term by someone else
- - Try to edit a term while logged out
-Delete Term
- - Try to delete a term by someone else
- - Try to delete a term while logged out
-Profile page
-- Profile of user that hasn't posted
-- Test links and hover behaviour on mouseover of submitted by link
-Edit User
- - Change username (same as existing, different than existing)
- - Get password wrong
- - Change password
- - Edit a different user while logged In
- - Try to edit a user while logged out
-Nav Links
-- Sidebar nav Links
-Jumbotron
-- Register / Log In Links
-- Add Definition Link
-404 page
-- Check randomly generated button text
-- Ensure page appears when link incorrect
-Upvote / Downvote
-- Rate while logged out
-    - Test Modal link
-- Give same rating previously given (take back)
-- Give a upvote rating
-- Give a downvote rating
-- Give opposite rating to previously given
-- Check terms disappear when rating drops below threshold
-Buttons
-- Hover behaviour and Colours
-- Actions on click
-Filters
-- Search for a term
-    - Terms exist
-    - No results (test link) - logged in and logged out
-    - Test x button to clear
-- Game Dropdown
-- Filter by letter
-    - Test behaviours of other filters when changing each other filter
-- Clear filters button
-
-Admin Features
- - Edit a term
- - Delete a term
- - Add a new game
- - Edit a supported game 
- - Delete a supported game
-
-## Issues Encountered and Resolutions
-
-
-
-### Any known issues?
-
+Information related to the testing of this project, issues encountered, and any known outstanding bugs can be found in the [testing.md]() file.
 
 ## Meeting user expectations
 
