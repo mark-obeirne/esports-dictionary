@@ -83,7 +83,8 @@ def submit_definition():
             "submitted_by": user["_id"],
             "submission_date": submission_date,
             "rating": 1,
-            "upvoted_by": [user["_id"]]
+            "upvoted_by": [user["_id"]],
+            "downvoted_by": []
         }
         print(definition["term_header"])
         mongo.db.terms.insert_one(definition)
