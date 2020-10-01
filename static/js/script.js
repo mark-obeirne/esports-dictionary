@@ -170,7 +170,7 @@ function confirmPasswordMatch() {
 */
 function checkAllValid() {
   const requiredFields = Array.from(document.querySelectorAll(".validate"))
-  const btn = document.querySelector(".registerBtn");
+  const btn = document.querySelector(".submit-btn");
   const allValid = requiredFields.every(field => field.classList.contains("valid"))
   
   if (allValid) {
@@ -179,6 +179,26 @@ function checkAllValid() {
       btn.classList.add("disabled");
   }
 }
+
+
+/* 
+    Disable / Enable Register button depending on status of submit definition  
+    fields
+*/
+function checkDefinitionFields() {
+  const requiredFields = Array.from(document.querySelectorAll(".validate"))
+  const btn = document.querySelector(".submit-btn");
+  const dropdown = document.querySelector(".dropdown-content")
+  const gameOptions = Array.from(dropdown.childNodes)
+  const validInputs = requiredFields.every(field => field.classList.contains("valid"))
+  
+  if (validInputs && !gameOptions[0].classList.contains("selected")) {
+      btn.classList.remove("disabled");
+  } else {
+      btn.classList.add("disabled");
+  }
+}
+
 
 /*
     Update the "Back to homepage" button on 404.html with a randomly chosen
@@ -528,4 +548,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const requiredFields = document.querySelectorAll(".validate");
     requiredFields.forEach(field => field.addEventListener("focusout", checkAllValid));  
   }
+
+  // Check all submit definition fields valid
+  const definitionForm = document.querySelector(".submit-definition-form")
+  if (definitionForm) {
+    const requiredFields = document.querySelectorAll(".validate");
+    const dropdown = document.querySelector(".dropdown-content")
+    const gameOptions = Array.from(dropdown.childNodes)
+    gameOptions.forEach(game => game.addEventListener("click", checkDefinitionFields))
+    requiredFields.forEach(field => field.addEventListener("focusout", checkDefinitionFields)); 
+  }
+
+
 });
