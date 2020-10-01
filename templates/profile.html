@@ -11,17 +11,23 @@
       <span class="user-stars block large-text"></span>
       {% endif %}
     </div>
-    {% if user.fav_games %}
     <div class="fav-games">
       <h3><i class="fas fa-gamepad"></i> Favourite Games</h3>
+      {% if user.fav_games %}
       <p>{{ user.fav_games }}</p>
+      {% else %}
+      <p>{{ user.username }} has not specified a favourite game</p>
+      {% endif %}
     </div>
-    {% endif %} {% if user.fav_competitors %}
     <div class="fav-competitors">
       <h3><i class="fas fa-fist-raised"></i> Supports</h3>
+      {% if user.fav_competitors %}
       <p>{{ user.fav_competitors }}</p>
+      {% else %}
+      <p>{{ user.username }} does not support anyone yet</p>
+      {% endif %}
     </div>
-    {% endif %} {% if user.username == session["user"] %}
+    {% if user.username == session["user"] %}
     <div class="divider"></div>
     <div class="edit center-align">
       <span class="btn-small blue-background blue-btn">
@@ -52,11 +58,10 @@
           </div>
         </div>
         <div class="collapsible-body dark-text">
-          {% if toprated[0].long_description != " " %}
-          <span class="strong">Description</span>
+          <span class="strong">Description:</span>
+          {% if toprated[0].long_description %}
           <p>{{ toprated[0].long_description }}</p>
           {% else %}
-          <span class="strong">Description:</span>
           <p>{{ toprated[0].short_definition }}</p>
           {% endif %} {% if toprated[0].youtube_link %}
           <div>
