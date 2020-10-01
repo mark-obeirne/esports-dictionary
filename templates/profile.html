@@ -58,11 +58,10 @@
           </div>
         </div>
         <div class="collapsible-body dark-text">
-          {% if toprated[0].long_description != " " %}
-          <span class="strong">Description</span>
+          <span class="strong">Description:</span>
+          {% if toprated[0].long_description %}
           <p>{{ toprated[0].long_description }}</p>
           {% else %}
-          <span class="strong">Description:</span>
           <p>{{ toprated[0].short_definition }}</p>
           {% endif %} {% if toprated[0].youtube_link %}
           <div>

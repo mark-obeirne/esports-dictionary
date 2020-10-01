@@ -274,11 +274,10 @@
           </div>
           <!--Collapsible For Added Details-->
           <div class="collapsible-body dark-text">
+            <span class="strong">Description:</span>
             {% if term.long_description %}
-            <span class="strong">Description</span>
             <p>{{ term.long_description }}</p>
             {% else %}
-            <span class="strong">Description:</span>
             <p>{{ term.short_definition }}</p>
             {% endif %} {% if term.youtube_link %}
             <div>
