@@ -27,7 +27,6 @@
     * [Report Terms](#report-terms)
     * [Favourite Terms](#favourite-terms)
     * [YouTube API Integration](#youtube-api-integration)
-    * [Expand Profanity Filter](#expand-profanity-filter)
 * [Information Architecture](#information-architecture)
 * [Skeleton](#skeleton)
     * [Mobile Wireframes](#mobile-wireframes)
@@ -40,8 +39,7 @@
     * [Colours](#colours)
 * [Technologies Used](#technologies-used)
 * [Testing](#testing)
-* [Issues Encountered and Resolutions](#issues-encountered-and-resolutions)
-    * [Any known issues?](#any-known-issues)
+* [Meeting User Expectations](#meeting-user-expectations)
 * [Deployment](#deployment)
 * [Credits](#credits)
 * [Acknowledgements](#acknowledgements)
@@ -356,8 +354,30 @@ GitHub - To host the project’s repository.
 Information related to the testing of this project, issues encountered, and any known outstanding bugs can be found in the [testing.md](https://github.com/mark-obeirne/esports-dictionary/blob/master/testing.md) file.
 
 ## Meeting user expectations
+* "As an Esports fanatic, I want to be able to share my knowledge so that more people can enjoy this passion of mine."
+
+It has been made very easy for users to sign up and immediately start contributing terms to the dictionary. On the homepage, where the user is redirected once they are registered and logged in, there are three immediate ways to submit a definition - via the link in the navbar, from the button in the jumbotron, or from the link in the Floating Action Button. Additionally, if a user searches and is presented with no results, they are invited to submit a definition.  
+
+* "As a parent, I want to learn more about my child's hobby, so that I can connect with them and spend some more quality time with them."
+
+Not only are users able to search for terms and gain a greater understanding of the lexicon used within the Esports realm, but those submitting definitions are able to provide additional context by linking to YouTube videos, which provides a fuller explanation of the term in question.
+
+* "As a sports fan who stumbled upon gaming coverage during lockdown, I would like to be able to understand what the commentators are talking about, so that I can enjoy the action more."
+
+As stated previously, the goal is to build a comprehensive knowledge bank of terms and their meaning. In addition, providing YouTube videos alongside the terms and their meanings provides additional context as to what the term means and when it might be used.
 
 
+* "As the site owner, I would like to build a comprehensive glossary of gaming and Esports terms so that the site is the go-to resource when someone wants to find out what a gaming term means."
+
+By making it straightforward to register and submit definitions, there are fewer barriers in the way for users to get involved. In addition, unlike formally written articles, the site can stay up to date through user submissions and ratings. Finally, admins are able to maintain the list of supported games, adding new games as they are released and utilised for competitive play. All of these terms for a variety of games are housed in one convenient location, readily searched or perused.
+
+"As the site owner, I want to be able to find ways to reward users for getting involved, so that they will help to contribute to this database of knowledge."
+
+* To start, users gain rating points based on their submissions and the quality of these submissions as deemed by their peers. However, there is room to expand this further as noted in the Future Features section as the site experience is gamified with users earning achievements based on their activities.
+
+"As the site owner, I would like to leverage this database of knowledge in the future by selling books on the topic, so that we have another revenue stream."
+
+* This is a future goal of the site, as we understand that we need to build a solid database of knowledge as well as a core group of users first. However, we have seen this as an opportunity to pursue further.
 
 ## Deployment
 ### Configure Mongo Atlas Database
