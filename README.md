@@ -443,6 +443,8 @@ In order to deploy this project to Heroku:
 
 [Adjusting colour of form input text](https://stackoverflow.com/questions/14431818/css-styling-placeholder-text)
 
+[Spinner button on Contact Us page](https://www.w3schools.com/howto/howto_css_loading_buttons.asp)
+
 ### Media
 [Logo Image](https://cdn.pixabay.com/photo/2017/09/08/00/05/icon-2727224_960_720.png)
 
