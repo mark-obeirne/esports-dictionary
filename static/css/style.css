@@ -261,6 +261,10 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
   position: relative;
 }
 
+.select-dropdown li {
+    padding: 1rem;
+}
+
 #clear {
   position: absolute;
   right: .1rem;
