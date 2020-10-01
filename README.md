@@ -246,6 +246,9 @@ On tablet, it was decided to emulate the behaviour and layout of the mobile view
 ### Manage Supported Games
 In order to give each game card more space, the number of cards in each row on tablet was reduced to 2 and to 3 on desktop and larger devices.
 
+### Add / Edit Game Page
+Initially, it was planned to enable Admins to add links to the icons for the games to be utilised on the homepage. However, as the game's name is not the focal point of the dictionary, the images were taking away from other more important elements or looked too small and hard to make out when reduced further in size.
+
 ## Structure
 The navbar links available are different based on the user's logged in status, while Admins have another link available to them. The navbar features the site's logo in the centre of the page with the hamburger menu to the right on mobile. On larger devices, the logo shifts to the left-hand side of the page with the navigation options spreading out across the right.
 
