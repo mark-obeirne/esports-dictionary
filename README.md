@@ -445,6 +445,8 @@ In order to deploy this project to Heroku:
 
 [Spinner button on Contact Us page](https://www.w3schools.com/howto/howto_css_loading_buttons.asp)
 
+[Fix iOS issue with Materialize select dropdowns](https://github.com/Dogfalo/materialize/issues/4983)
+
 ### Media
 [Logo Image](https://cdn.pixabay.com/photo/2017/09/08/00/05/icon-2727224_960_720.png)
 

@@ -261,8 +261,20 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
   position: relative;
 }
 
-.select-dropdown li {
-    padding: 1rem;
+/* Select Wrappers */
+/* Fixes select issue on iOS. Credit: https://github.com/Dogfalo/materialize/issues/4983 */
+.select-wrapper {
+	position: relative;
+}
+.select-wrapper select {
+	display: block;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: 10;
+	opacity: 0;
 }
 
 #clear {
