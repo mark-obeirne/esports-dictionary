@@ -434,7 +434,12 @@ function displayStarRating() {
 */
 function sendMessage(e) {
   const contactForm = document.querySelector(".contact-form");
+  const sendBtn = document.querySelector(".send-btn");
+  const buttonLoad = document.querySelector(".buttonload")
+  sendBtn.classList.add("hidden");
+  buttonLoad.classList.remove("hidden");
   e.preventDefault();
+  
   emailjs.send("gmail", "esportsdictionary", {
       "name": contactForm.name.value,
       "email": contactForm.email.value,
