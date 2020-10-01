@@ -1,5 +1,5 @@
 # Testing Details
-[README.md file]()
+[README.md file](https://github.com/mark-obeirne/esports-dictionary/blob/master/README.md)
 
 This document includes details of sites used for validation and testing, how manual testing was accomplished, and issues faced over the course of this project's completion.
 
