@@ -311,14 +311,13 @@ Python - To handle data provided by the database.
 
 Jinja - To handle the display of data provided by the backend in addition to traditional HTML code.
 
-### Framworks
+### Frameworks
 Flask - To construct and render page templates.
 
 Materialize - To create elements such as the Floating Action Button, the sidenav, and tooltips, and to layout each page's structure.
 
 
 ### Tools
-
 MongoDB - To store our database and collections relating to users, terms, and supported games.
 
 PIP - To install and manage software packages.
