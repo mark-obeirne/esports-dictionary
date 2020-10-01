@@ -146,10 +146,8 @@ Admins are currently able to edit or delete any term, and this system could help
 ### Favourite Terms
 In the future, we plan to enable users to favourite individual terms or definitions for later consultation.
 
-### YouTube API Integration
-
 ### Expand Profanity Filter
-
+The site utilises the base version of better-profanity, which prevents users from signing up with swear words as their usernames. There are some workarounds, so we would like to customise this feature further over time and continue to evolve a restricted list as new terms crop up.
 
 ## Information Architecture
 ### Database Choice
