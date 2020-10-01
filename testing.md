@@ -31,8 +31,12 @@ Dell Laptop
 
 Samsung Galaxy S10 Mobile
 * Google Chrome
+* Firefox
+* Kiwi Browser
 
 iPhone 8 Mobile
+* Google Chrome
+* Safari
 
 
 ### Manual Testing Process
@@ -241,3 +245,6 @@ Users were able to submit definitions without being able to select a game from t
 ### Any known issues?
 #### Search Terms Game Dropdown
 While the text searchbar is cleared if any other filter is applied, the game dropdown remains set to the last selected filter. Attempts to update the class of the first item to selected or setting the value of the option element have proven fruitless so far. 
+
+#### Dropdown Selection On iPhone
+Using Materialize, there is currently a bug on iOS when using the dropdown selection elements (searching for a game, for example). After selecting an option from the list, the wrong option is displayed, and used, as a filter. This issue is not unique to Esports Dictionary, however, and has been reported on a number of sites. The behaviour was replicated on the [Materialize site](https://materializecss.com/select.html) when testing the demo Select element.
