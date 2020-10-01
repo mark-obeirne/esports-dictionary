@@ -125,7 +125,7 @@ def edit_definition(term_id):
             "short_definition": request.form.get("short_definition"),
             "long_description": request.form.get("long_description", False),
             "youtube_link": request.form.get("youtube_link", False),
-            "submitted_by": user["_id"],
+            "submitted_by": term["submitted_by"],
             "submission_date": term["submission_date"],
             "rating": term["rating"],
             "upvoted_by": term["upvoted_by"],
