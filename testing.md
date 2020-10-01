@@ -1,5 +1,5 @@
 # Testing Details
-[README.md file]()
+[README.md file](https://github.com/mark-obeirne/esports-dictionary/blob/master/README.md)
 
 This document includes details of sites used for validation and testing, how manual testing was accomplished, and issues faced over the course of this project's completion.
 
@@ -235,4 +235,9 @@ Initially, I experimented with JavaScript to hide elements within the search sec
 
 In the end, I decided that a more elegant approach would be to include a Floating Action Button on each page. This provides users with quick access to important navigation links, and doesn't take up a lot of space.
 
+### Submit Definition
+Users were able to submit definitions without being able to select a game from the dropdown menu. Adding required to the select element simply resulted in the form not submitting, but there was no indication as to why the form would not submit. As a result, asterisks were added to the required form elements and the button's default behaviour was set to be disabled (as is the case on the registration page). When the user completes all necessary fields, including selecting an option from the game dropdown, a JavaScript function enables the button so that the definition can be submitted.
+
 ### Any known issues?
+#### Search Terms Game Dropdown
+While the text searchbar is cleared if any other filter is applied, the game dropdown remains set to the last selected filter. Attempts to update the class of the first item to selected or setting the value of the option element have proven fruitless so far. 

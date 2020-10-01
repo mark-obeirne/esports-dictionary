@@ -209,7 +209,7 @@ A user's _id is used as the value for the submitted_by, upvoted_by, and downvote
 * [Register Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Register%20-%20Mobile.png)
 * [Submit / Edit Definition Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Submit%20Definition%20Mobile.png)
 * [Profile Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Profile%20Mobile.png)
-* [Edit User Page]
+* [Edit User Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Edit%20User%20Mobile.png)
 * [Contact Us Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Contact%20Mobile.png)
 * [Manage Games Page - Admins](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Manage%20Supported%20Games%20Mobile.png)
 * [Add / Edit Game Page - Admins](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Add_Edit%20Game%20Mobile.png)
@@ -220,7 +220,7 @@ A user's _id is used as the value for the submitted_by, upvoted_by, and downvote
 * [Register Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Register%20-%20Tablet.png)
 * [Submit / Edit Definition Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Submit%20Definition%20Tablet.png)
 * [Profile Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Profile%20Tablet.png)
-* [Edit User Page]
+* [Edit User Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Edit%20User%20Tablet.png)
 * [Contact Us Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Contact%20Tablet.png)
 * [Manage Games Page - Admins](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Manage%20Games%20Tablet.png)
 * [Add / Edit Game Page - Admins](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Add_Edit%20Game%20Tablet.png)
@@ -231,7 +231,7 @@ A user's _id is used as the value for the submitted_by, upvoted_by, and downvote
 * [Register Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Register%20-%20Desktop.png)
 * [Submit / Edit Definition Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Submit%20Definition%20Desktop.png)
 * [Profile Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Profile%20Desktop.png)
-* [Edit User Page]
+* [Edit User Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Edit%20User%20Desktop.png)
 * [Contact Us Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Contact%20Desktop.png)
 * [Manage Games Page - Admins](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Manage%20Games%20Desktop.png)
 * [Add / Edit Game Page - Admins](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Add_Edit%20Game%20Desktop.png)
