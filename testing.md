@@ -16,7 +16,7 @@ This document includes details of sites used for validation and testing, how man
 
 [Web Accessibility by Level access](https://www.webaccessibility.com/) - Esports Dictionary received a compliance rating of 92%. One note highlighted that it is best practice to provide warning in relation to links that open new windows, which is the case with the icons in the footer. 
 
-[WAVE](https://wave.webaim.org/report#/http://esports-dictionary.herokuapp.com/) - After fixing highlighted errors, no further errors were flagged. Contrast errors were highlighted however. These related to text that is visible to screen readers only and text that appears over the jumbotron image where the background colour of this image is ignored. To ensure that there is adequate contrast used across the site, Google's Developer Tools have been utilised extensively throughout the project.
+[WAVE](https://wave.webaim.org/report#/http://esports-dictionary.herokuapp.com/) - After fixing highlighted errors, no further errors were flagged. Contrast errors were highlighted however. These were linked to text that is visible to screen readers only and text that appears over the jumbotron image where the background colour of this image is ignored. To ensure that there is adequate contrast used across the site, Google's Developer Tools have been utilised extensively throughout the project.
 
 
 
@@ -49,7 +49,7 @@ While testing this site, a regular user and an admin account were utilised to ch
 
 ##### Additional Checks
 * While logged in, attempt to access the register page directly via the link. Ensure that the homepage is loaded with a flash message informing the user that they are already registered and logged in. 
-* Click on link to log in page. Ensure that the correct page loads.
+* Click on the link to log in page. Ensure that the correct page loads.
 * Attempt to sign up with a swear word as a username. The page should reload and inform the user that this username is unavailable. Testing has found that there are some workarounds despite better-profanity's ability to swap in numbers for letters and match swear words.
 * Try to sign up with the same username as another user but in a different case. Ensure that the user is informed that they cannot use this username.
 
@@ -61,8 +61,8 @@ While testing this site, a regular user and an admin account were utilised to ch
 
 ##### Additional Checks
 * While logged in, attempt to access the log in page directly via the link. Ensure that the homepage is loaded with a flash message informing the user that they are already logged in.
-* Click on link to register page. Ensure that the correct page loads.
-* Attempt to log in with a case that doesn't match the original username. The user should be able to log in and flash message should display username stored in the database.
+* Click on the link to register page. Ensure that the correct page loads.
+* Attempt to log in with a case that doesn't match the original username. The user should be able to log in and the flash message should display the username stored in the database.
 
 #### Sign Out Functionality
 1. While logged in, click on the log out button. The homepage should load with a flash message to inform the user that they have logged out.
@@ -152,7 +152,7 @@ While testing this site, a regular user and an admin account were utilised to ch
 4. Click on the upvote arrow on the same definition to indicate a change of mind. Ensure that the arrow turns grey and the rating is reduced by 1.
 5. Give a downvote to a different definition. Ensure that the arrow turns blue and the rating is decreased by 1.
 6. Click on the downvote arrow on the same definition to indicate a change of mind. Ensure that the arrow turns grey and the rating is increased by 1.
-7. Using a term already rated, click on the opposite arrow to the rating given previously. Ensure that the active arrow changes to reflect the new verdict and the rating changes by 2 - 1 to take back the rating initialy left and 1 to increase or decrease the rating to reflect new verdict. 
+7. Using a term already rated, click on the opposite arrow to the rating given previously. Ensure that the active arrow changes to reflect the new verdict and the rating changes by 2 - 1 to take back the rating initially left and 1 to increase or decrease the rating to reflect new verdict. 
     * If the rating simply changed by 1, that would leave the definition's rating at a neutral level rather than indicating that the user now likes it (as if they had upvoted in the first place) or dislikes it (as though they had initially downvoted). 
 8. Downvote a definition (using multiple accounts if necessary) to drop its rating to -2. Refresh the page and ensure that this definition is now hidden from view.
 
@@ -180,7 +180,7 @@ The following tests are run while logged into an Admin account.
 3. From the edit definition page again, edit some fields and click the update definition button. Ensure that the dictionary page loads, the term's details have updated and other details have remained the same. 
 
 #### Delete A Term
-1. On the Dictionary page, click the delete button atttached to a term. Ensure that the modal pops up correctly. 
+1. On the Dictionary page, click the delete button attached to a term. Ensure that the modal pops up correctly. 
 2. On the resulting modal, click the cancel button to close the modal.
 3. Reopen the delete button. Click the X in the top right corner of the modal to close it.
 4. Open the modal one more time and click Delete and ensure that the page reloads and the term is deleted.

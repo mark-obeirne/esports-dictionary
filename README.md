@@ -67,7 +67,7 @@ While there are sites that have written articles about esports terminology, our 
 Esports Dictionary is different as it can evolve over time, draws upon the knowledge of a community, can provide more context through the use of YouTube links, and is easy to navigate.
 
 ## Scope
-The site's main target are passionate gamers who know the lexicon of gaming and, in particular, Esports. These users will shape the site by contributing definitions and rating on those that provide the most detail or accuracy. However, as Esports reaches new audiences, it will target these newcomers who want to learn more and develop a greater understanding of the words being used in association with this entertainment industry.
+The site's main target are passionate gamers who know the lexicon of gaming and, in particular, Esports. These users will shape the site by contributing definitions and rating those that provide the most detail or accuracy. However, as Esports reaches new audiences, it will target these newcomers who want to learn more and develop a greater understanding of the words being used in association with this entertainment industry.
 
 ### User Stories
 #### Users
@@ -112,7 +112,7 @@ The rating system emulates Reddit's system.
 * If they press the upvote arrow again, it is taken as an indication that they are taking this rating away and the term's rating is reduced by the 1 that they previously gave it.
 * This shows a user that they can't spam the upvote or downvote button.
 
-* If a user has upvoted a definition, but later downvote it, the rating will reduce by 2. The +1 that they originally gave it is taken away. And a -1 is subsequently applied. 
+* If a user has upvoted a definition, but later downvotes it, the rating will reduce by 2. The +1 that they originally gave it is taken away. And a -1 is subsequently applied. 
 * This replicates the behaviour of a user simply downvoting a definition, i.e. giving it -1. 
 
 ### Floating Action Button
@@ -133,7 +133,7 @@ If a user attempts to navigate to a page that does not exist or stumbles upon a 
 ### Profile Gamification
 As outlined in the Site Owner's user story, we are looking for further ways to encourage users to get involved. A rating system is one that has worked on sites such as Reddit, but we would like to expand this further. 
 
-Achievements are an integral part of videogames and we would like to explore this avenue with achivements that would feature on a user's profile. These achievements would reward users for submissions, for submitting well-received terms, for account longevity, for filling out their profile, and more.  
+Achievements are an integral part of videogames and we would like to explore this avenue with achievements that would feature on a user's profile. These achievements would reward users for submissions, for submitting well-received terms, for account longevity, for filling out their profile, and more.  
 
 ### Shop
 As the site depends on user submissions, it is too early to launch a shop to sell site-related merchandise. As outlined, it is planned that the shop will feature products that draw upon contributed definitions and knowledge such as cute and cartoony A-Z books aimed at parents who are gamers.
@@ -146,10 +146,8 @@ Admins are currently able to edit or delete any term, and this system could help
 ### Favourite Terms
 In the future, we plan to enable users to favourite individual terms or definitions for later consultation.
 
-### YouTube API Integration
-
 ### Expand Profanity Filter
-
+The site utilises the base version of better-profanity, which prevents users from signing up with swear words as their usernames. There are some workarounds, so we would like to customise this feature further over time and continue to evolve a restricted list as new terms crop up.
 
 ## Information Architecture
 ### Database Choice
@@ -239,10 +237,10 @@ A user's _id is used as the value for the submitted_by, upvoted_by, and downvote
 
 ## Changes to Wireframes
 ### Dictionary Page
-On tablet, it was decided to emulate the behaviour and layout of the mobile view when it came to the Alphabetical Filters. In testing, the approach of having a sidebar slide out to allow the user to select a letter was more appealing. On larger devices, the full alphabet could be displayed without taking up too much screen real estate or seeming overwhelming.
+On tablets, it was decided to emulate the behaviour and layout of the mobile view when it came to the Alphabetical Filters. In testing, the approach of having a sidebar slide out to allow the user to select a letter was more appealing. On larger devices, the full alphabet could be displayed without taking up too much screen real estate or seeming overwhelming.
 
 ### Manage Supported Games
-In order to give each game card more space, the number of cards in each row on tablet was reduced to 2 and to 3 on desktop and larger devices.
+In order to give each game card more space, the number of cards in each row on tablets was reduced to 2 and to 3 on desktop and larger devices.
 
 ### Add / Edit Game Page
 Initially, it was planned to enable Admins to add links to the icons for the games to be utilised on the homepage. However, as the game's name is not the focal point of the dictionary, the images were taking away from other more important elements or looked too small and hard to make out when reduced further in size.
@@ -250,7 +248,7 @@ Initially, it was planned to enable Admins to add links to the icons for the gam
 ## Structure
 The navbar links available are different based on the user's logged in status, while Admins have another link available to them. The navbar features the site's logo in the centre of the page with the hamburger menu to the right on mobile. On larger devices, the logo shifts to the left-hand side of the page with the navigation options spreading out across the right.
 
-Visitors who are logged out will be presented with these naviation links:
+Visitors who are logged out will be presented with these navigation links:
 * Dictionary
 * Register
 * Log In
@@ -273,7 +271,7 @@ Finally, users who are granted Admin status will see:
 
 This order was chosen to emphasise the dictionary for all users, which is where the bulk of the site's content lives. When a user logs in, we want the Submit Definition page to be visible as an integral part of the site, while the user's profile can present interesting information that will keep them coming back for more (particularly if they become attached to their rating).
 
-For Admins, managing the games available should not be an every day task, while we do not expect users to be emailing frequently with issues or comments. Finally, the Log Out button is kept on the far right to adhere to traditional placement.
+For Admins, managing the games available should not be an everyday task, while we do not expect users to be emailing frequently with issues or comments. Finally, the Log Out button is kept on the far right to adhere to traditional placement.
 
 ## Surface
 ### Fonts
@@ -397,7 +395,7 @@ To clone this project and deploy it locally:
 * Click on the green button, marked "Code"
 * Copy the link provided (https://github.com/mark-obeirne/esports-dictionary.git)
 * Using your terminal, type "git clone" followed by the link 
-* As Python is utilised, it is recommended to operate within a virtual environment. The instructions on setting up and activating a virtual environment can differ based on your operating system, so it is best to consult the offical [Python Documentation](https://docs.python.org/3/library/venv.html).
+* As Python is utilised, it is recommended to operate within a virtual environment. The instructions on setting up and activating a virtual environment can differ based on your operating system, so it is best to consult the official [Python Documentation](https://docs.python.org/3/library/venv.html).
 * Install required modules used in this project with the command "pip -r requirements.txt"
 * Create a file called ".flaskenv" and within this file, create the SECRET_KEY and MONGO_URI variables. The MONGO_URI will link to your own database and will look like this:
 
