@@ -30,7 +30,7 @@
     {% if user.username == session["user"] %}
     <div class="divider"></div>
     <div class="edit center-align">
-      <span class="btn-small blue-background blue-btn">
+      <span class="btn-small blue-btn">
         <a href="{{ url_for('edit_user', user_id=user._id) }}" class="off-white text-shadow"><i class="fas fa-edit"></i> Edit User Details</a>
       </span>
     </div>
@@ -113,7 +113,7 @@
     </ul>
     {% else %} {% if user.username == session["user"] %}
     <h4>No Submissions Yet</h4>
-    <p>It doesn't look like you've contributed any terms yet. Why not <a href="{{ url_for('submit_definition') }}" class="underline">submit one now</a> and start earning points</p>
+    <p>It doesn't look like you've contributed any terms yet. Why not <a href="{{ url_for('submit_definition') }}" class="underline blue-link">submit one now</a> and start earning points</p>
     {% else %}
     <h4>No Submissions Yet</h4>
     <p>It looks like {{ user.username }} is shy and hasn't contributed any terms yet.</p>

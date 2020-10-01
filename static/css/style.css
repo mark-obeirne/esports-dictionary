@@ -336,6 +336,10 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
   background-color: #DB1C14;
 }
 
+.blue-btn {
+    background-color: #0F66D2;
+}
+
 .blue-btn:active,
 .blue-btn:focus,
 .blue-btn:hover {
