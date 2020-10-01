@@ -188,7 +188,7 @@ function updateHomepageButton() {
   const homepageBtn = document.querySelector(".homepage-button");
   const phrases = ["Rocket Jump", "Bunny Hop", "Auto Run", "Fast Travel", "Teleport", "Strafe Jump", "Barrel Roll", "Shootdodge", "Noclip"];
   const choice = phrases[Math.floor(Math.random() * phrases.length)];
-  homepageBtn.innerHTML = "<i class='fas fa-home'></i> " + choice + " back to the homepage";
+  homepageBtn.innerHTML = "<a class='off-white' href='/get_terms'><i class='fas fa-home'></i> " + choice + " back to the homepage</a>";
 }
 
 

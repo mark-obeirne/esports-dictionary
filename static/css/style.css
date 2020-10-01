@@ -311,12 +311,10 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
   background-color: #AC1610;
 }
 
+.red-btn:active,
+.red-btn:focus,
 .red-btn:hover {
   background-color: #DB1C14;
-}
-
-.blue-btn:hover {
-  background-color: #257FEF;
 }
 
 .blue-btn:active,
@@ -348,12 +346,8 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
 }
 
 .homepage-button {
-  background-color: #AC1610;
-  padding: 1rem;
-}
-
-.homepage-button:hover {
-  background-color: #DB1C14;
+  cursor: pointer;
+  width: 100%;
 }
 
 
