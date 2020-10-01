@@ -214,7 +214,7 @@ A user's _id is used as the value for the submitted_by, upvoted_by, and downvote
 * [Edit User Page]
 * [Contact Us Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Contact%20Mobile.png)
 * [Manage Games Page - Admins](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Manage%20Supported%20Games%20Mobile.png)
-* [Edit Game Page - Admins]
+* [Add / Edit Game Page - Admins](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Add_Edit%20Game%20Mobile.png)
 * [404 Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/404%20Template%20Mobile.png)
 
 ### Tablet Wireframes
@@ -225,7 +225,7 @@ A user's _id is used as the value for the submitted_by, upvoted_by, and downvote
 * [Edit User Page]
 * [Contact Us Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Contact%20Tablet.png)
 * [Manage Games Page - Admins](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Manage%20Games%20Tablet.png)
-* [Edit Game Page - Admins]
+* [Add / Edit Game Page - Admins](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Add_Edit%20Game%20Tablet.png)
 * [404 Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/404%20Template%20Tablet.png)
 
 ### Desktop Wireframes
@@ -236,7 +236,7 @@ A user's _id is used as the value for the submitted_by, upvoted_by, and downvote
 * [Edit User Page]
 * [Contact Us Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Contact%20Desktop.png)
 * [Manage Games Page - Admins](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Manage%20Games%20Desktop.png)
-* [Edit Game Page - Admins]
+* [Add / Edit Game Page - Admins](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Add_Edit%20Game%20Desktop.png)
 * [404 Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/404%20Template%20Desktop.png)
 
 ## Changes to Wireframes
