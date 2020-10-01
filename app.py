@@ -404,8 +404,7 @@ def add_game():
 
         # Gather form data
         game_details = {
-            "game_name": request.form.get("game_name"),
-            "game_icon": request.form.get("game_icon")
+            "game_name": request.form.get("game_name")
             }
 
         # Submit data to DB
@@ -433,8 +432,7 @@ def edit_game(game_id):
 
     if request.method == "POST":
         update = {
-            "game_name": request.form.get("game_name"),
-            "game_icon": request.form.get("game_icon")
+            "game_name": request.form.get("game_name")
         }
 
         mongo.db.games.update({"_id": ObjectId(game_id)}, update)
