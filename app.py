@@ -48,7 +48,7 @@ def get_terms():
             return render_template(
                 "terms.html",
                 terms=terms, games=games, users=users, userid=userid)
-    except KeyError:
+    except TypeError:
         # User is not logged in and doesn't have session cookie set
         terms = mongo.db.terms.find({"rating": {"$gt": -2}}).sort(
                     [("term_header", 1),
