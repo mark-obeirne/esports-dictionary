@@ -86,7 +86,6 @@ def submit_definition():
             "upvoted_by": [user["_id"]],
             "downvoted_by": []
         }
-        print(definition["term_header"])
         mongo.db.terms.insert_one(definition)
         updateUserRating(definition, 1)
         flash(f"Thank you, {session['user']}, for your submission",
@@ -125,7 +124,7 @@ def edit_definition(term_id):
             "short_definition": request.form.get("short_definition"),
             "long_description": request.form.get("long_description", False),
             "youtube_link": request.form.get("youtube_link", False),
-            "submitted_by": user["_id"],
+            "submitted_by": term["submitted_by"],
             "submission_date": term["submission_date"],
             "rating": term["rating"],
             "upvoted_by": term["upvoted_by"],
@@ -345,7 +344,6 @@ def profile(username):
     ordered = sortTermsAlphabetically(terms)
     toprated = sortTermsByRating(terms)
     games = list(mongo.db.games.find())
-    print(ordered)
     return render_template(
         "profile.html", user=user, terms=ordered,
         toprated=toprated, games=games)

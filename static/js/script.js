@@ -174,10 +174,8 @@ function checkAllValid() {
   const allValid = requiredFields.every(field => field.classList.contains("valid"))
   
   if (allValid) {
-      console.log("Valid")
       btn.classList.remove("disabled");
   } else {
-      console.log("Invalid")
       btn.classList.add("disabled");
   }
 }
@@ -361,7 +359,6 @@ function handleDownvote(e) {
 */
 function loginModalPrompt(e) {
   e.stopPropagation();
-  console.log("Opening modal");
   const modal = document.querySelector(".login-modal");
   const closeBtn = document.querySelector(".close-prompt");
   modal.classList.remove("hidden");
@@ -385,7 +382,6 @@ function stayCollapsed(e) {
  */
 function addProfileStars(quantity) {
   const starSection = document.querySelector(".user-stars");
-  console.log(typeof (quantity));
   starSection.innerHTML += "<i class='fas fa-star'></i> ".repeat(quantity);
 }
 
@@ -427,7 +423,7 @@ function sendMessage(e) {
     .then(function (response) {
       contactForm.submit();
     }, function (error) {
-      console.log("Failed", error);
+      alert("We're sorry, an error occurred: ", error);
     })
   return false;
 }
