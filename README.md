@@ -214,7 +214,7 @@ A user's _id is used as the value for the submitted_by, upvoted_by, and downvote
 * [Edit User Page]
 * [Contact Us Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Contact%20Mobile.png)
 * [Manage Games Page - Admins](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Manage%20Supported%20Games%20Mobile.png)
-* [Edit Game Page - Admins]
+* [Add / Edit Game Page - Admins](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Add_Edit%20Game%20Mobile.png)
 * [404 Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/404%20Template%20Mobile.png)
 
 ### Tablet Wireframes
@@ -225,7 +225,7 @@ A user's _id is used as the value for the submitted_by, upvoted_by, and downvote
 * [Edit User Page]
 * [Contact Us Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Contact%20Tablet.png)
 * [Manage Games Page - Admins](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Manage%20Games%20Tablet.png)
-* [Edit Game Page - Admins]
+* [Add / Edit Game Page - Admins](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Add_Edit%20Game%20Tablet.png)
 * [404 Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/404%20Template%20Tablet.png)
 
 ### Desktop Wireframes
@@ -236,7 +236,7 @@ A user's _id is used as the value for the submitted_by, upvoted_by, and downvote
 * [Edit User Page]
 * [Contact Us Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Contact%20Desktop.png)
 * [Manage Games Page - Admins](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Manage%20Games%20Desktop.png)
-* [Edit Game Page - Admins]
+* [Add / Edit Game Page - Admins](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/Add_Edit%20Game%20Desktop.png)
 * [404 Page](https://raw.githubusercontent.com/mark-obeirne/esports-dictionary/master/static/wireframes/404%20Template%20Desktop.png)
 
 ## Changes to Wireframes
@@ -245,6 +245,9 @@ On tablet, it was decided to emulate the behaviour and layout of the mobile view
 
 ### Manage Supported Games
 In order to give each game card more space, the number of cards in each row on tablet was reduced to 2 and to 3 on desktop and larger devices.
+
+### Add / Edit Game Page
+Initially, it was planned to enable Admins to add links to the icons for the games to be utilised on the homepage. However, as the game's name is not the focal point of the dictionary, the images were taking away from other more important elements or looked too small and hard to make out when reduced further in size.
 
 ## Structure
 The navbar links available are different based on the user's logged in status, while Admins have another link available to them. The navbar features the site's logo in the centre of the page with the hamburger menu to the right on mobile. On larger devices, the logo shifts to the left-hand side of the page with the navigation options spreading out across the right.
