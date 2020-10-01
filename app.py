@@ -338,15 +338,19 @@ def profile(username):
     """
     Display user profile for chosen user
     """
-    user = mongo.db.users.find_one({"username": username})
-    terms = list(mongo.db.terms.find(
-        {"submitted_by": user["_id"], "rating": {"$gt": -2}}))
-    ordered = sortTermsAlphabetically(terms)
-    toprated = sortTermsByRating(terms)
-    games = list(mongo.db.games.find())
-    return render_template(
-        "profile.html", user=user, terms=ordered,
-        toprated=toprated, games=games)
+    try:
+        user = mongo.db.users.find_one({"username": username})
+        terms = list(mongo.db.terms.find(
+            {"submitted_by": user["_id"], "rating": {"$gt": -2}}))
+        ordered = sortTermsAlphabetically(terms)
+        toprated = sortTermsByRating(terms)
+        games = list(mongo.db.games.find())
+        return render_template(
+            "profile.html", user=user, terms=ordered,
+            toprated=toprated, games=games)
+    except TypeError:
+        flash("This user does not exist", category="error")
+        return redirect(url_for("get_terms"))
 
 
 def updateUserRating(definition, increase):

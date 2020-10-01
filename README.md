@@ -443,6 +443,7 @@ In order to deploy this project to Heroku:
 
 [Sorting list of dictionaries](https://www.geeksforgeeks.org/ways-sort-list-dictionaries-values-python-using-lambda-function/): As lambda functions were not something that I had much experience with to date, I consulted this guide, which pointed me in the right direction for sorting a list of dictionaries by value. This enabled me to hand over the sorting of terms to its own unique function.
 
+[Adjusting colour of form input text](https://stackoverflow.com/questions/14431818/css-styling-placeholder-text)
 
 ### Media
 [Logo Image](https://cdn.pixabay.com/photo/2017/09/08/00/05/icon-2727224_960_720.png)

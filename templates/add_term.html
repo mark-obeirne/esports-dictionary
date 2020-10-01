@@ -37,7 +37,7 @@
         <div class="row">
           <div class="input-field col s12 register-field">
             <i class="fas fa-comment-dots prefix"></i>
-            <textarea id="long_description" name="long_description" minlength="0" maxlength="300" class="validate materialize-textarea" data-length="300"></textarea>
+            <textarea id="long_description" name="long_description" minlength="0" maxlength="300" class="materialize-textarea" data-length="300"></textarea>
             <label for="long_description">Description (optional)</label>
           </div>
         </div>
@@ -55,7 +55,7 @@
           <div class="col s12 center-align">
             <div class="padded-btns">
               <a href="{{ url_for('get_terms') }}" class="btn-small blue-background blue-btn off-white text-shadow"><i class="fas fa-window-close"></i> Cancel</a>
-              <button type="submit" class="btn-small red-btn off-white text-shadow"><i class="fas fa-plus-circle"></i> Add Term</button>
+              <button type="submit" class="btn-small submit-btn disabled red-btn off-white text-shadow"><i class="fas fa-plus-circle"></i> Add Term</button>
             </div>
           </div>
         </div>
