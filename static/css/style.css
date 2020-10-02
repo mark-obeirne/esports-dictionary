@@ -375,6 +375,7 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
 .homepage-button {
   cursor: pointer;
   width: 100%;
+  height: 100%;
 }
 
 
