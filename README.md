@@ -240,7 +240,7 @@ A user's _id is used as the value for the submitted_by, upvoted_by, and downvote
 On tablets, it was decided to emulate the behaviour and layout of the mobile view when it came to the Alphabetical Filters. In testing, the approach of having a sidebar slide out to allow the user to select a letter was more appealing. On larger devices, the full alphabet could be displayed without taking up too much screen real estate or seeming overwhelming.
 
 ### Manage Supported Games
-In order to give each game card more space, the number of cards in each row on tablets was reduced to 2 and to 3 on desktop and larger devices.
+In order to give each game card more space, the number of cards in each row on tablets was reduced to 2. This also ensured that the page would render correctly within Jinja templating even if the game's name splits onto a second line, as is the case with League of Legends.
 
 ### Add / Edit Game Page
 Initially, it was planned to enable Admins to add links to the icons for the games to be utilised on the homepage. However, as the game's name is not the focal point of the dictionary, the images were taking away from other more important elements or looked too small and hard to make out when reduced further in size.
