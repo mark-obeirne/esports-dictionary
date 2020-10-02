@@ -3,6 +3,36 @@
 
 This document includes details of sites used for validation and testing, how manual testing was accomplished, and issues faced over the course of this project's completion.
 
+## Table of Contents
+* [Validators and Tools](#validators-and-tools)
+* [Manual Testing](#manual-testing)
+    * [Devices Used for Testing](#devices-used-for-testing)
+* [Manual Testing Process](#manual-testing-process)
+    * [Register Functionality](#register-functionality)
+    * [Log In Functionality](#log-in-functionality)
+    * [Sign Out Functionality](#sign-out-functionality)
+    * [Submit Definition](#submit-definition)
+    * [Edit Term](#edit-term)
+    * [Delete Term](#delete-term)
+    * [Profile Page](#profile-page)
+    * [Edit User Details](#edit-user-details)
+    * [Navigation](#navigation)
+    * [Jumbotron Links](#jumbotron-links)
+    * [404 Page](#404-page)
+    * [Upvote / Downvote Functionality](#upvote--downvote-functionality)
+    * [Search Filters](#search-filters)
+    * [Admin Features](#admin-features)
+        * [Edit A Term](#edit-a-term)
+        * [Delete A Term](#delete-a-term)
+        * [Add New Game](#add-new-game)
+        * [Edit Game](#edit-game)
+        * [Delete Game](#delete-game)
+* [Issues Encountered and Resolutions](#issues-encountered-and-resolutions)
+* [Any Known Issues](#any-known-issues)
+
+
+
+
 ### Validators and Tools
 [W3C Markup Validation Service](https://validator.w3.org/) - Every page across the site was input directly into this service, resulting in no highlighted errors. This was done in a state of being logged in and logged out for thoroughness.
 
