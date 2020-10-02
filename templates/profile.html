@@ -1,6 +1,7 @@
 {% extends "base.html" %} {% block title %}Esports Dictionary | {{user.username}}'s Profile{% endblock %} {% block content %}
 <div class="row profile">
   <div class="col s12 l4 user-details-section white-bg">
+    <!--User Details Section-->
     <h1 class="page-heading center-align blue-background off-white">{{ user.username }}</h1>
     <div class="divider"></div>
     <div class="rating-section center-align">
@@ -11,6 +12,7 @@
       <span class="user-stars block large-text"></span>
       {% endif %}
     </div>
+    <!--Optional Details-->
     <div class="fav-games">
       <h3><i class="fas fa-gamepad"></i> Favourite Games</h3>
       {% if user.fav_games %}
@@ -36,6 +38,7 @@
     </div>
     {% endif %}
   </div>
+  <!--Top Rated Definition-->
   {% if toprated %}
   <div class="col s12 l8 user-submissions padded-section">
     <h2 class="page-heading center-align blue-background off-white">Top Rated Definition</h2>
@@ -74,6 +77,7 @@
   </div>
   {% endif %}
   <div class="col s12 l8 all-submissions padded-section">
+    <!--All Definitions By User-->
     <h2 class="page-heading center-align blue-background off-white">All Definitions</h2>
     {% if terms %}
     <ul class="collapsible profile-collapsible">
