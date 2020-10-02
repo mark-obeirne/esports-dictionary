@@ -299,6 +299,10 @@ textarea.materialize-textarea:not(.browser-default):focus:not([readonly]) {
   padding-bottom: 2rem;
 }
 
+.game-row {
+    margin-bottom: 0;
+}
+
 /* Ensure that labels are available to screenreaders, but hide otherwise as placeholder text provides context */
 /* Credit: https://www.w3.org/WAI/tutorials/forms/labels/#hidden */
 .visuallyhidden {

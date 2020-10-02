@@ -11,7 +11,9 @@
   <!--Display Currently Supported Games-->
   <div class="row supported-games">
     {% for game in games %}
-    <div class="col s12 m6 l4">
+    {% if loop.index is divisibleby 2 %}
+    <div class="row game-row">
+    <div class="col s12 m6 l6">
       <div class="card">
         <div class="card-content center-align">
           <span class="card-title">{{ game.game_name }}</span>
@@ -23,6 +25,21 @@
         </div>
       </div>
     </div>
+    </div>
+    {% else %}
+    <div class="col s12 m6 l6">
+      <div class="card">
+        <div class="card-content center-align">
+          <span class="card-title">{{ game.game_name }}</span>
+        </div>
+        <!--Edit and Delete Buttons-->
+        <div class="actions center-align padded-btns">
+          <a href="{{ url_for('edit_game', game_id=game._id) }}" class="btn-small blue-btn off-white text-shadow"><i class="fas fa-edit"></i> Edit</a>
+          <span class="btn-small red-btn off-white text-shadow game-modal-btn" id="delete-game-{{game._id}}" data-id="{{game._id}}"><i class="fas fa-trash"></i> Delete</span>
+        </div>
+      </div>
+    </div>
+    {% endif %}
     {% endfor %}
     <!--Confirm Delete Modal-->
     <div class="game-modal modal-target hidden" id="my-modal">
