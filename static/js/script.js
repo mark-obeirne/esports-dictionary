@@ -559,7 +559,6 @@ document.addEventListener("DOMContentLoaded", function () {
   if (definitionForm) {
     const requiredFields = document.querySelectorAll(".validate");
     const dropdown = document.querySelector("#game_name")
-    const gameOptions = Array.from(dropdown.childNodes)
     dropdown.addEventListener("click", checkDefinitionFields)
     requiredFields.forEach(field => field.addEventListener("focusout", checkDefinitionFields)); 
   }
