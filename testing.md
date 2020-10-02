@@ -208,6 +208,9 @@ The following tests are run while logged into an Admin account.
 4. Open the modal again and click delete. Ensure that the page reloads, a flash message informs the user that the game has been deleted, and the game has been removed.
 5. Navigate to the Dictionary page and ensure that any terms associated with the game have been removed due to cascading delete.
 
+##### Note
+* Rating points acquired by users from games that get deleted are left intact, as it would not be right to diminish a user's contribution to the site because a game is no longer supported.
+
 ##### Additional checks
 * Attempt to navigate to the Manage Games page while logged out. The user should be redirected to the homepage and informed that they do not have permission to access the page. 
 * Attempt to navigate to the Manage Games page while logged in as a regular user. The user should be redirected to the homepage and informed that they do not have permission to access the page.
