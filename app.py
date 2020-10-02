@@ -119,7 +119,7 @@ def edit_definition(term_id):
     if request.method == "POST":
         user = mongo.db.users.find_one({"username": session["user"]})
         updated = {
-            "term_header": request.form.get("term_header"),
+            "term_header": request.form.get("term_header").upper(),
             "game_fk": selected_game['_id'],
             "short_definition": request.form.get("short_definition"),
             "long_description": request.form.get("long_description", False),
@@ -408,7 +408,7 @@ def add_game():
 
         # Gather form data
         game_details = {
-            "game_name": request.form.get("game_name")
+            "game_name": request.form.get("game_name").upper()
             }
 
         # Submit data to DB
@@ -436,7 +436,7 @@ def edit_game(game_id):
 
     if request.method == "POST":
         update = {
-            "game_name": request.form.get("game_name")
+            "game_name": request.form.get("game_name").upper()
         }
 
         mongo.db.games.update({"_id": ObjectId(game_id)}, update)
