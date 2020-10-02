@@ -188,11 +188,11 @@ function checkAllValid() {
 function checkDefinitionFields() {
   const requiredFields = Array.from(document.querySelectorAll(".validate"))
   const btn = document.querySelector(".submit-btn");
-  const dropdown = document.querySelector(".dropdown-content")
+  const dropdown = document.querySelector("#game_name")
   const gameOptions = Array.from(dropdown.childNodes)
   const validInputs = requiredFields.every(field => field.classList.contains("valid"))
   
-  if (validInputs && !gameOptions[0].classList.contains("selected")) {
+  if (validInputs && gameOptions[1].selected == false) {
       btn.classList.remove("disabled");
   } else {
       btn.classList.add("disabled");
@@ -558,11 +558,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const definitionForm = document.querySelector(".submit-definition-form")
   if (definitionForm) {
     const requiredFields = document.querySelectorAll(".validate");
-    const dropdown = document.querySelector(".dropdown-content")
+    const dropdown = document.querySelector("#game_name")
     const gameOptions = Array.from(dropdown.childNodes)
-    gameOptions.forEach(game => game.addEventListener("click", checkDefinitionFields))
+    dropdown.addEventListener("click", checkDefinitionFields)
     requiredFields.forEach(field => field.addEventListener("focusout", checkDefinitionFields)); 
   }
-
-
 });
