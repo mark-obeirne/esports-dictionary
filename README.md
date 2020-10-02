@@ -427,7 +427,7 @@ In order to deploy this project to Heroku:
     PORT = 5000
     SECRET_KEY = [Secret key chosen]
 
-* Click the Deploy tablet
+* Click the Deploy tab
 * Under "Manual Deployment", ensure that the master branch is selected and click "Deploy Branch"
 
 
